@@ -28,7 +28,7 @@ public:
     : it(nh)
   {
     rgb_sub = it.subscribe("/camera/rgb/image_color", 1, &ImageHandler::rgb_cb, this);
-		depth_sub = it.subscribe("/camera/depth/image", 1, &ImageHandler::depth_cb, this);
+		depth_sub = it.subscribe("/camera/depth/image_raw", 1, &ImageHandler::depth_cb, this);
 
     // cv::namedWindow(WINDOW1);
     // cv::namedWindow(WINDOW2);
@@ -36,8 +36,8 @@ public:
 
   ~ImageHandler()
   {
-    // cv::destroyWindow(WINDOW1);
-    // cv::destroyWindow(WINDOW2);
+    cv::destroyWindow(WINDOW1);
+    cv::destroyWindow(WINDOW2);
   }
 
   void rgb_cb(const sensor_msgs::ImageConstPtr& msg)
@@ -71,6 +71,17 @@ public:
     // cv::imshow(WINDOW2, cv_depth->image);
     // cv::waitKey(3);       
   }
+
+  cv_bridge::CvImagePtr get_cv_rgb()
+  {
+    return cv_rgb;
+  }
+
+  cv_bridge::CvImagePtr get_cv_depth()
+  {
+    return cv_depth;
+  }
+
 };
 
 #endif
