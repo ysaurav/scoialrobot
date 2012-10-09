@@ -2,16 +2,14 @@
 #define IMAGE_HANDLER
 
 #include <ros/ros.h>
+#include <ros/package.h>
 #include <image_transport/image_transport.h>
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.h>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
-namespace enc = sensor_msgs::image_encodings;
-
-static const char WINDOW1[] = "RGB window";
-static const char WINDOW2[] = "Depth window";
+#include "string_utils.h"
 
 class ImageHandler
 {
@@ -19,9 +17,13 @@ class ImageHandler
   image_transport::ImageTransport it;
   image_transport::Subscriber rgb_sub;
 	image_transport::Subscriber depth_sub;
+  image_transport::Subscriber disparity_sub;
+  ros::ServiceServer service;
 
   cv_bridge::CvImagePtr cv_rgb;
   cv_bridge::CvImagePtr cv_depth;
+
+  int i;
   
 public:
   ImageHandler()
@@ -29,15 +31,25 @@ public:
   {
     rgb_sub = it.subscribe("/camera/rgb/image_color", 1, &ImageHandler::rgb_cb, this);
 		depth_sub = it.subscribe("/camera/depth/image_raw", 1, &ImageHandler::depth_cb, this);
-
-    // cv::namedWindow(WINDOW1);
-    // cv::namedWindow(WINDOW2);
+		// disparity_sub = it.subscribe("/camera/depth/disparity", 1, &ImageHandler::disparity_cb, this);
+    service = nh.advertiseService("save_depth", &ImageHandler::save_depth);
+    i = 0;
   }
 
   ~ImageHandler()
   {
-    cv::destroyWindow(WINDOW1);
-    cv::destroyWindow(WINDOW2);
+
+  }
+
+  bool save_depth()
+  {
+    std::string depth_im_result = ros::package::getPath("social_robot");
+    depth_im_result.append("/logs/kinect_image_");
+     
+    depth_im_result.append(".png");
+    bool imwrite_result = cv::imwrite(depth_im_result, cv_depth->image);
+    std::cout << depth_im_result << " was " << imwrite_result << std::endl;
+    return imwrite_result;
   }
 
   void rgb_cb(const sensor_msgs::ImageConstPtr& msg)
@@ -50,10 +62,7 @@ public:
     {
       ROS_ERROR("cv_bridge exception: %s", e.what());
       return;
-    }
-
-    // cv::imshow(WINDOW1, cv_rgb->image);
-    // cv::waitKey(3);       
+    }      
   }
 
   void depth_cb(const sensor_msgs::ImageConstPtr& msg)
@@ -68,18 +77,17 @@ public:
       return;
     }
 
-    // cv::imshow(WINDOW2, cv_depth->image);
-    // cv::waitKey(3);       
-  }
-
-  cv_bridge::CvImagePtr get_cv_rgb()
-  {
-    return cv_rgb;
-  }
-
-  cv_bridge::CvImagePtr get_cv_depth()
-  {
-    return cv_depth;
+    if (false)
+    {
+      std::string depth_im_result = ros::package::getPath("social_robot");
+      depth_im_result.append("/logs/kinect_image_");
+      
+      depth_im_result.append(inttostr(i));
+      depth_im_result.append(".png");
+      bool imwrite_result = cv::imwrite(depth_im_result, cv_depth->image);
+      std::cout << depth_im_result << " was " << imwrite_result << std::endl;
+      i++;
+    }      
   }
 
 };
