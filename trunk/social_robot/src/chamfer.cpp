@@ -41,9 +41,13 @@ int main(int argc, char **argv)
   
   // Calculate the pyramid
   DT[0] = canny_im;
+//  cv::imshow("Distance", DT[0]);
+//  cv::waitKey(0);
   for(int i=1;i<scales;i++)
   {
       cv::resize(DT[i-1],DT[i],cv::Size(),.75,.75,cv::INTER_NEAREST);
+//      cv::imshow("Distance", DT[i]);
+//      cv::waitKey(0);
   }
   
   // Calculate distance transform
@@ -51,8 +55,8 @@ int main(int argc, char **argv)
   {
       cv::distanceTransform((255-DT[i]),chamfer[i],CV_DIST_C,3);
       cv::normalize(chamfer[i], chamfer[i], 0.0, 1.0,cv::NORM_MINMAX);
-      cv::imshow("Distance",chamfer[i]);
-      cv::waitKey(0);
+//      cv::imshow("Distance",chamfer[i]);
+//      cv::waitKey(0);
   }
   
   // Matching with the template
@@ -80,14 +84,15 @@ int main(int argc, char **argv)
   for(int i=0;i<scales;i++)
   {
      //filter2D(chamfer[i],matching[i],-1,template_im);
-     matchTemplate(chamfer[i],template_im,matching[i],CV_TM_SQDIFF);
+     matchTemplate(chamfer[i],template_im,matching[i],CV_TM_CCOEFF);
      normalize( matching[i], matching[i], 0, 1, cv::NORM_MINMAX);
      std::cout << matching[i].rows << " " << matching[i].cols << "\n";
      cv::minMaxLoc(matching[i], &minVal, &maxVal, &minLoc, &maxLoc);
      // Move center of detected screw to the correct position:  
-     cv::Point screwCenter = maxLoc + cv::Point(chamfer[i].cols/2, chamfer[i].rows/2);
+     cv::Point screwCenter =  cv::Point(chamfer[i].cols/2 + minLoc.x, chamfer[i].rows/2 + minLoc.y);
      std::cout << screwCenter.x << ", " << screwCenter.y << std::endl;
-     //circle(chamfer[i], screwCenter, 10, cvScalar(255, 0, 0, 0), 1, 8, 0);
+     rectangle(chamfer[i], minLoc, cv::Point(minLoc.x + template_im.cols, minLoc.y + template_im.rows ), cv::Scalar::all(0), 2, 8, 0 );
+//     circle(chamfer[i], screwCenter, 10, cvScalar(255, 255, 0, 0), 1, 8, 0);
      cv::imshow("Hola",matching[i]);
      cv::waitKey(0);
   }
@@ -102,11 +107,6 @@ int main(int argc, char **argv)
   std::string depth_im_result = ros::package::getPath("social_robot");
   depth_im_result.append("/logs/preprocessed_");
   depth_im_result.append(argv[2]);
-  
-  // display image
-  cv::namedWindow("Hola", CV_WINDOW_AUTOSIZE);
-  cv::imshow("Hola",matching[0]);
-  cv::waitKey(0);
   
   bool imwrite_result = cv::imwrite(depth_im_result, depth_im);
   std::cout << depth_im_result << " was " << imwrite_result << " (rows,cols) = "<< "(" << chamfer[4].rows << "," << chamfer[4].cols << ")" << std::endl;
