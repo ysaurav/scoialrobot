@@ -5,6 +5,7 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include "cv_utils.h"
 
 
 int main(int argc, char **argv)
@@ -50,19 +51,51 @@ int main(int argc, char **argv)
   {
       cv::distanceTransform((255-DT[i]),chamfer[i],CV_DIST_C,3);
       cv::normalize(chamfer[i], chamfer[i], 0.0, 1.0,cv::NORM_MINMAX);
+      cv::imshow("Distance",chamfer[i]);
+      cv::waitKey(0);
   }
   
   // Matching with the template
-  cvtColor(template_im, template_im, CV_RGB2GRAY);
-  cv::Mat template_im2(template_im.rows,template_im.cols,template_im.type());
+  //cvtColor(template_im, template_im, CV_RGB2GRAY);
+  template_im = rgb2bw(template_im);
   template_im.convertTo(template_im,CV_32F);
+  cv::Mat template_im2(template_im.rows,template_im.cols,template_im.type());
+  
+  // display image
+  //cv::namedWindow("Template", CV_WINDOW_AUTOSIZE);
+  //cv::imshow("Template",template_im);
+  //cv::waitKey(0);
   
   //filter2D(template_im,template_im2,-1,template_im);
+  matchTemplate(template_im,template_im,template_im2,CV_TM_SQDIFF);
+  // Find a best match:
+  double minVal, maxVal;
+  cv::Point minLoc, maxLoc;
+  cv::minMaxLoc(template_im2, &minVal, &maxVal, &minLoc, &maxLoc);
+  // Move center of detected screw to the correct position:  
+  cv::Point screwCenter = maxLoc + cv::Point(template_im.cols/2, template_im.rows/2);
+  std::cout << screwCenter.x << ", " << screwCenter.y << std::endl;
+
+  
   for(int i=0;i<scales;i++)
   {
-     filter2D(chamfer[i],matching[i],-1,template_im);
+     //filter2D(chamfer[i],matching[i],-1,template_im);
+     matchTemplate(chamfer[i],template_im,matching[i],CV_TM_SQDIFF);
+     normalize( matching[i], matching[i], 0, 1, cv::NORM_MINMAX);
+     std::cout << matching[i].rows << " " << matching[i].cols << "\n";
+     cv::minMaxLoc(matching[i], &minVal, &maxVal, &minLoc, &maxLoc);
+     // Move center of detected screw to the correct position:  
+     cv::Point screwCenter = maxLoc + cv::Point(chamfer[i].cols/2, chamfer[i].rows/2);
+     std::cout << screwCenter.x << ", " << screwCenter.y << std::endl;
+     //circle(chamfer[i], screwCenter, 10, cvScalar(255, 0, 0, 0), 1, 8, 0);
      cv::imshow("Hola",matching[i]);
      cv::waitKey(0);
+  }
+  
+  for(int i=0;i<scales;i++)
+  {
+      cv::imshow("Distance",chamfer[i]);
+      cv::waitKey(0);
   }
   
   // write the result to the result folder
