@@ -1,4 +1,5 @@
 #include "kinect_proxy.h"
+
 #include <std_srvs/Empty.h>
 #include <stereo_msgs/DisparityImage.h>
 
@@ -89,5 +90,3 @@ void init_kinect(void)
   ros::ServiceServer save_disparity_ser = nh.advertiseService("social_robot/save_disparity", save_disparity);
   ros::spin();  
 }
-
-
