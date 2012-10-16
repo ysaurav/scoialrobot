@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <opencv_storage>
   <images>
-    rsrc/calib/imgs/img_001.jpg
-    rsrc/calib/imgs/img_002.jpg
-    rsrc/calib/imgs/img_003.jpg
-    rsrc/calib/imgs/img_004.jpg
-    rsrc/calib/imgs/img_005.jpg
-    rsrc/calib/imgs/img_006.jpg
-    rsrc/calib/imgs/img_007.jpg
+    rsrc/calib/imgs/kinect_rgb_01.png
+    rsrc/calib/imgs/kinect_rgb_02.png
+    rsrc/calib/imgs/kinect_rgb_03.png
+    rsrc/calib/imgs/kinect_rgb_04.png
+    rsrc/calib/imgs/kinect_rgb_05.png
+    rsrc/calib/imgs/kinect_rgb_06.png
+    rsrc/calib/imgs/kinect_rgb_07.png
+    rsrc/calib/imgs/kinect_rgb_08.png
   </images>
 </opencv_storage>

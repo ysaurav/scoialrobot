@@ -25,11 +25,17 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  cv::Mat rgb_im = cv::imread(argv[1], CV_LOAD_IMAGE_COLOR);  
-  cv::Mat depth_im = cv::imread(argv[2], CV_LOAD_IMAGE_COLOR);
+  cv::Mat rgb_im = cv::imread(argv[1], CV_LOAD_IMAGE_ANYDEPTH);
+  cv::Mat depth_im = cv::imread(argv[2], CV_LOAD_IMAGE_ANYDEPTH);
   cv::Mat gray_im(depth_im.rows,depth_im.cols,CV_8U);
   cv::Mat canny_im(depth_im.rows,depth_im.cols,CV_8U);
   cv::Mat template_im = cv::imread("pictures/head_template.png", CV_LOAD_IMAGE_COLOR);
+  
+  std::cout << "1 depth " << rgb_im.depth() << " type " << rgb_im.type() << "\n";
+  std::cout << "2 depth " << depth_im.depth() << " type " << depth_im.type() << "\n";
+  
+  std::cout << "2 Pixel: " << depth_im.at<unsigned short>(atoi(argv[3]), atoi(argv[4])) << "\n";
+  return 0;
   
   float thr1 = atof(argv[3]);
   float thr2 = atof(argv[4]);
@@ -44,9 +50,10 @@ int main(int argc, char **argv)
   
   
   // Calculate edge detection  
-  cvtColor(rgb_im, gray_im, CV_RGB2GRAY);
   rgb_im = preprocessing(rgb_im);
-  cv::Canny(gray_im,canny_im,thr1,thr2,3,"true");
+  cv::imshow("Hello", rgb_im);
+  cv::waitKey(0);
+  cv::Canny(rgb_im,canny_im,thr1,thr2,3,"true");
   
   // Calculate the pyramid
   DT[0] = canny_im;
