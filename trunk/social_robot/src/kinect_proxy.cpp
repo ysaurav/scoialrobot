@@ -7,36 +7,64 @@ cv_bridge::CvImagePtr cv_rgb;
 cv_bridge::CvImagePtr cv_depth;
 cv_bridge::CvImagePtr cv_disparity;
 
+bool save_all(std_srvs::Empty::Request&, std_srvs::Empty::Response&)
+{
+  std::string project_path = ros::package::getPath("social_robot");
+  std::string rgb_path = project_path;
+  std::string depth_path = project_path;
+  std::string disparity_path = project_path;
+  
+  rgb_path.append("/logs/kinect_rgb_");
+  rgb_path.append(current_log_time());
+  rgb_path.append(".png");
+  bool rgb_result = cv::imwrite(rgb_path, cv_rgb->image);
+  std::cout << rgb_path << " was " << rgb_result << std::endl;
+  
+  depth_path.append("/logs/kinect_depth_");
+  depth_path.append(current_log_time());
+  depth_path.append(".png");
+  bool depth_result = cv::imwrite(depth_path, cv_depth->image);
+  std::cout << depth_path << " was " << depth_result << std::endl;
+  
+  disparity_path.append("/logs/kinect_disparity_");
+  disparity_path.append(current_log_time());
+  disparity_path.append(".png");
+  bool disparity_result = cv::imwrite(disparity_path, cv_disparity->image);
+  std::cout << disparity_path << " was " << disparity_result << std::endl;
+  
+  return rgb_result && depth_result && disparity_result;
+}
+
 bool save_depth(std_srvs::Empty::Request&, std_srvs::Empty::Response&)
 {
-  std::string depth_im_result = ros::package::getPath("social_robot");
-  depth_im_result.append("/logs/kinect_depth_");
-  depth_im_result.append(current_log_time());
-  depth_im_result.append(".png");
-  bool imwrite_result = cv::imwrite(depth_im_result, cv_depth->image);
-  std::cout << depth_im_result << " was " << imwrite_result << std::endl;
+  std::string im_path = ros::package::getPath("social_robot");
+  im_path.append("/logs/kinect_depth_");
+  im_path.append(current_log_time());
+  im_path.append(".png");
+  bool imwrite_result = cv::imwrite(im_path, cv_depth->image);
+  std::cout << im_path << " was " << imwrite_result << std::endl;
   return imwrite_result;
 }
 
 bool save_rgb(std_srvs::Empty::Request&, std_srvs::Empty::Response&)
 {
-  std::string depth_im_result = ros::package::getPath("social_robot");
-  depth_im_result.append("/logs/kinect_rgb_");
-  depth_im_result.append(current_log_time());
-  depth_im_result.append(".png");
-  bool imwrite_result = cv::imwrite(depth_im_result, cv_rgb->image);
-  std::cout << depth_im_result << " was " << imwrite_result << std::endl;
+  std::string im_path = ros::package::getPath("social_robot");
+  im_path.append("/logs/kinect_rgb_");
+  im_path.append(current_log_time());
+  im_path.append(".png");
+  bool imwrite_result = cv::imwrite(im_path, cv_rgb->image);
+  std::cout << im_path << " was " << imwrite_result << std::endl;
   return imwrite_result;
 }
 
 bool save_disparity(std_srvs::Empty::Request&, std_srvs::Empty::Response&)
 {
-  std::string depth_im_result = ros::package::getPath("social_robot");
-  depth_im_result.append("/logs/kinect_disparity_");
-  depth_im_result.append(current_log_time());
-  depth_im_result.append(".png");
-  bool imwrite_result = cv::imwrite(depth_im_result, cv_disparity->image);
-  std::cout << depth_im_result << " was " << imwrite_result << std::endl;
+  std::string im_path = ros::package::getPath("social_robot");
+  im_path.append("/logs/kinect_disparity_");
+  im_path.append(current_log_time());
+  im_path.append(".png");
+  bool imwrite_result = cv::imwrite(im_path, cv_disparity->image);
+  std::cout << im_path << " was " << imwrite_result << std::endl;
   return imwrite_result;
 }
 
@@ -88,5 +116,6 @@ void init_kinect(void)
   ros::ServiceServer save_rgb_ser = nh.advertiseService("social_robot/save_rgb", save_rgb);
   ros::ServiceServer save_depth_ser = nh.advertiseService("social_robot/save_depth", save_depth);
   ros::ServiceServer save_disparity_ser = nh.advertiseService("social_robot/save_disparity", save_disparity);
+  ros::ServiceServer save_all_ser = nh.advertiseService("social_robot/save_all", save_all);
   ros::spin();  
 }
