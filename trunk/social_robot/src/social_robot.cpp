@@ -24,8 +24,8 @@ cv::Mat preprocessing(cv::Mat image)
 
 std::vector<cv::Point> chamfer_matching(cv::Mat image)
 {
-  cv::Mat canny_im(image.rows, image.cols, CV_8U);
-  cv::Mat template_im = cv::imread(HEAD_TEMPLATE, CV_LOAD_IMAGE_COLOR);
+  cv::Mat canny_im(image.rows, image.cols, image.depth());
+  cv::Mat template_im = cv::imread(HEAD_TEMPLATE, CV_LOAD_IMAGE_ANYDEPTH);
 
   cv::Mat* pyramid = new cv::Mat[SCALES];
   cv::Mat* chamfer = new cv::Mat[SCALES];
@@ -60,7 +60,7 @@ std::vector<cv::Point> chamfer_matching(cv::Mat image)
   cv::Point pdiff = cv::Point(xdiff, ydiff);
   std::vector<cv::Point> head_matched_points;
 
-  for(int i = 0; i < SCALES; i++)
+  for (int i = 0; i < SCALES; i++)
   {
     matchTemplate(chamfer[i], template_im, matching[i], CV_TM_CCOEFF);
     normalize(matching[i], matching[i], 0.0, 1.0, cv::NORM_MINMAX);
@@ -80,8 +80,8 @@ int main(int argc, char **argv)
   //  ros::spin();
   
   // temporarily reading the image from file later on change it to the live video.
-  cv::Mat image = cv::imread(argv[1], CV_LOAD_IMAGE_COLOR);
-  cvtColor(image, image, CV_RGB2GRAY);
+  cv::Mat image = cv::imread(argv[1], CV_LOAD_IMAGE_ANYDEPTH);
+  // cvtColor(image, image, CV_RGB2GRAY);
   image = preprocessing(image);
   std::vector<cv::Point> head_matched_points = chamfer_matching(image);
   
