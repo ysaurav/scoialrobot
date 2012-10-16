@@ -13,6 +13,7 @@ double chamfer_thr = 10;
 int scales = 5;
 
 std::vector<cv::Point> head_matched_points;
+std::vector<cv::Point3f> head_features;
 
 cv::Mat preprocessing(cv::Mat image)
 {
@@ -79,9 +80,9 @@ std::vector<cv::Point> chamfer_matching(cv::Mat image)
   return head_matched_points;
 }
 
-std::vector<int> compute_headparameters(cv::Mat image, std::vector<cv::Point> chamfer)
+std::vector<cv::Point3f> compute_headparameters(cv::Mat image, std::vector<cv::Point> chamfer)
 {
-  std::vector<int> parameters_head(chamfer.size());
+  std::vector<cv::Point3f> parameters_head(chamfer.size());
 
   // parameters of cubic equation
   float p1 = -1.3835 * pow(10, -9);
@@ -94,7 +95,7 @@ std::vector<int> compute_headparameters(cv::Mat image, std::vector<cv::Point> ch
     int position_x = chamfer[i].x;
     int position_y = chamfer[i].y;
 
-    unsigned short x = image.at<unsigned short>(position_x, position_y);
+    unsigned short x = image.at<unsigned short>(position_y, position_x);
     
     // compute height of head
     float h = (p1 * pow(x, 3) + p2 * pow(x, 2) + p3 * x + p4);
@@ -105,12 +106,13 @@ std::vector<int> compute_headparameters(cv::Mat image, std::vector<cv::Point> ch
     // convert Radius in pixels
     float Rp = round((1 / 1.3) * R);
 
-    parameters_head[i] = Rp;
+    parameters_head[i].x = position_x;
+    parameters_head[i].y = position_y;
+    parameters_head[i].z = Rp;
   }
 
   return parameters_head;
 }
-
 
 bool update_param_cb(std_srvs::Empty::Request&, std_srvs::Empty::Response&)
 {
@@ -144,9 +146,9 @@ void rgb_cb(const sensor_msgs::ImageConstPtr& msg)
   try
   {
     cv::Mat image_rgb = cv_bridge::toCvCopy(msg)->image;
-    for (unsigned int i = 0; i < head_matched_points.size(); i++)
+    for (unsigned int i = 0; i < head_features.size(); i++)
     {
-      circle(image_rgb, head_matched_points[i], 2, cvScalar(255, 255, 0, 0), 2, 8, 0);  
+      circle(image_rgb, cv::Point(head_features[i].x, head_features[i].y), head_features[i].z, cvScalar(255, 255, 0, 0), 2, 8, 0);  
     }
     cv::imshow("Image", image_rgb);
     cv::waitKey(3);
@@ -164,7 +166,7 @@ void depth_cb(const sensor_msgs::ImageConstPtr& msg)
   {
     cv_bridge::CvImagePtr cv_depth = cv_bridge::toCvCopy(msg);
     cv::Mat depth_image = cv_depth->image;
-    std::vector<int> parameters_head = compute_headparameters(depth_image, head_matched_points);
+    head_features = compute_headparameters(depth_image, head_matched_points);
   }
   catch (cv_bridge::Exception& e)
   {
@@ -203,6 +205,7 @@ int main(int argc, char **argv)
   
   ros::Subscriber disparity_sub = nh.subscribe("/camera/depth/disparity", 1, disparity_cb);
   ros::Subscriber rgb_sub = nh.subscribe("/camera/rgb/image_color", 1, rgb_cb);
+  ros::Subscriber depth_sub = nh.subscribe("/camera/depth/image_raw", 1, depth_cb);
   cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
   
   ros::spin();

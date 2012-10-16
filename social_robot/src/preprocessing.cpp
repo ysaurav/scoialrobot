@@ -76,64 +76,38 @@ std::vector<cv::Point> chamfer_matching(cv::Mat image)
   return head_matched_points;
 }
 
-cv::Mat headparameters(cv::Mat image, std::vector<cv::Point>chamfer)
+std::vector<int> compute_headparameters(cv::Mat image, std::vector<cv::Point> chamfer)
 {
-  int position_x;
-  int position_y;
-  unsigned short d;
+  std::vector<int> parameters_head(chamfer.size());
 
-
-  unsigned short x;
-
-  std::vector<cv::Point3f> parametersHead(chamfer.size());
-  float h;
-  float R;
-  float Rp;
-  //parameters of cubic equation
-
-  float p1 = -1.3835*pow(10,-9);
-  float p2 = 1.8435*pow(10,-5);
+  // parameters of cubic equation
+  float p1 = -1.3835 * pow(10, -9);
+  float p2 =  1.8435 * pow(10, -5);
   float p3 = -0.091403;
-  float p4 = 189.38;
+  float p4 =  189.38;
 
-  double alpha = -0.00285;
-  double beta = 1091;
-
-  for (unsigned int i = 0; i < 10; i++)
+  for (unsigned int i = 0; i < chamfer.size(); i++)
   {
-    std::cout<<"Here"<<std::endl;
-    position_x = chamfer[i].x;
-    position_y = chamfer[i].y;
-    std::cout<< "x "<< position_x<<" y "<<position_y<<std::endl;
+    int position_x = chamfer[i].x;
+    int position_y = chamfer[i].y;
 
-    d = image.at<unsigned short>(position_x,position_y);
-    // x = (1/(alpha*(d - beta)))*1000;
-    // std::cout<< "Depth of pixel"<< image.at<unsigned short>(position_y,position_x)<<std::endl;
-    std::cout<< "Depth of pixel "<< d <<std::endl;
-
-    x = image.at<unsigned short>(position_x,position_y);
+    unsigned short x = image.at<unsigned short>(position_y, position_x);
+    
     // compute height of head
-    h = (p1*pow(x,3) + p2*pow(x,2) + p3*x + p4);
+    float h = (p1 * pow(x, 3) + p2 * pow(x, 2) + p3 * x + p4);
 
     // compute Radius of head in milimeters
-    R = 1.33*h/2;
+    float R = 1.33 * h / 2;
 
     // convert Radius in pixels
-    Rp = round((1/1.3)*R);
+    int Rp = round((1 / 1.3) * R);
+    if (Rp < 0) std::cout << "Pixel: " << position_x << " " << position_y << " " << x << std::endl;
 
-    std::cout << "Height of head is: " << h << " Radius in milimeters is: " << R << " Radius in pixels: "<< Rp <<std::endl;
-
-    parametersHead[i].x = h;
-    parametersHead[i].y = R;
-    parametersHead[i].z = Rp;
-
+    parameters_head[i] = Rp;
   }
 
-  std::cout<<"Depth "<<image.depth()<<std::endl;
-
-  return image;
+  return parameters_head;
 }
-
 
 int main(int argc, char **argv)
 {
@@ -143,22 +117,18 @@ int main(int argc, char **argv)
   // temporarily reading the image from file later on change it to the live video.
   cv::Mat image_dispa = cv::imread(argv[1], CV_LOAD_IMAGE_ANYDEPTH);
   cv::Mat image_depth = cv::imread(argv[2], CV_LOAD_IMAGE_ANYDEPTH);
+  cv::Mat image_rgb = cv::imread(argv[3], CV_LOAD_IMAGE_ANYDEPTH);
   // cvtColor(image, image, CV_RGB2GRAY);
   image_dispa = preprocessing(image_dispa);
   image_depth = preprocessing(image_depth);
   std::vector<cv::Point> head_matched_points = chamfer_matching(image_dispa);
 
-  // TODO: remove me, just for testing
-    for (unsigned int i = 0; i < head_matched_points.size(); i++)
-    {
-      std::cout<<head_matched_points[i].x<<" "<<head_matched_points[i].y<<std::endl;
-      circle(image_depth, head_matched_points[i], 2, cvScalar(pow(2,16)-1, pow(2,16)-1, 0, 0), 2, 8, 0);
-    }
-    cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
-    cv::imshow("Image", image_depth);
-    cv::waitKey(0);
-
-  image_depth = headparameters(image_depth,head_matched_points);
+  std::vector<int> tmpparams = compute_headparameters(image_depth,head_matched_points);
+  for (unsigned int i = 0; i < tmpparams.size(); i++)
+  {
+    circle(image_rgb, head_matched_points[i], tmpparams[i], cvScalar(255, 255, 0, 0), 2, 8, 0);
+  }
+  imwrite("circle_img.png", image_rgb);
 
   return 0;
 }
