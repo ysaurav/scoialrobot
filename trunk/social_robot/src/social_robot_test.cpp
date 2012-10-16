@@ -9,8 +9,6 @@
 #define THR3          10
 #define SCALES        5
 
-
-
 cv::Mat preprocessing(cv::Mat image)
 {
   cv::Mat dst;
@@ -76,13 +74,11 @@ std::vector<cv::Point> chamfer_matching(cv::Mat image)
   return head_matched_points;
 }
 
-cv::Mat headparameters(cv::Mat image, std::vector<cv::Point>chamfer)
+std::vector<cv::Point3f> headparameters(cv::Mat image, std::vector<cv::Point> chamfer)
 {
   int position_x;
   int position_y;
   unsigned short d;
-
-
   unsigned short x;
 
   std::vector<cv::Point3f> parametersHead(chamfer.size());
@@ -98,18 +94,33 @@ cv::Mat headparameters(cv::Mat image, std::vector<cv::Point>chamfer)
 
   double alpha = -0.00285;
   double beta = 1091;
+  cv::Mat temp(image.rows, image.cols, image.depth());
 
-  for (unsigned int i = 0; i < 10; i++)
+  for (int i = 0; i< image.rows;i++)
   {
-    std::cout<<"Here"<<std::endl;
+    for (int j = 0;j<image.cols;j++)
+    {
+      temp.at<unsigned short>(i,j) = image.at<unsigned short>(i,j);
+    }
+  }
+
+  cv::namedWindow("ImageCopy", CV_WINDOW_AUTOSIZE);
+  cv::imshow("ImageCopy", temp);
+  cv::imwrite("Corina.png", temp);
+  cv::waitKey(0);
+
+  // depthImage.convertTo(temp, CV_32F);
+  for (unsigned int i = 0; i < chamfer.size(); i++)
+  {
+    // std::cout<<"Here"<<std::endl;
     position_x = chamfer[i].x;
     position_y = chamfer[i].y;
-    std::cout<< "x "<< position_x<<" y "<<position_y<<std::endl;
+    //  std::cout<< "x "<< position_x<<" y "<<position_y<<std::endl;
 
     d = image.at<unsigned short>(position_x,position_y);
     // x = (1/(alpha*(d - beta)))*1000;
     // std::cout<< "Depth of pixel"<< image.at<unsigned short>(position_y,position_x)<<std::endl;
-    std::cout<< "Depth of pixel "<< d <<std::endl;
+    //  std::cout<< "Depth of pixel "<< d <<std::endl;
 
     x = image.at<unsigned short>(position_x,position_y);
     // compute height of head
@@ -121,17 +132,19 @@ cv::Mat headparameters(cv::Mat image, std::vector<cv::Point>chamfer)
     // convert Radius in pixels
     Rp = round((1/1.3)*R);
 
-    std::cout << "Height of head is: " << h << " Radius in milimeters is: " << R << " Radius in pixels: "<< Rp <<std::endl;
+    // std::cout << "Height of head is: " << h << " Radius in milimeters is: " << R << " Radius in pixels: "<< Rp <<std::endl;
 
     parametersHead[i].x = h;
     parametersHead[i].y = R;
     parametersHead[i].z = Rp;
 
+
+
   }
 
   std::cout<<"Depth "<<image.depth()<<std::endl;
 
-  return image;
+  return parametersHead;
 }
 
 
@@ -143,22 +156,39 @@ int main(int argc, char **argv)
   // temporarily reading the image from file later on change it to the live video.
   cv::Mat image_dispa = cv::imread(argv[1], CV_LOAD_IMAGE_ANYDEPTH);
   cv::Mat image_depth = cv::imread(argv[2], CV_LOAD_IMAGE_ANYDEPTH);
+  cv::Mat image_rgb = cv::imread(argv[3], CV_LOAD_IMAGE_ANYDEPTH);
   // cvtColor(image, image, CV_RGB2GRAY);
   image_dispa = preprocessing(image_dispa);
   image_depth = preprocessing(image_depth);
   std::vector<cv::Point> head_matched_points = chamfer_matching(image_dispa);
 
-  // TODO: remove me, just for testing
-    for (unsigned int i = 0; i < head_matched_points.size(); i++)
-    {
-      std::cout<<head_matched_points[i].x<<" "<<head_matched_points[i].y<<std::endl;
-      circle(image_depth, head_matched_points[i], 2, cvScalar(pow(2,16)-1, pow(2,16)-1, 0, 0), 2, 8, 0);
-    }
-    cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
-    cv::imshow("Image", image_depth);
-    cv::waitKey(0);
+  std::vector<cv::Point3f> parametersHead = headparameters(image_depth,head_matched_points);
+  int th = 20;
 
-  image_depth = headparameters(image_depth,head_matched_points);
+  cv::Point center;
+  cv::Scalar color( 255, 255, 255 );
+  float Rp;
+  // TODO: remove me, just for testing
+  for (unsigned int i = 0; i < parametersHead.size(); i++)
+  {
+    std::cout<<"Here\n";
+    Rp = parametersHead[i].z;
+    std::cout<<"Here1\n";
+    center.x = head_matched_points[i].x;
+    std::cout<<"Here2\n";
+    center.y = head_matched_points[i].y;
+    circle(image_rgb, center, Rp, color, 1, 2);
+    //circle(image_rgb, center, Rp-th, color, -1, 2);
+    //circle(image_rgb, center, Rp+th, color, 1, 2);
+    //std::cout<<head_matched_points[i].x<<" "<<head_matched_points[i].y<<std::endl;
+    //circle(image_depth, head_matched_points[i], 2, cvScalar(pow(2,16)-1, pow(2,16)-1, 0, 0), 2, 8, 0);
+  }
+
+
+
+  cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
+  cv::imshow("Image", image_rgb);
+  cv::waitKey(0);
 
   return 0;
 }
