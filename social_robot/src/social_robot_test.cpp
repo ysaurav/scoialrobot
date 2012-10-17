@@ -6,7 +6,7 @@
 #define HEAD_TEMPLATE "pictures/template.png"
 #define THR1          5
 #define THR2          7
-#define THR3          10
+#define THR3          20
 #define SCALES        5
 
 cv::Mat preprocessing(cv::Mat image)
@@ -92,23 +92,6 @@ std::vector<cv::Point3f> headparameters(cv::Mat image, std::vector<cv::Point> ch
   float p3 = -0.091403;
   float p4 = 189.38;
 
-  double alpha = -0.00285;
-  double beta = 1091;
-  cv::Mat temp(image.rows, image.cols, image.depth());
-
-  for (int i = 0; i< image.rows;i++)
-  {
-    for (int j = 0;j<image.cols;j++)
-    {
-      temp.at<unsigned short>(i,j) = image.at<unsigned short>(i,j);
-    }
-  }
-
-  cv::namedWindow("ImageCopy", CV_WINDOW_AUTOSIZE);
-  cv::imshow("ImageCopy", temp);
-  cv::imwrite("Corina.png", temp);
-  cv::waitKey(0);
-
   // depthImage.convertTo(temp, CV_32F);
   for (unsigned int i = 0; i < chamfer.size(); i++)
   {
@@ -137,12 +120,7 @@ std::vector<cv::Point3f> headparameters(cv::Mat image, std::vector<cv::Point> ch
     parametersHead[i].x = h;
     parametersHead[i].y = R;
     parametersHead[i].z = Rp;
-
-
-
   }
-
-  std::cout<<"Depth "<<image.depth()<<std::endl;
 
   return parametersHead;
 }
@@ -168,23 +146,13 @@ int main(int argc, char **argv)
   cv::Point center;
   cv::Scalar color( 255, 255, 255 );
   float Rp;
-  // TODO: remove me, just for testing
   for (unsigned int i = 0; i < parametersHead.size(); i++)
   {
-    std::cout<<"Here\n";
     Rp = parametersHead[i].z;
-    std::cout<<"Here1\n";
     center.x = head_matched_points[i].x;
-    std::cout<<"Here2\n";
     center.y = head_matched_points[i].y;
     circle(image_rgb, center, Rp, color, 1, 2);
-    //circle(image_rgb, center, Rp-th, color, -1, 2);
-    //circle(image_rgb, center, Rp+th, color, 1, 2);
-    //std::cout<<head_matched_points[i].x<<" "<<head_matched_points[i].y<<std::endl;
-    //circle(image_depth, head_matched_points[i], 2, cvScalar(pow(2,16)-1, pow(2,16)-1, 0, 0), 2, 8, 0);
   }
-
-
 
   cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
   cv::imshow("Image", image_rgb);

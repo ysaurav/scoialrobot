@@ -6,7 +6,7 @@
 #define HEAD_TEMPLATE "pictures/template.png"
 #define THR1          5
 #define THR2          7
-#define THR3          10
+#define THR3          20
 #define SCALES        5
 
 
