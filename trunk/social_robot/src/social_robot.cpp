@@ -14,6 +14,14 @@ int scales = 5;
 
 std::vector<cv::Point> head_matched_points;
 std::vector<cv::Point3f> head_features;
+int roi_x_offset;
+int roi_y_offset;
+int roi_height;
+int roi_width;
+
+cv::Mat* pyramid = new cv::Mat[scales];
+cv::Mat* chamfer = new cv::Mat[scales];
+cv::Mat* matching = new cv::Mat[scales];
 
 cv::Mat preprocessing(cv::Mat image)
 {
@@ -32,10 +40,6 @@ std::vector<cv::Point> chamfer_matching(cv::Mat image)
 {
   cv::Mat canny_im(image.rows, image.cols, image.depth());
   cv::Mat template_im = cv::imread(head_template, CV_LOAD_IMAGE_ANYDEPTH);
-
-  cv::Mat* pyramid = new cv::Mat[scales];
-  cv::Mat* chamfer = new cv::Mat[scales];
-  cv::Mat* matching = new cv::Mat[scales];
     
   // calculate edge detection  
   cv::Canny(image, canny_im, canny_thr1, canny_thr2, 3, true);
@@ -64,7 +68,7 @@ std::vector<cv::Point> chamfer_matching(cv::Mat image)
   double xdiff = template_im.cols / 2;
   double ydiff = template_im.rows / 2;
   cv::Point pdiff = cv::Point(xdiff, ydiff);
-  std::vector<cv::Point> head_matched_points;
+  std::vector<cv::Point> head_matched_points_tmp;
 
   for (int i = 0; i < scales; i++)
   {
@@ -74,10 +78,10 @@ std::vector<cv::Point> chamfer_matching(cv::Mat image)
     cv::Mat matching_thr;
     threshold(matching[i], matching_thr, 1.0 / chamfer_thr, 1.0, CV_THRESH_BINARY_INV);
     double scale = pow(1.0 / 0.75, i);
-    get_non_zeros(matching_thr, &head_matched_points, pdiff, scale);
+    get_non_zeros(matching_thr, &head_matched_points_tmp, pdiff, scale);
   }
 
-  return head_matched_points;
+  return head_matched_points_tmp;
 }
 
 std::vector<cv::Point3f> compute_headparameters(cv::Mat image, std::vector<cv::Point> chamfer)
@@ -148,8 +152,10 @@ void rgb_cb(const sensor_msgs::ImageConstPtr& msg)
     cv::Mat image_rgb = cv_bridge::toCvCopy(msg)->image;
     for (unsigned int i = 0; i < head_features.size(); i++)
     {
+      if (head_features[i].z < 0) head_features[i].z = 0;
       circle(image_rgb, cv::Point(head_features[i].x, head_features[i].y), head_features[i].z, cvScalar(255, 255, 0, 0), 2, 8, 0);  
     }
+    // rectangle(image_rgb, cv::Point(roi_x_offset, roi_y_offset), cv::Point(roi_x_offset + roi_width, roi_y_offset + roi_height), cvScalar(255, 0, 255, 0), 2, 8, 0);
     cv::imshow("Image", image_rgb);
     cv::waitKey(3);
   }
@@ -192,6 +198,24 @@ void disparity_cb(const stereo_msgs::DisparityImageConstPtr& msg)
   }      
 }
 
+/*
+void roi_cb(const sensor_msgs::RegionOfInterest& msg)
+{
+  try
+  {
+    roi_x_offset = msg.x_offset;
+    roi_y_offset = msg.y_offset;
+    roi_height = msg.height;
+    roi_width = msg.width;
+  }
+  catch (cv_bridge::Exception& e)
+  {
+    ROS_ERROR("cv_bridge exception: %s", e.what());
+    return;
+  }      
+}
+*/
+
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "social_robot");
@@ -206,6 +230,7 @@ int main(int argc, char **argv)
   ros::Subscriber disparity_sub = nh.subscribe("/camera/depth/disparity", 1, disparity_cb);
   ros::Subscriber rgb_sub = nh.subscribe("/camera/rgb/image_color", 1, rgb_cb);
   ros::Subscriber depth_sub = nh.subscribe("/camera/depth/image_raw", 1, depth_cb);
+  //ros::Subscriber roi_sub = nh.subscribe("/roi", 1, roi_cb);
   cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
   
   ros::spin();
