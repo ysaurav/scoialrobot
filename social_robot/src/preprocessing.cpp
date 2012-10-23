@@ -9,7 +9,7 @@
 #define THR3          20
 #define SCALES        5
 
-
+cv::Mat canny_im;
 
 cv::Mat preprocessing(cv::Mat image)
 {
@@ -26,7 +26,7 @@ cv::Mat preprocessing(cv::Mat image)
 
 std::vector<cv::Point> chamfer_matching(cv::Mat image)
 {
-  cv::Mat canny_im(image.rows, image.cols, image.depth());
+  canny_im.create(image.rows, image.cols, image.depth());
   cv::Mat template_im = cv::imread(HEAD_TEMPLATE, CV_LOAD_IMAGE_ANYDEPTH);
 
   cv::Mat* pyramid = new cv::Mat[SCALES];
@@ -111,24 +111,35 @@ std::vector<int> compute_headparameters(cv::Mat image, std::vector<cv::Point> ch
 
 int main(int argc, char **argv)
 {
-  //  ros::init(argc, argv, "social_robot");
-  //  ros::spin();
-
-  // temporarily reading the image from file later on change it to the live video.
   cv::Mat image_dispa = cv::imread(argv[1], CV_LOAD_IMAGE_ANYDEPTH);
   cv::Mat image_depth = cv::imread(argv[2], CV_LOAD_IMAGE_ANYDEPTH);
   cv::Mat image_rgb = cv::imread(argv[3], CV_LOAD_IMAGE_ANYDEPTH);
-  // cvtColor(image, image, CV_RGB2GRAY);
   image_dispa = preprocessing(image_dispa);
   image_depth = preprocessing(image_depth);
   std::vector<cv::Point> head_matched_points = chamfer_matching(image_dispa);
+  int thr = atoi(argv[4]); // default must be 12
+  int increment = atoi(argv[5]);
 
   std::vector<int> tmpparams = compute_headparameters(image_depth,head_matched_points);
-  for (unsigned int i = 0; i < tmpparams.size(); i++)
+  for (unsigned int i = 0; i < tmpparams.size(); i = i + increment)
   {
-    circle(image_rgb, head_matched_points[i], tmpparams[i], cvScalar(255, 255, 0, 0), 2, 8, 0);
+    cv::Rect roi(head_matched_points[i].x - tmpparams[i], head_matched_points[i].y - tmpparams[i], tmpparams[i] * 2, tmpparams[i] * 2);
+    cv::Mat tmp_mat = canny_im(roi);
+    std::vector<std::vector<cv::Point> > contour;
+    cv::findContours(tmp_mat, contour, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
+    for (int j = 0; j < contour.size(); j++)
+    {
+      std::vector<cv::Point> approx;
+      cv::approxPolyDP(contour[j], approx, 5, false);          
+      if (approx.size() > thr)
+      {
+        rectangle(image_rgb, roi.tl(), roi.br(), cvScalar(255, 0, 255, 0), 2, 8, 0);
+        break;
+      }
+    }
   }
   imwrite("circle_img.png", image_rgb);
-
+  cv::imshow("HOla", image_rgb);
+  cv::waitKey(0);
   return 0;
 }
