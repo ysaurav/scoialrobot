@@ -10,6 +10,7 @@ std::string head_template = "pictures/template.png";
 double canny_thr1 = 5;
 double canny_thr2 = 7;
 double chamfer_thr = 10;
+double arc_thr = 12;
 int scales = 5;
 
 std::vector<cv::Point> head_matched_points;
@@ -19,9 +20,10 @@ int roi_y_offset;
 int roi_height;
 int roi_width;
 
-cv::Mat* pyramid = new cv::Mat[scales];
-cv::Mat* chamfer = new cv::Mat[scales];
-cv::Mat* matching = new cv::Mat[scales];
+cv::Mat *pyramid = new cv::Mat[scales];
+cv::Mat *chamfer = new cv::Mat[scales];
+cv::Mat *matching = new cv::Mat[scales];
+cv::Mat canny_im;
 
 cv::Mat preprocessing(cv::Mat image)
 {
@@ -38,7 +40,7 @@ cv::Mat preprocessing(cv::Mat image)
 
 std::vector<cv::Point> chamfer_matching(cv::Mat image)
 {
-  cv::Mat canny_im(image.rows, image.cols, image.depth());
+  canny_im.create(image.rows, image.cols, image.depth());
   cv::Mat template_im = cv::imread(head_template, CV_LOAD_IMAGE_ANYDEPTH);
     
   // calculate edge detection  
@@ -150,12 +152,38 @@ void rgb_cb(const sensor_msgs::ImageConstPtr& msg)
   try
   {
     cv::Mat image_rgb = cv_bridge::toCvCopy(msg)->image;
+    // FIXME: too slow
     for (unsigned int i = 0; i < head_features.size(); i++)
     {
-      if (head_features[i].z < 0) head_features[i].z = 0;
-      circle(image_rgb, cv::Point(head_features[i].x, head_features[i].y), head_features[i].z, cvScalar(255, 255, 0, 0), 2, 8, 0);  
+      if (head_features[i].z < 0)
+      {
+        head_features[i].z = 0;
+        continue;
+      }
+      int wh = head_features[i].z * 2;
+      int tlx = head_features[i].x - head_features[i].z;
+      int tly = head_features[i].y - head_features[i].z;
+      cv::Rect roi(tlx, tly, wh, wh);
+      if (!(0 <= roi.x && 0 <= roi.width && roi.x + roi.width <= canny_im.cols && 0 <= roi.y && 0 <= roi.height && roi.y + roi.height <= canny_im.rows))
+      {
+        continue;
+      }
+      cv::Mat roi_canny = canny_im(roi);
+      std::vector<std::vector<cv::Point> > contours;
+      cv::findContours(roi_canny, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
+      for (unsigned int j = 0; j < contours.size(); j++)
+      {
+        std::vector<cv::Point> approx;
+        cv::approxPolyDP(contours[j], approx, 5, false);          
+        if (approx.size() > arc_thr)
+        {
+          rectangle(image_rgb, roi.tl(), roi.br(), cvScalar(255, 0, 255, 0), 2, 8, 0);
+          break;
+        }
+      }
+      // circle(image_rgb, cv::Point(head_features[i].x, head_features[i].y), head_features[i].z, cvScalar(255, 255, 0, 0), 2, 8, 0);  
     }
-    // rectangle(image_rgb, cv::Point(roi_x_offset, roi_y_offset), cv::Point(roi_x_offset + roi_width, roi_y_offset + roi_height), cvScalar(255, 0, 255, 0), 2, 8, 0);
+    rectangle(image_rgb, cv::Point(roi_x_offset, roi_y_offset), cv::Point(roi_x_offset + roi_width, roi_y_offset + roi_height), cvScalar(255, 0, 255, 0), 2, 8, 0);
     cv::imshow("Image", image_rgb);
     cv::waitKey(3);
   }
@@ -172,6 +200,7 @@ void depth_cb(const sensor_msgs::ImageConstPtr& msg)
   {
     cv_bridge::CvImagePtr cv_depth = cv_bridge::toCvCopy(msg);
     cv::Mat depth_image = cv_depth->image;
+    depth_image = preprocessing(depth_image);
     head_features = compute_headparameters(depth_image, head_matched_points);
   }
   catch (cv_bridge::Exception& e)
@@ -198,7 +227,6 @@ void disparity_cb(const stereo_msgs::DisparityImageConstPtr& msg)
   }      
 }
 
-/*
 void roi_cb(const sensor_msgs::RegionOfInterest& msg)
 {
   try
@@ -214,7 +242,6 @@ void roi_cb(const sensor_msgs::RegionOfInterest& msg)
     return;
   }      
 }
-*/
 
 int main(int argc, char **argv)
 {
@@ -230,7 +257,7 @@ int main(int argc, char **argv)
   ros::Subscriber disparity_sub = nh.subscribe("/camera/depth/disparity", 1, disparity_cb);
   ros::Subscriber rgb_sub = nh.subscribe("/camera/rgb/image_color", 1, rgb_cb);
   ros::Subscriber depth_sub = nh.subscribe("/camera/depth/image_raw", 1, depth_cb);
-  //ros::Subscriber roi_sub = nh.subscribe("/roi", 1, roi_cb);
+  ros::Subscriber roi_sub = nh.subscribe("/roi", 1, roi_cb);
   cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
   
   ros::spin();
