@@ -3,6 +3,8 @@
 #include <std_srvs/Empty.h>
 #include <stereo_msgs/DisparityImage.h>
 
+namespace enc = sensor_msgs::image_encodings;
+
 cv_bridge::CvImagePtr cv_rgb;
 cv_bridge::CvImagePtr cv_depth;
 cv_bridge::CvImagePtr cv_disparity;
@@ -72,7 +74,7 @@ void rgb_cb(const sensor_msgs::ImageConstPtr& msg)
 {    
   try
   {
-    cv_rgb = cv_bridge::toCvCopy(msg);
+    cv_rgb = cv_bridge::toCvCopy(msg, enc::BGR8);
   }
   catch (cv_bridge::Exception& e)
   {
