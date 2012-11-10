@@ -10,7 +10,8 @@
 
 cv::Mat rgb2bw ( cv::Mat im_rgb );
 cv::Mat preprocessing ( cv::Mat image );
-void get_non_zeros ( cv::Mat img, std::vector<cv::Point> *points, cv::Point pdiff = cv::Point ( 0, 0 ), double scale = 1 );
+cv::Mat preprocessing_16U ( cv::Mat image );
+void get_non_zeros ( cv::Mat img, cv::Mat prob, std::vector<cv::Point3f> *points, cv::Point pdiff = cv::Point ( 0, 0 ), double scale = 1 );
 
 void draw_rgb_faces ( cv::Mat &img, std::vector<cv::Rect> faces );
 void draw_depth_faces ( cv::Mat &img, std::vector<cv::Rect> faces );
