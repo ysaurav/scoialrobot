@@ -4,6 +4,7 @@
 
 #include "kinect_proxy.h"
 #include "cv_utils.h"
+#include "PixelSimilarity.h"
 
 using namespace std;
 using namespace cv;
@@ -20,15 +21,15 @@ string head_template;
 double canny_thr1 = 5;
 double canny_thr2 = 7;
 double chamfer_thr = 10;
-double arc_thr_low = 10;
+double arc_thr_low = 7;
 double arc_thr_high = 17;
 double approx_poly_thr = 1;
-int scales = 5;
+int scales = 3;
 
 bool is_rgb_turn = true;
 
-vector<Point> head_matched_points;
-vector<Point3f> head_features;
+vector<Point3f> head_matched_points;
+vector<PixelSimilarity> head_features;
 
 int roi_x_offset;
 int roi_y_offset;
@@ -44,8 +45,8 @@ Mat image_rgb;
 Mat image_depth;
 Mat image_disparity;
 
-vector<Point> chamfer_matching ( Mat image );
-vector<Point3f> compute_headparameters ( Mat image, vector<Point> chamfer );
+vector<Point3f> chamfer_matching ( Mat image );
+vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> chamfer );
 
 vector<Rect> detect_face_rgb ( Mat img, CascadeClassifier &cascade )
 {
@@ -75,59 +76,114 @@ vector<Rect> detect_face_depth ( Mat tmp_depth, Mat tmp_disparity )
   tmp_disparity.convertTo ( tmp_disparity, CV_8UC1 );
 
   // preprocessing
-  tmp_disparity = preprocessing ( tmp_disparity );
+  //tmp_disparity = preprocessing ( tmp_disparity );
+  Mat element = getStructuringElement( MORPH_RECT, Size( 2*5 + 1, 2*5 + 1 ), Point( 5, 5 ) );
+  Mat element2 = getStructuringElement( MORPH_RECT, Size( 2*2 + 1, 2*2 + 1 ), Point( 2, 2 ) );//image_dispa = preprocessing ( image_dispa );
+  
+  dilate(tmp_disparity,tmp_disparity,element);
+  erode(tmp_disparity,tmp_disparity,element2);
+  
+  dilate(tmp_depth,tmp_depth,element);
   // FIXME there should be a way around all this conversions
-  tmp_depth.convertTo ( tmp_depth, CV_8UC1 );
-  tmp_depth = preprocessing ( tmp_depth );
-  tmp_depth.convertTo ( tmp_depth, CV_16UC1 );
+//   tmp_depth.convertTo ( tmp_depth, CV_8UC1 );
+//   tmp_depth = preprocessing ( tmp_depth );
+//   tmp_depth.convertTo ( tmp_depth, CV_16UC1 );
 
   head_matched_points = chamfer_matching ( tmp_disparity );
   head_features = compute_headparameters ( tmp_depth, head_matched_points );
+  
+  vector<PixelSimilarity> new_head_features;
+  float tol = 40;
+  
+//   cout << "before poly for new head features " << head_features.size() << endl;
+//   
+//   for ( unsigned int i = 0; i < head_features.size(); i++ )
+//     {
+//       cout << i << endl;
+//       Rect roi ( head_features[i].point.x - head_features[i].radius, head_features[i].point.y - head_features[i].radius, head_features[i].radius * 2, head_features[i].radius * 2 );
+//       if ( ! ( 0 <= roi.x && 0 <= roi.width && roi.x + roi.width <= canny_im.cols && 0 <= roi.y && 0 <= roi.height && roi.y + roi.height <= canny_im.rows ) )
+//         {
+//           continue;
+//         }
+//       cout << "roi calculated" << endl;
+//       Mat tmp_mat = canny_im ( roi );
+//       vector<vector<Point> > contour;
+//       findContours ( tmp_mat, contour, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE );
+//       cout << "contours found" << endl;
+//       for ( unsigned int j = 0; j < contour.size(); j++ )
+//         {
+//           vector<Point> approx;
+//           approxPolyDP ( contour[j], approx, 5, false );
+//           if ( approx.size() >= arc_thr_low && approx.size() <= arc_thr_high )
+//             {
+//               new_head_features.push_back(head_features[i]);
+//               break;
+//             }
+//         }
+//     }
+//     cout << "after calculating new head features " << new_head_features.size() << endl;
+//   /* Merged rectangles that are closed enough */  
+//   
+//   
+//   PixelSimilarity tmpcont_mean;
+//   vector<PixelSimilarity> output_v;
+//   vector<PixelSimilarity> queue;
+// 
+//   cout << "Num rect bef: " << new_head_features.size() << endl;
+//   
+//   while(new_head_features.size() > 0)
+//    {
+// 
+//         tmpcont_mean = PixelSimilarity(new_head_features[0].point, new_head_features[0].radius, new_head_features[0].similarity);
+//         
+//         //while(abs(tmpcont_mean.x - tmpparams[next].x) + abs(tmpcont_mean.y - tmpparams[next].y) < tol ){
+//         for(unsigned int i = 1; i < new_head_features.size(); i++){
+//           if(sqrt(pow(tmpcont_mean.point.x - new_head_features[i].point.x,2) + pow(tmpcont_mean.point.y - new_head_features[i].point.y,2)) < tol){
+//             if( new_head_features[i].similarity < tmpcont_mean.similarity )
+//              {
+//                new_head_features[i] = PixelSimilarity(new_head_features[i].point, new_head_features[i].radius, new_head_features[i].similarity);
+//              }
+//           }
+//           else{
+//             queue.push_back(new_head_features[i]);
+//           }
+//          
+//         }
+//         output_v.push_back(tmpcont_mean);
+//         new_head_features.swap(queue);
+//         queue.clear();
+//    }
+//   
+//   cout << "Num rect aft: " << output_v.size() << endl;
+//   
+//   Rect roi;
+//   for (unsigned int i = 0; i < output_v.size(); i++)
+//   {
+//       //circle(image_rgb, output_v[i].point, output_v[i].radius, cvScalar(255, 0, 255, 0), 2, 8, 0);
+//       int wh = output_v[i].radius * 2;
+//       roi = Rect(output_v[i].point.x - output_v[i].radius, output_v[i].point.y - output_v[i].radius, wh, wh);
+//       roistmp.push_back ( roi );
+//   }
+//   Point3f tmpparams_av;
+//   vector<Point3f> output_v;
+//   vector<Point3f> queue;
+  
+  PixelSimilarity tmpcont_mean;
+  vector<PixelSimilarity> output_v;
+  vector<PixelSimilarity> queue;
 
-  float tol = 12;
-
-  Point3f tmpparams_av;
-  vector<Point3f> output_v;
-  vector<Point3f> queue;
-  /*
-    while ( head_features.size() > 0 )
-      {
-        tmpparams_av.x = head_features[0].x;
-        tmpparams_av.y = head_features[0].y;
-        tmpparams_av.z = head_features[0].z;
-
-        for ( unsigned int i = 1; i < head_features.size(); i++ )
-          {
-            if ( abs ( tmpparams_av.x - head_features[i].x ) + abs ( tmpparams_av.y - head_features[i].y ) < tol )
-              {
-                tmpparams_av.x = ( tmpparams_av.x + head_features[i].x ) /2;
-                tmpparams_av.y = ( tmpparams_av.y + head_features[i].y ) /2;
-                tmpparams_av.z = ( ( tmpparams_av.z + head_features[i].z ) /2 ) * 1.2;
-              }
-            else
-              {
-                queue.push_back ( head_features[i] );
-              }
-          }
-
-        output_v.push_back ( tmpparams_av );
-        head_features.swap ( queue );
-        queue.clear();
-      }
-    head_features.swap ( output_v );
-  */
   // FIXME: make this code more eeficient
   for ( unsigned int i = 0; i < head_features.size(); i++ )
     {
-      if ( head_features[i].z < 0 )
+      if ( head_features[i].radius < 0 )
         {
-          head_features[i].z = 0;
+          head_features[i].radius = 0;
           continue;
         }
 
-      int wh = head_features[i].z * 2;
-      int tlx = head_features[i].x - head_features[i].z;
-      int tly = head_features[i].y - head_features[i].z;
+      int wh = head_features[i].radius * 2;
+      int tlx = head_features[i].point.x - head_features[i].radius;
+      int tly = head_features[i].point.y - head_features[i].radius;
 
       Rect roi ( tlx, tly, wh, wh );
       if ( ! ( 0 <= roi.x && 0 <= roi.width && roi.x + roi.width <= canny_im.cols && 0 <= roi.y && 0 <= roi.height && roi.y + roi.height <= canny_im.rows ) )
@@ -148,15 +204,50 @@ vector<Rect> detect_face_depth ( Mat tmp_depth, Mat tmp_disparity )
           approxPolyDP ( contours[j], approx, approx_poly_thr, false );
           if ( approx.size() >= arc_thr_low && approx.size() <= arc_thr_high )
             {
-              roistmp.push_back ( roi );
+              //roistmp.push_back ( roi );
+              new_head_features.push_back(head_features[i]);
               break;
             }
         }
     }
+   cout << "Num rect bef: " << new_head_features.size() << endl;
+  
+  while(new_head_features.size() > 0)
+   {
+
+        tmpcont_mean = PixelSimilarity(new_head_features[0].point, new_head_features[0].radius, new_head_features[0].similarity);
+        
+        //while(abs(tmpcont_mean.x - tmpparams[next].x) + abs(tmpcont_mean.y - tmpparams[next].y) < tol ){
+        for(unsigned int i = 1; i < new_head_features.size(); i++){
+          if(sqrt(pow(tmpcont_mean.point.x - new_head_features[i].point.x,2) + pow(tmpcont_mean.point.y - new_head_features[i].point.y,2)) < tol){
+            if( new_head_features[i].similarity < tmpcont_mean.similarity && new_head_features[i].similarity < 0.004)
+             {
+               new_head_features[i] = PixelSimilarity(new_head_features[i].point, new_head_features[i].radius, new_head_features[i].similarity);
+             }
+          }
+          else{
+            if(new_head_features[i].similarity < 0.004)
+              queue.push_back(new_head_features[i]);
+          }
+         
+        }
+        output_v.push_back(tmpcont_mean);
+        new_head_features.swap(queue);
+        queue.clear();
+   } 
+   
+  Rect rect;
+  for (unsigned int i = 0; i < output_v.size(); i++)
+   {
+      int wh = output_v[i].radius * 2;
+      rect = Rect(output_v[i].point.x - output_v[i].radius, output_v[i].point.y - output_v[i].radius, wh, wh);
+      roistmp.push_back ( rect );
+   }   
+  cout << "Num rect aft: " << output_v.size() << endl;
   return roistmp;
 }
 
-vector<Point> chamfer_matching ( Mat image )
+vector<Point3f> chamfer_matching ( Mat image )
 {
   canny_im.create ( image.rows, image.cols, image.depth() );
   Mat template_im = imread ( head_template, CV_LOAD_IMAGE_ANYDEPTH );
@@ -188,7 +279,7 @@ vector<Point> chamfer_matching ( Mat image )
   double xdiff = template_im.cols / 2;
   double ydiff = template_im.rows / 2;
   Point pdiff = Point ( xdiff, ydiff );
-  vector<Point> head_matched_points_tmp;
+  vector<Point3f> head_matched_points_tmp;
 
   for ( int i = 0; i < scales; i++ )
     {
@@ -198,15 +289,15 @@ vector<Point> chamfer_matching ( Mat image )
       Mat matching_thr;
       threshold ( matching[i], matching_thr, 1.0 / chamfer_thr, 1.0, CV_THRESH_BINARY_INV );
       double scale = pow ( 1.0 / 0.75, i );
-      get_non_zeros ( matching_thr, &head_matched_points_tmp, pdiff, scale );
+      get_non_zeros ( matching_thr, matching[i], &head_matched_points_tmp, pdiff, scale );
     }
 
   return head_matched_points_tmp;
 }
 
-vector<Point3f> compute_headparameters ( Mat image, vector<Point> chamfer )
+vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> chamfer )
 {
-  vector<Point3f> parameters_head ( chamfer.size() );
+  vector<PixelSimilarity> parameters_head ( chamfer.size() );
 
   // parameters of cubic equation
   float p1 = -1.3835 * pow ( 10, -9 );
@@ -230,9 +321,9 @@ vector<Point3f> compute_headparameters ( Mat image, vector<Point> chamfer )
       // convert Radius in pixels
       float Rp = round ( ( 1 / 1.3 ) * R );
 
-      parameters_head[i].x = position_x;
-      parameters_head[i].y = position_y;
-      parameters_head[i].z = Rp;
+      parameters_head[i].point = Point(position_x,position_y);
+      parameters_head[i].radius = 1.2 * Rp;
+      parameters_head[i].similarity = chamfer[i].z;
     }
 
   return parameters_head;
@@ -325,7 +416,7 @@ void timer_cb ( const ros::TimerEvent& event )
   Mat tmp_depth = image_depth.clone();
   Mat tmp_disparity = image_disparity.clone();
 
-  if ( false )
+  if ( is_rgb_turn )
     {
       vector<Rect> rgbfacestmp = detect_face_rgb ( tmp_rgb, classifier );
       rgb_faces.swap ( rgbfacestmp );
@@ -372,7 +463,7 @@ int main ( int argc, char **argv )
   ros::Subscriber depth_sub = nh.subscribe ( "/camera/depth/image_raw", 1, depth_cb );
 
   namedWindow ( "Social Robot", CV_WINDOW_AUTOSIZE );
-  ros::Timer timer = nh.createTimer ( ros::Duration ( 0.1 ), timer_cb );
+  ros::Timer timer = nh.createTimer ( ros::Duration ( 0.01 ), timer_cb );
 
   spinner.spin();
 

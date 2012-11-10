@@ -8,6 +8,7 @@ namespace enc = sensor_msgs::image_encodings;
 cv_bridge::CvImagePtr cv_rgb;
 cv_bridge::CvImagePtr cv_depth;
 cv_bridge::CvImagePtr cv_disparity;
+cv_bridge::CvImagePtr cv_ir;
 
 bool save_all(std_srvs::Empty::Request&, std_srvs::Empty::Response&)
 {
@@ -70,6 +71,17 @@ bool save_disparity(std_srvs::Empty::Request&, std_srvs::Empty::Response&)
   return imwrite_result;
 }
 
+bool save_ir(std_srvs::Empty::Request&, std_srvs::Empty::Response&)
+{
+  std::string im_path = ros::package::getPath("social_robot");
+  im_path.append("/logs/kinect_ir_");
+  im_path.append(current_log_time());
+  im_path.append(".png");
+  bool imwrite_result = cv::imwrite(im_path, cv_ir->image);
+  std::cout << im_path << " was " << imwrite_result << std::endl;
+  return imwrite_result;
+}
+
 void rgb_cb(const sensor_msgs::ImageConstPtr& msg)
 {    
   try
@@ -109,15 +121,31 @@ void disparity_cb(const stereo_msgs::DisparityImageConstPtr& msg)
   }      
 }
 
+void ir_cb(const sensor_msgs::ImageConstPtr& msg)
+{    
+  try
+  {
+    cv_ir = cv_bridge::toCvCopy(msg);
+  }
+  catch (cv_bridge::Exception& e)
+  {
+    ROS_ERROR("cv_bridge exception: %s", e.what());
+    return;
+  }      
+}
+
 void init_kinect(void)
 {
   ros::NodeHandle nh;
   ros::Subscriber rgb_sub = nh.subscribe("/camera/rgb/image_color", 1, rgb_cb);
   ros::Subscriber depth_sub = nh.subscribe("/camera/depth/image_raw", 1, depth_cb);
   ros::Subscriber disparity_sub = nh.subscribe("/camera/depth/disparity", 1, disparity_cb);
+  ros::Subscriber ir_sub = nh.subscribe("/camera/ir/image_rect", 1, ir_cb);
+  
   ros::ServiceServer save_rgb_ser = nh.advertiseService("social_robot/save_rgb", save_rgb);
   ros::ServiceServer save_depth_ser = nh.advertiseService("social_robot/save_depth", save_depth);
   ros::ServiceServer save_disparity_ser = nh.advertiseService("social_robot/save_disparity", save_disparity);
+  ros::ServiceServer save_ir_ser = nh.advertiseService("social_robot/save_ir", save_ir);
   ros::ServiceServer save_all_ser = nh.advertiseService("social_robot/save_all", save_all);
   ros::spin();  
 }

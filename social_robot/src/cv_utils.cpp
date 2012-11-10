@@ -36,30 +36,44 @@ Mat preprocessing ( Mat image )
 {
   Mat dst;
   Mat temp;
-  //  resize(image, temp, Size(), 2, 2, INTER_NEAREST);
-  //  resize(temp, dst, Size(), 0.5, 0.5, INTER_NEAREST);
 
   // inpainting
-  Mat mask; // = Mat::zeros(image.rows, image.cols, image.);
+  Mat mask; 
   threshold ( image, mask, 0, 255, CV_THRESH_BINARY_INV );
-//   for ( int i = 0; i < image.rows; i++ )
-//     {
-//       unsigned char *rowi = image.ptr<unsigned char> ( i );
-//       for ( int j = 0; j < image.cols; j++ )
-//         {
-//           if ( rowi[j] == 0 )
-//             {
-//               mask.at<unsigned char> ( i, j ) = 255;
-//             }
-//         }
-//     }
+
+  inpaint ( image, mask, dst, 5, INPAINT_NS );
+  medianBlur ( dst, dst, 5 );
+  medianBlur ( dst, dst, 5 );
+  
+  return dst;
+}
+
+Mat preprocessing_16U ( Mat image )
+{
+  Mat dst;
+  Mat temp;
+
+  // inpainting
+  Mat mask; 
+    
+  for (int i = 0; i < image.rows; i++)
+   {
+    for (int j = 0; j < image.cols; j++)
+     {
+      if (image.at<unsigned short>(i, j) == 0)
+       {
+        mask.at<unsigned short>(i, j) = 65535;
+       }
+     }
+   }
+
   medianBlur ( image, temp, 5 );
   inpaint ( temp, mask, dst, 5, INPAINT_NS );
   medianBlur ( dst, dst, 5 );
   return dst;
 }
 
-void get_non_zeros ( Mat img, std::vector<cv::Point> *points, cv::Point pdiff, double scale )
+void get_non_zeros ( Mat img, Mat prob, std::vector<cv::Point3f> *points, cv::Point pdiff, double scale )
 {
   int k = 0;
   for ( int i = 0; i < img.rows; i++ )
@@ -69,7 +83,10 @@ void get_non_zeros ( Mat img, std::vector<cv::Point> *points, cv::Point pdiff, d
         {
           if ( rowi[j] != 0 )
             {
-              cv::Point point = ( cv::Point ( j, i ) + pdiff ) * scale;
+              cv::Point3f point;// = ( cv::Point ( j, i ) + pdiff ) * scale;
+              point.x = ( cv::Point ( j, i ).x + pdiff.x ) * scale ;
+              point.y = ( cv::Point ( j, i ).y + pdiff.y ) * scale;
+              point.z = prob.at<float>(i,j);
               points->push_back ( point );
               k++;
             }
