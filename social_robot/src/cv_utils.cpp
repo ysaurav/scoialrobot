@@ -111,38 +111,6 @@ void draw_rgb_faces ( Mat &img, vector<Rect> faces )
 
 void draw_depth_faces ( Mat &img, vector<Rect> faces )
 {
-  Rect tmpparams_av;
-  vector<Rect> output_v;
-  vector<Rect> queue;
-  double tol = 7;
-
-  while ( faces.size() > 0 )
-    {
-      tmpparams_av.x = faces[0].x;
-      tmpparams_av.y = faces[0].y;
-      tmpparams_av.width = faces[0].width;
-      tmpparams_av.height = faces[0].height;
-
-      for ( unsigned int i = 1; i < faces.size(); i++ )
-        {
-          if ( sqrt ( pow ( tmpparams_av.x - faces[i].x, 2 ) + pow ( tmpparams_av.y - faces[i].y, 2 ) ) < tol )
-            {
-              tmpparams_av.x = ( tmpparams_av.x + faces[i].x ) /2;
-              tmpparams_av.y = ( tmpparams_av.y + faces[i].y ) /2;
-              tmpparams_av.width = ( ( tmpparams_av.width + faces[i].width ) /2 );
-              tmpparams_av.height = ( ( tmpparams_av.height + faces[i].height ) /2 );
-            }
-          else
-            {
-              queue.push_back ( faces[i] );
-            }
-        }
-      output_v.push_back ( tmpparams_av );
-      faces.swap ( queue );
-      queue.clear();
-    }
-  faces.swap ( output_v );
-
   int i = 0;
   for ( vector<Rect>::const_iterator r = faces.begin(); r != faces.end(); r++, i++ )
     {
