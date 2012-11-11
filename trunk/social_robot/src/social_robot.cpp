@@ -1,14 +1,25 @@
 #include <ros/ros.h>
 #include <std_srvs/Empty.h>
 #include <stereo_msgs/DisparityImage.h>
+#include <social_robot/RegionOfInterests.h>
 
 #include "kinect_proxy.h"
 #include "cv_utils.h"
 #include "PixelSimilarity.h"
+#include "RosUtils.h"
 
 using namespace std;
 using namespace cv;
-namespace enc = sensor_msgs::image_encodings;
+using namespace sensor_msgs;
+
+namespace enc = image_encodings;
+
+// for publications
+RosUtils ros_utils;
+social_robot::RegionOfInterests depth_pub_rois;
+ros::Publisher depth_pub;
+social_robot::RegionOfInterests rgb_pub_rois;
+ros::Publisher rgb_pub;
 
 string cascade_name;
 CascadeClassifier classifier;
@@ -66,6 +77,10 @@ vector<Rect> detect_face_rgb ( Mat img, CascadeClassifier &cascade )
                              |CV_HAAR_SCALE_IMAGE
                              ,
                              Size ( 30, 30 ) );
+
+  vector<RegionOfInterest> rosrois = ros_utils.cvrects2rosrois ( tmpfaces );
+  rgb_pub_rois.rois.swap ( rosrois );
+  rgb_pub.publish ( rgb_pub_rois );
   return tmpfaces;
 }
 
@@ -94,79 +109,6 @@ vector<Rect> detect_face_depth ( Mat tmp_depth, Mat tmp_disparity )
   
   vector<PixelSimilarity> new_head_features;
   float tol = 40;
-  
-//   cout << "before poly for new head features " << head_features.size() << endl;
-//   
-//   for ( unsigned int i = 0; i < head_features.size(); i++ )
-//     {
-//       cout << i << endl;
-//       Rect roi ( head_features[i].point.x - head_features[i].radius, head_features[i].point.y - head_features[i].radius, head_features[i].radius * 2, head_features[i].radius * 2 );
-//       if ( ! ( 0 <= roi.x && 0 <= roi.width && roi.x + roi.width <= canny_im.cols && 0 <= roi.y && 0 <= roi.height && roi.y + roi.height <= canny_im.rows ) )
-//         {
-//           continue;
-//         }
-//       cout << "roi calculated" << endl;
-//       Mat tmp_mat = canny_im ( roi );
-//       vector<vector<Point> > contour;
-//       findContours ( tmp_mat, contour, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE );
-//       cout << "contours found" << endl;
-//       for ( unsigned int j = 0; j < contour.size(); j++ )
-//         {
-//           vector<Point> approx;
-//           approxPolyDP ( contour[j], approx, 5, false );
-//           if ( approx.size() >= arc_thr_low && approx.size() <= arc_thr_high )
-//             {
-//               new_head_features.push_back(head_features[i]);
-//               break;
-//             }
-//         }
-//     }
-//     cout << "after calculating new head features " << new_head_features.size() << endl;
-//   /* Merged rectangles that are closed enough */  
-//   
-//   
-//   PixelSimilarity tmpcont_mean;
-//   vector<PixelSimilarity> output_v;
-//   vector<PixelSimilarity> queue;
-// 
-//   cout << "Num rect bef: " << new_head_features.size() << endl;
-//   
-//   while(new_head_features.size() > 0)
-//    {
-// 
-//         tmpcont_mean = PixelSimilarity(new_head_features[0].point, new_head_features[0].radius, new_head_features[0].similarity);
-//         
-//         //while(abs(tmpcont_mean.x - tmpparams[next].x) + abs(tmpcont_mean.y - tmpparams[next].y) < tol ){
-//         for(unsigned int i = 1; i < new_head_features.size(); i++){
-//           if(sqrt(pow(tmpcont_mean.point.x - new_head_features[i].point.x,2) + pow(tmpcont_mean.point.y - new_head_features[i].point.y,2)) < tol){
-//             if( new_head_features[i].similarity < tmpcont_mean.similarity )
-//              {
-//                new_head_features[i] = PixelSimilarity(new_head_features[i].point, new_head_features[i].radius, new_head_features[i].similarity);
-//              }
-//           }
-//           else{
-//             queue.push_back(new_head_features[i]);
-//           }
-//          
-//         }
-//         output_v.push_back(tmpcont_mean);
-//         new_head_features.swap(queue);
-//         queue.clear();
-//    }
-//   
-//   cout << "Num rect aft: " << output_v.size() << endl;
-//   
-//   Rect roi;
-//   for (unsigned int i = 0; i < output_v.size(); i++)
-//   {
-//       //circle(image_rgb, output_v[i].point, output_v[i].radius, cvScalar(255, 0, 255, 0), 2, 8, 0);
-//       int wh = output_v[i].radius * 2;
-//       roi = Rect(output_v[i].point.x - output_v[i].radius, output_v[i].point.y - output_v[i].radius, wh, wh);
-//       roistmp.push_back ( roi );
-//   }
-//   Point3f tmpparams_av;
-//   vector<Point3f> output_v;
-//   vector<Point3f> queue;
   
   PixelSimilarity tmpcont_mean;
   vector<PixelSimilarity> output_v;
@@ -212,7 +154,7 @@ vector<Rect> detect_face_depth ( Mat tmp_depth, Mat tmp_disparity )
     }
    cout << "Num rect bef: " << new_head_features.size() << endl;
   
-  while(new_head_features.size() > 0)
+  while ( new_head_features.size() > 0 )
    {
 
         tmpcont_mean = PixelSimilarity(new_head_features[0].point, new_head_features[0].radius, new_head_features[0].similarity);
@@ -244,6 +186,11 @@ vector<Rect> detect_face_depth ( Mat tmp_depth, Mat tmp_disparity )
       roistmp.push_back ( rect );
    }   
   cout << "Num rect aft: " << output_v.size() << endl;
+
+  vector<RegionOfInterest> rosrois = ros_utils.cvrects2rosrois(roistmp);
+  depth_pub_rois.rois.swap(rosrois);  
+  depth_pub.publish(depth_pub_rois);
+  
   return roistmp;
 }
 
@@ -359,7 +306,7 @@ bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
   return true;
 }
 
-void rgb_cb ( const sensor_msgs::ImageConstPtr& msg )
+void rgb_cb ( const ImageConstPtr& msg )
 {
   try
     {
@@ -377,7 +324,7 @@ void rgb_cb ( const sensor_msgs::ImageConstPtr& msg )
     }
 }
 
-void depth_cb ( const sensor_msgs::ImageConstPtr& msg )
+void depth_cb ( const ImageConstPtr& msg )
 {
   try
     {
@@ -457,13 +404,18 @@ int main ( int argc, char **argv )
   nh.setParam ( "/social_robot/scales", scales );
   nh.setParam ( "/social_robot/arc_thr_low", arc_thr_low );
 
-  ros::ServiceServer clear_srv = nh.advertiseService ( "/social_robot/update", update_param_cb );
+  // subscribtions
+  ros::ServiceServer update_srv = nh.advertiseService ( "/social_robot/update", update_param_cb );
   ros::Subscriber disparity_sub = nh.subscribe ( "/camera/depth/disparity", 1, disparity_cb );
   ros::Subscriber rgb_sub = nh.subscribe ( "/camera/rgb/image_color", 1, rgb_cb );
   ros::Subscriber depth_sub = nh.subscribe ( "/camera/depth/image_raw", 1, depth_cb );
 
+  // publications
+  depth_pub = nh.advertise<social_robot::RegionOfInterests>("/social_robot/depth_rois", 1);
+  rgb_pub = nh.advertise<social_robot::RegionOfInterests>("/social_robot/rgb_rois", 1);
+  
   namedWindow ( "Social Robot", CV_WINDOW_AUTOSIZE );
-  ros::Timer timer = nh.createTimer ( ros::Duration ( 0.01 ), timer_cb );
+  ros::Timer timer = nh.createTimer ( ros::Duration ( 0.04 ), timer_cb );
 
   spinner.spin();
 

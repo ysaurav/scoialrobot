@@ -13,37 +13,30 @@ using namespace cv;
 using namespace std;
 
 class Gui : public QMainWindow
-{
-  Q_OBJECT
+  {
+    Q_OBJECT
 
-public:
-  explicit Gui(int argc, char** argv, QWidget *parent = 0);
-  ~Gui();
+  public:
+    explicit Gui ( int argc, char **argv, QWidget *parent = 0 );
+    ~Gui();
 
-  // Options
-  QString Color;
-  bool Normalization;
-  QString Function;
-  float low_ratio, high_ratio, aspect_are, Threshold;
+  private slots:
+    void updateImage ( const Mat & );
+    void updateImageSize ( const QSize &size );
 
+    void readSettings ( void );
+    void writeSettings ( void );
 
-private slots:
-  void updateImage( const Mat & );
-  void updateImageSize( const QSize &size);
+    void closeEvent ( QCloseEvent *event ); // Overloaded function
 
-  void readSettings( void );
-  void writeSettings( void );
-  
-  void closeEvent(QCloseEvent *event); // Overloaded function
+  private:
+    Ui::Gui *ui;
+    CvWindow *cvWindow;
+    SocialRobotGui *social_robot_gui;
 
-private:
-  Ui::Gui *ui;
-  CvWindow *cvWindow;
-  SocialRobotGui *social_robot_gui;
+    // Setting
+    QSettings settings;
 
-  // Setting
-  QSettings settings;
-
-};
+  };
 
 #endif // GUI_H
