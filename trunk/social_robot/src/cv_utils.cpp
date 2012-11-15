@@ -38,41 +38,18 @@ Mat preprocessing ( Mat image )
   Mat temp;
 
   // inpainting
-  Mat mask; 
-  threshold ( image, mask, 0, 255, CV_THRESH_BINARY_INV );
-
-  inpaint ( image, mask, dst, 5, INPAINT_NS );
-  medianBlur ( dst, dst, 5 );
-  medianBlur ( dst, dst, 5 );
+  Mat mask, small_temp; 
+  
+  //
+  //GaussianBlur( image, image, Size(2*3+1,2*3+1), 0.0, 0.0, BORDER_DEFAULT );
+  medianBlur ( image, image, 5 );//3
+  inpaint( image, (image == 0), temp, 5, INPAINT_NS);
+  medianBlur ( temp, dst, 5 );
+  GaussianBlur( dst, dst, Size(2*2+1,2*2+1), 0.0, 0.0, BORDER_DEFAULT );
   
   return dst;
 }
-
-Mat preprocessing_16U ( Mat image )
-{
-  Mat dst;
-  Mat temp;
-
-  // inpainting
-  Mat mask; 
-    
-  for (int i = 0; i < image.rows; i++)
-   {
-    for (int j = 0; j < image.cols; j++)
-     {
-      if (image.at<unsigned short>(i, j) == 0)
-       {
-        mask.at<unsigned short>(i, j) = 65535;
-       }
-     }
-   }
-
-  medianBlur ( image, temp, 5 );
-  inpaint ( temp, mask, dst, 5, INPAINT_NS );
-  medianBlur ( dst, dst, 5 );
-  return dst;
-}
-
+ 
 void get_non_zeros ( Mat img, Mat prob, std::vector<cv::Point3f> *points, cv::Point pdiff, double scale )
 {
   int k = 0;
@@ -84,8 +61,8 @@ void get_non_zeros ( Mat img, Mat prob, std::vector<cv::Point3f> *points, cv::Po
           if ( rowi[j] != 0 )
             {
               cv::Point3f point;// = ( cv::Point ( j, i ) + pdiff ) * scale;
-              point.x = ( cv::Point ( j, i ).x + pdiff.x ) * scale ;
-              point.y = ( cv::Point ( j, i ).y + pdiff.y ) * scale;
+              point.x = ( cv::Point ( j, i ).x  + pdiff.x ) * scale;
+              point.y = ( cv::Point ( j, i ).y  + pdiff.y ) * scale;
               point.z = prob.at<float>(i,j);
               points->push_back ( point );
               k++;
