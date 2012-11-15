@@ -27,6 +27,20 @@ class Gui : public QMainWindow
     void readSettings ( void );
     void writeSettings ( void );
 
+    // settings slots
+
+    // display
+    void rgb_check_box_handler ( void );
+    void depth_check_box_handler ( void );
+    void handle_display ( void );
+
+    // thresholds
+    void threshold_template_matching_3d ( void );
+    void threshold_scales ( void );
+    void threshold_chamfer ( void );
+    void threshold_arc_low ( void );
+    void threshold_arc_high ( void );
+
     void closeEvent ( QCloseEvent *event ); // Overloaded function
 
   private:

@@ -19,7 +19,10 @@ SocialRobotGui::SocialRobotGui ( int argc, char** argv ) :
     init_argc ( argc ),
     init_argv ( argv )
 {
-
+  display_rgb_faces = true;
+  display_depth_faces = true;
+  display_rgb_image = true;
+  display_depth_image = false;
 }
 
 SocialRobotGui::~SocialRobotGui()
@@ -35,8 +38,10 @@ void SocialRobotGui::init()
   ros::start(); // our node handles go out of scope, so we want to control shutdown explicitly.
   ros::NodeHandle nh;
   rgb_subscriber = nh.subscribe ( "/camera/rgb/image_color", 1, &SocialRobotGui::rgb_cb, this );
+  depth_subscriber = nh.subscribe ( "/camera/depth/image_raw", 1, &SocialRobotGui::depth_cb, this );
   rgb_rois_subs = nh.subscribe ( "/social_robot/rgb/rois", 1, &SocialRobotGui::rgb_rois_cb, this );
   depth_rois_subs = nh.subscribe ( "/social_robot/depth/rois", 1, &SocialRobotGui::depth_rois_cb, this );
+  update_client = nh.serviceClient<std_srvs::Empty> ( "/social_robot/depth/update" );
   start();
 }
 
@@ -45,19 +50,54 @@ void SocialRobotGui::run()
   ros::spin();
 }
 
+void SocialRobotGui::depth_cb ( const sensor_msgs::ImageConstPtr& msg )
+{
+  if ( display_depth_image )
+    {
+      try
+        {
+          cv_bridge::CvImagePtr cv_depth = cv_bridge::toCvCopy ( msg );
+          Mat image_depth = cv_depth->image;
+          if ( display_rgb_faces )
+            {
+              draw_rgb_faces ( image_depth, rgb_rois );
+            }
+          if ( display_depth_faces )
+            {
+              draw_depth_faces ( image_depth, depth_rois );
+            }
+          emit update_image ( image_depth );
+        }
+      catch ( cv_bridge::Exception& e )
+        {
+          ROS_ERROR ( "cv_bridge exception: %s", e.what() );
+          return;
+        }
+    }
+}
+
 void SocialRobotGui::rgb_cb ( const sensor_msgs::ImageConstPtr &msg )
 {
-  try
+  if ( display_rgb_image )
     {
-      Mat image_rgb = cv_bridge::toCvCopy ( msg, enc::BGR8 )->image;
-      draw_rgb_faces ( image_rgb, rgb_rois );
-      draw_depth_faces ( image_rgb, depth_rois );
-      emit update_image ( image_rgb );
-    }
-  catch ( cv_bridge::Exception& e )
-    {
-      ROS_ERROR ( "cv_bridge exception: %s", e.what() );
-      return;
+      try
+        {
+          Mat image_rgb = cv_bridge::toCvCopy ( msg, enc::BGR8 )->image;
+          if ( display_rgb_faces )
+            {
+              draw_rgb_faces ( image_rgb, rgb_rois );
+            }
+          if ( display_depth_faces )
+            {
+              draw_depth_faces ( image_rgb, depth_rois );
+            }
+          emit update_image ( image_rgb );
+        }
+      catch ( cv_bridge::Exception& e )
+        {
+          ROS_ERROR ( "cv_bridge exception: %s", e.what() );
+          return;
+        }
     }
 }
 
@@ -73,4 +113,40 @@ void SocialRobotGui::depth_rois_cb ( const social_robot::RegionOfInterests &msg 
   vector<RegionOfInterest> rois = msg.rois;
   vector<Rect> tmpdepth_rois = ros_utils.rosrois2cvrects ( rois );
   depth_rois.swap ( tmpdepth_rois );
+}
+
+
+void SocialRobotGui::threshold_template_matching_3d ( double threshold )
+{
+  ros::NodeHandle nh;
+  nh.setParam ( "/social_robot/depth/match3D_thr", threshold );
+  update_client.call<std_srvs::Empty> ( empty );
+}
+
+void SocialRobotGui::threshold_scales ( int threshold )
+{
+  ros::NodeHandle nh;
+  nh.setParam ( "/social_robot/depth/scales", threshold );
+  update_client.call<std_srvs::Empty> ( empty );
+}
+
+void SocialRobotGui::threshold_chamfer ( double threshold )
+{
+  ros::NodeHandle nh;
+  nh.setParam ( "/social_robot/depth/chamfer_thr", threshold );
+  update_client.call<std_srvs::Empty> ( empty );
+}
+
+void SocialRobotGui::threshold_arc_low ( int threshold )
+{
+  ros::NodeHandle nh;
+  nh.setParam ( "/social_robot/depth/arc_thr_low", threshold );
+  update_client.call<std_srvs::Empty> ( empty );
+}
+
+void SocialRobotGui::threshold_arc_high ( int threshold )
+{
+  ros::NodeHandle nh;
+  nh.setParam ( "/social_robot/depth/arc_thr_high", threshold );
+  update_client.call<std_srvs::Empty> ( empty );
 }
