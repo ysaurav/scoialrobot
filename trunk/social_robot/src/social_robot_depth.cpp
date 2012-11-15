@@ -42,8 +42,6 @@ double scale_factor = 0.75;
 double match3D_thr = 0.4;
 int scales = 4;
 
-bool is_rgb_turn = true;
-
 vector<Point3f> head_matched_points;
 vector<PixelSimilarity> head_features;
 
@@ -51,11 +49,6 @@ vector<Point3f> head_matched_points2;
 vector<PixelSimilarity> head_features2;
 
 vector<Template> templates;
-
-int roi_x_offset;
-int roi_y_offset;
-int roi_height;
-int roi_width;
 
 Mat *pyramid = new Mat[scales];
 Mat *chamfer = new Mat[scales];
@@ -306,24 +299,27 @@ bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
   double arc_thr_tmp;
   int scales_tmp;
   double max_suppression_tmp;
+  double match3D_thr_tmp = match3D_thr;
 
   ros::NodeHandle nh;
 
-  nh.param ( "/social_robot/head_template", head_template_tmp, head_template_tmp );
-  nh.param ( "/social_robot/canny_thr1", canny_thr1_tmp, canny_thr1_tmp );
-  nh.param ( "/social_robot/canny_thr2", canny_thr2_tmp, canny_thr2_tmp );
-  nh.param ( "/social_robot/chamfer_thr", chamfer_thr_tmp, chamfer_thr_tmp );
-  nh.param ( "/social_robot/scales", scales_tmp, scales_tmp );
-  nh.param ( "/social_robot/arc_thr", arc_thr_tmp, arc_thr_tmp );
-  nh.param ( "/social_robot/max_suppression", max_suppression_tmp, max_suppression_tmp );
+//   nh.param ( "/social_robot/head_template", head_template_tmp, head_template_tmp );
+//   nh.param ( "/social_robot/canny_thr1", canny_thr1_tmp, canny_thr1_tmp );
+//   nh.param ( "/social_robot/canny_thr2", canny_thr2_tmp, canny_thr2_tmp );
+//   nh.param ( "/social_robot/chamfer_thr", chamfer_thr_tmp, chamfer_thr_tmp );
+//   nh.param ( "/social_robot/scales", scales_tmp, scales_tmp );
+//   nh.param ( "/social_robot/arc_thr", arc_thr_tmp, arc_thr_tmp );
+//   nh.param ( "/social_robot/max_suppression", max_suppression_tmp, max_suppression_tmp );
+  nh.param ( "/social_robot/depth/match3D_thr", match3D_thr_tmp, match3D_thr_tmp );
 
-  head_template1 = head_template_tmp;
-  canny_thr1 = canny_thr1_tmp;
-  canny_thr2 = canny_thr2_tmp;
-  chamfer_thr = chamfer_thr_tmp;
-  scales = scales_tmp;
-  arc_thr_low = arc_thr_tmp;
-  max_suppression = max_suppression_tmp;
+//   head_template1 = head_template_tmp;
+//   canny_thr1 = canny_thr1_tmp;
+//   canny_thr2 = canny_thr2_tmp;
+//   chamfer_thr = chamfer_thr_tmp;
+//   scales = scales_tmp;
+//   arc_thr_low = arc_thr_tmp;
+//   max_suppression = max_suppression_tmp;
+  match3D_thr = max_suppression_tmp;
 
   return true;
 }
@@ -412,7 +408,9 @@ int main ( int argc, char **argv )
 
   load_templates( );
 
+  // to register the depth
   nh.setParam ( "/camera/driver/depth_registration", true );
+  
   nh.setParam ( "/social_robot/head_template1", head_template1 );
   nh.setParam ( "/social_robot/canny_thr1", canny_thr1 );
   nh.setParam ( "/social_robot/canny_thr2", canny_thr2 );
@@ -420,6 +418,7 @@ int main ( int argc, char **argv )
   nh.setParam ( "/social_robot/scales", scales );
   nh.setParam ( "/social_robot/arc_thr_low", arc_thr_low );
   nh.setParam ( "/social_robot/max_suppression", max_suppression );
+  nh.setParam ( "/social_robot/depth/match3D_thr", match3D_thr );
 
   // subscribtions
   ros::ServiceServer update_srv = nh.advertiseService ( "/social_robot/depth/update", update_param_cb );
