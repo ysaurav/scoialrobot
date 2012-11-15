@@ -99,7 +99,7 @@ void depth_cb(const sensor_msgs::ImageConstPtr& msg)
 {    
   try
   {
-    cv_depth = cv_bridge::toCvCopy(msg);
+    cv_depth = cv_bridge::toCvCopy(msg); // , enc::MONO16
   }
   catch (cv_bridge::Exception& e)
   {
@@ -137,9 +137,9 @@ void ir_cb(const sensor_msgs::ImageConstPtr& msg)
 void init_kinect(void)
 {
   ros::NodeHandle nh;
-  ros::Subscriber rgb_sub = nh.subscribe("/camera/rgb/image_color", 1, rgb_cb);
-  ros::Subscriber depth_sub = nh.subscribe("/camera/depth/image_raw", 1, depth_cb);
-  ros::Subscriber disparity_sub = nh.subscribe("/camera/depth/disparity", 1, disparity_cb);
+  ros::Subscriber rgb_sub = nh.subscribe("/camera/rgb/image_rect_color", 1, rgb_cb);// /camera/rgb/image_rect_color
+  ros::Subscriber depth_sub = nh.subscribe("/camera/depth_registered/image_rect", 1, depth_cb); // /camera/depth_registered/image_rect
+  ros::Subscriber disparity_sub = nh.subscribe("/camera/depth_registered/disparity", 1, disparity_cb); //  /camera/depth_registered/disparity
   ros::Subscriber ir_sub = nh.subscribe("/camera/ir/image_rect", 1, ir_cb);
   
   ros::ServiceServer save_rgb_ser = nh.advertiseService("social_robot/save_rgb", save_rgb);

@@ -43,7 +43,7 @@ rosbuild_genmsg()
 
 #common commands for building c++ executables and libraries
 #rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
-rosbuild_add_library(utils src/string_utils.cpp src/cv_utils.cpp src/kinect_proxy.cpp src/PixelSimilarity.cpp src/RosUtils.cpp)
+rosbuild_add_library(utils src/string_utils.cpp src/cv_utils.cpp src/kinect_proxy.cpp src/PixelSimilarity.cpp src/Template.cpp src/RosUtils.cpp)
 #target_link_libraries(${PROJECT_NAME} another_library)
 #rosbuild_add_boost_directories()
 #rosbuild_link_boost(${PROJECT_NAME} thread)
