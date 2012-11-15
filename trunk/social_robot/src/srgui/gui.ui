@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>745</width>
+    <width>671</width>
     <height>649</height>
    </rect>
   </property>
@@ -25,74 +25,233 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
+    <item row="1" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="title">
+         <string>Displaying</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QCheckBox" name="rgb_check_box">
+           <property name="text">
+            <string>RGB Faces</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="depth_check_box">
+           <property name="text">
+            <string>Depth Faces</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rgbRadioButton">
+           <property name="text">
+            <string>RGB Image</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="depthRadioButton">
+           <property name="text">
+            <string>Depth Image</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="title">
+         <string>Thresholds</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Template matching</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="templateMatchingThreshold">
+             <property name="maximum">
+              <double>1.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>0.100000000000000</double>
+             </property>
+             <property name="value">
+              <double>0.400000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Scales                     </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="scaleSpinBox">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>4</number>
+             </property>
+             <property name="value">
+              <number>4</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Chamfer                 </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="chamferDoubleSpinBox">
+             <property name="minimum">
+              <double>1.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>20.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>0.500000000000000</double>
+             </property>
+             <property name="value">
+              <double>10.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Arc low                   </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="arcLowSpinBox">
+             <property name="minimum">
+              <number>5</number>
+             </property>
+             <property name="maximum">
+              <number>9</number>
+             </property>
+             <property name="value">
+              <number>7</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Arc high                  </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="arcHighSpinBox">
+             <property name="minimum">
+              <number>15</number>
+             </property>
+             <property name="maximum">
+              <number>25</number>
+             </property>
+             <property name="value">
+              <number>20</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="title">
+         <string>GroupBox</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
     <item row="0" column="0">
-     <widget class="QSplitter" name="splitter_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <widget class="QSplitter" name="splitter">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-      </widget>
-      <widget class="QWidget" name="layoutWidget">
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
-         <widget class="ImageFrame" name="frame">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetMinimumSize</enum>
-          </property>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="ImageFrame" name="frame">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>745</width>
+     <width>671</width>
      <height>23</height>
     </rect>
    </property>
@@ -107,7 +266,6 @@
    </widget>
    <addaction name="menuFile"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
    <property name="text">
     <string>&amp;Open...</string>
@@ -136,5 +294,160 @@
  <resources>
   <include location="window_QT.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>rgb_check_box</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>Gui</receiver>
+   <slot>rgb_check_box_handler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>61</x>
+     <y>470</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>45</x>
+     <y>524</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>depth_check_box</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>Gui</receiver>
+   <slot>depth_check_box_handler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>237</x>
+     <y>510</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>394</x>
+     <y>533</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rgbRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Gui</receiver>
+   <slot>handle_display()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>83</x>
+     <y>539</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-12</x>
+     <y>566</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>depthRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Gui</receiver>
+   <slot>handle_display()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>109</x>
+     <y>582</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>109</x>
+     <y>618</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>templateMatchingThreshold</sender>
+   <signal>editingFinished()</signal>
+   <receiver>Gui</receiver>
+   <slot>threshold_template_matching_3d()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>459</x>
+     <y>444</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>457</x>
+     <y>654</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scaleSpinBox</sender>
+   <signal>editingFinished()</signal>
+   <receiver>Gui</receiver>
+   <slot>threshold_scales()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>420</x>
+     <y>489</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>416</x>
+     <y>617</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chamferDoubleSpinBox</sender>
+   <signal>editingFinished()</signal>
+   <receiver>Gui</receiver>
+   <slot>threshold_chamfer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>446</x>
+     <y>521</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>445</x>
+     <y>621</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>arcLowSpinBox</sender>
+   <signal>editingFinished()</signal>
+   <receiver>Gui</receiver>
+   <slot>threshold_arc_low()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>461</x>
+     <y>558</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>473</x>
+     <y>624</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>arcHighSpinBox</sender>
+   <signal>editingFinished()</signal>
+   <receiver>Gui</receiver>
+   <slot>threshold_arc_high()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>438</x>
+     <y>593</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>555</x>
+     <y>659</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>rgb_check_box_handler()</slot>
+  <slot>depth_check_box_handler()</slot>
+  <slot>handle_display()</slot>
+  <slot>threshold_template_matching_3d()</slot>
+  <slot>threshold_scales()</slot>
+  <slot>threshold_chamfer()</slot>
+  <slot>threshold_arc_low()</slot>
+  <slot>threshold_arc_high()</slot>
+ </slots>
 </ui>

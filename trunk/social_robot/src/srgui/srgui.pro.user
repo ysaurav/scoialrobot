@@ -76,7 +76,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-9NVoE2mA2W,guid=c2fa9e7d47ae8b25bd474b21509e8509</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-7eaUDRJf60,guid=15df0029b3d498d99434a5ed50a4f8d1</value>
     <value type="QString">DEFAULTS_PATH=/usr/share/gconf/gnome.default.path</value>
     <value type="QString">DESKTOP_SESSION=gnome</value>
     <value type="QString">DISPLAY=:0.0</value>
@@ -84,8 +84,8 @@
     <value type="QString">GDM_KEYBOARD_LAYOUT=se</value>
     <value type="QString">GDM_LANG=en_US.utf8</value>
     <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-w668MN</value>
-    <value type="QString">GNOME_KEYRING_PID=1445</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-0hAMZ4</value>
+    <value type="QString">GNOME_KEYRING_PID=1440</value>
     <value type="QString">GTK_MODULES=canberra-gtk-module</value>
     <value type="QString">HOME=/home/safir</value>
     <value type="QString">LANG=en_US.UTF-8</value>
@@ -97,17 +97,17 @@
     <value type="QString">PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games</value>
     <value type="QString">PWD=/home/safir</value>
     <value type="QString">QTDIR=/usr/share/qt4</value>
-    <value type="QString">SESSION_MANAGER=local/safir-laptop:@/tmp/.ICE-unix/1463,unix/safir-laptop:/tmp/.ICE-unix/1463</value>
+    <value type="QString">SESSION_MANAGER=local/safir-laptop:@/tmp/.ICE-unix/1458,unix/safir-laptop:/tmp/.ICE-unix/1458</value>
     <value type="QString">SHELL=/bin/bash</value>
     <value type="QString">SPEECHD_PORT=7560</value>
-    <value type="QString">SSH_AGENT_PID=1497</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-w668MN/ssh</value>
+    <value type="QString">SSH_AGENT_PID=1492</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-0hAMZ4/ssh</value>
     <value type="QString">USER=safir</value>
     <value type="QString">USERNAME=safir</value>
-    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-safir-9uyfkr/database</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-safir-8gVJ1Q/database</value>
     <value type="QString">XDG_CONFIG_DIRS=/etc/xdg/xdg-gnome:/etc/xdg</value>
     <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
-    <value type="QString">XDG_SESSION_COOKIE=d8ed50e860ba74c6ed0fe47350521d47-1352566025.658675-269204217</value>
+    <value type="QString">XDG_SESSION_COOKIE=d8ed50e860ba74c6ed0fe47350521d47-1352988880.989125-1681639001</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
     <value type="QString">/home/safir/ros_workspace/scoialrobot/social_robot/src/srgui/srgui.pro</value>
@@ -126,7 +126,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-9NVoE2mA2W,guid=c2fa9e7d47ae8b25bd474b21509e8509</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-7eaUDRJf60,guid=15df0029b3d498d99434a5ed50a4f8d1</value>
     <value type="QString">DEFAULTS_PATH=/usr/share/gconf/gnome.default.path</value>
     <value type="QString">DESKTOP_SESSION=gnome</value>
     <value type="QString">DISPLAY=:0.0</value>
@@ -134,8 +134,8 @@
     <value type="QString">GDM_KEYBOARD_LAYOUT=se</value>
     <value type="QString">GDM_LANG=en_US.utf8</value>
     <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-w668MN</value>
-    <value type="QString">GNOME_KEYRING_PID=1445</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-0hAMZ4</value>
+    <value type="QString">GNOME_KEYRING_PID=1440</value>
     <value type="QString">GTK_MODULES=canberra-gtk-module</value>
     <value type="QString">HOME=/home/safir</value>
     <value type="QString">LANG=en_US.UTF-8</value>
@@ -147,17 +147,17 @@
     <value type="QString">PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games</value>
     <value type="QString">PWD=/home/safir</value>
     <value type="QString">QTDIR=/usr/share/qt4</value>
-    <value type="QString">SESSION_MANAGER=local/safir-laptop:@/tmp/.ICE-unix/1463,unix/safir-laptop:/tmp/.ICE-unix/1463</value>
+    <value type="QString">SESSION_MANAGER=local/safir-laptop:@/tmp/.ICE-unix/1458,unix/safir-laptop:/tmp/.ICE-unix/1458</value>
     <value type="QString">SHELL=/bin/bash</value>
     <value type="QString">SPEECHD_PORT=7560</value>
-    <value type="QString">SSH_AGENT_PID=1497</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-w668MN/ssh</value>
+    <value type="QString">SSH_AGENT_PID=1492</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-0hAMZ4/ssh</value>
     <value type="QString">USER=safir</value>
     <value type="QString">USERNAME=safir</value>
-    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-safir-9uyfkr/database</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-safir-8gVJ1Q/database</value>
     <value type="QString">XDG_CONFIG_DIRS=/etc/xdg/xdg-gnome:/etc/xdg</value>
     <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
-    <value type="QString">XDG_SESSION_COOKIE=d8ed50e860ba74c6ed0fe47350521d47-1352566025.658675-269204217</value>
+    <value type="QString">XDG_SESSION_COOKIE=d8ed50e860ba74c6ed0fe47350521d47-1352988880.989125-1681639001</value>
    </valuelist>
    <value key="abstractProcess.IgnoreReturnValue" type="bool">false</value>
    <valuelist key="abstractProcess.arguments" type="QVariantList">

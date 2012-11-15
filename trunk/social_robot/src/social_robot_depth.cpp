@@ -342,12 +342,12 @@ void disparity_cb ( const stereo_msgs::DisparityImageConstPtr& msg )
         }
       image_disparity.convertTo( image_disparity, CV_8UC1);
       vector<Rect> roistmp = detect_face_depth ( image_depth, image_disparity );
-      Mat temp_disp;
-      image_disparity.convertTo( temp_disp, CV_8UC3);
-      draw_depth_faces ( temp_disp, roistmp );
-      
-      imshow( "Depth", temp_disp );
-      waitKey( 3 );
+//       Mat temp_disp;
+//       image_disparity.convertTo( temp_disp, CV_8UC3);
+//       draw_depth_faces ( temp_disp, roistmp );
+//       
+//       imshow( "Depth", temp_disp );
+//       waitKey( 3 );
     }
   catch ( cv_bridge::Exception& e )
     {
