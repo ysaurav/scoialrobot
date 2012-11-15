@@ -36,7 +36,7 @@ void SocialRobotGui::init()
   ros::NodeHandle nh;
   rgb_subscriber = nh.subscribe ( "/camera/rgb/image_color", 1, &SocialRobotGui::rgb_cb, this );
   rgb_rois_subs = nh.subscribe ( "/social_robot/rgb_rois", 1, &SocialRobotGui::rgb_rois_cb, this );
-  depth_rois_subs = nh.subscribe ( "/social_robot/depth_rois", 1, &SocialRobotGui::depth_rois_cb, this );
+  depth_rois_subs = nh.subscribe ( "/social_robot/depth/rois", 1, &SocialRobotGui::depth_rois_cb, this );
   start();
 }
 
