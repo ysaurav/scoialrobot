@@ -35,9 +35,9 @@ double canny_thr1 = 5;
 double canny_thr2 = 7;
 double chamfer_thr = 10;
 double arc_thr_low = 7;
-double arc_thr_high = 17;
+double arc_thr_high = 20;
 double approx_poly_thr = 1;
-double max_suppression = 0.001;
+double max_suppression = 0.1;
 double scale_factor = 0.75;
 double match3D_thr = 0.4;
 int scales = 4;
@@ -77,6 +77,7 @@ vector<Rect> detect_face_depth ( Mat tmp_depth, Mat tmp_disparity )
   
   vector<PixelSimilarity> new_head_features;
   vector<PixelSimilarity> final_head_features,final_head_features2;
+  
   for ( int k = 0; k < templates.size() ; k++)
   {
     head_matched_points = chamfer_matching ( tmp_disparity, templates[k].template2d );
@@ -87,7 +88,6 @@ vector<Rect> detect_face_depth ( Mat tmp_depth, Mat tmp_disparity )
   }
 
   final_head_features2 = merge_rectangles(final_head_features);
-  cout << "Final final: " << final_head_features2.size() << endl;
   
   Rect rect;
   for ( unsigned int i = 0; i < final_head_features2.size(); i++ )
@@ -166,7 +166,7 @@ vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> cham
       parameters_head[i].point = Point ( position_x,position_y );
       parameters_head[i].radius = 1.1 * Rp;
       parameters_head[i].similarity = chamfer[i].z;
-      //parameters_head.push_back( PixelSimilarity( Point ( position_x,position_y ), 1.1 * Rp, chamfer[i].z ) );
+     
     }
 
   return parameters_head;
@@ -224,7 +224,6 @@ vector<PixelSimilarity> match_template3D( vector<PixelSimilarity> potentials, in
   {
     return output;
   }
-  cout << templates[n].template3d.type( ) << ", " << image_disparity.type() << endl;
   
   for (unsigned int i = 0; i < potentials.size(); i++)
   {
@@ -233,12 +232,11 @@ vector<PixelSimilarity> match_template3D( vector<PixelSimilarity> potentials, in
       resize ( roi, roi, templates[n].template3d.size() );
       minMaxLoc ( roi, &minVal, &maxVal, 0, 0 );
       roi = roi - minVal;
-      //normalize ( roi, roi, 0.0, 255.0, NORM_MINMAX );
+      normalize ( roi, roi, 0.0, 255.0, NORM_MINMAX );
       
       matchTemplate ( roi, templates[n].template3d, match, CV_TM_CCOEFF_NORMED );
 
       minMaxLoc ( match, &minVal, &maxVal, &minLoc, &maxLoc );
-      cout << minVal << ", " << maxVal << endl;
       
       if( minVal >= match3D_thr )
       {
@@ -257,8 +255,6 @@ vector<PixelSimilarity> merge_rectangles( vector<PixelSimilarity> tmpcont)
   vector<PixelSimilarity> queue;
   float tol = 40;
 
-  cout << "Num rect bef: " << tmpcont.size() << endl;
-
   while ( tmpcont.size() > 0 )
     {
 
@@ -268,15 +264,15 @@ vector<PixelSimilarity> merge_rectangles( vector<PixelSimilarity> tmpcont)
         {
           if ( sqrt ( pow ( tmpcont_mean.point.x - tmpcont[i].point.x,2 ) + pow ( tmpcont_mean.point.y - tmpcont[i].point.y,2 ) ) < tol )
             {
-              if ( tmpcont[i].similarity < tmpcont_mean.similarity ) //  && tmpcont[i].similarity < 0.02
+              if ( tmpcont[i].similarity < tmpcont_mean.similarity && tmpcont[i].similarity < max_suppression) //  
                 {
                   tmpcont[i] = PixelSimilarity ( tmpcont[i].point, tmpcont[i].radius, tmpcont[i].similarity );
                 }
             }
           else
             {
-              //if(tmpcont[i].similarity < 0.02)
-              queue.push_back ( tmpcont[i] );
+              if(tmpcont[i].similarity < max_suppression)
+		queue.push_back ( tmpcont[i] );
             }
 
         }
@@ -292,34 +288,28 @@ bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
 {
   ROS_INFO ( "Updating parameter of social_robot" );
 
-  string head_template_tmp;
-  double canny_thr1_tmp;
-  double canny_thr2_tmp;
-  double chamfer_thr_tmp;
-  double arc_thr_tmp;
-  int scales_tmp;
-  double max_suppression_tmp;
+  double chamfer_thr_tmp = chamfer_thr;
+  double arc_thr_low_tmp = arc_thr_low;
+  double arc_thr_high_tmp = arc_thr_high;
+  int scales_tmp = scales;
+  double max_suppression_tmp = max_suppression;
   double match3D_thr_tmp = match3D_thr;
 
   ros::NodeHandle nh;
 
-//   nh.param ( "/social_robot/head_template", head_template_tmp, head_template_tmp );
-//   nh.param ( "/social_robot/canny_thr1", canny_thr1_tmp, canny_thr1_tmp );
-//   nh.param ( "/social_robot/canny_thr2", canny_thr2_tmp, canny_thr2_tmp );
-//   nh.param ( "/social_robot/chamfer_thr", chamfer_thr_tmp, chamfer_thr_tmp );
-//   nh.param ( "/social_robot/scales", scales_tmp, scales_tmp );
-//   nh.param ( "/social_robot/arc_thr", arc_thr_tmp, arc_thr_tmp );
-//   nh.param ( "/social_robot/max_suppression", max_suppression_tmp, max_suppression_tmp );
+  nh.param ( "/social_robot/depth/chamfer_thr", chamfer_thr_tmp, chamfer_thr_tmp );
+  nh.param ( "/social_robot/depth/scales", scales_tmp, scales_tmp );
+  nh.param ( "/social_robot/depth/arc_thr_low", arc_thr_low_tmp, arc_thr_low_tmp );
+  nh.param ( "/social_robot/depth/arc_thr_high", arc_thr_high_tmp, arc_thr_high_tmp );
+  nh.param ( "/social_robot/depth/max_suppression", max_suppression_tmp, max_suppression_tmp );
   nh.param ( "/social_robot/depth/match3D_thr", match3D_thr_tmp, match3D_thr_tmp );
 
-//   head_template1 = head_template_tmp;
-//   canny_thr1 = canny_thr1_tmp;
-//   canny_thr2 = canny_thr2_tmp;
-//   chamfer_thr = chamfer_thr_tmp;
-//   scales = scales_tmp;
-//   arc_thr_low = arc_thr_tmp;
-//   max_suppression = max_suppression_tmp;
-  match3D_thr = max_suppression_tmp;
+  chamfer_thr = chamfer_thr_tmp;
+  scales = scales_tmp;
+  arc_thr_low = arc_thr_low_tmp;
+  arc_thr_high = arc_thr_high_tmp;
+  max_suppression = max_suppression_tmp;
+  match3D_thr = match3D_thr_tmp;
 
   return true;
 }
@@ -368,6 +358,19 @@ void disparity_cb ( const stereo_msgs::DisparityImageConstPtr& msg )
 
 void load_templates( )
 {
+  string package_path = ros::package::getPath ( "social_robot" );
+  head_template1.append ( package_path );
+  head_template1.append ( "/pictures/template.png" );
+
+  head_template2.append ( package_path );
+  head_template2.append ( "/pictures/template3.png" );
+
+  head_template3D1.append ( package_path );
+  head_template3D1.append ( "/pictures/template3D.png" );
+
+  head_template3D2.append ( package_path );
+  head_template3D2.append ( "/pictures/template3D.png" );
+  
   Mat head_template_im1 = imread ( head_template1, CV_LOAD_IMAGE_ANYDEPTH );
   Mat head_template_im2 = imread ( head_template2, CV_LOAD_IMAGE_ANYDEPTH );
   Mat head_template3D_im1 = imread ( head_template3D1, CV_LOAD_IMAGE_ANYDEPTH );
@@ -393,31 +396,16 @@ int main ( int argc, char **argv )
   ros::init ( argc, argv, "social_robot_depth" );
   ros::NodeHandle nh;
 
-  string package_path = ros::package::getPath ( "social_robot" );
-  head_template1.append ( package_path );
-  head_template1.append ( "/pictures/template.png" );
-
-  head_template2.append ( package_path );
-  head_template2.append ( "/pictures/templater.png" );
-
-  head_template3D1.append ( package_path );
-  head_template3D1.append ( "/pictures/template3D.png" );
-
-  head_template3D2.append ( package_path );
-  head_template3D2.append ( "/pictures/template3D_rot10.png" );
-
   load_templates( );
 
   // to register the depth
   nh.setParam ( "/camera/driver/depth_registration", true );
   
-  nh.setParam ( "/social_robot/head_template1", head_template1 );
-  nh.setParam ( "/social_robot/canny_thr1", canny_thr1 );
-  nh.setParam ( "/social_robot/canny_thr2", canny_thr2 );
-  nh.setParam ( "/social_robot/chamfer_thr", chamfer_thr );
-  nh.setParam ( "/social_robot/scales", scales );
-  nh.setParam ( "/social_robot/arc_thr_low", arc_thr_low );
-  nh.setParam ( "/social_robot/max_suppression", max_suppression );
+  nh.setParam ( "/social_robot/depth/chamfer_thr", chamfer_thr );
+  nh.setParam ( "/social_robot/depth/scales", scales );
+  nh.setParam ( "/social_robot/depth/arc_thr_low", arc_thr_low );
+  nh.setParam ( "/social_robot/depth/arc_thr_high", arc_thr_high );
+  nh.setParam ( "/social_robot/depth/max_suppression", max_suppression );
   nh.setParam ( "/social_robot/depth/match3D_thr", match3D_thr );
 
   // subscribtions
