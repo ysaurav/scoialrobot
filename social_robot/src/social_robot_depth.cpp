@@ -39,6 +39,7 @@ double arc_thr_high = 17;
 double approx_poly_thr = 1;
 double max_suppression = 0.001;
 double scale_factor = 0.75;
+double match3D_thr = 0.4;
 int scales = 4;
 
 bool is_rgb_turn = true;
@@ -67,49 +68,42 @@ Mat image_disparity;
 vector<Point3f> chamfer_matching ( Mat image, Mat template_im );
 vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> chamfer );
 vector<PixelSimilarity> false_positives ( vector<PixelSimilarity> tmpparams, int thr, int thr2 );
+vector<PixelSimilarity> match_template3D( vector<PixelSimilarity> potentials, int n);
+vector<PixelSimilarity> merge_rectangles( vector<PixelSimilarity> tmpcont);
 
 vector<Rect> detect_face_depth ( Mat tmp_depth, Mat tmp_disparity )
 {
   vector<Rect> roistmp;
 
-  tmp_disparity.convertTo ( tmp_disparity, CV_8UC1 );
-
-  // preprocessing
   Mat element = getStructuringElement ( MORPH_RECT, Size ( 2*5 + 1, 2*5 + 1 ), Point ( 5, 5 ) );
 
   tmp_disparity = preprocessing ( tmp_disparity );
 
   tmp_depth.setTo ( 0, ( tmp_disparity == 0 ) );
   dilate ( tmp_depth, tmp_depth, element );
-  // FIXME there should be a way around all this conversions
+  
+  vector<PixelSimilarity> new_head_features;
+  vector<PixelSimilarity> final_head_features,final_head_features2;
+  for ( int k = 0; k < templates.size() ; k++)
+  {
+    head_matched_points = chamfer_matching ( tmp_disparity, templates[k].template2d );
+    head_features = compute_headparameters ( tmp_depth, head_matched_points );
 
-  head_matched_points = chamfer_matching ( tmp_disparity, templates[0].template2d );
-  head_features = compute_headparameters ( tmp_depth, head_matched_points );
+    new_head_features = false_positives ( head_features, arc_thr_low, arc_thr_high );
+    final_head_features = match_template3D( new_head_features, k );
+  }
 
-  head_matched_points2 = chamfer_matching ( tmp_disparity, templates[1].template2d );
-  head_features2 = compute_headparameters ( tmp_depth, head_matched_points2 );
-
-  vector<PixelSimilarity> new_head_features, new_head_features2;
-
-  new_head_features = false_positives ( head_features, arc_thr_low, arc_thr_high );
-  new_head_features2 = false_positives ( head_features2, arc_thr_low, arc_thr_high );
-
+  final_head_features2 = merge_rectangles(final_head_features);
+  cout << "Final final: " << final_head_features2.size() << endl;
+  
   Rect rect;
-  for ( unsigned int i = 0; i < new_head_features.size(); i++ )
+  for ( unsigned int i = 0; i < final_head_features2.size(); i++ )
     {
-      int wh = new_head_features[i].radius * 2;
-      rect = Rect ( new_head_features[i].point.x - new_head_features[i].radius, new_head_features[i].point.y - new_head_features[i].radius, wh, wh );
+      int wh = final_head_features2[i].radius * 2;
+      rect = Rect ( final_head_features2[i].point.x - final_head_features2[i].radius, final_head_features2[i].point.y - final_head_features2[i].radius, wh, wh );
       roistmp.push_back ( rect );
     }
-  cout << "Num rect aft: " << new_head_features.size() << endl;
-
-  for ( unsigned int i = 0; i < new_head_features2.size(); i++ )
-    {
-      int wh = new_head_features2[i].radius * 2;
-      rect = Rect ( new_head_features2[i].point.x - new_head_features2[i].radius, new_head_features2[i].point.y - new_head_features2[i].radius, wh, wh );
-      roistmp.push_back ( rect );
-    }
-
+    
   vector<RegionOfInterest> rosrois = ros_utils.cvrects2rosrois ( roistmp );
   depth_pub_rois.rois.swap ( rosrois );
   depth_pub.publish ( depth_pub_rois );
@@ -119,43 +113,33 @@ vector<Rect> detect_face_depth ( Mat tmp_depth, Mat tmp_disparity )
 
 vector<Point3f> chamfer_matching ( Mat image, Mat template_im )
 {
-  canny_im.create ( image.rows, image.cols, image.depth() );
-  //Mat template_im = imread ( head_template, CV_LOAD_IMAGE_ANYDEPTH );
-
-  // calculate edge detection
-  Canny ( image, canny_im, canny_thr1, canny_thr2, 3, true );
-
-  // calculate the Canny pyramid
-  pyramid[0] = canny_im;
-  for ( int i = 1; i < scales; i++ )
-    {
-      resize ( pyramid[i - 1], pyramid[i], Size(), scale_factor, scale_factor, INTER_NEAREST );
-    }
-
-  // calculate distance transform
-  for ( int i = 0; i < scales; i++ )
-    {
-      distanceTransform ( ( 255 - pyramid[i] ), chamfer[i], CV_DIST_C, 3 );
-    }
-
-  // matching with the template
-  template_im = rgb2bw ( template_im );
-  template_im.convertTo ( template_im, CV_32F );
-
-  // find the best match:
   double minVal, maxVal;
   Point minLoc, maxLoc;
   double xdiff = template_im.cols / 2;
   double ydiff = template_im.rows / 2;
   Point pdiff = Point ( xdiff, ydiff );
   vector<Point3f> head_matched_points_tmp;
+  Mat matching_thr;
+  
+  canny_im.create ( image.rows, image.cols, image.depth() );
 
+  Canny ( image, canny_im, canny_thr1, canny_thr2, 3, true );
+
+  for ( int i = 0; i < scales; i++ )
+    {
+      resize ( canny_im, pyramid[i], Size(), pow( scale_factor,i), pow( scale_factor,i), INTER_NEAREST );
+      distanceTransform ( ( 255 - pyramid[i] ), chamfer[i], CV_DIST_C, 3 );
+    }
+
+  template_im = rgb2bw ( template_im );
+  template_im.convertTo ( template_im, CV_32F );
+  
   for ( int i = 0; i < scales; i++ )
     {
       matchTemplate ( chamfer[i], template_im, matching[i], CV_TM_CCOEFF );
       normalize ( matching[i], matching[i], 0.0, 1.0, NORM_MINMAX );
       minMaxLoc ( matching[i], &minVal, &maxVal, &minLoc, &maxLoc );
-      Mat matching_thr;
+      
       threshold ( matching[i], matching_thr, 1.0 / chamfer_thr, 1.0, CV_THRESH_BINARY_INV );
       double scale = pow ( 1.0 / scale_factor, i );
       get_non_zeros ( matching_thr, matching[i], &head_matched_points_tmp, pdiff, scale );
@@ -164,11 +148,10 @@ vector<Point3f> chamfer_matching ( Mat image, Mat template_im )
   return head_matched_points_tmp;
 }
 
-vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> chamfer )
+vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> chamfer)
 {
   vector<PixelSimilarity> parameters_head ( chamfer.size() );
 
-  // parameters of cubic equation
   float p1 = -1.3835 * pow ( 10, -9 );
   float p2 =  1.8435 * pow ( 10, -5 );
   float p3 = -0.091403;
@@ -179,20 +162,18 @@ vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> cham
       int position_x = chamfer[i].x;
       int position_y = chamfer[i].y;
 
-      float x = image.at<float> ( position_y, position_x ) * 1000; // unsigned short
+      unsigned short x = image.at<unsigned short> ( position_y, position_x );// * 1000;
 
-      // compute height of head
       float h = ( p1 * pow ( x, 3 ) + p2 * pow ( x, 2 ) + p3 * x + p4 );
 
-      // compute Radius of head in milimeters
-      float R = 1.33 * h / 2;
+      float R = 1.33 * h * 0.5;
 
-      // convert Radius in pixels
-      float Rp = round ( ( 1 / 1.3 ) * R );
+      float Rp = round ( R / 1.3 );
 
       parameters_head[i].point = Point ( position_x,position_y );
       parameters_head[i].radius = 1.1 * Rp;
       parameters_head[i].similarity = chamfer[i].z;
+      //parameters_head.push_back( PixelSimilarity( Point ( position_x,position_y ), 1.1 * Rp, chamfer[i].z ) );
     }
 
   return parameters_head;
@@ -201,6 +182,8 @@ vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> cham
 vector<PixelSimilarity> false_positives ( vector<PixelSimilarity> tmpparams, int thr, int thr2 )
 {
   vector<PixelSimilarity> tmpcont;
+  vector<vector<Point> > contour;
+  Mat tmp_mat;
 
   for ( unsigned int i = 0; i < tmpparams.size(); i++ )
     {
@@ -210,8 +193,7 @@ vector<PixelSimilarity> false_positives ( vector<PixelSimilarity> tmpparams, int
           continue;
         }
 
-      Mat tmp_mat = canny_im ( roi );
-      vector<vector<Point> > contour;
+      tmp_mat = canny_im ( roi );
 
       if ( ! tmp_mat.empty() )
         {
@@ -230,11 +212,57 @@ vector<PixelSimilarity> false_positives ( vector<PixelSimilarity> tmpparams, int
         }
 
     }
+  
+  vector<PixelSimilarity> output_v;
+  output_v =  merge_rectangles( tmpcont );
 
+  return output_v;
+}
+
+vector<PixelSimilarity> match_template3D( vector<PixelSimilarity> potentials, int n)
+{
+  
+  vector<PixelSimilarity> output;
+  Mat match; 
+  double minVal, maxVal;
+  Point minLoc, maxLoc;
+
+  if ( potentials.empty() )
+  {
+    return output;
+  }
+  cout << templates[n].template3d.type( ) << ", " << image_disparity.type() << endl;
+  
+  for (unsigned int i = 0; i < potentials.size(); i++)
+  {
+      Rect rect_roi ( potentials[i].point.x - potentials[i].radius, potentials[i].point.y - potentials[i].radius, 2 * potentials[i].radius, 2 * potentials[i].radius);
+      Mat roi ( image_disparity, rect_roi );
+      resize ( roi, roi, templates[n].template3d.size() );
+      minMaxLoc ( roi, &minVal, &maxVal, 0, 0 );
+      roi = roi - minVal;
+      //normalize ( roi, roi, 0.0, 255.0, NORM_MINMAX );
+      
+      matchTemplate ( roi, templates[n].template3d, match, CV_TM_CCOEFF_NORMED );
+
+      minMaxLoc ( match, &minVal, &maxVal, &minLoc, &maxLoc );
+      cout << minVal << ", " << maxVal << endl;
+      
+      if( minVal >= match3D_thr )
+      {
+	output.push_back( PixelSimilarity( potentials[i].point, potentials[i].radius, potentials[i].similarity ) );
+      }
+	
+  }
+  
+  return output;
+}
+
+vector<PixelSimilarity> merge_rectangles( vector<PixelSimilarity> tmpcont)
+{
   PixelSimilarity tmpcont_mean;
   vector<PixelSimilarity> output_v;
   vector<PixelSimilarity> queue;
-  float tol = 30;
+  float tol = 40;
 
   cout << "Num rect bef: " << tmpcont.size() << endl;
 
@@ -263,8 +291,6 @@ vector<PixelSimilarity> false_positives ( vector<PixelSimilarity> tmpparams, int
       tmpcont.swap ( queue );
       queue.clear();
     }
-
-  cout << "Num rect aft: " << output_v.size() << endl;
 
   return output_v;
 }
@@ -308,12 +334,7 @@ void depth_cb ( const ImageConstPtr& msg )
     {
       cv_bridge::CvImagePtr cv_depth = cv_bridge::toCvCopy ( msg );
       image_depth = cv_depth->image;
-      if ( image_disparity.empty() )
-        {
-          return;
-        }
 
-      vector<Rect> roistmp = detect_face_depth ( image_depth, image_disparity );
     }
   catch ( cv_bridge::Exception& e )
     {
@@ -328,6 +349,19 @@ void disparity_cb ( const stereo_msgs::DisparityImageConstPtr& msg )
     {
       cv_bridge::CvImagePtr cv_disparity = cv_bridge::toCvCopy ( msg->image );
       image_disparity = cv_disparity->image;
+      
+      if ( image_depth.empty() )
+        {
+          return;
+        }
+      image_disparity.convertTo( image_disparity, CV_8UC1);
+      vector<Rect> roistmp = detect_face_depth ( image_depth, image_disparity );
+      Mat temp_disp;
+      image_disparity.convertTo( temp_disp, CV_8UC3);
+      draw_depth_faces ( temp_disp, roistmp );
+      
+      imshow( "Depth", temp_disp );
+      waitKey( 3 );
     }
   catch ( cv_bridge::Exception& e )
     {
@@ -368,13 +402,13 @@ int main ( int argc, char **argv )
   head_template1.append ( "/pictures/template.png" );
 
   head_template2.append ( package_path );
-  head_template2.append ( "/pictures/right_template.png" );
+  head_template2.append ( "/pictures/templater.png" );
 
   head_template3D1.append ( package_path );
   head_template3D1.append ( "/pictures/template3D.png" );
 
   head_template3D2.append ( package_path );
-  head_template3D2.append ( "/pictures/right_template3D.png" );
+  head_template3D2.append ( "/pictures/template3D_rot10.png" );
 
   load_templates( );
 
@@ -389,8 +423,8 @@ int main ( int argc, char **argv )
 
   // subscribtions
   ros::ServiceServer update_srv = nh.advertiseService ( "/social_robot/depth/update", update_param_cb );
-  ros::Subscriber disparity_sub = nh.subscribe ( "/camera/depth_registered/disparity", 1, disparity_cb );
-  ros::Subscriber depth_sub = nh.subscribe ( "/camera/depth_registered/image_rect", 1, depth_cb );
+  ros::Subscriber disparity_sub = nh.subscribe ( "/camera/depth/disparity", 1, disparity_cb ); // 
+  ros::Subscriber depth_sub = nh.subscribe ( "/camera/depth/image_raw", 1, depth_cb );
 
   // publications
   depth_pub = nh.advertise<social_robot::RegionOfInterests> ( "/social_robot/depth/rois", 1 );
