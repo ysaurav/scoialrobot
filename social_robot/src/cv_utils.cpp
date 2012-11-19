@@ -38,18 +38,18 @@ Mat preprocessing ( Mat image )
   Mat temp;
 
   // inpainting
-  Mat mask, small_temp; 
-  
+  Mat mask, small_temp;
+
   //
   //GaussianBlur( image, image, Size(2*3+1,2*3+1), 0.0, 0.0, BORDER_DEFAULT );
   medianBlur ( image, image, 5 );//3
-  inpaint( image, (image == 0), temp, 5, INPAINT_NS);
+  inpaint ( image, ( image == 0 ), temp, 5, INPAINT_NS );
   medianBlur ( temp, dst, 5 );
-  GaussianBlur( dst, dst, Size(2*2+1,2*2+1), 0.0, 0.0, BORDER_DEFAULT );
-  
+  GaussianBlur ( dst, dst, Size ( 2*2+1,2*2+1 ), 0.0, 0.0, BORDER_DEFAULT );
+
   return dst;
 }
- 
+
 void get_non_zeros ( Mat img, Mat prob, std::vector<cv::Point3f> *points, cv::Point pdiff, double scale )
 {
   int k = 0;
@@ -63,7 +63,7 @@ void get_non_zeros ( Mat img, Mat prob, std::vector<cv::Point3f> *points, cv::Po
               cv::Point3f point;// = ( cv::Point ( j, i ) + pdiff ) * scale;
               point.x = ( cv::Point ( j, i ).x  + pdiff.x ) * scale;
               point.y = ( cv::Point ( j, i ).y  + pdiff.y ) * scale;
-              point.z = prob.at<float>(i,j);
+              point.z = prob.at<float> ( i,j );
               points->push_back ( point );
               k++;
             }
@@ -86,6 +86,30 @@ void draw_rgb_faces ( Mat &img, vector<Rect> faces )
     }
 }
 
+void draw_tracking_faces ( Mat &img, vector<StateData> state_datas )
+{
+  for ( unsigned int i = 0; i < state_datas.size(); i++ )
+    {
+      Size target_size ( state_datas[i].target.cols, state_datas[i].target.rows );
+      // Draw estimated state with color based on confidence
+      float confidence = state_datas[i].filter->confidence();
+
+      // TODO - Make these values not arbitrary
+      if ( confidence > 0.1 )
+        {
+          state_datas[i].filter->draw_estimated_state ( img, target_size, GREEN );
+        }
+      else if ( confidence > 0.025 )
+        {
+          state_datas[i].filter->draw_estimated_state ( img, target_size, YELLOW );
+        }
+      else
+        {
+          state_datas[i].filter->draw_estimated_state ( img, target_size, RED );
+        }
+    }
+}
+
 void draw_depth_faces ( Mat &img, vector<Rect> faces )
 {
   int i = 0;
@@ -94,10 +118,4 @@ void draw_depth_faces ( Mat &img, vector<Rect> faces )
       Scalar color = colors[i % 8];
       rectangle ( img, *r, color, 3, 8, 0 );
     }
-}
-
-void region_growing ( Mat &src, Mat &dst, unsigned char threshold, vector<Point> seeds )
-{
-  vector<Point> queue;
-  src.copyTo ( dst );
 }

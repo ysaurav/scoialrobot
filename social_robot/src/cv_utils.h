@@ -7,13 +7,26 @@
 #include <opencv2/objdetect/objdetect.hpp>
 #include <iostream>
 #include <vector>
+#include "particle_filter/StateData.h"
 
-cv::Mat rgb2bw ( cv::Mat im_rgb );
-cv::Mat preprocessing ( cv::Mat image );
-void get_non_zeros ( cv::Mat img, cv::Mat prob, std::vector<cv::Point3f> *points, cv::Point pdiff = cv::Point ( 0, 0 ), double scale = 1 );
+using namespace std;
+using namespace cv;
 
-void draw_rgb_faces ( cv::Mat &img, std::vector<cv::Rect> faces );
-void draw_depth_faces ( cv::Mat &img, std::vector<cv::Rect> faces );
-void region_growing( cv::Mat &src, cv::Mat &dst, unsigned char threshold, std::vector<cv::Point> seeds );
+const Scalar RED = Scalar ( 0, 0, 255 );
+const Scalar BLUE = Scalar ( 255, 0, 0 );
+const Scalar GREEN = Scalar ( 0, 255, 0 );
+const Scalar CYAN = Scalar ( 255, 255, 0 );
+const Scalar MAGENTA = Scalar ( 255, 0, 255 );
+const Scalar YELLOW = Scalar ( 0, 255, 255 );
+const Scalar WHITE = Scalar ( 255, 255, 255 );
+const Scalar BLACK = Scalar ( 0, 0, 0 );
+
+Mat rgb2bw ( Mat im_rgb );
+Mat preprocessing ( Mat image );
+void get_non_zeros ( Mat img, Mat prob, vector<Point3f> *points, Point pdiff = Point ( 0, 0 ), double scale = 1 );
+
+void draw_rgb_faces ( Mat &img, vector<Rect> faces );
+void draw_tracking_faces ( Mat &img, vector<StateData> state_datas );
+void draw_depth_faces ( Mat &img, vector<Rect> faces );
 
 #endif
