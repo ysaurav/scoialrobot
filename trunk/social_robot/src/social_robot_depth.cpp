@@ -2,12 +2,14 @@
 #include <std_srvs/Empty.h>
 #include <stereo_msgs/DisparityImage.h>
 #include <social_robot/RegionOfInterests.h>
+#include <omp.h>
 
 #include "kinect_proxy.h"
 #include "cv_utils.h"
 #include "PixelSimilarity.h"
 #include "RosUtils.h"
 #include "Template.h"
+#include "social_robot_constants.h"
 
 using namespace std;
 using namespace cv;
@@ -78,13 +80,27 @@ vector<Rect> detect_face_depth ( Mat tmp_depth, Mat tmp_disparity )
   vector<PixelSimilarity> new_head_features;
   vector<PixelSimilarity> final_head_features,final_head_features2;
   
-  for ( int k = 0; k < templates.size() ; k++)
+  for ( unsigned int k = 0; k < templates.size() ; k++)
   {
+    double t = (double)getTickCount();
     head_matched_points = chamfer_matching ( tmp_disparity, templates[k].template2d );
+    t = (double)getTickCount() - t;
+    cout <<t*1000./cv::getTickFrequency() << endl;
+    
+    double t2 = (double)getTickCount();
     head_features = compute_headparameters ( tmp_depth, head_matched_points );
-
+    t2 = (double)getTickCount() - t2;
+    cout << t2*1000./cv::getTickFrequency() << endl;
+    
+    double t3 = (double)getTickCount();
     new_head_features = false_positives ( head_features, arc_thr_low, arc_thr_high );
+    t3 = (double)getTickCount() - t3;
+    cout <<  t3*1000./cv::getTickFrequency() << endl;
+    
+    double t4 = (double)getTickCount();
     final_head_features = match_template3D( new_head_features, k );
+    t4 = (double)getTickCount() - t4;
+    cout << t4*1000./cv::getTickFrequency() << endl;
   }
 
   final_head_features2 = merge_rectangles(final_head_features);
@@ -117,25 +133,26 @@ vector<Point3f> chamfer_matching ( Mat image, Mat template_im )
   canny_im.create ( image.rows, image.cols, image.depth() );
 
   Canny ( image, canny_im, canny_thr1, canny_thr2, 3, true );
-
+  #pragma omp parallel for shared(canny_im, pyramid, chamfer, scale_factor)
   for ( int i = 0; i < scales; i++ )
     {
-      resize ( canny_im, pyramid[i], Size(), pow( scale_factor,i), pow( scale_factor,i), INTER_NEAREST );
+      resize ( canny_im, pyramid[i], Size(), pow( scale_factor, i), pow( scale_factor, i), INTER_NEAREST );
       distanceTransform ( ( 255 - pyramid[i] ), chamfer[i], CV_DIST_C, 3 );
     }
 
   template_im = rgb2bw ( template_im );
   template_im.convertTo ( template_im, CV_32F );
   
-  for ( int i = 0; i < scales; i++ )
+  #pragma omp parallel for shared(head_matched_points_tmp, chamfer, matching) private(minVal, maxVal, minLoc, maxLoc)
+  for ( int j = 0; j < scales; j++ )
     {
-      matchTemplate ( chamfer[i], template_im, matching[i], CV_TM_CCOEFF );
-      normalize ( matching[i], matching[i], 0.0, 1.0, NORM_MINMAX );
-      minMaxLoc ( matching[i], &minVal, &maxVal, &minLoc, &maxLoc );
+      matchTemplate ( chamfer[j], template_im, matching[j], CV_TM_CCOEFF );
+      normalize ( matching[j], matching[j], 0.0, 1.0, NORM_MINMAX );
+      minMaxLoc ( matching[j], &minVal, &maxVal, &minLoc, &maxLoc );
       
-      threshold ( matching[i], matching_thr, 1.0 / chamfer_thr, 1.0, CV_THRESH_BINARY_INV );
-      double scale = pow ( 1.0 / scale_factor, i );
-      get_non_zeros ( matching_thr, matching[i], &head_matched_points_tmp, pdiff, scale );
+      threshold ( matching[j], matching_thr, 1.0 / chamfer_thr, 1.0, CV_THRESH_BINARY_INV );
+      double scale = pow ( 1.0 / scale_factor, j );
+      get_non_zeros ( matching_thr, matching[j], &head_matched_points_tmp, pdiff, scale );
     }
 
   return head_matched_points_tmp;
@@ -154,8 +171,19 @@ vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> cham
     {
       int position_x = chamfer[i].x;
       int position_y = chamfer[i].y;
-
-      unsigned short x = image.at<unsigned short> ( position_y, position_x );// * 1000;
+      
+      float x;
+      
+      if ( image.type( ) == 5 )
+      {
+	x = image.at<float> ( position_y, position_x ) * 1000;
+      }
+      else
+      {
+	unsigned short xshort = image.at<unsigned short> ( position_y, position_x );
+	x = (float) xshort;
+      }
+	
 
       float h = ( p1 * pow ( x, 3 ) + p2 * pow ( x, 2 ) + p3 * x + p4 );
 
@@ -177,9 +205,12 @@ vector<PixelSimilarity> false_positives ( vector<PixelSimilarity> tmpparams, int
   vector<PixelSimilarity> tmpcont;
   vector<vector<Point> > contour;
   Mat tmp_mat;
+  
 
+  //#pragma omp parallel for shared(tmpcont,tmpparams, thr, thr2) private(contour, tmp_mat)
   for ( unsigned int i = 0; i < tmpparams.size(); i++ )
     {
+      //cout << omp_get_thread_num() << endl;
       Rect roi ( tmpparams[i].point.x - tmpparams[i].radius, tmpparams[i].point.y - tmpparams[i].radius, tmpparams[i].radius * 2, tmpparams[i].radius * 2 );
       if ( ! ( 0 <= roi.x && 0 <= roi.width && roi.x + roi.width < canny_im.cols && 0 <= roi.y && 0 <= roi.height && roi.y + roi.height < canny_im.rows ) )
         {
