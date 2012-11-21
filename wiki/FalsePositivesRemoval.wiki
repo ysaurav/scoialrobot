@@ -2,12 +2,24 @@
 
 = Introduction =
 
-
+Once the position and the radius of the head have been computed, the next step is to remove all the false positives.
 
 = Description =
 
-  * Approximate the contours by polygons
-  * Merged the heads
+In order to reduce the number of "heads" in our image these steps are computed:
+
+  # Approximate the contours by polygons.
+  # Merged the heads.
+  # Matching with 3D template.
+
+  == Approximate by polygons ==
+
+  == Merging ==
+
+  == Matching with 3D template==
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/template3D.png
+
 
 = Results =
 
