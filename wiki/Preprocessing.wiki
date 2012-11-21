@@ -1,4 +1,5 @@
 #summary One-sentence summary of this page.
+=Preprocessing=
 
 = Introduction =
 
@@ -35,4 +36,3 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/depth_before.
 After preprocessing
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/depth_after.png
-
