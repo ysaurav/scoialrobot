@@ -6,10 +6,24 @@
 
 = Description =
 
+The steps followed for computing 2D Chamfer Distance Matching are:
+  * Calculate edge image.
+  * Compute distances between pixel and the closest edge to it.
+  * Calculate different scales for the resulting distance image.
+  * Match the template with all the scale images.
+  * Use a threshold in order to get the best matches.
 
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Edge image ==
+
+== Distance image ==
+
+== Distance image pyramid ==
+
+== Matching with the template ==
+
+The template used for the matching
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/head_template.png
 
 = Results =
 
