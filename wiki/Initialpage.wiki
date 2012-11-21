@@ -19,13 +19,13 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo1.png
  # [#Results Results]
  # [#Conclusions Conclusions]
 
-= Introduction =
-= Problem Statement =
-= Method =
+== Introduction ==
+== Problem Statement ==
+== Method ==
  * [Preprocessing]
  * [Matchingdistance 2D Chamfer Matching Distance]
  * [HeadParameters Head Parameters Estimation]
  * [Segmentation]
  * [Tracking]
-= Results =
-= Conclusions =
+== Results ==
+== Conclusions ==
