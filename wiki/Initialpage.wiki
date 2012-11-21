@@ -4,6 +4,8 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo1.png
 
 == Robotics Project - Interaction Lab - Heriot-Watt University ==
 
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
+
 == Members == 
 
 == Contents ==
