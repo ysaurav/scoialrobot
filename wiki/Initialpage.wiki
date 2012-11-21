@@ -14,7 +14,7 @@
 [Preprocessing]
 [Matchingdistance]
 [HeadParameters]
-[SegmeTrackingntation]
+[Segmentation]
 [Tracking]
 === Results ===
 === Conclusions ===
