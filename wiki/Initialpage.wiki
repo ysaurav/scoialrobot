@@ -12,7 +12,7 @@
 === Problem Statement ===
 === Method ===
 [Preprocessing]
-[chamferdistnace]
+[Matchingdistnace]
 Head Parameters
 Segmentation
 Tracking
