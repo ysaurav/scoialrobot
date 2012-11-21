@@ -12,4 +12,6 @@ Add your content here.  Format your content with:
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
 
-[http://code.google.com/p/scoialrobot/source/browse/trunk/social_robot/pictures/depth06.png]
+http://code.google.com/p/scoialrobot/source/browse/trunk/social_robot/pictures/depth06.png
+
+bbbbbbbbbbbbbbb
