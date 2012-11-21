@@ -32,6 +32,7 @@ class SocialRobotGui : public QThread
     void threshold_chamfer ( double threshold );
     void threshold_arc_low ( int threshold );
     void threshold_arc_high ( int threshold );
+    void threshold_confidence ( double threshold );
 
     // settings
     bool display_rgb_faces;

@@ -40,19 +40,17 @@ Mat preprocessing ( Mat image )
   // inpainting
   Mat mask, small_temp;
 
-  //
   //GaussianBlur( image, image, Size(2*3+1,2*3+1), 0.0, 0.0, BORDER_DEFAULT );
   medianBlur ( image, image, 5 );//3
   inpaint ( image, ( image == 0 ), temp, 5, INPAINT_NS );
   medianBlur ( temp, dst, 5 );
-  GaussianBlur ( dst, dst, Size ( 2*2+1,2*2+1 ), 0.0, 0.0, BORDER_DEFAULT );
+  GaussianBlur ( dst, dst, Size ( 2 * 2 + 1, 2 * 2 + 1 ), 0.0, 0.0, BORDER_DEFAULT );
 
   return dst;
 }
 
-void get_non_zeros ( Mat img, Mat prob, std::vector<cv::Point3f> *points, cv::Point pdiff, double scale )
+void get_non_zeros ( Mat img, Mat prob, vector<Point3f> *points, Point pdiff, double scale )
 {
-  int k = 0;
   for ( int i = 0; i < img.rows; i++ )
     {
       float *rowi = img.ptr<float> ( i );
@@ -60,12 +58,11 @@ void get_non_zeros ( Mat img, Mat prob, std::vector<cv::Point3f> *points, cv::Po
         {
           if ( rowi[j] != 0 )
             {
-              cv::Point3f point;// = ( cv::Point ( j, i ) + pdiff ) * scale;
-              point.x = ( cv::Point ( j, i ).x  + pdiff.x ) * scale;
-              point.y = ( cv::Point ( j, i ).y  + pdiff.y ) * scale;
+              Point3f point;
+              point.x = ( Point ( j, i ).x  + pdiff.x ) * scale;
+              point.y = ( Point ( j, i ).y  + pdiff.y ) * scale;
               point.z = prob.at<float> ( i,j );
               points->push_back ( point );
-              k++;
             }
         }
     }
@@ -118,4 +115,17 @@ void draw_depth_faces ( Mat &img, vector<Rect> faces )
       Scalar color = colors[i % 8];
       rectangle ( img, *r, color, 3, 8, 0 );
     }
+}
+
+Point get_rect_centre ( Rect rect )
+{
+  Point centre;
+  centre.x = rect.x + (rect.width * 0.5);
+  centre.y = rect.y + (rect.height * 0.5);
+  return centre;
+}
+
+double euclidean_distance ( Point a, Point b )
+{
+  return sqrt ( pow ( a.x - b.x, 2 ) + pow ( a.y - b.y, 2 ) );
 }

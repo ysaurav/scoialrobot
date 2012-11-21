@@ -17,13 +17,13 @@ class StateData
     Mat target_histogram;
     Rect selection;
     bool use_lbp;
-    bool paused;
     bool draw_particles;
     ParticleFilter *filter;
 
-    StateData ( );
-    void tracking ();
+    StateData ( void );
+    void tracking ( void );
     void initialise ( int num_particles, bool use_lbp_, Mat image_, Rect selection_ );
+    Rect get_target_position (void );
 
   private:
     void update_target_histogram ( void );

@@ -40,6 +40,7 @@ class Gui : public QMainWindow
     void threshold_chamfer ( void );
     void threshold_arc_low ( void );
     void threshold_arc_high ( void );
+    void threshold_confidence ( void );
 
     void closeEvent ( QCloseEvent *event ); // Overloaded function
 

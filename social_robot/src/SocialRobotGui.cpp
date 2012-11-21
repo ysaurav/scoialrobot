@@ -150,3 +150,11 @@ void SocialRobotGui::threshold_arc_high ( int threshold )
   nh.setParam ( "/social_robot/depth/arc_thr_high", threshold );
   update_client.call<std_srvs::Empty> ( empty );
 }
+
+void SocialRobotGui::threshold_confidence ( double threshold )
+{
+  ros::NodeHandle nh;
+  nh.setParam ( "/social_robot/depth/confidence_level_thr", threshold );
+  update_client.call<std_srvs::Empty> ( empty );
+}
+

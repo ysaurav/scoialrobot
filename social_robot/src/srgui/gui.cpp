@@ -86,31 +86,35 @@ void Gui::threshold_template_matching_3d ( void )
   social_robot_gui->threshold_template_matching_3d( (double) ui->templateMatchingThreshold->value() );
 }
 
-void  Gui::threshold_scales ( void )
+void Gui::threshold_scales ( void )
 {
   social_robot_gui->threshold_scales( (int) ui->scaleSpinBox->value() );
 }
 
-void  Gui::threshold_chamfer ( void )
+void Gui::threshold_chamfer ( void )
 {
   social_robot_gui->threshold_chamfer( (double) ui->chamferDoubleSpinBox->value() );
 }
 
-void  Gui::threshold_arc_low ( void )
+void Gui::threshold_arc_low ( void )
 {
   social_robot_gui->threshold_arc_low( (int) ui->arcLowSpinBox->value() );
 }
 
-void  Gui::threshold_arc_high ( void )
+void Gui::threshold_arc_high ( void )
 {
   social_robot_gui->threshold_arc_high( (int) ui->arcHighSpinBox->value() );
+}
+
+void Gui::threshold_confidence ( void )
+{
+  social_robot_gui->threshold_confidence( ui->confidenceSpinBox->value() );
 }
 
 void Gui::updateImage ( const Mat &img )
 {
   CvMat c_img = img;
   cvWindow->updateImage ( &c_img );
-  updateImageSize ( ui->frame->size() );
 }
 
 void Gui::updateImageSize ( const QSize &size )

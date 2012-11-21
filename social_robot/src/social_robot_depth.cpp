@@ -11,6 +11,11 @@
 #include "Template.h"
 #include "social_robot_constants.h"
 
+#include "particle_filter/StateData.h"
+#include "particle_filter/hist.h"
+#include "particle_filter/filter.h"
+#include "particle_filter/lbp.h"
+
 using namespace std;
 using namespace cv;
 using namespace sensor_msgs;
@@ -42,6 +47,8 @@ double approx_poly_thr = 1;
 double max_suppression = 0.1;
 double scale_factor = 0.75;
 double match3D_thr = 0.4;
+double track_thr = 50;
+double confidence_level_thr = 0.025;
 int scales = 4;
 
 vector<Point3f> head_matched_points;
@@ -59,12 +66,17 @@ Mat *matching = new Mat[scales];
 Mat canny_im;
 Mat image_depth;
 Mat image_disparity;
+Mat image_rgb;
 
 vector<Point3f> chamfer_matching ( Mat image, Mat template_im );
 vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> chamfer );
 vector<PixelSimilarity> false_positives ( vector<PixelSimilarity> tmpparams, int thr, int thr2 );
-vector<PixelSimilarity> match_template3D( vector<PixelSimilarity> potentials, int n);
-vector<PixelSimilarity> merge_rectangles( vector<PixelSimilarity> tmpcont);
+vector<PixelSimilarity> match_template3D ( vector<PixelSimilarity> potentials, int n );
+vector<PixelSimilarity> merge_rectangles ( vector<PixelSimilarity> tmpcont );
+
+vector<StateData> state_datas;
+int framenum = 0;
+int update_rate = 25;
 
 vector<Rect> detect_face_depth ( Mat tmp_depth, Mat tmp_disparity )
 {
@@ -76,35 +88,20 @@ vector<Rect> detect_face_depth ( Mat tmp_depth, Mat tmp_disparity )
 
   tmp_depth.setTo ( 0, ( tmp_disparity == 0 ) );
   dilate ( tmp_depth, tmp_depth, element );
-  
+
   vector<PixelSimilarity> new_head_features;
   vector<PixelSimilarity> final_head_features,final_head_features2;
-  
-  for ( unsigned int k = 0; k < templates.size() ; k++)
-  {
-    double t = (double)getTickCount();
-    head_matched_points = chamfer_matching ( tmp_disparity, templates[k].template2d );
-    t = (double)getTickCount() - t;
-    cout <<t*1000./cv::getTickFrequency() << endl;
-    
-    double t2 = (double)getTickCount();
-    head_features = compute_headparameters ( tmp_depth, head_matched_points );
-    t2 = (double)getTickCount() - t2;
-    cout << t2*1000./cv::getTickFrequency() << endl;
-    
-    double t3 = (double)getTickCount();
-    new_head_features = false_positives ( head_features, arc_thr_low, arc_thr_high );
-    t3 = (double)getTickCount() - t3;
-    cout <<  t3*1000./cv::getTickFrequency() << endl;
-    
-    double t4 = (double)getTickCount();
-    final_head_features = match_template3D( new_head_features, k );
-    t4 = (double)getTickCount() - t4;
-    cout << t4*1000./cv::getTickFrequency() << endl;
-  }
 
-  final_head_features2 = merge_rectangles(final_head_features);
-  
+  for ( unsigned int k = 0; k < templates.size() ; k++ )
+    {
+      head_matched_points = chamfer_matching ( tmp_disparity, templates[k].template2d );
+      head_features = compute_headparameters ( tmp_depth, head_matched_points );
+      new_head_features = false_positives ( head_features, arc_thr_low, arc_thr_high );
+      final_head_features = match_template3D ( new_head_features, k );
+    }
+
+  final_head_features2 = merge_rectangles ( final_head_features );
+
   Rect rect;
   for ( unsigned int i = 0; i < final_head_features2.size(); i++ )
     {
@@ -112,10 +109,6 @@ vector<Rect> detect_face_depth ( Mat tmp_depth, Mat tmp_disparity )
       rect = Rect ( final_head_features2[i].point.x - final_head_features2[i].radius, final_head_features2[i].point.y - final_head_features2[i].radius, wh, wh );
       roistmp.push_back ( rect );
     }
-    
-  vector<RegionOfInterest> rosrois = ros_utils.cvrects2rosrois ( roistmp );
-  depth_pub_rois.rois.swap ( rosrois );
-  depth_pub.publish ( depth_pub_rois );
 
   return roistmp;
 }
@@ -129,27 +122,22 @@ vector<Point3f> chamfer_matching ( Mat image, Mat template_im )
   Point pdiff = Point ( xdiff, ydiff );
   vector<Point3f> head_matched_points_tmp;
   Mat matching_thr;
-  
-  canny_im.create ( image.rows, image.cols, image.depth() );
 
+  canny_im.create ( image.rows, image.cols, image.depth() );
   Canny ( image, canny_im, canny_thr1, canny_thr2, 3, true );
-  #pragma omp parallel for shared(canny_im, pyramid, chamfer, scale_factor)
+
   for ( int i = 0; i < scales; i++ )
     {
-      resize ( canny_im, pyramid[i], Size(), pow( scale_factor, i), pow( scale_factor, i), INTER_NEAREST );
+      resize ( canny_im, pyramid[i], Size(), pow ( scale_factor, i ), pow ( scale_factor, i ), INTER_NEAREST );
       distanceTransform ( ( 255 - pyramid[i] ), chamfer[i], CV_DIST_C, 3 );
     }
 
-  template_im = rgb2bw ( template_im );
-  template_im.convertTo ( template_im, CV_32F );
-  
-  #pragma omp parallel for shared(head_matched_points_tmp, chamfer, matching) private(minVal, maxVal, minLoc, maxLoc)
   for ( int j = 0; j < scales; j++ )
     {
       matchTemplate ( chamfer[j], template_im, matching[j], CV_TM_CCOEFF );
       normalize ( matching[j], matching[j], 0.0, 1.0, NORM_MINMAX );
       minMaxLoc ( matching[j], &minVal, &maxVal, &minLoc, &maxLoc );
-      
+
       threshold ( matching[j], matching_thr, 1.0 / chamfer_thr, 1.0, CV_THRESH_BINARY_INV );
       double scale = pow ( 1.0 / scale_factor, j );
       get_non_zeros ( matching_thr, matching[j], &head_matched_points_tmp, pdiff, scale );
@@ -158,7 +146,7 @@ vector<Point3f> chamfer_matching ( Mat image, Mat template_im )
   return head_matched_points_tmp;
 }
 
-vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> chamfer)
+vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> chamfer )
 {
   vector<PixelSimilarity> parameters_head ( chamfer.size() );
 
@@ -171,19 +159,19 @@ vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> cham
     {
       int position_x = chamfer[i].x;
       int position_y = chamfer[i].y;
-      
+
       float x;
-      
+
       if ( image.type( ) == 5 )
-      {
-	x = image.at<float> ( position_y, position_x ) * 1000;
-      }
+        {
+          x = image.at<float> ( position_y, position_x ) * 1000;
+        }
       else
-      {
-	unsigned short xshort = image.at<unsigned short> ( position_y, position_x );
-	x = (float) xshort;
-      }
-	
+        {
+          unsigned short xshort = image.at<unsigned short> ( position_y, position_x );
+          x = ( float ) xshort;
+        }
+
 
       float h = ( p1 * pow ( x, 3 ) + p2 * pow ( x, 2 ) + p3 * x + p4 );
 
@@ -192,9 +180,9 @@ vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> cham
       float Rp = round ( R / 1.3 );
 
       parameters_head[i].point = Point ( position_x,position_y );
-      parameters_head[i].radius = 1.1 * Rp;
+      parameters_head[i].radius = 1.2 * Rp;
       parameters_head[i].similarity = chamfer[i].z;
-     
+
     }
 
   return parameters_head;
@@ -205,7 +193,7 @@ vector<PixelSimilarity> false_positives ( vector<PixelSimilarity> tmpparams, int
   vector<PixelSimilarity> tmpcont;
   vector<vector<Point> > contour;
   Mat tmp_mat;
-  
+
 
   //#pragma omp parallel for shared(tmpcont,tmpparams, thr, thr2) private(contour, tmp_mat)
   for ( unsigned int i = 0; i < tmpparams.size(); i++ )
@@ -236,50 +224,50 @@ vector<PixelSimilarity> false_positives ( vector<PixelSimilarity> tmpparams, int
         }
 
     }
-  
+
   vector<PixelSimilarity> output_v;
-  output_v =  merge_rectangles( tmpcont );
+  output_v =  merge_rectangles ( tmpcont );
 
   return output_v;
 }
 
-vector<PixelSimilarity> match_template3D( vector<PixelSimilarity> potentials, int n)
+vector<PixelSimilarity> match_template3D ( vector<PixelSimilarity> potentials, int n )
 {
-  
+
   vector<PixelSimilarity> output;
-  Mat match; 
+  Mat match;
   double minVal, maxVal;
   Point minLoc, maxLoc;
 
   if ( potentials.empty() )
-  {
-    return output;
-  }
-  
-  for (unsigned int i = 0; i < potentials.size(); i++)
-  {
-      Rect rect_roi ( potentials[i].point.x - potentials[i].radius, potentials[i].point.y - potentials[i].radius, 2 * potentials[i].radius, 2 * potentials[i].radius);
+    {
+      return output;
+    }
+
+  for ( unsigned int i = 0; i < potentials.size(); i++ )
+    {
+      Rect rect_roi ( potentials[i].point.x - potentials[i].radius, potentials[i].point.y - potentials[i].radius, 2 * potentials[i].radius, 2 * potentials[i].radius );
       Mat roi ( image_disparity, rect_roi );
       resize ( roi, roi, templates[n].template3d.size() );
       minMaxLoc ( roi, &minVal, &maxVal, 0, 0 );
       roi = roi - minVal;
       normalize ( roi, roi, 0.0, 255.0, NORM_MINMAX );
-      
+
       matchTemplate ( roi, templates[n].template3d, match, CV_TM_CCOEFF_NORMED );
 
       minMaxLoc ( match, &minVal, &maxVal, &minLoc, &maxLoc );
-      
-      if( minVal >= match3D_thr )
-      {
-	output.push_back( PixelSimilarity( potentials[i].point, potentials[i].radius, potentials[i].similarity ) );
-      }
-	
-  }
-  
+
+      if ( minVal >= match3D_thr )
+        {
+          output.push_back ( PixelSimilarity ( potentials[i].point, potentials[i].radius, potentials[i].similarity ) );
+        }
+
+    }
+
   return output;
 }
 
-vector<PixelSimilarity> merge_rectangles( vector<PixelSimilarity> tmpcont)
+vector<PixelSimilarity> merge_rectangles ( vector<PixelSimilarity> tmpcont )
 {
   PixelSimilarity tmpcont_mean;
   vector<PixelSimilarity> output_v;
@@ -295,15 +283,15 @@ vector<PixelSimilarity> merge_rectangles( vector<PixelSimilarity> tmpcont)
         {
           if ( sqrt ( pow ( tmpcont_mean.point.x - tmpcont[i].point.x,2 ) + pow ( tmpcont_mean.point.y - tmpcont[i].point.y,2 ) ) < tol )
             {
-              if ( tmpcont[i].similarity < tmpcont_mean.similarity && tmpcont[i].similarity < max_suppression) //  
+              if ( tmpcont[i].similarity < tmpcont_mean.similarity && tmpcont[i].similarity < max_suppression ) //
                 {
                   tmpcont[i] = PixelSimilarity ( tmpcont[i].point, tmpcont[i].radius, tmpcont[i].similarity );
                 }
             }
           else
             {
-              if(tmpcont[i].similarity < max_suppression)
-		queue.push_back ( tmpcont[i] );
+              if ( tmpcont[i].similarity < max_suppression )
+                queue.push_back ( tmpcont[i] );
             }
 
         }
@@ -325,6 +313,7 @@ bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
   int scales_tmp = scales;
   double max_suppression_tmp = max_suppression;
   double match3D_thr_tmp = match3D_thr;
+  double confidence_level_thr_tmp = confidence_level_thr;
 
   ros::NodeHandle nh;
 
@@ -334,6 +323,7 @@ bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
   nh.param ( "/social_robot/depth/arc_thr_high", arc_thr_high_tmp, arc_thr_high_tmp );
   nh.param ( "/social_robot/depth/max_suppression", max_suppression_tmp, max_suppression_tmp );
   nh.param ( "/social_robot/depth/match3D_thr", match3D_thr_tmp, match3D_thr_tmp );
+  nh.param ( "/social_robot/depth/confidence_level_thr", confidence_level_thr_tmp, confidence_level_thr_tmp );
 
   chamfer_thr = chamfer_thr_tmp;
   scales = scales_tmp;
@@ -341,8 +331,21 @@ bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
   arc_thr_high = arc_thr_high_tmp;
   max_suppression = max_suppression_tmp;
   match3D_thr = match3D_thr_tmp;
+  confidence_level_thr = confidence_level_thr_tmp;
 
   return true;
+}
+
+void publish_data ( void )
+{
+  vector<Rect> detected_faces ( state_datas.size() );
+  for ( unsigned int i = 0; i < state_datas.size(); i++ )
+    {
+      detected_faces[i] = state_datas[i].get_target_position();
+    }
+  vector<RegionOfInterest> rosrois = ros_utils.cvrects2rosrois ( detected_faces );
+  depth_pub_rois.rois.swap ( rosrois );
+  depth_pub.publish ( depth_pub_rois );; 
 }
 
 void depth_cb ( const ImageConstPtr& msg )
@@ -351,7 +354,40 @@ void depth_cb ( const ImageConstPtr& msg )
     {
       cv_bridge::CvImagePtr cv_depth = cv_bridge::toCvCopy ( msg );
       image_depth = cv_depth->image;
+    }
+  catch ( cv_bridge::Exception& e )
+    {
+      ROS_ERROR ( "cv_bridge exception: %s", e.what() );
+      return;
+    }
+}
 
+void rgb_cb ( const ImageConstPtr& msg )
+{
+  try
+    {
+      image_rgb = cv_bridge::toCvCopy ( msg, enc::BGR8 )->image;
+      Mat gray;
+
+      for ( vector<StateData>::iterator it = state_datas.begin(); it != state_datas.end(); )
+        {
+          it->image = image_rgb;
+          if ( it->use_lbp )
+            {
+              cvtColor ( it->image, gray, CV_BGR2GRAY );
+              lbp_from_gray ( gray, it->lbp );
+            }
+          it->tracking();
+          if ( it->filter->confidence() < confidence_level_thr )
+            {
+              it = state_datas.erase ( it );
+            }
+          else
+            {
+              it++;
+            }
+        }
+      publish_data();
     }
   catch ( cv_bridge::Exception& e )
     {
@@ -364,21 +400,41 @@ void disparity_cb ( const stereo_msgs::DisparityImageConstPtr& msg )
 {
   try
     {
+      framenum++;
       cv_bridge::CvImagePtr cv_disparity = cv_bridge::toCvCopy ( msg->image );
       image_disparity = cv_disparity->image;
-      
+
       if ( image_depth.empty() )
         {
           return;
         }
-      image_disparity.convertTo( image_disparity, CV_8UC1);
-      vector<Rect> roistmp = detect_face_depth ( image_depth, image_disparity );
-//       Mat temp_disp;
-//       image_disparity.convertTo( temp_disp, CV_8UC3);
-//       draw_depth_faces ( temp_disp, roistmp );
-//       
-//       imshow( "Depth", temp_disp );
-//       waitKey( 3 );
+      if ( framenum == update_rate )
+        {
+          framenum = 0;
+          image_disparity.convertTo ( image_disparity, CV_8UC1 );
+          vector<Rect> depthfaces = detect_face_depth ( image_depth, image_disparity );
+          for ( unsigned int i = 0; i < depthfaces.size(); i++ )
+            {
+              Point face_centre = get_rect_centre ( depthfaces[i] );
+              bool associated = false;
+              for ( unsigned int j = 0; j < state_datas.size(); j++ )
+                {
+                  Point track_centre = get_rect_centre ( state_datas[j].get_target_position() );
+                  double euc_dis = euclidean_distance ( face_centre, track_centre );
+
+                  if ( euc_dis < track_thr )
+                    {
+                      associated = true;
+                    }
+                }
+              if ( !associated )
+                {
+                  StateData state_data;
+                  state_data.initialise ( 200, false, image_rgb, depthfaces[i] );
+                  state_datas.push_back ( state_data );
+                }
+            }
+        }
     }
   catch ( cv_bridge::Exception& e )
     {
@@ -401,11 +457,16 @@ void load_templates( )
 
   head_template3D2.append ( package_path );
   head_template3D2.append ( "/pictures/template3D.png" );
-  
+
   Mat head_template_im1 = imread ( head_template1, CV_LOAD_IMAGE_ANYDEPTH );
   Mat head_template_im2 = imread ( head_template2, CV_LOAD_IMAGE_ANYDEPTH );
   Mat head_template3D_im1 = imread ( head_template3D1, CV_LOAD_IMAGE_ANYDEPTH );
   Mat head_template3D_im2 = imread ( head_template3D2, CV_LOAD_IMAGE_ANYDEPTH );
+  
+  head_template_im1 = rgb2bw ( head_template_im1 );
+  head_template_im1.convertTo ( head_template_im1, CV_32F );
+  head_template_im2 = rgb2bw ( head_template_im2 );
+  head_template_im2.convertTo ( head_template_im2, CV_32F );
 
   if ( head_template3D_im1.depth() == 3 )
     {
@@ -419,7 +480,6 @@ void load_templates( )
 
   templates.push_back ( Template ( head_template_im1, head_template3D_im1 ) );
   templates.push_back ( Template ( head_template_im2, head_template3D_im2 ) );
-
 }
 
 int main ( int argc, char **argv )
@@ -427,22 +487,27 @@ int main ( int argc, char **argv )
   ros::init ( argc, argv, "social_robot_depth" );
   ros::NodeHandle nh;
 
-  load_templates( );
+  load_templates();
+
+  // particle filter initialisaiton
+  lbp_init();
 
   // to register the depth
   nh.setParam ( "/camera/driver/depth_registration", true );
-  
+
   nh.setParam ( "/social_robot/depth/chamfer_thr", chamfer_thr );
   nh.setParam ( "/social_robot/depth/scales", scales );
   nh.setParam ( "/social_robot/depth/arc_thr_low", arc_thr_low );
   nh.setParam ( "/social_robot/depth/arc_thr_high", arc_thr_high );
   nh.setParam ( "/social_robot/depth/max_suppression", max_suppression );
   nh.setParam ( "/social_robot/depth/match3D_thr", match3D_thr );
+  nh.setParam ( "/social_robot/depth/confidence_level_thr", confidence_level_thr );
 
   // subscribtions
   ros::ServiceServer update_srv = nh.advertiseService ( "/social_robot/depth/update", update_param_cb );
-  ros::Subscriber disparity_sub = nh.subscribe ( "/camera/depth/disparity", 1, disparity_cb ); // 
+  ros::Subscriber disparity_sub = nh.subscribe ( "/camera/depth/disparity", 1, disparity_cb );
   ros::Subscriber depth_sub = nh.subscribe ( "/camera/depth/image_raw", 1, depth_cb );
+  ros::Subscriber rgb_sub = nh.subscribe ( "/camera/rgb/image_color", 1, rgb_cb );
 
   // publications
   depth_pub = nh.advertise<social_robot::RegionOfInterests> ( "/social_robot/depth/rois", 1 );
