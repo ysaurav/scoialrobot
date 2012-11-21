@@ -2,14 +2,30 @@
 
 = Head Parameters =
 
-Add your content here.
 = Introduction =
 
 = Description =
 
-= Results =
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="y = p_3 x^3 + p_2 x^2 + p_1 x + p_0" height="15"/>
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+where 
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="p_3 = -1.3835 * 10^-9" height="15"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="p_2 = 1.8435 * 10^-5" height="15"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="p_1 = -0.091403" height="15"/>
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="p_0 = 189.38" height="15"/>
+
+Here it is shown the regression between the depth(mm) and the height of the human(mm).
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/depth_height.png
+
+Once we get the height, the next step is to compute the estimate radius in pixels:
+
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="R = 1.33 * h * 0.5" height="15"/> 
+<wiki:gadget url="http://mathml-gadget.googlecode.com/svn/trunk/mathml-gadget.xml" border="0" up_content="R_p = round ( R / 1.3 )" height="15"/> 
+
+
+= Results =
