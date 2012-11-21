@@ -8,16 +8,16 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo1.png
 
 == Contents ==
 
-=== [Introduction] ===
-=== Problem Statement ===
-=== Method ===
- # [Preprocessing]
- # [Matchingdistance 2D Chamfer Matching Distance]
- # [HeadParameters Head Parameters Estimation]
- # [Segmentation]
- # [Tracking]
-=== Results ===
-=== Conclusions ===
+ # [Introduction Introduction]
+ # [Problem Statement]
+ # [Method]
+  # [Preprocessing]
+  # [Matchingdistance 2D Chamfer Matching Distance]
+  # [HeadParameters Head Parameters Estimation]
+  # [Segmentation]
+  # [Tracking]
+ # [Results]
+ # [Conclusions]
 
 = Introduction =
 = Problem Statement =
