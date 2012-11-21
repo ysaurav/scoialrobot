@@ -2,16 +2,37 @@
 
 = Introduction =
 
-Add your content here.
+Depth and disparity images from Kinect have some pixels where we do not have correct information due to noise, shadows, windows, etc.
+
+In order to avoid to work with these raw images, the preprocessing part will fill with information these regions.
 
 
-= Details =
+= Description =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Disparity and depth images are processed separately because they have different image types. 
+For the first one it is applied inpainting to fill the holes. It is the best approach against other low-pass filters and interpolations.
 
-http://code.google.com/p/scoialrobot/source/browse/trunk/social_robot/pictures/depth06.png
+For depth image it is used the morphological operation dilation, because it does not change the image type and almost all the holes can be filled.
 
-bbbbbbbbbbbbbbb
+= Results =
+
+==Disparity== 
+
+Before preprocessing
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/disparity_before.png
+
+After preprocessing
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/disparity_after.png
+
+==Depth== 
+
+Before preprocessing
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/depth_before.png
+
+After preprocessing
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/depth_after.png
+
