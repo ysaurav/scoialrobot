@@ -3,8 +3,11 @@
 = Introduction =
 
 
+
 = Description =
 
+  * Approximate the contours by polygons
+  * Merged the heads
 
 = Results =
 
