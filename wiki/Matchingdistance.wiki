@@ -35,4 +35,8 @@ Distance image
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/chamfer.png
 
+Potential heads
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/heads.png
+
 Location of potential heads
