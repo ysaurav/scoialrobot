@@ -11,7 +11,7 @@
 === Introduction ===
 === Problem Statement ===
 === Method ===
-Pre-processing
+[Preprocessing]
 2D chamfer distance matching
 Head Parameters
 Segmentation
