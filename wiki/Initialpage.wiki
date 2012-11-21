@@ -12,8 +12,8 @@
 === Problem Statement ===
 === Method ===
  # [Preprocessing]
- # [Matchingdistance reindeer 2D Chamfer Matching Distance]
- # [HeadParameters reindeer Head Parameters Estimation]
+ # [Matchingdistance 2D Chamfer Matching Distance]
+ # [HeadParameters Head Parameters Estimation]
  # [Segmentation]
  # [Tracking]
 === Results ===
