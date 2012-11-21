@@ -4,6 +4,8 @@
 
 = Introduction =
 
+In this section we are going to match a head template with the disparity image. For that propose the 2D Chamfer distance matching is going to be applied. It is computationally fast and scale invariant.
+
 = Description =
 
 The steps followed for computing 2D Chamfer Distance Matching are:
