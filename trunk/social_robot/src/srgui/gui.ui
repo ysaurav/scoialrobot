@@ -237,8 +237,37 @@
       <item>
        <widget class="QGroupBox" name="groupBox_2">
         <property name="title">
-         <string>GroupBox</string>
+         <string>Tracking</string>
         </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <item>
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>Confidence</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="confidenceSpinBox">
+             <property name="decimals">
+              <number>3</number>
+             </property>
+             <property name="maximum">
+              <double>0.500000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>0.010000000000000</double>
+             </property>
+             <property name="value">
+              <double>0.025000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>
@@ -302,8 +331,8 @@
    <slot>rgb_check_box_handler()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>61</x>
-     <y>470</y>
+     <x>88</x>
+     <y>579</y>
     </hint>
     <hint type="destinationlabel">
      <x>45</x>
@@ -318,8 +347,8 @@
    <slot>depth_check_box_handler()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>237</x>
-     <y>510</y>
+     <x>209</x>
+     <y>619</y>
     </hint>
     <hint type="destinationlabel">
      <x>394</x>
@@ -334,8 +363,8 @@
    <slot>handle_display()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>83</x>
-     <y>539</y>
+     <x>110</x>
+     <y>659</y>
     </hint>
     <hint type="destinationlabel">
      <x>-12</x>
@@ -350,8 +379,8 @@
    <slot>handle_display()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>109</x>
-     <y>582</y>
+     <x>136</x>
+     <y>699</y>
     </hint>
     <hint type="destinationlabel">
      <x>109</x>
@@ -366,8 +395,8 @@
    <slot>threshold_template_matching_3d()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>459</x>
-     <y>444</y>
+     <x>435</x>
+     <y>573</y>
     </hint>
     <hint type="destinationlabel">
      <x>457</x>
@@ -382,8 +411,8 @@
    <slot>threshold_scales()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>420</x>
-     <y>489</y>
+     <x>435</x>
+     <y>608</y>
     </hint>
     <hint type="destinationlabel">
      <x>416</x>
@@ -398,8 +427,8 @@
    <slot>threshold_chamfer()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>446</x>
-     <y>521</y>
+     <x>435</x>
+     <y>643</y>
     </hint>
     <hint type="destinationlabel">
      <x>445</x>
@@ -414,8 +443,8 @@
    <slot>threshold_arc_low()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>461</x>
-     <y>558</y>
+     <x>435</x>
+     <y>678</y>
     </hint>
     <hint type="destinationlabel">
      <x>473</x>
@@ -430,12 +459,28 @@
    <slot>threshold_arc_high()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>438</x>
-     <y>593</y>
+     <x>435</x>
+     <y>713</y>
     </hint>
     <hint type="destinationlabel">
      <x>555</x>
      <y>659</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>confidenceSpinBox</sender>
+   <signal>editingFinished()</signal>
+   <receiver>Gui</receiver>
+   <slot>threshold_confidence()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>617</x>
+     <y>633</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>655</x>
+     <y>770</y>
     </hint>
    </hints>
   </connection>
@@ -449,5 +494,6 @@
   <slot>threshold_chamfer()</slot>
   <slot>threshold_arc_low()</slot>
   <slot>threshold_arc_high()</slot>
+  <slot>threshold_confidence()</slot>
  </slots>
 </ui>

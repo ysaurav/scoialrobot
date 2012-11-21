@@ -34,7 +34,6 @@ class ConDensation
 
     void time_update();
 
-
   protected:
 
     unsigned int m_num_states;
@@ -50,6 +49,5 @@ class ConDensation
     const float* m_std_dev;
 
   };
-
 
 #endif

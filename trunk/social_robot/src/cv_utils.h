@@ -28,5 +28,7 @@ void get_non_zeros ( Mat img, Mat prob, vector<Point3f> *points, Point pdiff = P
 void draw_rgb_faces ( Mat &img, vector<Rect> faces );
 void draw_tracking_faces ( Mat &img, vector<StateData> state_datas );
 void draw_depth_faces ( Mat &img, vector<Rect> faces );
+Point get_rect_centre ( Rect rect );
+double euclidean_distance ( Point a, Point b );
 
 #endif

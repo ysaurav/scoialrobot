@@ -48,8 +48,8 @@ void ParticleFilter::init ( const Rect& selection )
                             0, 0,  0,  1,  0,
                             0, 0,  0,  0,  1 );
 
-  const float initial[NUM_STATES] = {selection.x + selection.width/2, selection.y + selection.height/2, 0, 0, 1.0};
-  static const float std_dev[NUM_STATES] = { 2,  2,  .5,  .5,  .1};
+  const float initial[NUM_STATES] = {selection.x + selection.width / 2, selection.y + selection.height / 2, 0, 0, 1.0};
+  static const float std_dev[NUM_STATES] = { 2,  2,  0.5,  0.5,  0.1};
 
   cout << "Init with state: [ ";
   for ( uint j = 0; j < NUM_STATES; j++ )
@@ -67,7 +67,7 @@ void ParticleFilter::init ( const Rect& selection )
 Mat& ParticleFilter::update ( Mat& image, Mat& lbp_image, const Size& target_size, Mat& target_hist, bool use_lbp )
 {
   Mat hist;
-  Rect bounds ( 0,0,image.cols, image.rows );
+  Rect bounds ( 0, 0, image.cols, image.rows );
 
   // Update the confidence for each particle
   for ( uint i = 0; i< m_num_particles; i++ )
@@ -96,7 +96,7 @@ Mat& ParticleFilter::update ( Mat& image, Mat& lbp_image, const Size& target_siz
   int x = round ( m_state ( STATE_X ) ) - width / 2;
   int y = round ( m_state ( STATE_Y ) ) - height / 2;
 
-  Rect region = Rect ( x, y, width, height ) & bounds;
+  region = Rect ( x, y, width, height ) & bounds;
   Mat image_roi ( image, region ), lbp_roi ( lbp_image, region );
 
   m_mean_confidence = calc_likelyhood ( image_roi, lbp_roi, target_hist, use_lbp );
@@ -116,7 +116,6 @@ Mat& ParticleFilter::update ( Mat& image, Mat& lbp_image, const Size& target_siz
   return m_state;
 }
 
-
 // Calculate the likelyhood for a particular region
 float ParticleFilter::calc_likelyhood ( Mat& image_roi, Mat& lbp_roi, Mat& target_hist, bool use_lbp )
 {
@@ -129,28 +128,32 @@ float ParticleFilter::calc_likelyhood ( Mat& image_roi, Mat& lbp_roi, Mat& targe
   float bc = compareHist ( target_hist, hist, CV_COMP_BHATTACHARYYA );
   float prob = 0.f;
   if ( bc != 1.f ) // Clamp total mismatch to 0 likelyhood
-    prob = exp ( -LAMBDA * ( bc * bc ) );
+    {
+      prob = exp ( -LAMBDA * ( bc * bc ) );
+    }
   return prob;
 }
 
 void ParticleFilter::draw_estimated_state ( Mat& image, const Size& target_size, const Scalar& color )
 {
-  Rect bounds ( 0,0, image.cols, image.rows );
+  Rect bounds ( 0, 0, image.cols, image.rows );
 
-  for ( uint i = 0; i < m_num_particles; i++ )
-    {
-      int width = round ( target_size.width * m_state ( STATE_SCALE ) );
-      int height = round ( target_size.height * m_state ( STATE_SCALE ) );
-      int x = round ( m_state ( STATE_X ) ) - width/2;
-      int y = round ( m_state ( STATE_Y ) ) - height/2;
-      Rect rect = Rect ( x, y, width, height ) & bounds;
-      rectangle ( image, rect, color, 2 );
-    }
+  int width = round ( target_size.width * m_state ( STATE_SCALE ) );
+  int height = round ( target_size.height * m_state ( STATE_SCALE ) );
+  int x = round ( m_state ( STATE_X ) ) - width / 2;
+  int y = round ( m_state ( STATE_Y ) ) - height / 2;
+  Rect rect = Rect ( x, y, width, height ) & bounds;
+  rectangle ( image, rect, color, 2 );
+}
+
+Rect ParticleFilter::get_estimated_state ( void )
+{
+  return region;
 }
 
 void ParticleFilter::draw_particles ( Mat& image, const Size& target_size, const Scalar& color )
 {
-  Rect bounds ( 0,0, image.cols, image.rows );
+  Rect bounds ( 0, 0, image.cols, image.rows );
 
   for ( uint i = 0; i < m_num_particles; i++ )
     {
@@ -172,8 +175,6 @@ void ParticleFilter::redistribute ( const float lbound[], const float ubound[] )
           float r = m_rng.uniform ( lbound[j], ubound[j] );
           m_particles[i] ( j ) = r;
         }
-
       m_confidence[i] = 1.0 / ( float ) m_num_particles;
     }
-
 }
