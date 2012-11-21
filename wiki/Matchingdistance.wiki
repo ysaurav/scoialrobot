@@ -7,23 +7,33 @@
 = Description =
 
 The steps followed for computing 2D Chamfer Distance Matching are:
-  * Calculate edge image.
-  * Compute distances between pixel and the closest edge to it.
-  * Calculate different scales for the resulting distance image.
-  * Match the template with all the scale images.
-  * Use a threshold in order to get the best matches.
+  # Calculate edge image.
+  # Compute distances between pixel and the closest edge to it.
+  # Calculate different scales for the resulting distance image.
+  # Match the template with all the scale images.
+  # Use a threshold in order to get the best matches.
 
 == Edge image ==
 
+For this step it has been chosen Canny algorithm. The two thresholds used are 5 and 7.
+
 == Distance image ==
 
+The Euclidean distance has been chosen for this step.
+
 == Distance image pyramid ==
+
+The number of scales depends on the depth range, even though the maximum number of computed scales will be 5.
+
+The scale factor used is 3/4.
 
 == Matching with the template ==
 
 The template used for the matching
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/head_template.png
+
+It will be matched with all the scale images and a threshold will be used in order to keep the best results. A high threshold has been chosen 10, to reduce as much as possible the number of false negatives.
 
 = Results =
 
@@ -35,8 +45,6 @@ Distance image
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/chamfer.png
 
-Potential heads
+Location of potential heads
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/heads.png
-
-Location of potential heads
