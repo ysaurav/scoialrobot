@@ -1,13 +1,24 @@
 #summary One-sentence summary of this page.
 
-= 2D Chamfer dstance matching =
+= 2D Chamfer Distance Matching =
 
-Add your content here.
+= Introduction =
+
+= Description =
 
 
-= Details =
-
-Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
+
+= Results =
+
+Edge image
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/canny.png
+
+Distance image
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/chamfer.png
+
+Location of potential heads
