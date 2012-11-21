@@ -8,9 +8,9 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo1.png
 
 == Contents ==
 
- # [#Introduction]
- # [Problem_Statement]
- # [Method Method]
+ # [#Introduction Introduction]
+ # [#Problem_Statement]
+ # [#Method Method]
   * [Preprocessing]
   * [Matchingdistance 2D Chamfer Matching Distance]
   * [HeadParameters Head Parameters Estimation]
