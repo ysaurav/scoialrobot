@@ -13,8 +13,8 @@
 === Method ===
 [Preprocessing]
 [Matchingdistance]
-Head Parameters
-Segmentation
-Tracking
+[HeadParameters]
+[SegmeTrackingntation]
+[Tracking]
 === Results ===
 === Conclusions ===
