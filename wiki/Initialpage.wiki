@@ -9,15 +9,15 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo1.png
 == Contents ==
 
  # [Introduction Introduction]
- # [Problem Statement]
- # [Method]
+ # [Problem_Statement Problem Statement]
+ # [Method Method]
   # [Preprocessing]
   # [Matchingdistance 2D Chamfer Matching Distance]
   # [HeadParameters Head Parameters Estimation]
   # [Segmentation]
   # [Tracking]
- # [Results]
- # [Conclusions]
+ # [Results Results]
+ # [Conclusions Conclusions]
 
 = Introduction =
 = Problem Statement =
