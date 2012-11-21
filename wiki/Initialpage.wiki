@@ -1,0 +1,20 @@
+#summary One-sentence summary of this page.
+
+= Social Robotics using NAO and Kinect =
+
+== Robotics Project - Interaction Lab - Heriot-Watt University ==
+
+== Members == 
+
+== Contents ==
+
+=== Introduction ===
+=== Problem Statement ===
+=== Method ===
+Pre-processing
+2D chamfer distance matching
+Head Parameters
+Segmentation
+Tracking
+=== Results ===
+=== Conclusions ===
