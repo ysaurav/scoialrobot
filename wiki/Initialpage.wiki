@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo1.png
 
 = Social Robotics using NAO and Kinect =
 
