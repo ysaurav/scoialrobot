@@ -22,11 +22,11 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
   * [SoftwareArchitecture Software Architecture]
  # [#Demo Demo]
  # [#Conclusions Conclusions]
- # [#References References]
+ # [References References]
 
 == Introduction ==
 
-As robots become involved into daily life, they must need to deal under situations in which social interaction is essential. It implies robot must be able to satisfy the social goals and obligations that come up through interactions with people in real-world settings, which demand challenges on reasoning, decision making and action selection components of the system. [#1 1]
+As robots become involved into daily life, they must need to deal under situations in which social interaction is essential. It implies robot must be able to satisfy the social goals and obligations that come up through interactions with people in real-world settings, which demand challenges on reasoning, decision making and action selection components of the system. [References 1]
 
 A social robot is defined as "an autonomous robot that interacts and communicates with humans or other autonomous physical agents by following social behaviours and rules attached to its role" Additionally, social robots need to understand and react intelligently to the actions and intentions of multiple humans in a visual scene.
 
@@ -38,7 +38,7 @@ This project combines a NAO torso with a Kinect controller in order to estimate 
 
 Humans use head pose and gaze direction as nonverbal cues to express communicative acts and their visual focus of attention. Additionally, head direction and pointing gestures can contribute significantly to the computation of the attention of an interaction partner. 
 
-Hence, a combination of head pose estimation and recognition of gaze directions is needed to exactly determine the visual attention of an interaction partner.  Gaschler et al. show in [#2 2] that head pose is an important cue that is used by customers and bartenders in all steps of the ordering sequence. 
+Hence, a combination of head pose estimation and recognition of gaze directions is needed to exactly determine the visual attention of an interaction partner.  Gaschler et al. show in [References 2] that head pose is an important cue that is used by customers and bartenders in all steps of the ordering sequence. 
 
 Humans can easily estimate the head pose of an interaction partner, but for a computer vision system this ability is rather difficult to achieve. The pose is described by the approximate position of the head in space, and an angle that describes torso orientation.
 
@@ -54,6 +54,4 @@ Many methods has been used to generate a head pose estimation. Appearance-based 
 == Implementation ==
  * [SoftwareArchitecture Software Architecture]
 == Conclusions ==
-== References ==
-===1=== 
-===2=== 
+ 
