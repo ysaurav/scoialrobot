@@ -24,6 +24,10 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
  # [#Conclusions Conclusions]
 
 == Introduction ==
+A social robot is defined as " an autonomous robot that interacts and communicates with humans or other autonomous physical agents by following social behaviors and rules attached to its role" Social robots need to understand and react intelligently to the actions and intentions of 
+multiple humans in a visual scene.
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/socialrobots.png
 == Problem Statement ==
 == Method ==
  * [Preprocessing]
