@@ -2,10 +2,10 @@
 
 = Tracking =
 
-== Introduction ==
+== 1.Introduction ==
 This part presents the tracking implementation of our project. We have started with a simple tracking algorithm based on background subtraction and motion estimation. Based on the real requirements of the project, the proposed algorithm failed in a large number of cases and a more stable algorithm was needed: particle filter. In the next sections short details of both algorithms will be presented.
 
-== Background subtraction and Motion estimation ==
+== 2.Background subtraction and Motion estimation ==
 The algorithm is based on subtraction between each frame and background. Due to the fact that the robot was supposed to be placed in a bar, with highly changeable background, the reference frame known as background, is update from time to time in order to keep a stable algorithm.
 
 === Algorithm: === 
@@ -27,7 +27,7 @@ The algorithm is based on subtraction between each frame and background. Due to 
   
 === Results ===
 
-== Particle filter ==
+== 3.Particle filter ==
 
 === Algorithm ===
 
