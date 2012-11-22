@@ -9,9 +9,10 @@ This part presents the tracking implementation of our project. We have started w
 The algorithm is based on subtraction between each frame and background. Due to the fact that the robot was supposed to be placed in a bar, with highly changeable background, the reference frame known as background, is update from time to time in order to keep a stable algorithm.
 
 === Algorithm: === 
-# Background subtraction
 
-# Candidate object identification
+1. Background subtraction
 
-# Target object selection
+2. Candidate object identification
+
+3. Target object selection
   
