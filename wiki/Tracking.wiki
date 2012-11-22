@@ -24,6 +24,21 @@ The algorithm is based on subtraction between each frame and background. Due to 
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/tracking_sub.png
 
+In the left figure you can see the image subtraction, while in the right image is the result of the tracking based on this subtraction. The red rectangle represents the tracking, while the blue rectangle represent the candidates for the tracking. In order to obtain the candidates from the foreground blobs a threshold was used that it will eliminate the small blobs in the left image.
+
+=== Problems ===
+
+1. One problem that can be seen from the previous results represents the shadow of the people, increasing the size of the tracked person.
+
+2. For our purpose, the method proved to be  unreliable due to the unstable background provided by a bar.
+
+3. People being close to each other can be considered as a single person, making the tracking to fail.
+
+4. Similar to other tracking methods, occlusions remains one of the problems. 
+
+
+In order to solve a couple of this problems we have used the particle filter, explained in the next section, as a final tracking method in our project.
+
 == 3.Particle filter ==
 
 === Algorithm ===
