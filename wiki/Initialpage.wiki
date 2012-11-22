@@ -31,6 +31,8 @@ As robots become involved into daily life, they must need to deal under situatio
 
 A social robot is defined as "an autonomous robot that interacts and communicates with humans or other autonomous physical agents by following social behaviours and rules attached to its role" Additionally, social robots need to understand and react intelligently to the actions and intentions of multiple humans in a visual scene.
 
+One of the most advanced research groups, the [http://web.media.mit.edu/~cynthiab/research/research.html Personal Robots Group from  Massachusetts Institute of Technology] develops techniques and technologies for social robot applications. The figure below shows four important projects: [http://www.youtube.com/watch?v=ilmDN2e_Flc&feature=related Leonardo Robot], [http://www.youtube.com/watch?v=aQS2zxmrrrA the Mobile, Dexterous, Social Robot], [http://www.youtube.com/watch?v=wGowILhHCCo the sociable robot car AIDA] and [http://www.youtube.com/watch?v=JxmZyEH4IVI TOFU].
+
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/socialrobots.png
 
 This project combines a NAO torso with a Kinect controller in order to estimate the social scene in a bar/pub/café style interaction with multiple users. The main work in the project will be in vision by using the Kinect to detect multiple humans and perform face tracking and gaze estimation. A particular focus will be on detecting when humans want attention from the robot.
