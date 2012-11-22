@@ -35,13 +35,17 @@ One of the most advanced research groups, the [http://web.media.mit.edu/~cynthia
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/socialrobots.png
 
+Detecting people in images or videos represents a challenging problem due to changes in pose, clothing, lighting conditions and backgrounds. Some methods oriented to the human detection involve statistical training based on local features, i.e. gradient-based features such as HOG; and some involve extracting interest points in the image, such as scale-invariant feature transform (SIFT). [References 2]
+
+Depth information is an important cue when human recognisea objects due to the objects many not have consistent color or texture; but it must occupy an integrated region in space. The develop of depth sensors, such as Kinect from Microsoft, has allowed it can be used in human environment, which is a disadvantage of laser sensors.
+
 This project combines a NAO torso with a Kinect controller in order to estimate the social scene in a bar/pub/café style interaction with multiple users. The main work in the project will be in vision by using the Kinect to detect multiple humans and perform face tracking and gaze estimation. A particular focus will be on detecting when humans want attention from the robot.
 
 == Problem Statement ==
 
 Humans use head pose and gaze direction as nonverbal cues to express communicative acts and their visual focus of attention. Additionally, head direction and pointing gestures can contribute significantly to the computation of the attention of an interaction partner. 
 
-Hence, a combination of head pose estimation and recognition of gaze directions is needed to exactly determine the visual attention of an interaction partner.  Gaschler et al. show in [References 2] that head pose is an important cue that is used by customers and bartenders in all steps of the ordering sequence. 
+Hence, a combination of head pose estimation and recognition of gaze directions is needed to exactly determine the visual attention of an interaction partner.  Gaschler et al. show in [References 3] that head pose is an important cue that is used by customers and bartenders in all steps of the ordering sequence. 
 
 Humans can easily estimate the head pose of an interaction partner, but for a computer vision system this ability is rather difficult to achieve. The pose is described by the approximate position of the head in space, and an angle that describes torso orientation.
 
