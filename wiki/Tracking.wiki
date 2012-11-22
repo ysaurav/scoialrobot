@@ -22,7 +22,7 @@ The algorithm is based on subtraction between each frame and background. Due to 
   
 === Results ===
 
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/substraction.png
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/tracking_sub.png
 
 == 3.Particle filter ==
 
