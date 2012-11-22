@@ -53,3 +53,6 @@ Many methods has been used to generate a head pose estimation. Appearance-based 
 == Implementation ==
  * [SoftwareArchitecture Software Architecture]
 == Conclusions ==
+== References ==
+=== 1 === Hola 
+=== 2 === Hola 2
