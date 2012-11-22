@@ -35,7 +35,13 @@ This project combines a NAO torso with a Kinect controller in order to estimate 
 
 == Problem Statement ==
 
-Humans use head pose and gaze direction as nonverbal cues to express communicative acts and their visual focus of attention.
+Humans use head pose and gaze direction as nonverbal cues to express communicative acts and their visual focus of attention. Additionally, head direction and pointing gestures can contribute significantly to the computation of the attention of an interaction partner. 
+
+Hence, a combination of head pose estimation and recognition of gaze directions is needed to exactly determine the visual attention of an interaction partner.  Gaschler et al. show in [2] that head pose is an important cue that is used by customers and bartenders in all steps of the ordering sequence. 
+
+Humans can easily estimate the head pose of an interaction partner, but for a computer vision system this ability is rather difficult to achieve. The pose is described by the approximate position of the head in space, and an angle that describes torso orientation.
+
+Many methods has been used to generate a head pose estimation. Appearance-based methods consider the image region of the face as a whole, while Feature-based methods extract from the actual region and recover low-dimensional features (position of facial features). Both techniques can be combined in order to track facial features.
 
 == Method ==
  * [Preprocessing]
