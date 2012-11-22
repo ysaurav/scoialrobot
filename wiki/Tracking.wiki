@@ -25,3 +25,10 @@ The algorithm is based on subtraction between each frame and background. Due to 
    
 *3. Target object selection*
   
+=== Results ===
+
+== Particle filter ==
+
+=== Algorithm ===
+
+=== Results ===
