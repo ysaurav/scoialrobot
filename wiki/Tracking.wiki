@@ -12,12 +12,7 @@ The algorithm is based on subtraction between each frame and background. Due to 
 
 *1. Background subtraction*
      In order to make the system more stable and to estimate the motion, we have used both the difference between the current frame and the background and the difference between current and previous frame.
-   {{{
-    for ALL frames:
-       Mask = previous_frame - background 
-       Current_frame = Current_frame * Mask
-    end
-}}}
+   <math>\sqrt{1-e^2}</math>
 
 
 *2. Candidate object identification*
