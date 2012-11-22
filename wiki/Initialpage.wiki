@@ -43,7 +43,7 @@ Hence, a combination of head pose estimation and recognition of gaze directions 
 
 Humans can easily estimate the head pose of an interaction partner, but for a computer vision system this ability is rather difficult to achieve. The pose is described by the approximate position of the head in space, and an angle that describes torso orientation.
 
-Many methods has been used to generate a head pose estimation. Appearance-based methods consider the image region of the face as a whole, while Feature-based methods extract from the actual region and recover low-dimensional features (position of facial features). Both techniques can be combined in order to track facial features.
+Many methods have been used to generate a head pose estimation. Appearance-based methods consider the image region of the face as a whole, while Feature-based methods extract from the actual region and recover low-dimensional features (position of facial features). Both techniques can be combined in order to track facial features.
 
 == Method ==
  * [Preprocessing]
@@ -74,4 +74,4 @@ Many methods has been used to generate a head pose estimation. Appearance-based 
 *Social Robot Demos*
  # [http://www.youtube.com/watch?v=8k7Pd-CbbhE&feature=youtu.be JAMES, the robot bartender, system evaluation April / May 2012]
  # [http://www.youtube.com/watch?v=ilmDN2e_Flc&feature=related Leonardo Robot - isn't this the cutest robot ever?]
- # [ http://www.youtube.com/watch?v=aQS2zxmrrrA Official MDS Robot Video - First Test of Expressive Ability]
+ # [http://www.youtube.com/watch?v=aQS2zxmrrrA Official MDS Robot Video - First Test of Expressive Ability]
