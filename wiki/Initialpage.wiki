@@ -24,14 +24,19 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
  # [#Conclusions Conclusions]
 
 == Introduction ==
-A social robot is defined as " an autonomous robot that interacts and communicates with humans or other autonomous physical agents by following social behaviors and rules attached to its role" Social robots need to understand and react intelligently to the actions and intentions of 
-multiple humans in a visual scene.
+
+As robots become involved into daily life, they must need to deal under situations in which social interaction is essential. It implies robot must be able to satisfy the social goals and obligations that come up through interactions with people in real-world settings, which demand challenges on reasoning, decision making and action selection components of the system.
+
+A social robot is defined as "an autonomous robot that interacts and communicates with humans or other autonomous physical agents by following social behaviours and rules attached to its role" Additionally, social robots need to understand and react intelligently to the actions and intentions of multiple humans in a visual scene.
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/socialrobots.png
 
-This project will combine a NAO torso with a Kinect controller to try to estimate the social scene in a bar/pub/café style interaction with multiple users. The main work in the project will be in vision: using the NAO and Kinect to track multiple humans and perform gesture recognition and gaze estimation. A particular focus will be on detecting when humans want attention from the robot.
+This project combines a NAO torso with a Kinect controller to try to estimate the social scene in a bar/pub/café style interaction with multiple users. The main work in the project will be in vision: using the Kinect to track multiple humans and perform face detection and gaze estimation. A particular focus will be on detecting when humans want attention from the robot.
 
 == Problem Statement ==
+
+Humans use head pose and gaze direction as nonverbal cues to express communicative acts and their visual focus of attention.
+
 == Method ==
  * [Preprocessing]
  * [Matchingdistance 2D Chamfer Matching Distance]
