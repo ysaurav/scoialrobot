@@ -71,4 +71,4 @@ Many methods have been used to generate a head pose estimation. Appearance-based
 *Projects, Demos and Group Research*
  # [http://www.james-project.eu EU project JAMES]
  # [https://sites.google.com/site/hwinteractionlab/home Interaction Lab - Heriot-Watt University]
- # [http://www.youtube.com/watch?v=8k7Pd-CbbhE&feature=youtu.be JAMES, 
+ # [http://www.youtube.com/watch?v=8k7Pd-CbbhE&feature=youtu.be JAMES, the robot bartender, system evaluation April / May 2012]
