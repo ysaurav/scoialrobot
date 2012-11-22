@@ -18,6 +18,8 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
   * [HeadParameters Head Parameters Estimation]
   * [Segmentation]
   * [Tracking]
+ # [Implementation]
+  * [Software Architecture]
  # [#Results Results]
  # [#Conclusions Conclusions]
 
@@ -30,4 +32,6 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
  * [Segmentation]
  * [Tracking]
 == Results ==
+== Implementation ==
+ * [Software Architecture]
 == Conclusions ==
