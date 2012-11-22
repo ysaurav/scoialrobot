@@ -14,8 +14,8 @@ The algorithm is based on subtraction between each frame and background. Due to 
      In order to make the system more stable and to estimate the motion, we have used both the difference between the current frame and the background and the difference between current and previous frame.
    {{{
     for ALL frames:
-       compute Mask 
-       Current frame = Current frame . Mask
+       Mask = previous_frame - background 
+       Current_frame = Current_frame * Mask
     end
 }}}
 
