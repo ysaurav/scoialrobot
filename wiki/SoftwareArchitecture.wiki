@@ -2,12 +2,9 @@
 
 = Introduction =
 
-Add your content here.
+In this page we're going to explain how different ROS topics work with each other
 
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/flowchart_diagram.png
