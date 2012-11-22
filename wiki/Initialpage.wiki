@@ -28,6 +28,9 @@ A social robot is defined as " an autonomous robot that interacts and communicat
 multiple humans in a visual scene.
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/socialrobots.png
+
+This project will combine a NAO torso with a Kinect controller to try to estimate the social scene in a bar/pub/café style interaction with multiple users. The main work in the project will be in vision: using the NAO and Kinect to track multiple humans and perform gesture recognition and gaze estimation. A particular focus will be on detecting when humans want attention from the robot.
+
 == Problem Statement ==
 == Method ==
  * [Preprocessing]
