@@ -18,6 +18,11 @@ The algorithm is based on subtraction between each frame and background. Due to 
     In this part the candidates are located based on the difference image, that is first thresholded. The candidates will be represented by bounding boxes obtained after finding the connected components from the binary image. A threshold is used in order to keep only the most important bounding boxes.
    
 *3. Target object selection*
+   Having all the foreground information, the goal is to track the object of interest among all the candidates. In order to do this the colour information is used. A certain foreground object will be considered as the tracked object if it has the maximum colour-based similarity and minimum distance to the object marked by the detection. For the colour-based similarity the histogram matching was used and for the distance similarity, the distance between the centre of the object and the backprojection was used.
+
+
+
+
   
 === Results ===
 
