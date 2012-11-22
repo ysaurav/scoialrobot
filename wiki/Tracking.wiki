@@ -1,4 +1,3 @@
-
 = Tracking =
 
 == 1.Introduction ==
@@ -39,6 +38,8 @@ In the left figure you can see the image subtraction, while in the right image i
 In order to solve a couple of this problems we have used the particle filter, explained in the next section, as a final tracking method in our project.
 
 == 3.Particle filter ==
+
+Tracking using particle filter uses the probability distribution over the state (the location) of the person being tracked.The probability distribution is represented by a set of weighted particles, where each of the particles represents a guess about one possible location of the person being tracked. The weight is higher at the points where the object being tracked has a higher possibility to be. The distribution is propagated through time in order to determine the trajectory of the tracked person.
 
 === Algorithm ===
 
