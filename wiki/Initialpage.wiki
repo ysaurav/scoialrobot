@@ -23,6 +23,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
  # [#Demo Demo]
  # [#Conclusions Conclusions]
  # [References References]
+ # [#Links_of_Interest Links of Interest]
 
 == Introduction ==
 
@@ -54,4 +55,4 @@ Many methods has been used to generate a head pose estimation. Appearance-based 
 == Implementation ==
  * [SoftwareArchitecture Software Architecture]
 == Conclusions ==
- 
+== Links of Interest == 
