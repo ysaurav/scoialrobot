@@ -1,4 +1,4 @@
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo1.png
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
 
 = Social Robotics using NAO and Kinect =
 
@@ -18,8 +18,8 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
   * [HeadParameters Head Parameters Estimation]
   * [Segmentation]
   * [Tracking]
- # [Implementation]
-  * [Software Architecture]
+ # [#Implementation Implementation]
+  * [SoftwareArchitecture Software Architecture]
  # [#Results Results]
  # [#Conclusions Conclusions]
 
@@ -33,5 +33,5 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
  * [Tracking]
 == Results ==
 == Implementation ==
- * [Software Architecture]
+ * [SoftwareArchitecture Software Architecture]
 == Conclusions ==
