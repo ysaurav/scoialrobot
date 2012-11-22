@@ -21,6 +21,7 @@ The algorithm is based on subtraction between each frame and background. Due to 
 
 
 *2. Candidate object identification*
-
+    In this part the candidates are located based on the difference image, that is first thresholded. The candidates will be represented by bounding boxes obtained after finding the connected components from the binary image. A threshold is used in order to keep only the most important bounding boxes.
+   
 *3. Target object selection*
   
