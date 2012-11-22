@@ -10,6 +10,8 @@ The algorithm is based on subtraction between each frame and background. Due to 
 
 === Algorithm: === 
 # Background subtraction
+
 # Candidate object identification
+
 # Target object selection
   
