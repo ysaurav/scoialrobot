@@ -43,4 +43,6 @@ Tracking using particle filter uses the probability distribution over the state 
 
 === Algorithm ===
 
+#The tracking takes into account the color/depth information for the particle filter, using a systematic resampling, from OpenCV. The likelihood   The likleyhood function is based on the Bhattacharya distance between RGB histograms.  Optionally, an additional texture dimension using Local Binary Patterns can be added to the histogram.  This can be helpful when the target is not well differentiated from the background by color. However, in most cases, you can get better results for similar processor utilization by increasing the number of particles#
+
 === Results ===
