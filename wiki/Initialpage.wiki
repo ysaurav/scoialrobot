@@ -55,8 +55,16 @@ Many methods has been used to generate a head pose estimation. Appearance-based 
 == Implementation ==
  * [SoftwareArchitecture Software Architecture]
 == Conclusions ==
+
+
 == Links of Interest == 
+
+*Projects and Group Research*
  # [http://www.james-project.eu EU project JAMES]
- # [http://www.youtube.com/watch?v=8k7Pd-CbbhE&feature=youtu.be JAMES, the robot bartender, system evaluation April / May 2012]
  # [https://sites.google.com/site/hwinteractionlab/home Interaction Lab - Heriot-Watt University]
  # [http://web.media.mit.edu/~cynthiab/research/research.html Personal Robots Group - Massachusetts Institute of Technology]
+
+*Demos*
+ # [http://www.youtube.com/watch?v=8k7Pd-CbbhE&feature=youtu.be JAMES, the robot bartender, system evaluation April / May 2012]
+ # [http://www.youtube.com/watch?v=ilmDN2e_Flc&feature=related Leonardo Robot - isn't this the cutest robot ever?]
+ # [ http://www.youtube.com/watch?v=aQS2zxmrrrA Official MDS Robot Video - First Test of Expressive Ability]
