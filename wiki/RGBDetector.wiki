@@ -1,0 +1,19 @@
+= Multicascade =
+
+
+= Introduction =
+
+
+
+= Description =
+
+== Integral images ==
+
+== Haar-like Features == 
+
+== Cascade of classifiers ==
+The third major contribution of this paper is a method
+for combining successively more complex classifiers in a
+cascade structure which dramatically increases the speed of
+the detector by focusing attention on promising regions of
+the image.
