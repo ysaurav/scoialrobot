@@ -62,6 +62,9 @@ Many methods has been used to generate a head pose estimation. Appearance-based 
  # [http://prezi.com/e-5801a4gmsm/rp-presentation-1/ Presentation 1 -  October 17th, 2012]
  # [http://prezi.com/qvdukdcb9ikg/rp-presentation-2/ Presentation 2 -  October 30th, 2012]
 
+*Dataset and Demo for Human Detections*
+ # [http://www.informatik.uni-freiburg.de/~spinello/RGBD-dataset.html RGB-D People Dataset]
+ # [http://www.youtube.com/watch?feature=player_embedded&v=UwHOGfXxajM People Detection in RGB-D Data]
 
 *Projects and Group Research*
  # [http://www.james-project.eu EU project JAMES]
@@ -72,6 +75,3 @@ Many methods has been used to generate a head pose estimation. Appearance-based 
  # [http://www.youtube.com/watch?v=8k7Pd-CbbhE&feature=youtu.be JAMES, the robot bartender, system evaluation April / May 2012]
  # [http://www.youtube.com/watch?v=ilmDN2e_Flc&feature=related Leonardo Robot - isn't this the cutest robot ever?]
  # [ http://www.youtube.com/watch?v=aQS2zxmrrrA Official MDS Robot Video - First Test of Expressive Ability]
-
-*Demos for Human Detections*
- # [People Detection in RGB-D Data: http://www.youtube.com/watch?feature=player_embedded&v=UwHOGfXxajM People Detection in RGB-D Data]
