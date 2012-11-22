@@ -11,8 +11,7 @@ The algorithm is based on subtraction between each frame and background. Due to 
 === Algorithm: === 
 
 *1. Background subtraction*
-     In order to make the system more stable and to estimate the motion, we have used both the difference between the current frame and the background and the difference between current and previous frame.
-   <img src="http://www.codecogs.com/gif.latex?1+sin%28x%29" border="0">
+     In order to make the system more stable and to estimate the motion, we have used both the difference between the current frame and the background and the difference between current and previous frame. Doing the difference between the corresponding regions of the frame and the background, if the value obtained is higher than a given threshold, then the blob in the frame is considered as the foreground and could be part of the tracked person. 
 
 
 *2. Candidate object identification*
