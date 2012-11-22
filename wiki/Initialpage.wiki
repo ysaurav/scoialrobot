@@ -37,7 +37,9 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/socialrobots.
 
 Detecting people in images or videos represents a challenging problem due to changes in pose, clothing, lighting conditions and backgrounds. Some methods oriented to the human detection involve statistical training based on local features, i.e. gradient-based features such as HOG; and some involve extracting interest points in the image, such as scale-invariant feature transform (SIFT). [References 2]
 
-Depth information is an important cue when human recognisea objects due to the objects many not have consistent color or texture; but it must occupy an integrated region in space. The develop of depth sensors, such as Kinect from Microsoft, has allowed it can be used in human environment, which is a disadvantage of laser sensors.
+Depth information is an important cue that can be found in range images.  These have several advantages over 2D intensity images. For instance, range images are robust to the changes in color and illumination; and offer a simple representation of 3D information.
+
+Early range sensors were expensive and difficult to use in human environments because of lasers. The develop of depth sensors, such as Kinect from Microsoft, has allowed the application of range sensors in human environment, and hence, the encouragement of research in human detection, tracking and activity analysis.
 
 This project combines a NAO torso with a Kinect controller in order to estimate the social scene in a bar/pub/café style interaction with multiple users. The main work in the project will be in vision by using the Kinect to detect multiple humans and perform face tracking and gaze estimation. A particular focus will be on detecting when humans want attention from the robot.
 
