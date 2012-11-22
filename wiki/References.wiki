@@ -1,0 +1,6 @@
+= References =
+
+
+ # Andre Gaschler, Kerstin Huth, Manuel Giuliani, Ingmar Kessler, Jan de Ruiter, and Alois Knoll. *Modelling state of interaction from head poses for social Human-Robot Interaction*. In Proceedings of the Gaze in Human-Robot Interaction Workshop held at the 7th ACM/IEEE International Conference on Human-Robot Interaction (HRI 2012), Boston, MA, March 2012.
+ # Ronald P. A. Petrick, Mary Ellen Foster, and Amy Isard. *Social state recognition and knowledge-level planning for human-robot interaction in a bartender domain*. In Proceedings of the AAAI 2012 Workshop on Grounding Language for Physical Systems,
+ # Lu Xia, Chia-Chih Chen, J. K. Aggarwal, *Human Detection Using Depth Information by Kinect*, Workshop on Human Activity Understanding from 3D Data in conjunction with CVPR (HAU3D), Colorado Springs, USA, Jun. 2011. . 
