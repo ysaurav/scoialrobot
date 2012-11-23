@@ -9,6 +9,15 @@
 #include <vector>
 #include "particle_filter/StateData.h"
 
+/** 
+* @class CvUtils
+*
+* @brief This class contains useful functions for the image processing part.
+* 
+* @author Social Robot
+* 
+*/
+
 using namespace std;
 using namespace cv;
 

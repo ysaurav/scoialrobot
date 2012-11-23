@@ -13,6 +13,13 @@ RegionOfInterest RosUtils::cvrect2rosroi ( Rect rect )
   roi.height = rect.height;
   return roi;
 }
+/**<
+* This function returns a given rectangle in a regionofinterest used in ROS.
+* @return 
+* @param template2d A Mat containing a binary image.
+* @param template3d A Mat containing a grayscale image.
+* Notice that template3d is a grayscale image, it is used 3d when the matching is done with the depth image.
+ */
 
 Rect RosUtils::rosroi2cvrect ( RegionOfInterest roi )
 {
@@ -23,6 +30,12 @@ Rect RosUtils::rosroi2cvrect ( RegionOfInterest roi )
   rect.height = roi.height;
   return rect;
 }
+/**<
+* Constructor given 2D and 3D templates.
+* @param template2d A Mat containing a binary image.
+* @param template3d A Mat containing a grayscale image.
+* Notice that template3d is a grayscale image, it is used 3d when the matching is done with the depth image.
+ */
 
 vector<RegionOfInterest> RosUtils::cvrects2rosrois ( vector< Rect > rects )
 {
@@ -34,6 +47,12 @@ vector<RegionOfInterest> RosUtils::cvrects2rosrois ( vector< Rect > rects )
     }
   return rois;
 }
+/**<
+* Constructor given 2D and 3D templates.
+* @param template2d A Mat containing a binary image.
+* @param template3d A Mat containing a grayscale image.
+* Notice that template3d is a grayscale image, it is used 3d when the matching is done with the depth image.
+ */
 
 vector<Rect> RosUtils::rosrois2cvrects ( vector<RegionOfInterest> rois )
 {
@@ -45,3 +64,9 @@ vector<Rect> RosUtils::rosrois2cvrects ( vector<RegionOfInterest> rois )
     }
   return rects;
 }
+/**<
+* Constructor given 2D and 3D templates.
+* @param template2d A Mat containing a binary image.
+* @param template3d A Mat containing a grayscale image.
+* Notice that template3d is a grayscale image, it is used 3d when the matching is done with the depth image.
+ */
