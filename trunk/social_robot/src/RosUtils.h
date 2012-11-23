@@ -1,6 +1,15 @@
 #ifndef ROSUTILS_H
 #define ROSUTILS_H
 
+/** 
+* @class RosUtils
+*
+* @brief This class is used for publishing the ouput rectangles in ROS. 
+* 
+* @author Social Robot
+* 
+*/
+
 #include <sensor_msgs/RegionOfInterest.h>
 #include <opencv2/core/core.hpp>
 

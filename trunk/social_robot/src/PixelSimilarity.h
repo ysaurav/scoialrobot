@@ -3,6 +3,16 @@
 
 #include <opencv2/core/core.hpp>
 
+/** 
+* @class PixelSimilarity
+*
+* @brief This class provides the location, radius and likelihood of a given potential head.
+* 
+* @author Social Robot
+* 
+*/
+
+
 class PixelSimilarity
   {
   public:
