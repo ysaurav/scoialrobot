@@ -11,19 +11,20 @@ StateData::StateData ( void )
 
 void StateData::tracking ( double cost )
 {
+  is_associated = false;
   detection_confidence = detection_confidence - cost;
   filter->update ( image, image_depth, selection.size(), target_histogram, hist_type );
 }
 
 void StateData::initialise ( int num_particles, Mat image_, Rect selection_, Mat image_depth_, int hist_type_ )
 {
-  draw_particles = false;
+  is_associated = true;
   filter = new ParticleFilter ( num_particles );
   image_.copyTo ( image );
   image_depth_.copyTo ( image_depth );
   selection = selection_;
   hist_type = hist_type_;
-  detection_confidence = 100.0;
+  detection_confidence = 1.0;
 
   update_target_histogram ( image, image_depth, selection );
 

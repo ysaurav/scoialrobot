@@ -26,6 +26,7 @@ class SocialRobotGui : public QThread
     void depth_cb ( const sensor_msgs::ImageConstPtr &msg );
     void rgb_rois_cb ( const social_robot::RegionOfInterests &msg );
     void depth_rois_cb ( const social_robot::RegionOfInterests &msg );
+    void track_rois_cb ( const social_robot::RegionOfInterests &msg );
 
     // thresholds
     void threshold_template_matching_3d ( double threshold );
@@ -40,6 +41,7 @@ class SocialRobotGui : public QThread
     // settings
     bool display_rgb_faces;
     bool display_depth_faces;
+    bool display_track_faces;
     bool display_rgb_image;
     bool display_depth_image;
 
@@ -53,9 +55,12 @@ class SocialRobotGui : public QThread
     ros::Subscriber depth_subscriber;
     ros::Subscriber rgb_rois_subs;
     ros::Subscriber depth_rois_subs;
-    ros::ServiceClient update_client;
+    ros::Subscriber track_rois_subs;
+    ros::ServiceClient depth_update_client;
+    ros::ServiceClient track_update_client;
     vector<Rect> rgb_rois;
     vector<Rect> depth_rois;
+    vector<Rect> track_rois;
     std_srvs::Empty empty;
 
     RosUtils ros_utils;

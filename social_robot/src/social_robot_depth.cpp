@@ -11,10 +11,6 @@
 #include "Template.h"
 #include "social_robot_constants.h"
 
-#include "particle_filter/StateData.h"
-#include "particle_filter/hist.h"
-#include "particle_filter/filter.h"
-
 using namespace std;
 using namespace cv;
 using namespace sensor_msgs;
@@ -23,20 +19,10 @@ namespace enc = image_encodings;
 
 // for publications
 RosUtils ros_utils;
-social_robot::RegionOfInterests depth_pub_rois;
-ros::Publisher depth_pub;
-
-string cascade_name;
-CascadeClassifier classifier;
-
-vector<Rect> rgb_faces;
-vector<Rect> depth_faces;
+social_robot::RegionOfInterests track_pub_rois;
+ros::Publisher track_pub;
 
 // values that can be chanegd during the runtime
-string head_template1;
-string head_template2;
-string head_template3D1;
-string head_template3D2;
 double canny_thr1 = 5;
 double canny_thr2 = 7;
 double chamfer_thr = 10;
@@ -46,10 +32,9 @@ double approx_poly_thr = 1;
 double max_suppression = 0.1;
 double scale_factor = 0.75;
 double match3D_thr = 0.4;
-double track_thr = 50;
-double confidence_level_thr = 0.75;
-double detection_confidence_thr = 75;
 int scales = 6;
+int framenum = 0;
+int update_rate = 30;
 
 vector<Point3f> head_matched_points;
 vector<PixelSimilarity> head_features;
@@ -66,17 +51,12 @@ Mat *matching = new Mat[scales];
 Mat canny_im;
 Mat image_depth;
 Mat image_disparity;
-Mat image_rgb;
 
 vector<Point3f> chamfer_matching ( Mat image, Mat template_im );
 vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> chamfer );
 vector<PixelSimilarity> false_positives ( vector<PixelSimilarity> tmpparams, int thr, int thr2 );
 vector<PixelSimilarity> match_template3D ( vector<PixelSimilarity> potentials, int n );
 vector<PixelSimilarity> merge_rectangles ( vector<PixelSimilarity> tmpcont );
-
-vector<StateData> state_datas;
-int framenum = 0;
-int update_rate = 10;
 
 CvUtils cv_utils;
 
@@ -234,7 +214,6 @@ vector<PixelSimilarity> false_positives ( vector<PixelSimilarity> tmpparams, int
 
 vector<PixelSimilarity> match_template3D ( vector<PixelSimilarity> potentials, int n )
 {
-
   vector<PixelSimilarity> output;
   Mat match;
   double minVal, maxVal;
@@ -314,9 +293,6 @@ bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
   int scales_tmp = scales;
   double max_suppression_tmp = max_suppression;
   double match3D_thr_tmp = match3D_thr;
-  double confidence_level_thr_tmp = confidence_level_thr;
-  double detection_confidence_thr_tmp = detection_confidence_thr;
-  double track_thr_tmp = track_thr;
 
   ros::NodeHandle nh;
 
@@ -326,9 +302,6 @@ bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
   nh.param ( "/social_robot/depth/arc_thr_high", arc_thr_high_tmp, arc_thr_high_tmp );
   nh.param ( "/social_robot/depth/max_suppression", max_suppression_tmp, max_suppression_tmp );
   nh.param ( "/social_robot/depth/match3D_thr", match3D_thr_tmp, match3D_thr_tmp );
-  nh.param ( "/social_robot/depth/confidence_level_thr", confidence_level_thr_tmp, confidence_level_thr_tmp );
-  nh.param ( "/social_robot/depth/detection_confidence_thr", detection_confidence_thr_tmp, detection_confidence_thr_tmp );
-  nh.param ( "/social_robot/depth/track_thr", track_thr_tmp, track_thr_tmp );
 
   chamfer_thr = chamfer_thr_tmp;
   scales = scales_tmp;
@@ -336,65 +309,22 @@ bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
   arc_thr_high = arc_thr_high_tmp;
   max_suppression = max_suppression_tmp;
   match3D_thr = match3D_thr_tmp;
-  confidence_level_thr = confidence_level_thr_tmp;
-  detection_confidence_thr = detection_confidence_thr_tmp;
-  track_thr = track_thr_tmp;
 
   return true;
 }
 
-void publish_data ( void )
+void publish_data ( vector<Rect> depthfaces )
 {
-  vector<Rect> detected_faces ( state_datas.size() );
-  for ( unsigned int i = 0; i < state_datas.size(); i++ )
-    {
-      detected_faces[i] = state_datas[i].get_target_position();
-    }
-  vector<RegionOfInterest> rosrois = ros_utils.cvrects2rosrois ( detected_faces );
-  depth_pub_rois.rois.swap ( rosrois );
-  depth_pub.publish ( depth_pub_rois );; 
+  vector<RegionOfInterest> rosrois = ros_utils.cvrects2rosrois ( depthfaces );
+  track_pub_rois.rois.swap ( rosrois );
+  track_pub.publish ( track_pub_rois );;
 }
 
 void depth_cb ( const ImageConstPtr& msg )
 {
   try
     {
-      cv_bridge::CvImagePtr cv_depth = cv_bridge::toCvCopy ( msg );
-      image_depth = cv_depth->image;
-    }
-  catch ( cv_bridge::Exception& e )
-    {
-      ROS_ERROR ( "cv_bridge exception: %s", e.what() );
-      return;
-    }
-}
-
-void rgb_cb ( const ImageConstPtr& msg )
-{
-  try
-    {
-      image_rgb = cv_bridge::toCvCopy ( msg, enc::BGR8 )->image;
-//       Mat gray;
-// 
-//       for ( vector<StateData>::iterator it = state_datas.begin(); it != state_datas.end(); )
-//         {
-//           it->image = image_rgb;
-//           if ( it->use_lbp )
-//             {
-//               cvtColor ( it->image, gray, CV_BGR2GRAY );
-//               lbp_from_gray ( gray, it->lbp );
-//             }
-//           it->tracking();
-//           if ( it->filter->confidence() < confidence_level_thr )
-//             {
-//               it = state_datas.erase ( it );
-//             }
-//           else
-//             {
-//               it++;
-//             }
-//         }
-//       publish_data();
+      image_depth = cv_bridge::toCvCopy ( msg )->image;
     }
   catch ( cv_bridge::Exception& e )
     {
@@ -408,11 +338,8 @@ void disparity_cb ( const stereo_msgs::DisparityImageConstPtr& msg )
   try
     {
       framenum++;
-      cv_bridge::CvImagePtr cv_disparity = cv_bridge::toCvCopy ( msg->image );
-      image_disparity = cv_disparity->image;
+      image_disparity = cv_bridge::toCvCopy ( msg->image )->image;
       image_disparity.convertTo ( image_disparity, CV_8UC1 );
-      Mat normalised_disparity = image_disparity;
-//       normalize ( image_disparity, normalised_disparity, 0, 255, NORM_MINMAX );
 
       if ( image_depth.empty() )
         {
@@ -420,60 +347,10 @@ void disparity_cb ( const stereo_msgs::DisparityImageConstPtr& msg )
         }
       if ( framenum == update_rate )
         {
-          framenum = 0;          
+          framenum = 0;
           vector<Rect> depthfaces = detect_face_depth ( image_depth, image_disparity );
-          for ( unsigned int i = 0; i < depthfaces.size(); i++ )
-            {
-              Point3f face_centre = cv_utils.get_rect_centre_3d ( depthfaces[i], image_depth );
-              bool associated = false;
-              for ( unsigned int j = 0; j < state_datas.size(); j++ )
-                {
-                  Point3f track_centre = cv_utils.get_rect_centre_3d ( state_datas[j].get_target_position(), image_depth );
-                  double euc_dis = cv_utils.euclidean_distance ( face_centre, track_centre );
-                  
-                  if ( euc_dis < track_thr )
-                    {
-                      associated = true;
-                      state_datas[j].detection_confidence = 100.0;
-                      cout << "Target updated " << euc_dis << endl;
-                      state_datas[j].update_target_histogram ( image_rgb, normalised_disparity, depthfaces[i] );
-                    }
-                }
-              if ( !associated )
-                {
-                  StateData state_data;
-//                   state_data.initialise ( 200, false, image_rgb, depthfaces[i], false );
-                  state_data.initialise ( 200, image_rgb, depthfaces[i], normalised_disparity, 2 );
-                  state_datas.push_back ( state_data );
-                }
-            }
+          publish_data ( depthfaces );
         }
-
-      Mat gray;
-      int i = 0;
-      for ( vector<StateData>::iterator it = state_datas.begin(); it != state_datas.end(); )
-        {
-          it->image_depth = normalised_disparity;
-          it->image = image_rgb;
-//           it->image = image_rgb;
-          it->tracking( 2.0 );                    
-          if ( it->detection_confidence < (detection_confidence_thr / 2) )
-            {
-              cout << i << " ### conf " << it->filter->confidence() << " detec: " << it->detection_confidence << endl;
-              it = state_datas.erase ( it );
-            }
-          else if ( it->filter->confidence() > confidence_level_thr || it->detection_confidence > detection_confidence_thr )
-            {
-              it++;
-            }
-          else
-            {
-              cout << i << " *** conf " << it->filter->confidence() << " detec: " << it->detection_confidence << endl;
-              it = state_datas.erase ( it );
-            }
-          i++;
-        }
-      publish_data();
     }
   catch ( cv_bridge::Exception& e )
     {
@@ -485,15 +362,20 @@ void disparity_cb ( const stereo_msgs::DisparityImageConstPtr& msg )
 void load_templates( )
 {
   string package_path = ros::package::getPath ( "social_robot" );
+
+  string head_template1;
   head_template1.append ( package_path );
   head_template1.append ( "/pictures/template.png" );
 
+  string head_template2;
   head_template2.append ( package_path );
   head_template2.append ( "/pictures/template3.png" );
 
+  string head_template3D1;
   head_template3D1.append ( package_path );
   head_template3D1.append ( "/pictures/template3D.png" );
 
+  string head_template3D2;
   head_template3D2.append ( package_path );
   head_template3D2.append ( "/pictures/template3D.png" );
 
@@ -501,7 +383,7 @@ void load_templates( )
   Mat head_template_im2 = imread ( head_template2, CV_LOAD_IMAGE_ANYDEPTH );
   Mat head_template3D_im1 = imread ( head_template3D1, CV_LOAD_IMAGE_ANYDEPTH );
   Mat head_template3D_im2 = imread ( head_template3D2, CV_LOAD_IMAGE_ANYDEPTH );
-  
+
   head_template_im1 = cv_utils.rgb2bw ( head_template_im1 );
   head_template_im1.convertTo ( head_template_im1, CV_32F );
   head_template_im2 = cv_utils.rgb2bw ( head_template_im2 );
@@ -526,7 +408,7 @@ int main ( int argc, char **argv )
   ros::init ( argc, argv, "social_robot_depth" );
   ros::NodeHandle nh;
 
-  load_templates();  
+  load_templates();
 
   // to register the depth
   nh.setParam ( "/camera/driver/depth_registration", true );
@@ -537,18 +419,14 @@ int main ( int argc, char **argv )
   nh.setParam ( "/social_robot/depth/arc_thr_high", arc_thr_high );
   nh.setParam ( "/social_robot/depth/max_suppression", max_suppression );
   nh.setParam ( "/social_robot/depth/match3D_thr", match3D_thr );
-  nh.setParam ( "/social_robot/depth/confidence_level_thr", confidence_level_thr );
-  nh.setParam ( "/social_robot/depth/detection_confidence_thr", detection_confidence_thr );
-  nh.setParam ( "/social_robot/depth/track_thr", track_thr );
 
   // subscribtions
   ros::ServiceServer update_srv = nh.advertiseService ( "/social_robot/depth/update", update_param_cb );
   ros::Subscriber disparity_sub = nh.subscribe ( "/camera/depth/disparity", 1, disparity_cb );
   ros::Subscriber depth_sub = nh.subscribe ( "/camera/depth/image_raw", 1, depth_cb );
-  ros::Subscriber rgb_sub = nh.subscribe ( "/camera/rgb/image_color", 1, rgb_cb );
 
   // publications
-  depth_pub = nh.advertise<social_robot::RegionOfInterests> ( "/social_robot/depth/rois", 1 );
+  track_pub = nh.advertise<social_robot::RegionOfInterests> ( "/social_robot/depth/rois", 1 );
 
   ros::spin();
 
