@@ -64,13 +64,13 @@ void ParticleFilter::init ( const Rect& selection )
 /**
  * Update filter with measurements and time step.
  */
-Mat& ParticleFilter::update ( Mat& image, Mat& lbp_image, const Size& target_size, Mat& target_hist, bool use_lbp )
+Mat& ParticleFilter::update ( Mat& image, Mat& depth_image, const cv::Size& target_size, Mat& target_hist, int hist_type )
 {
   Mat hist;
   Rect bounds ( 0, 0, image.cols, image.rows );
 
   // Update the confidence for each particle
-  for ( uint i = 0; i< m_num_particles; i++ )
+  for ( uint i = 0; i < m_num_particles; i++ )
     {
       float scale = MAX ( 0.1, m_particles[i] ( STATE_SCALE ) );
       m_particles[i] ( STATE_SCALE ) = scale;
@@ -80,9 +80,9 @@ Mat& ParticleFilter::update ( Mat& image, Mat& lbp_image, const Size& target_siz
       int y = round ( m_particles[i] ( STATE_Y ) ) - height / 2;
 
       Rect region = Rect ( x, y, width, height ) & bounds;
-      Mat image_roi ( image, region ), lbp_roi ( lbp_image, region );
+      Mat image_roi ( image, region ), depth_roi ( depth_image, region );
 
-      m_confidence[i] = calc_likelyhood ( image_roi, lbp_roi, target_hist, use_lbp );
+      m_confidence[i] = calc_likelyhood ( image_roi, depth_roi, target_hist, hist_type );
     }
 
   // Project the state forward in time
@@ -97,17 +97,17 @@ Mat& ParticleFilter::update ( Mat& image, Mat& lbp_image, const Size& target_siz
   int y = round ( m_state ( STATE_Y ) ) - height / 2;
 
   region = Rect ( x, y, width, height ) & bounds;
-  Mat image_roi ( image, region ), lbp_roi ( lbp_image, region );
+  Mat image_roi ( image, region ), depth_roi ( depth_image, region );
 
-  m_mean_confidence = calc_likelyhood ( image_roi, lbp_roi, target_hist, use_lbp );
+  m_mean_confidence = calc_likelyhood ( image_roi, depth_roi, target_hist, hist_type );
 
   // Redistribute particles to reacquire the target if the mean state moves
   // off screen.  This usually means the target has been lost due to a mismatch
   // between the modelled motion and actual motion.
   if ( !bounds.contains ( Point ( round ( m_state ( STATE_X ) ), round ( m_state ( STATE_Y ) ) ) ) )
     {
-      static const float lower_bound[NUM_STATES] = {0, 0, -.5, -.5, 1.0};
-      static const float upper_bound[NUM_STATES] = {image.cols, image.rows, .5, .5, 2.0};
+      static const float lower_bound[NUM_STATES] = {0, 0, -0.5, -0.5, 1.0};
+      static const float upper_bound[NUM_STATES] = {image.cols, image.rows, 0.5, 0.5, 2.0};
 
       cout << "Redistribute: " << m_state << " " << m_mean_confidence << endl;
       redistribute ( lower_bound, upper_bound );
@@ -117,21 +117,21 @@ Mat& ParticleFilter::update ( Mat& image, Mat& lbp_image, const Size& target_siz
 }
 
 // Calculate the likelyhood for a particular region
-float ParticleFilter::calc_likelyhood ( Mat& image_roi, Mat& lbp_roi, Mat& target_hist, bool use_lbp )
+float ParticleFilter::calc_likelyhood ( Mat& image_roi, Mat& depth_roi, Mat& target_hist, int hist_type )
 {
   static const float LAMBDA = 20.f;
   static Mat hist;
 
-  calc_hist ( image_roi, lbp_roi, hist, use_lbp );
+  calc_hist ( image_roi, depth_roi, hist, hist_type );
   normalize ( hist, hist );
 
-  float bc = compareHist ( target_hist, hist, CV_COMP_BHATTACHARYYA );
+  float bc = compareHist ( target_hist, hist, CV_COMP_CORREL );  
   float prob = 0.f;
   if ( bc != 1.f ) // Clamp total mismatch to 0 likelyhood
     {
       prob = exp ( -LAMBDA * ( bc * bc ) );
     }
-  return prob;
+  return bc;
 }
 
 void ParticleFilter::draw_estimated_state ( Mat& image, const Size& target_size, const Scalar& color )

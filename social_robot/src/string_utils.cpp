@@ -5,29 +5,29 @@
 
 using namespace std;
 
-string inttostr(int x)
+string inttostr ( int x )
 {
   stringstream ss;
   ss << x;
   return ss.str();
 }
 
-string current_log_time(void)
+string current_log_time ( void )
 {
   time_t now;
-  time(&now);
+  time ( &now );
 
   char buffer [80];
-  strftime(buffer, 20, "%Y%m%d%H%M%S", localtime(&now));
+  strftime ( buffer, 20, "%Y%m%d%H%M%S", localtime ( &now ) );
   string log_time = buffer;
   cout << log_time << endl;
 
   int i;
   int length = log_time.length();
-  for (i = 0; i < length; i++)
+  for ( i = 0; i < length; i++ )
     {
       char c = log_time[i];
-      if (c < '0' || c > '9')
+      if ( c < '0' || c > '9' )
         {
           //log_time.erase(i, 1);
         }

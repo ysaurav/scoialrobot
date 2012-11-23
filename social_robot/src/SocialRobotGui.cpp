@@ -6,11 +6,6 @@
 #include <std_msgs/String.h>
 #include <sstream>
 
-#include <opencv2/core/core.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include "cv_utils.h"
-
 using namespace std;
 using namespace cv;
 namespace enc = sensor_msgs::image_encodings;
@@ -60,11 +55,11 @@ void SocialRobotGui::depth_cb ( const sensor_msgs::ImageConstPtr& msg )
           Mat image_depth = cv_depth->image;
           if ( display_rgb_faces )
             {
-              draw_rgb_faces ( image_depth, rgb_rois );
+              cv_utils.draw_rgb_faces ( image_depth, rgb_rois );
             }
           if ( display_depth_faces )
             {
-              draw_depth_faces ( image_depth, depth_rois );
+              cv_utils.draw_depth_faces ( image_depth, depth_rois );
             }
           emit update_image ( image_depth );
         }
@@ -85,11 +80,11 @@ void SocialRobotGui::rgb_cb ( const sensor_msgs::ImageConstPtr &msg )
           Mat image_rgb = cv_bridge::toCvCopy ( msg, enc::BGR8 )->image;
           if ( display_rgb_faces )
             {
-              draw_rgb_faces ( image_rgb, rgb_rois );
+              cv_utils.draw_rgb_faces ( image_rgb, rgb_rois );
             }
           if ( display_depth_faces )
             {
-              draw_depth_faces ( image_rgb, depth_rois );
+              cv_utils.draw_depth_faces ( image_rgb, depth_rois );
             }
           emit update_image ( image_rgb );
         }
@@ -158,3 +153,16 @@ void SocialRobotGui::threshold_confidence ( double threshold )
   update_client.call<std_srvs::Empty> ( empty );
 }
 
+void SocialRobotGui::threshold_detection ( double threshold )
+{
+  ros::NodeHandle nh;
+  nh.setParam ( "/social_robot/depth/detection_confidence_thr", threshold );
+  update_client.call<std_srvs::Empty> ( empty );
+}
+
+void SocialRobotGui::threshold_eucdis ( double threshold )
+{
+  ros::NodeHandle nh;
+  nh.setParam ( "/social_robot/depth/track_thr", threshold );
+  update_client.call<std_srvs::Empty> ( empty );
+}

@@ -21,6 +21,6 @@
 
 #include <opencv2/opencv.hpp>
 
-void calc_hist ( cv::Mat& bgr, cv::Mat& lbp, cv::Mat& hist, bool use_lbp );
+void calc_hist ( cv::Mat& bgr, cv::Mat& depth, cv::Mat& hist, int type );
 
 #endif

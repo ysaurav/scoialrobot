@@ -1,7 +1,4 @@
-#include "cv_utils.h"
-
-using namespace cv;
-using namespace std;
+#include "CvUtils.h"
 
 const static Scalar colors[] =
 {
@@ -15,7 +12,7 @@ const static Scalar colors[] =
   CV_RGB ( 255, 0, 255 )
 };
 
-Mat rgb2bw ( Mat im_rgb )
+Mat CvUtils::rgb2bw ( Mat im_rgb )
 {
   Mat im_gray;
   if ( im_rgb.channels() == 3 )
@@ -32,7 +29,7 @@ Mat rgb2bw ( Mat im_rgb )
   return im_bw;
 }
 
-Mat preprocessing ( Mat image )
+Mat CvUtils::preprocessing ( Mat image )
 {
   Mat dst;
   Mat temp;
@@ -49,7 +46,7 @@ Mat preprocessing ( Mat image )
   return dst;
 }
 
-void get_non_zeros ( Mat img, Mat prob, vector<Point3f> *points, Point pdiff, double scale )
+void CvUtils::get_non_zeros ( Mat img, Mat prob, vector<Point3f> *points, Point pdiff, double scale )
 {
   for ( int i = 0; i < img.rows; i++ )
     {
@@ -68,7 +65,7 @@ void get_non_zeros ( Mat img, Mat prob, vector<Point3f> *points, Point pdiff, do
     }
 }
 
-void draw_rgb_faces ( Mat &img, vector<Rect> faces )
+void CvUtils::draw_rgb_faces ( Mat &img, vector<Rect> faces )
 {
   int i = 0;
   for ( vector<Rect>::const_iterator r = faces.begin(); r != faces.end(); r++, i++ )
@@ -83,7 +80,7 @@ void draw_rgb_faces ( Mat &img, vector<Rect> faces )
     }
 }
 
-void draw_tracking_faces ( Mat &img, vector<StateData> state_datas )
+void CvUtils::draw_tracking_faces ( Mat &img, vector<StateData> state_datas )
 {
   for ( unsigned int i = 0; i < state_datas.size(); i++ )
     {
@@ -107,7 +104,7 @@ void draw_tracking_faces ( Mat &img, vector<StateData> state_datas )
     }
 }
 
-void draw_depth_faces ( Mat &img, vector<Rect> faces )
+void CvUtils::draw_depth_faces ( Mat &img, vector<Rect> faces )
 {
   int i = 0;
   for ( vector<Rect>::const_iterator r = faces.begin(); r != faces.end(); r++, i++ )
@@ -117,15 +114,29 @@ void draw_depth_faces ( Mat &img, vector<Rect> faces )
     }
 }
 
-Point get_rect_centre ( Rect rect )
+Point CvUtils::get_rect_centre ( Rect rect )
 {
   Point centre;
-  centre.x = rect.x + (rect.width * 0.5);
-  centre.y = rect.y + (rect.height * 0.5);
+  centre.x = rect.x + ( rect.width * 0.5 );
+  centre.y = rect.y + ( rect.height * 0.5 );
   return centre;
 }
 
-double euclidean_distance ( Point a, Point b )
+Point3f CvUtils::get_rect_centre_3d ( Rect rect, Mat depth_image )
+{
+  Point3f centre;
+  centre.x = rect.x + ( rect.width * 0.5 );
+  centre.y = rect.y + ( rect.height * 0.5 );
+  centre.z = depth_image.at<unsigned short> ( centre.y, centre.x );
+  return centre;
+}
+
+double CvUtils::euclidean_distance ( Point3f a, Point3f b )
+{
+  return sqrt ( pow ( a.x - b.x, 2 ) + pow ( a.y - b.y, 2 ) + pow ( a.z - b.z, 2 ) );
+}
+
+double CvUtils::euclidean_distance ( Point a, Point b )
 {
   return sqrt ( pow ( a.x - b.x, 2 ) + pow ( a.y - b.y, 2 ) );
 }

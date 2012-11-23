@@ -1,9 +1,9 @@
 #include <ros/ros.h>
 
 #include "kinect_proxy.h"
-#include "cv_utils.h"
 #include "PixelSimilarity.h"
 #include "Template.h"
+#include "CvUtils.h"
 
 #define HEAD_TEMPLATE1 "pictures/template3.png"
 #define HEAD_TEMPLATE2 "pictures/template.png"
@@ -20,6 +20,7 @@ using namespace std;
 using namespace cv;
 
 string cascade_name = "rsrc/haarcascades/haarcascade_frontalface_alt.xml";
+CvUtils cv_utils;
 
 const static Scalar colors[] =
 {
@@ -63,7 +64,7 @@ vector<Point3f> chamfer_matching ( Mat image, Mat template_im )
     }
 
   // matching with the template
-  template_im = rgb2bw ( template_im );
+  template_im = cv_utils.rgb2bw ( template_im );
   template_im.convertTo ( template_im,CV_32F );
   imshow("template",template_im);
   waitKey(0);
@@ -83,7 +84,7 @@ vector<Point3f> chamfer_matching ( Mat image, Mat template_im )
       Mat matching_thr;
       threshold ( matching[i], matching_thr, 1.0 / THR3, 1.0, CV_THRESH_BINARY_INV );
       double scale = pow ( 1.0 / SCALE_FACTOR , i ); // 1.0 / 0.75
-      get_non_zeros ( matching_thr, matching[i], &head_matched_points, pdiff, scale );
+      cv_utils.get_non_zeros ( matching_thr, matching[i], &head_matched_points, pdiff, scale );
     }
 
   return head_matched_points;
@@ -119,7 +120,7 @@ vector<Point3f> chamfer_matching_fusion ( Mat image, vector<Mat> template_im )
   cout << "hola " << template_im.size() << endl;
   for( int i = 0; i < template_im.size() ; i++ )
    {
-     template_im[i] = rgb2bw ( template_im[i] );
+     template_im[i] = cv_utils.rgb2bw ( template_im[i] );
      template_im[i].convertTo ( template_im[i], CV_32F );
    }
   
@@ -151,7 +152,7 @@ vector<Point3f> chamfer_matching_fusion ( Mat image, vector<Mat> template_im )
       Mat matching_thr;
       threshold ( matching[i], matching_thr, 1.0 / THR3, 1.0, CV_THRESH_BINARY_INV );
       double scale = pow ( 1.0 / SCALE_FACTOR , i ); 
-      get_non_zeros ( matching_thr, matching[i], &head_matched_points, pdiff, scale );
+      cv_utils.get_non_zeros ( matching_thr, matching[i], &head_matched_points, pdiff, scale );
     }
 
   return head_matched_points;
@@ -323,7 +324,7 @@ int main ( int argc, char **argv )
   Mat element2 = getStructuringElement( MORPH_RECT, Size( 2*2 + 1, 2*2 + 1 ), Point( 2, 2 ) );
   
 
-  image_dispa = preprocessing( image_dispa );
+  image_dispa = cv_utils.preprocessing( image_dispa );
 
   image_depth.setTo( 0, ( image_dispa == 0 ) );
   dilate( image_depth, image_depth, element );

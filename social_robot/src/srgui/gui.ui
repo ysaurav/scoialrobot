@@ -50,6 +50,7 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
+        <zorder>label_6</zorder>
        </widget>
       </item>
      </layout>
@@ -147,10 +148,10 @@
               <number>1</number>
              </property>
              <property name="maximum">
-              <number>4</number>
+              <number>6</number>
              </property>
              <property name="value">
-              <number>4</number>
+              <number>6</number>
              </property>
             </widget>
            </item>
@@ -241,6 +242,42 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <item>
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>Distance</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="distanceSpinBox">
+             <property name="value">
+              <double>50.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_11">
+           <item>
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>Detection</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="detectionConfidenceSpinBox">
+             <property name="value">
+              <double>75.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
           <layout class="QHBoxLayout" name="horizontalLayout_8">
            <item>
             <widget class="QLabel" name="label_6">
@@ -254,14 +291,17 @@
              <property name="decimals">
               <number>3</number>
              </property>
+             <property name="minimum">
+              <double>0.000000000000000</double>
+             </property>
              <property name="maximum">
-              <double>0.500000000000000</double>
+              <double>1.000000000000000</double>
              </property>
              <property name="singleStep">
-              <double>0.010000000000000</double>
+              <double>0.100000000000000</double>
              </property>
              <property name="value">
-              <double>0.025000000000000</double>
+              <double>0.750000000000000</double>
              </property>
             </widget>
            </item>
@@ -475,12 +515,44 @@
    <slot>threshold_confidence()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>617</x>
-     <y>633</y>
+     <x>650</x>
+     <y>701</y>
     </hint>
     <hint type="destinationlabel">
      <x>655</x>
      <y>770</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>distanceSpinBox</sender>
+   <signal>editingFinished()</signal>
+   <receiver>Gui</receiver>
+   <slot>threshold_eucdis()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>595</x>
+     <y>577</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>615</x>
+     <y>782</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>detectionConfidenceSpinBox</sender>
+   <signal>editingFinished()</signal>
+   <receiver>Gui</receiver>
+   <slot>threshold_detection_confidence()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>621</x>
+     <y>628</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>624</x>
+     <y>766</y>
     </hint>
    </hints>
   </connection>
@@ -495,5 +567,7 @@
   <slot>threshold_arc_low()</slot>
   <slot>threshold_arc_high()</slot>
   <slot>threshold_confidence()</slot>
+  <slot>threshold_eucdis()</slot>
+  <slot>threshold_detection_confidence()</slot>
  </slots>
 </ui>

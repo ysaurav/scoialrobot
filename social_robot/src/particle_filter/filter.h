@@ -41,7 +41,7 @@ class ParticleFilter : private ConDensation
 
     void init ( const cv::Rect& selection );
 
-    cv::Mat& update ( cv::Mat& image, cv::Mat& lbp_image, const cv::Size& target_size, cv::Mat& target_hist, bool use_lbp );
+    cv::Mat& update ( cv::Mat& image, cv::Mat& depth_image, const cv::Size& target_size, cv::Mat& target_hist, int hist_type );
 
     void draw_estimated_state ( cv::Mat& image, const cv::Size& target_size, const cv::Scalar& color );
 
@@ -59,7 +59,7 @@ class ParticleFilter : private ConDensation
 
   private:
 
-    float calc_likelyhood ( cv::Mat& image_roi, cv::Mat& lbp_roi, cv::Mat& target_hist, bool use_lbp );
+    float calc_likelyhood ( cv::Mat& image_roi, cv::Mat& depth_roi, cv::Mat& target_hist, int hist_type );
 
     float m_mean_confidence;
     cv::Rect region;
