@@ -43,14 +43,13 @@ Tracking using particle filter uses the probability distribution over the state 
 
 === Algorithm ===
 
-The particle filter proposed for tracking uses the color-based image features and depth information. The reason of choosing color histograms is due to the fact that are robust to partial occlusion, rotational and scale invariant. Using the depth information togheter with the color improves the result making the tracking more stable. The model is tracked with particle filter by comparing the obrained histogram with the sample histogram using the Bhattacharyya distance between histograms.
+The particle filter proposed for tracking uses the color-based image features and depth information. The reason of choosing color histograms is due to the fact that are robust to partial occlusion, rotational and scale invariant. The depth information was combine with the color information in order to solve the similarity between background and target person and also the illumination conditions. The model is tracked with particle filter by comparing the obrained histogram with the sample histogram using the Bhattacharyya distance between histograms.
 An additional texture information can be added, using Local Binary Pattern. Using this method has the disadvantage of increasing the computational time.
 
 The target regions are represented by rectangles, so that a sample is given as position and velocity of the target. The sample set is propagated through the application of a dynamic mode. Each hypothetical region that can correspond to the target is specified by its state vector. As we want to favour samples whose color distributions are
 similar to the target model, the Bhattacharyya distance is used to weight the samples. 
 
 For the initialization of the particle filter we use the information of the detection part. In the update of the filter we update the confidence of each particle as mentioned previously, project the state forward in time and update the confidence at the mean state. If the target has been lost due to a mismatch between the modelled motion and actual motion than a redistribution of the particles is done.
-
 
 
 
