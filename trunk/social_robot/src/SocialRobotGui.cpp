@@ -14,9 +14,10 @@ SocialRobotGui::SocialRobotGui ( int argc, char** argv ) :
     init_argc ( argc ),
     init_argv ( argv )
 {
-  display_rgb_faces = true;
-  display_depth_faces = true;
-  display_rgb_image = true;
+  display_rgb_faces = false;
+  display_depth_faces = false;
+  display_track_faces = true;
+  display_rgb_image = true;  
   display_depth_image = false;
 }
 
@@ -36,7 +37,9 @@ void SocialRobotGui::init()
   depth_subscriber = nh.subscribe ( "/camera/depth/image_raw", 1, &SocialRobotGui::depth_cb, this );
   rgb_rois_subs = nh.subscribe ( "/social_robot/rgb/rois", 1, &SocialRobotGui::rgb_rois_cb, this );
   depth_rois_subs = nh.subscribe ( "/social_robot/depth/rois", 1, &SocialRobotGui::depth_rois_cb, this );
-  update_client = nh.serviceClient<std_srvs::Empty> ( "/social_robot/depth/update" );
+  track_rois_subs = nh.subscribe ( "/social_robot/track/rois", 1, &SocialRobotGui::track_rois_cb, this );
+  depth_update_client = nh.serviceClient<std_srvs::Empty> ( "/social_robot/depth/update" );
+  track_update_client = nh.serviceClient<std_srvs::Empty> ( "/social_robot/track/update" );
   start();
 }
 
@@ -60,6 +63,10 @@ void SocialRobotGui::depth_cb ( const sensor_msgs::ImageConstPtr& msg )
           if ( display_depth_faces )
             {
               cv_utils.draw_depth_faces ( image_depth, depth_rois );
+            }
+          if ( display_track_faces )
+            {
+              cv_utils.draw_rgb_faces ( image_depth, track_rois );
             }
           emit update_image ( image_depth );
         }
@@ -86,6 +93,10 @@ void SocialRobotGui::rgb_cb ( const sensor_msgs::ImageConstPtr &msg )
             {
               cv_utils.draw_depth_faces ( image_rgb, depth_rois );
             }
+          if ( display_track_faces )
+            {
+              cv_utils.draw_rgb_faces ( image_rgb, track_rois );
+            }
           emit update_image ( image_rgb );
         }
       catch ( cv_bridge::Exception& e )
@@ -110,59 +121,65 @@ void SocialRobotGui::depth_rois_cb ( const social_robot::RegionOfInterests &msg 
   depth_rois.swap ( tmpdepth_rois );
 }
 
+void SocialRobotGui::track_rois_cb ( const social_robot::RegionOfInterests &msg )
+{
+  vector<RegionOfInterest> rois = msg.rois;
+  vector<Rect> tmptrack_rois = ros_utils.rosrois2cvrects ( rois );
+  track_rois.swap ( tmptrack_rois );
+}
 
 void SocialRobotGui::threshold_template_matching_3d ( double threshold )
 {
   ros::NodeHandle nh;
   nh.setParam ( "/social_robot/depth/match3D_thr", threshold );
-  update_client.call<std_srvs::Empty> ( empty );
+  depth_update_client.call<std_srvs::Empty> ( empty );
 }
 
 void SocialRobotGui::threshold_scales ( int threshold )
 {
   ros::NodeHandle nh;
   nh.setParam ( "/social_robot/depth/scales", threshold );
-  update_client.call<std_srvs::Empty> ( empty );
+  depth_update_client.call<std_srvs::Empty> ( empty );
 }
 
 void SocialRobotGui::threshold_chamfer ( double threshold )
 {
   ros::NodeHandle nh;
   nh.setParam ( "/social_robot/depth/chamfer_thr", threshold );
-  update_client.call<std_srvs::Empty> ( empty );
+  depth_update_client.call<std_srvs::Empty> ( empty );
 }
 
 void SocialRobotGui::threshold_arc_low ( int threshold )
 {
   ros::NodeHandle nh;
   nh.setParam ( "/social_robot/depth/arc_thr_low", threshold );
-  update_client.call<std_srvs::Empty> ( empty );
+  depth_update_client.call<std_srvs::Empty> ( empty );
 }
 
 void SocialRobotGui::threshold_arc_high ( int threshold )
 {
   ros::NodeHandle nh;
   nh.setParam ( "/social_robot/depth/arc_thr_high", threshold );
-  update_client.call<std_srvs::Empty> ( empty );
+  depth_update_client.call<std_srvs::Empty> ( empty );
 }
 
 void SocialRobotGui::threshold_confidence ( double threshold )
 {
   ros::NodeHandle nh;
-  nh.setParam ( "/social_robot/depth/confidence_level_thr", threshold );
-  update_client.call<std_srvs::Empty> ( empty );
+  nh.setParam ( "/social_robot/track/confidence_level_thr", threshold );
+  track_update_client.call<std_srvs::Empty> ( empty );
 }
 
 void SocialRobotGui::threshold_detection ( double threshold )
 {
   ros::NodeHandle nh;
-  nh.setParam ( "/social_robot/depth/detection_confidence_thr", threshold );
-  update_client.call<std_srvs::Empty> ( empty );
+  nh.setParam ( "/social_robot/track/detection_confidence_thr", threshold );
+  track_update_client.call<std_srvs::Empty> ( empty );
 }
 
 void SocialRobotGui::threshold_eucdis ( double threshold )
 {
   ros::NodeHandle nh;
-  nh.setParam ( "/social_robot/depth/track_thr", threshold );
-  update_client.call<std_srvs::Empty> ( empty );
+  nh.setParam ( "/social_robot/track/track_thr", threshold );
+  track_update_client.call<std_srvs::Empty> ( empty );
 }

@@ -51,12 +51,14 @@ void ParticleFilter::init ( const Rect& selection )
   const float initial[NUM_STATES] = {selection.x + selection.width / 2, selection.y + selection.height / 2, 0, 0, 1.0};
   static const float std_dev[NUM_STATES] = { 2,  2,  0.5,  0.5,  0.1};
 
+  /*
   cout << "Init with state: [ ";
   for ( uint j = 0; j < NUM_STATES; j++ )
     {
       cout << initial[j] << " ";
     }
   cout << "]" << endl;
+  */
 
   init_sample_set ( initial, std_dev );
 }
@@ -66,7 +68,6 @@ void ParticleFilter::init ( const Rect& selection )
  */
 Mat& ParticleFilter::update ( Mat& image, Mat& depth_image, const cv::Size& target_size, Mat& target_hist, int hist_type )
 {
-  Mat hist;
   Rect bounds ( 0, 0, image.cols, image.rows );
 
   // Update the confidence for each particle
@@ -79,8 +80,8 @@ Mat& ParticleFilter::update ( Mat& image, Mat& depth_image, const cv::Size& targ
       int x = round ( m_particles[i] ( STATE_X ) ) - width / 2;
       int y = round ( m_particles[i] ( STATE_Y ) ) - height / 2;
 
-      Rect region = Rect ( x, y, width, height ) & bounds;
-      Mat image_roi ( image, region ), depth_roi ( depth_image, region );
+      Rect tmpregion = Rect ( x, y, width, height ) & bounds;
+      Mat image_roi ( image, tmpregion ), depth_roi ( depth_image, tmpregion );
 
       m_confidence[i] = calc_likelyhood ( image_roi, depth_roi, target_hist, hist_type );
     }

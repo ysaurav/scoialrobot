@@ -50,7 +50,6 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <zorder>label_6</zorder>
        </widget>
       </item>
      </layout>
@@ -253,7 +252,7 @@
            <item>
             <widget class="QDoubleSpinBox" name="distanceSpinBox">
              <property name="value">
-              <double>50.000000000000000</double>
+              <double>70.000000000000000</double>
              </property>
             </widget>
            </item>
@@ -270,8 +269,17 @@
            </item>
            <item>
             <widget class="QDoubleSpinBox" name="detectionConfidenceSpinBox">
+             <property name="decimals">
+              <number>3</number>
+             </property>
+             <property name="maximum">
+              <double>1.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>0.050000000000000</double>
+             </property>
              <property name="value">
-              <double>75.000000000000000</double>
+              <double>0.750000000000000</double>
              </property>
             </widget>
            </item>
@@ -298,7 +306,7 @@
               <double>1.000000000000000</double>
              </property>
              <property name="singleStep">
-              <double>0.100000000000000</double>
+              <double>0.050000000000000</double>
              </property>
              <property name="value">
               <double>0.750000000000000</double>
