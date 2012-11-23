@@ -43,6 +43,10 @@ Tracking using particle filter uses the probability distribution over the state 
 
 === Algorithm ===
 
-# The tracking takes into account the color/depth information for the #particle filter, using a systematic resampling, from OpenCV. The likelihood   The likleyhood function is based on the Bhattacharya distance between RGB histograms.  Optionally, an additional texture dimension using Local Binary Patterns can be added to the histogram.  This can be helpful when the target is not well differentiated from the background by color. However, in most cases, you can get better results for similar processor utilization by increasing the number of particles#
+The particle filter proposed for tracking uses the color-based image features and depth information. The reason of choosing color histograms is due to the fact that are robust to partial occlusion, rotational and scale invariant. Using the depth information togheter with the color improves the result making the tracking more stable. The model is tracked with particle filter by comparing the obrained histogram with the sample histogram using the Bhattacharya distance between histograms.
+An additional texture information can be added, using Local Binary Pattern. Using this method has the disadvantage of increasing the computational time.
+
+
+
 
 === Results ===
