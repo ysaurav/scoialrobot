@@ -1,3 +1,5 @@
+#ifndef SOCIAL_ROBOT_CONSTANTS_H
+#define SOCIAL_ROBOT_CONSTANTS_H
 
 #define ROIS "/social_robot/depth/rois"
 #define DEPTH_IMAGE "/camera/depth/image_raw"
@@ -14,3 +16,5 @@
 
 #define SOCIAL_ROBOT_DEPTH "social_robot_depth"
 #define SOCIAL_ROBOT "social_robot"
+
+#endif

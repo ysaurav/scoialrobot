@@ -111,6 +111,16 @@ void Gui::threshold_confidence ( void )
   social_robot_gui->threshold_confidence( ui->confidenceSpinBox->value() );
 }
 
+void Gui::threshold_eucdis ( void )
+{
+  social_robot_gui->threshold_eucdis( ui->distanceSpinBox->value() );
+}
+
+void Gui::threshold_detection_confidence ( void )
+{
+  social_robot_gui->threshold_detection( ui->detectionConfidenceSpinBox->value() );
+}
+
 void Gui::updateImage ( const Mat &img )
 {
   CvMat c_img = img;

@@ -7,6 +7,7 @@
 #include <sensor_msgs/image_encodings.h>
 #include <cv_bridge/cv_bridge.h>
 #include "RosUtils.h"
+#include "CvUtils.h"
 #include <social_robot/RegionOfInterests.h>
 #include <std_srvs/Empty.h>
 
@@ -33,6 +34,8 @@ class SocialRobotGui : public QThread
     void threshold_arc_low ( int threshold );
     void threshold_arc_high ( int threshold );
     void threshold_confidence ( double threshold );
+    void threshold_detection ( double threshold );
+    void threshold_eucdis ( double threshold );
 
     // settings
     bool display_rgb_faces;
@@ -56,6 +59,7 @@ class SocialRobotGui : public QThread
     std_srvs::Empty empty;
 
     RosUtils ros_utils;
+    CvUtils cv_utils;
   };
 
 #endif // SOCIALROBOTGUI_H

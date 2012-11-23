@@ -4,7 +4,9 @@
 #include <string>
 #include <iostream>
 
-std::string inttostr(int x);
-std::string current_log_time(void);
+using namespace std;
+
+string inttostr ( int x );
+string current_log_time ( void );
 
 #endif

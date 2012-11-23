@@ -24,7 +24,6 @@ Rect RosUtils::rosroi2cvrect ( RegionOfInterest roi )
   return rect;
 }
 
-
 vector<RegionOfInterest> RosUtils::cvrects2rosrois ( vector< Rect > rects )
 {
   unsigned int nrects = rects.size();

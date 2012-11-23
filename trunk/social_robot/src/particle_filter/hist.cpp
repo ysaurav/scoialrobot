@@ -17,12 +17,46 @@
  *
  */
 #include "hist.h"
-#include "lbp.h"
 
 using namespace cv;
 using namespace std;
 
-inline void calc_hist_bgr ( Mat& bgr, Mat& lbp, Mat& hist )
+inline void calc_hist_bgrd ( Mat& bgr, Mat& depth, Mat& hist )
+{
+  static const int channels[] = {0, 1, 2, 3};
+  static const int b_bins = 8;
+  static const int g_bins = 8;
+  static const int r_bins = 8;
+  static const int d_bins = 8;
+  static const int hist_size[] = {b_bins, g_bins, r_bins, d_bins};
+  static const float branges[] = {0, 255};
+  static const float granges[] = {0, 255};
+  static const float rranges[] = {0, 255};
+  static const float dranges[] = {0, 255};
+  static const float* ranges[] = {branges, granges, rranges, dranges};
+  static const Mat mask;
+  static const int dims = 4;
+  Mat srcs[] = {bgr, depth};
+
+  calcHist ( srcs, sizeof ( srcs ), channels, mask, hist, dims, hist_size, ranges, true, false );
+}
+
+inline void calc_hist_d ( Mat& depth, Mat& hist )
+{
+  static const int channels[] = {0};
+  static const int d_bins = 32;
+  static const int hist_size[] = {d_bins};
+  static const float dranges[] = {0, 255};
+  static const float* ranges[] = {dranges};
+  static const Mat mask;
+  static const int dims = 1;
+
+  Mat srcs[] = {depth};
+
+  calcHist ( srcs, sizeof ( srcs ), channels, mask, hist, dims, hist_size, ranges, true, false );
+}
+
+inline void calc_hist_bgr ( Mat& bgr, Mat& hist )
 {
   static const int channels[] = {0, 1, 2};
   static const int b_bins = 8;
@@ -40,34 +74,20 @@ inline void calc_hist_bgr ( Mat& bgr, Mat& lbp, Mat& hist )
   calcHist ( srcs, sizeof ( srcs ), channels, mask, hist, dims, hist_size, ranges, true, false );
 }
 
-inline void calc_hist_bgrl ( Mat& bgr, Mat& lbp, Mat& hist )
+void calc_hist ( Mat& bgr, Mat& depth, Mat& hist, int type )
 {
-  static const int channels[] = {0, 1, 2, 3};
-  static const int b_bins = 8;
-  static const int g_bins = 8;
-  static const int r_bins = 8;
-  static const int l_bins = lbp_num_patterns();
-  static const int hist_size[] = {b_bins, g_bins, r_bins, l_bins};
-  static const float branges[] = {0, 255};
-  static const float granges[] = {0, 255};
-  static const float rranges[] = {0, 255};
-  static const float lranges[] = {0, lbp_num_patterns() };
-  static const float* ranges[] = {branges, granges, rranges, lranges};
-  static const Mat mask;
-  static const int dims = 4;
-  Mat srcs[] = {bgr, lbp};
-
-  calcHist ( srcs, sizeof ( srcs ), channels, mask, hist, dims, hist_size, ranges, true, false );
-}
-
-void calc_hist ( cv::Mat& bgr, cv::Mat& lbp, cv::Mat& hist, bool use_lbp )
-{
-  if ( use_lbp )
+  switch ( type )
     {
-      return calc_hist_bgrl ( bgr, lbp, hist );
-    }
-  else
-    {
-      return calc_hist_bgr ( bgr, lbp, hist );
+    case 0:
+      calc_hist_bgr ( bgr, hist );
+      break;
+    case 1:
+      calc_hist_d ( bgr, hist );
+      break;
+    case 2:
+      calc_hist_bgrd ( bgr, depth, hist );      
+      break;
+    default:
+      break;
     }
 }

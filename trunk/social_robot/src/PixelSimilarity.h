@@ -9,9 +9,9 @@ class PixelSimilarity
     cv::Point point;
     float radius;
     float similarity;
-    
+
     PixelSimilarity( );
-    PixelSimilarity( cv::Point point, float radius, float similarity );
+    PixelSimilarity ( cv::Point point, float radius, float similarity );
   };
 
 #endif // PIXELSIMILARITY_H

@@ -1,5 +1,5 @@
 #include "StateData.h"
-#include "../cv_utils.h"
+#include "../CvUtils.h"
 
 using namespace std;
 using namespace cv;
@@ -9,51 +9,39 @@ StateData::StateData ( void )
 
 }
 
-void StateData::tracking ( void )
+void StateData::tracking ( double cost )
 {
-  filter->update ( image, lbp, selection.size(), target_histogram, use_lbp );
+  detection_confidence = detection_confidence - cost;
+  filter->update ( image, image_depth, selection.size(), target_histogram, hist_type );
 }
 
-void StateData::initialise ( int num_particles, bool use_lbp_, Mat image_, Rect selection_ )
+void StateData::initialise ( int num_particles, Mat image_, Rect selection_, Mat image_depth_, int hist_type_ )
 {
-  use_lbp = use_lbp_;
   draw_particles = false;
   filter = new ParticleFilter ( num_particles );
   image_.copyTo ( image );
-  lbp = Mat::zeros ( image.rows, image.cols, CV_8UC1 );
+  image_depth_.copyTo ( image_depth );
   selection = selection_;
+  hist_type = hist_type_;
+  detection_confidence = 100.0;
 
-  update_target_histogram();
+  update_target_histogram ( image, image_depth, selection );
 
   // Initialise condensation filter with center of selection
   filter->init ( selection );
 }
 
 Rect StateData::get_target_position ( void )
-{  
+{
   return filter->get_estimated_state();
 }
 
-
-void StateData::update_target_histogram ( void )
+void StateData::update_target_histogram ( Mat& newimage, Mat& newdepth, Rect new_selection )
 {
-  Mat roi ( image, selection ), lbp_roi ( lbp, selection );
+  selection = new_selection;
+  Mat roi ( newimage, selection ), depth_roi ( newdepth, selection );
   roi.copyTo ( target );
-  Mat new_hist;
-  float alpha = 0.2;
 
-  calc_hist ( roi, lbp_roi, new_hist, use_lbp );
-  normalize ( new_hist, new_hist );
-
-  if ( target_histogram.empty() )
-    {
-      target_histogram = new_hist;
-    }
-  else
-    {
-      // TODO - support for adaptive updates not fully implemented.
-      target_histogram = ( ( 1.f - alpha ) * target_histogram ) + ( alpha * new_hist );
-      normalize ( target_histogram, target_histogram );
-    }
-  cout << "Target updated" << endl;
+  calc_hist ( roi, depth_roi, target_histogram, hist_type );
+  normalize ( target_histogram, target_histogram );  
 }

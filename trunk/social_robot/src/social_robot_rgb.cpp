@@ -3,12 +3,11 @@
 #include <social_robot/RegionOfInterests.h>
 
 #include "kinect_proxy.h"
-#include "cv_utils.h"
+#include "CvUtils.h"
 #include "RosUtils.h"
 #include "particle_filter/StateData.h"
 #include "particle_filter/hist.h"
 #include "particle_filter/filter.h"
-#include "particle_filter/lbp.h"
 
 using namespace std;
 using namespace cv;
@@ -26,6 +25,8 @@ ros::Publisher rgb_pub;
 
 vector<StateData> state_datas;
 int framenum = 0;
+
+CvUtils cv_utils;
 
 vector<Rect> detect_face_rgb ( Mat img, CascadeClassifier &cascade )
 {
@@ -110,22 +111,23 @@ void rgb_cb ( const ImageConstPtr& msg )
           vector<Rect> rgbfaces = detect_face_rgb ( image_rgb, classifier );
           for ( unsigned int i = 0; i < rgbfaces.size(); i++ )
             {              
-              Point face_centre = get_rect_centre( rgbfaces[i]);
+              Point face_centre = cv_utils.get_rect_centre ( rgbfaces[i] );
               bool associated = false;
               for ( unsigned int j = 0; j < state_datas.size(); j++ )
                 {
-                  Point track_centre = get_rect_centre ( state_datas[j].get_target_position() );
-                  double euc_dis = euclidean_distance ( face_centre, track_centre );
+                  Point track_centre = cv_utils.get_rect_centre ( state_datas[j].get_target_position() );
+                  double euc_dis = cv_utils.euclidean_distance ( face_centre, track_centre );
 
                   if ( euc_dis < 50 )
                     {
                       associated = true;
+//                       state_datas[j].update_target_histogram ( image_rgb, rgbfaces[i] );
                     }
                 }
               if ( !associated )
                 {
                   StateData state_data;
-                  state_data.initialise( 200, false, image_rgb, rgbfaces[i] );
+                  state_data.initialise( 200, image_rgb, rgbfaces[i], image_rgb, 0 );
                   state_datas.push_back( state_data );
                 }
             }
@@ -133,11 +135,6 @@ void rgb_cb ( const ImageConstPtr& msg )
       for ( vector<StateData>::iterator it = state_datas.begin(); it != state_datas.end();  )
         {
           it->image = image_rgb;
-          if ( it->use_lbp )
-            {
-              cvtColor ( it->image, gray, CV_BGR2GRAY );
-              lbp_from_gray ( gray, it->lbp );
-            }
           it->tracking();
           if ( it->filter->confidence() < 0.025 )
             {
@@ -182,9 +179,6 @@ int main ( int argc, char **argv )
     {
       return -1;
     }
-
-  // particle filter initialisaiton
-  lbp_init();
 
   // subscribtions
   ros::ServiceServer update_srv = nh.advertiseService ( "/social_robot/update", update_param_cb );

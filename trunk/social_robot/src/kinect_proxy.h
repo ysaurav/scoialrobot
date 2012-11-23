@@ -12,6 +12,6 @@
 
 #include "string_utils.h"
 
-void init_kinect(void);
+void init_kinect ( void );
 
 #endif
