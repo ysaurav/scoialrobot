@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" href="$classCvBar.html" title="CvBar" alt="" coords="5,31,61,57"/>
+<area shape="rect" href="$classCvButtonbar.html" title="CvButtonbar" alt="" coords="111,5,201,32"/>
+<area shape="rect" href="$classCvTrackbar.html" title="CvTrackbar" alt="" coords="113,56,199,83"/>
+</map>

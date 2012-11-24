@@ -1,0 +1,252 @@
+\hypertarget{social__robot__onethread_8cpp}{
+\section{social\_\-robot\_\-onethread.cpp File Reference}
+\label{social__robot__onethread_8cpp}\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+}
+{\ttfamily \#include $<$ros/ros.h$>$}\par
+{\ttfamily \#include $<$std\_\-srvs/Empty.h$>$}\par
+{\ttfamily \#include $<$stereo\_\-msgs/DisparityImage.h$>$}\par
+{\ttfamily \#include \char`\"{}kinect\_\-proxy.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}cv\_\-utils.h\char`\"{}}\par
+Include dependency graph for social\_\-robot\_\-onethread.cpp:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{social__robot__onethread_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Mat \hyperlink{social__robot__onethread_8cpp_a16ebcb073ba5d63114929eaadf8997c9}{preprocessing} (Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image})
+\item 
+vector$<$ Point $>$ \hyperlink{social__robot__onethread_8cpp_aa5e4d766039d6617392e593561c1c543}{chamfer\_\-matching} (Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image})
+\item 
+vector$<$ Point3f $>$ \hyperlink{social__robot__onethread_8cpp_a6558712a3623c2dbbb248aca8be79658}{compute\_\-headparameters} (Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image}, vector$<$ Point $>$ \hyperlink{social__robot__depth_8cpp_ae49e0fd65160c33b3bd285afab7ffc7c}{chamfer})
+\item 
+bool \hyperlink{social__robot__onethread_8cpp_afd0c09aff72c2db54711877905bc09a8}{update\_\-param\_\-cb} (std\_\-srvs::Empty::Request \&, std\_\-srvs::Empty::Response \&)
+\item 
+void \hyperlink{social__robot__onethread_8cpp_a8822e21670e8549d4c51bad4c96890d9}{rgb\_\-cb} (const sensor\_\-msgs::ImageConstPtr \&msg)
+\item 
+void \hyperlink{social__robot__onethread_8cpp_aa59cb262fc28be47854d4ce4314ccbe1}{depth\_\-cb} (const sensor\_\-msgs::ImageConstPtr \&msg)
+\item 
+void \hyperlink{social__robot__onethread_8cpp_a0d3fad22151b4866ff40824b1f16610c}{disparity\_\-cb} (const stereo\_\-msgs::DisparityImageConstPtr \&msg)
+\item 
+void \hyperlink{social__robot__onethread_8cpp_a292253e127630032ab283cb012c3fde1}{roi\_\-cb} (const sensor\_\-msgs::RegionOfInterest \&msg)
+\item 
+void \hyperlink{social__robot__onethread_8cpp_a52c7f71eb2e6164fc2b70972894bc1ee}{timer\_\-cb} (const ros::TimerEvent \&event)
+\item 
+int \hyperlink{social__robot__onethread_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{social__robot__onethread_8cpp_a7ae536fe976b9095cd8b79a4a04aa5ec}{head\_\-template} = \char`\"{}pictures/template.png\char`\"{}
+\item 
+double \hyperlink{social__robot__onethread_8cpp_a87fa9082ee506a29ae2fd3033a3c95e4}{canny\_\-thr1} = 5
+\item 
+double \hyperlink{social__robot__onethread_8cpp_a5799325f4f6a0573e72d80506835632c}{canny\_\-thr2} = 7
+\item 
+double \hyperlink{social__robot__onethread_8cpp_aebd343022649783a801b963924cfd962}{chamfer\_\-thr} = 20
+\item 
+double \hyperlink{social__robot__onethread_8cpp_ac61cd7d732e8a12b6e4922efe42df021}{arc\_\-thr} = 12
+\item 
+double \hyperlink{social__robot__onethread_8cpp_a21cab78b592b62d848ce4c97b56f3fab}{euc\_\-thr} = 5
+\item 
+int \hyperlink{social__robot__onethread_8cpp_a706cc7c7163878b35e58171cc5aa8a3c}{scales} = 5
+\item 
+vector$<$ Point $>$ \hyperlink{social__robot__onethread_8cpp_a0c67e84577bc239d1eea8827dab5afe7}{head\_\-matched\_\-points}
+\item 
+vector$<$ Point3f $>$ \hyperlink{social__robot__onethread_8cpp_a8a47ade7faa65caf234342991974750e}{head\_\-features}
+\item 
+vector$<$ Rect $>$ \hyperlink{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{rois}
+\item 
+vector$<$ Rect $>$ \hyperlink{social__robot__onethread_8cpp_a470ea91fa3ea1288e184cdf64ccacda3}{humans}
+\item 
+int \hyperlink{social__robot__onethread_8cpp_aba5f7816901cdf972b792e70e1f11296}{roi\_\-x\_\-offset}
+\item 
+int \hyperlink{social__robot__onethread_8cpp_aa3044843a01536972388a965d0c982e7}{roi\_\-y\_\-offset}
+\item 
+int \hyperlink{social__robot__onethread_8cpp_a3b762528047eabfcdb66d724ce2612ca}{roi\_\-height}
+\item 
+int \hyperlink{social__robot__onethread_8cpp_adab7f7eefeddcacabc0f3f394180dd0f}{roi\_\-width}
+\item 
+Mat $\ast$ \hyperlink{social__robot__onethread_8cpp_a457c8b7f7906547eba00552380ac9c4b}{pyramid} = new Mat\mbox{[}\hyperlink{social__robot__depth_8cpp_a706cc7c7163878b35e58171cc5aa8a3c}{scales}\mbox{]}
+\item 
+Mat $\ast$ \hyperlink{social__robot__onethread_8cpp_ae49e0fd65160c33b3bd285afab7ffc7c}{chamfer} = new Mat\mbox{[}\hyperlink{social__robot__depth_8cpp_a706cc7c7163878b35e58171cc5aa8a3c}{scales}\mbox{]}
+\item 
+Mat $\ast$ \hyperlink{social__robot__onethread_8cpp_a1ad5e89ff23cfb6db193cfd737de72f1}{matching} = new Mat\mbox{[}\hyperlink{social__robot__depth_8cpp_a706cc7c7163878b35e58171cc5aa8a3c}{scales}\mbox{]}
+\item 
+Mat \hyperlink{social__robot__onethread_8cpp_a562c24171e2f8906922d1972dbd15f17}{canny\_\-im}
+\item 
+Mat \hyperlink{social__robot__onethread_8cpp_aea3f7c95f70e07adffaf65b6bdfd2e25}{image\_\-rgb}
+\item 
+Mat \hyperlink{social__robot__onethread_8cpp_a5b613972ff73fd7b34e0ee18acc5c1a6}{depth\_\-image}
+\item 
+Mat \hyperlink{social__robot__onethread_8cpp_a485c05800d39168b94f859fac62aa6a7}{disparity\_\-image}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{social__robot__onethread_8cpp_aa5e4d766039d6617392e593561c1c543}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!chamfer\_\-matching@{chamfer\_\-matching}}
+\index{chamfer\_\-matching@{chamfer\_\-matching}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{chamfer\_\-matching}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Point$>$ chamfer\_\-matching (Mat {\em image})}}
+\label{social__robot__onethread_8cpp_aa5e4d766039d6617392e593561c1c543}
+\hypertarget{social__robot__onethread_8cpp_a6558712a3623c2dbbb248aca8be79658}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!compute\_\-headparameters@{compute\_\-headparameters}}
+\index{compute\_\-headparameters@{compute\_\-headparameters}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{compute\_\-headparameters}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Point3f$>$ compute\_\-headparameters (Mat {\em image}, \/  vector$<$ Point $>$ {\em chamfer})}}
+\label{social__robot__onethread_8cpp_a6558712a3623c2dbbb248aca8be79658}
+\hypertarget{social__robot__onethread_8cpp_aa59cb262fc28be47854d4ce4314ccbe1}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!depth\_\-cb@{depth\_\-cb}}
+\index{depth\_\-cb@{depth\_\-cb}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{depth\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void depth\_\-cb (const sensor\_\-msgs::ImageConstPtr \& {\em msg})}}
+\label{social__robot__onethread_8cpp_aa59cb262fc28be47854d4ce4314ccbe1}
+\hypertarget{social__robot__onethread_8cpp_a0d3fad22151b4866ff40824b1f16610c}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!disparity\_\-cb@{disparity\_\-cb}}
+\index{disparity\_\-cb@{disparity\_\-cb}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{disparity\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void disparity\_\-cb (const stereo\_\-msgs::DisparityImageConstPtr \& {\em msg})}}
+\label{social__robot__onethread_8cpp_a0d3fad22151b4866ff40824b1f16610c}
+\hypertarget{social__robot__onethread_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!main@{main}}
+\index{main@{main}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$$\ast$ {\em argv})}}
+\label{social__robot__onethread_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+\hypertarget{social__robot__onethread_8cpp_a16ebcb073ba5d63114929eaadf8997c9}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!preprocessing@{preprocessing}}
+\index{preprocessing@{preprocessing}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{preprocessing}]{\setlength{\rightskip}{0pt plus 5cm}Mat preprocessing (Mat {\em image})}}
+\label{social__robot__onethread_8cpp_a16ebcb073ba5d63114929eaadf8997c9}
+\hypertarget{social__robot__onethread_8cpp_a8822e21670e8549d4c51bad4c96890d9}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!rgb\_\-cb@{rgb\_\-cb}}
+\index{rgb\_\-cb@{rgb\_\-cb}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{rgb\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void rgb\_\-cb (const sensor\_\-msgs::ImageConstPtr \& {\em msg})}}
+\label{social__robot__onethread_8cpp_a8822e21670e8549d4c51bad4c96890d9}
+\hypertarget{social__robot__onethread_8cpp_a292253e127630032ab283cb012c3fde1}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!roi\_\-cb@{roi\_\-cb}}
+\index{roi\_\-cb@{roi\_\-cb}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{roi\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void roi\_\-cb (const sensor\_\-msgs::RegionOfInterest \& {\em msg})}}
+\label{social__robot__onethread_8cpp_a292253e127630032ab283cb012c3fde1}
+\hypertarget{social__robot__onethread_8cpp_a52c7f71eb2e6164fc2b70972894bc1ee}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!timer\_\-cb@{timer\_\-cb}}
+\index{timer\_\-cb@{timer\_\-cb}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{timer\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void timer\_\-cb (const ros::TimerEvent \& {\em event})}}
+\label{social__robot__onethread_8cpp_a52c7f71eb2e6164fc2b70972894bc1ee}
+\hypertarget{social__robot__onethread_8cpp_afd0c09aff72c2db54711877905bc09a8}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!update\_\-param\_\-cb@{update\_\-param\_\-cb}}
+\index{update\_\-param\_\-cb@{update\_\-param\_\-cb}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{update\_\-param\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}bool update\_\-param\_\-cb (std\_\-srvs::Empty::Request \&, \/  std\_\-srvs::Empty::Response \&)}}
+\label{social__robot__onethread_8cpp_afd0c09aff72c2db54711877905bc09a8}
+
+
+\subsection{Variable Documentation}
+\hypertarget{social__robot__onethread_8cpp_ac61cd7d732e8a12b6e4922efe42df021}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!arc\_\-thr@{arc\_\-thr}}
+\index{arc\_\-thr@{arc\_\-thr}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{arc\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf arc\_\-thr} = 12}}
+\label{social__robot__onethread_8cpp_ac61cd7d732e8a12b6e4922efe42df021}
+\hypertarget{social__robot__onethread_8cpp_a562c24171e2f8906922d1972dbd15f17}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!canny\_\-im@{canny\_\-im}}
+\index{canny\_\-im@{canny\_\-im}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{canny\_\-im}]{\setlength{\rightskip}{0pt plus 5cm}Mat {\bf canny\_\-im}}}
+\label{social__robot__onethread_8cpp_a562c24171e2f8906922d1972dbd15f17}
+\hypertarget{social__robot__onethread_8cpp_a87fa9082ee506a29ae2fd3033a3c95e4}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!canny\_\-thr1@{canny\_\-thr1}}
+\index{canny\_\-thr1@{canny\_\-thr1}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{canny\_\-thr1}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf canny\_\-thr1} = 5}}
+\label{social__robot__onethread_8cpp_a87fa9082ee506a29ae2fd3033a3c95e4}
+\hypertarget{social__robot__onethread_8cpp_a5799325f4f6a0573e72d80506835632c}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!canny\_\-thr2@{canny\_\-thr2}}
+\index{canny\_\-thr2@{canny\_\-thr2}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{canny\_\-thr2}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf canny\_\-thr2} = 7}}
+\label{social__robot__onethread_8cpp_a5799325f4f6a0573e72d80506835632c}
+\hypertarget{social__robot__onethread_8cpp_ae49e0fd65160c33b3bd285afab7ffc7c}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!chamfer@{chamfer}}
+\index{chamfer@{chamfer}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{chamfer}]{\setlength{\rightskip}{0pt plus 5cm}Mat$\ast$ {\bf chamfer} = new Mat\mbox{[}{\bf scales}\mbox{]}}}
+\label{social__robot__onethread_8cpp_ae49e0fd65160c33b3bd285afab7ffc7c}
+\hypertarget{social__robot__onethread_8cpp_aebd343022649783a801b963924cfd962}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!chamfer\_\-thr@{chamfer\_\-thr}}
+\index{chamfer\_\-thr@{chamfer\_\-thr}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{chamfer\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf chamfer\_\-thr} = 20}}
+\label{social__robot__onethread_8cpp_aebd343022649783a801b963924cfd962}
+\hypertarget{social__robot__onethread_8cpp_a5b613972ff73fd7b34e0ee18acc5c1a6}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!depth\_\-image@{depth\_\-image}}
+\index{depth\_\-image@{depth\_\-image}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{depth\_\-image}]{\setlength{\rightskip}{0pt plus 5cm}Mat {\bf depth\_\-image}}}
+\label{social__robot__onethread_8cpp_a5b613972ff73fd7b34e0ee18acc5c1a6}
+\hypertarget{social__robot__onethread_8cpp_a485c05800d39168b94f859fac62aa6a7}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!disparity\_\-image@{disparity\_\-image}}
+\index{disparity\_\-image@{disparity\_\-image}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{disparity\_\-image}]{\setlength{\rightskip}{0pt plus 5cm}Mat {\bf disparity\_\-image}}}
+\label{social__robot__onethread_8cpp_a485c05800d39168b94f859fac62aa6a7}
+\hypertarget{social__robot__onethread_8cpp_a21cab78b592b62d848ce4c97b56f3fab}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!euc\_\-thr@{euc\_\-thr}}
+\index{euc\_\-thr@{euc\_\-thr}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{euc\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf euc\_\-thr} = 5}}
+\label{social__robot__onethread_8cpp_a21cab78b592b62d848ce4c97b56f3fab}
+\hypertarget{social__robot__onethread_8cpp_a8a47ade7faa65caf234342991974750e}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!head\_\-features@{head\_\-features}}
+\index{head\_\-features@{head\_\-features}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{head\_\-features}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Point3f$>$ {\bf head\_\-features}}}
+\label{social__robot__onethread_8cpp_a8a47ade7faa65caf234342991974750e}
+\hypertarget{social__robot__onethread_8cpp_a0c67e84577bc239d1eea8827dab5afe7}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!head\_\-matched\_\-points@{head\_\-matched\_\-points}}
+\index{head\_\-matched\_\-points@{head\_\-matched\_\-points}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{head\_\-matched\_\-points}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Point$>$ {\bf head\_\-matched\_\-points}}}
+\label{social__robot__onethread_8cpp_a0c67e84577bc239d1eea8827dab5afe7}
+\hypertarget{social__robot__onethread_8cpp_a7ae536fe976b9095cd8b79a4a04aa5ec}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!head\_\-template@{head\_\-template}}
+\index{head\_\-template@{head\_\-template}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{head\_\-template}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf head\_\-template} = \char`\"{}pictures/template.png\char`\"{}}}
+\label{social__robot__onethread_8cpp_a7ae536fe976b9095cd8b79a4a04aa5ec}
+\hypertarget{social__robot__onethread_8cpp_a470ea91fa3ea1288e184cdf64ccacda3}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!humans@{humans}}
+\index{humans@{humans}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{humans}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Rect$>$ {\bf humans}}}
+\label{social__robot__onethread_8cpp_a470ea91fa3ea1288e184cdf64ccacda3}
+\hypertarget{social__robot__onethread_8cpp_aea3f7c95f70e07adffaf65b6bdfd2e25}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!image\_\-rgb@{image\_\-rgb}}
+\index{image\_\-rgb@{image\_\-rgb}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{image\_\-rgb}]{\setlength{\rightskip}{0pt plus 5cm}Mat {\bf image\_\-rgb}}}
+\label{social__robot__onethread_8cpp_aea3f7c95f70e07adffaf65b6bdfd2e25}
+\hypertarget{social__robot__onethread_8cpp_a1ad5e89ff23cfb6db193cfd737de72f1}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!matching@{matching}}
+\index{matching@{matching}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{matching}]{\setlength{\rightskip}{0pt plus 5cm}Mat$\ast$ {\bf matching} = new Mat\mbox{[}{\bf scales}\mbox{]}}}
+\label{social__robot__onethread_8cpp_a1ad5e89ff23cfb6db193cfd737de72f1}
+\hypertarget{social__robot__onethread_8cpp_a457c8b7f7906547eba00552380ac9c4b}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!pyramid@{pyramid}}
+\index{pyramid@{pyramid}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{pyramid}]{\setlength{\rightskip}{0pt plus 5cm}Mat$\ast$ {\bf pyramid} = new Mat\mbox{[}{\bf scales}\mbox{]}}}
+\label{social__robot__onethread_8cpp_a457c8b7f7906547eba00552380ac9c4b}
+\hypertarget{social__robot__onethread_8cpp_a3b762528047eabfcdb66d724ce2612ca}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!roi\_\-height@{roi\_\-height}}
+\index{roi\_\-height@{roi\_\-height}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{roi\_\-height}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf roi\_\-height}}}
+\label{social__robot__onethread_8cpp_a3b762528047eabfcdb66d724ce2612ca}
+\hypertarget{social__robot__onethread_8cpp_adab7f7eefeddcacabc0f3f394180dd0f}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!roi\_\-width@{roi\_\-width}}
+\index{roi\_\-width@{roi\_\-width}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{roi\_\-width}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf roi\_\-width}}}
+\label{social__robot__onethread_8cpp_adab7f7eefeddcacabc0f3f394180dd0f}
+\hypertarget{social__robot__onethread_8cpp_aba5f7816901cdf972b792e70e1f11296}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!roi\_\-x\_\-offset@{roi\_\-x\_\-offset}}
+\index{roi\_\-x\_\-offset@{roi\_\-x\_\-offset}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{roi\_\-x\_\-offset}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf roi\_\-x\_\-offset}}}
+\label{social__robot__onethread_8cpp_aba5f7816901cdf972b792e70e1f11296}
+\hypertarget{social__robot__onethread_8cpp_aa3044843a01536972388a965d0c982e7}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!roi\_\-y\_\-offset@{roi\_\-y\_\-offset}}
+\index{roi\_\-y\_\-offset@{roi\_\-y\_\-offset}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{roi\_\-y\_\-offset}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf roi\_\-y\_\-offset}}}
+\label{social__robot__onethread_8cpp_aa3044843a01536972388a965d0c982e7}
+\hypertarget{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!rois@{rois}}
+\index{rois@{rois}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{rois}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Rect$>$ {\bf rois}}}
+\label{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}
+\hypertarget{social__robot__onethread_8cpp_a706cc7c7163878b35e58171cc5aa8a3c}{
+\index{social\_\-robot\_\-onethread.cpp@{social\_\-robot\_\-onethread.cpp}!scales@{scales}}
+\index{scales@{scales}!social_robot_onethread.cpp@{social\_\-robot\_\-onethread.cpp}}
+\subsubsection[{scales}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf scales} = 5}}
+\label{social__robot__onethread_8cpp_a706cc7c7163878b35e58171cc5aa8a3c}

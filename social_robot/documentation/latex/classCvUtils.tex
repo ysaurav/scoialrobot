@@ -1,0 +1,157 @@
+\hypertarget{classCvUtils}{
+\section{CvUtils Class Reference}
+\label{classCvUtils}\index{CvUtils@{CvUtils}}
+}
+
+
+This class contains useful functions for the image processing part.  
+
+
+
+
+{\ttfamily \#include $<$CvUtils.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Mat \hyperlink{classCvUtils_aa5bded11699d39af25c420aed2ade0ba}{rgb2bw} (Mat im\_\-rgb)
+\item 
+Mat \hyperlink{classCvUtils_a47189479acb67a1918f35557fc5906a6}{preprocessing} (Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image})
+\item 
+void \hyperlink{classCvUtils_a426439fc003e5557644932eee66c48b6}{get\_\-non\_\-zeros} (Mat img, Mat prob, vector$<$ Point3f $>$ $\ast$points, Point pdiff=Point(0, 0), double scale=1)
+\item 
+void \hyperlink{classCvUtils_a74249b2e9b76b2a8ae2c01c4ff496663}{draw\_\-rgb\_\-faces} (Mat \&img, vector$<$ Rect $>$ faces)
+\item 
+void \hyperlink{classCvUtils_ac86c2ad8adca706655831938b63ebaa2}{draw\_\-tracking\_\-faces} (Mat \&img, vector$<$ \hyperlink{classStateData}{StateData} $>$ \hyperlink{social__robot_8cpp_a63ba5e41659a1483954bc6564bca605a}{state\_\-datas})
+\item 
+void \hyperlink{classCvUtils_a6e1f3369c2b553c06f2692c75e20667d}{draw\_\-depth\_\-faces} (Mat \&img, vector$<$ Rect $>$ faces)
+\end{DoxyCompactItemize}
+\begin{Indent}{\bf Get the center of a rectangle}\par
+{\em \label{_amgrpba9070ac2a0557f402adf1649807a39b}
+ }\begin{DoxyCompactItemize}
+\item 
+Point \hyperlink{classCvUtils_aa54494728db8503a7311ff2f9ad8ab1c}{get\_\-rect\_\-centre} (Rect rect)
+\item 
+Point3f \hyperlink{classCvUtils_a9a91a1dbd7a74ef15257510129308277}{get\_\-rect\_\-centre\_\-3d} (Rect rect, Mat \hyperlink{social__robot__onethread_8cpp_a5b613972ff73fd7b34e0ee18acc5c1a6}{depth\_\-image})
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Euclidean Distance}\par
+{\em \label{_amgrpd042c6a547594e951c1623cdf635b9cf}
+ }\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classCvUtils_a20d53b92663d548bebf90da242d984f3}{euclidean\_\-distance} (Point3f a, Point3f b)
+\item 
+double \hyperlink{classCvUtils_a74b4a32b47136f704db2729b39095c02}{euclidean\_\-distance} (Point a, Point b)
+\item 
+Rect \hyperlink{classCvUtils_a349894b926e2d252d0ce224abcba698a}{enlarge\_\-window} (Rect orgrect, Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image}, double scale=2.0)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+This class contains useful functions for the image processing part. \begin{DoxyAuthor}{Author}
+Social Robot 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classCvUtils_a6e1f3369c2b553c06f2692c75e20667d}{
+\index{CvUtils@{CvUtils}!draw\_\-depth\_\-faces@{draw\_\-depth\_\-faces}}
+\index{draw\_\-depth\_\-faces@{draw\_\-depth\_\-faces}!CvUtils@{CvUtils}}
+\subsubsection[{draw\_\-depth\_\-faces}]{\setlength{\rightskip}{0pt plus 5cm}void CvUtils::draw\_\-depth\_\-faces (Mat \& {\em img}, \/  vector$<$ Rect $>$ {\em faces})}}
+\label{classCvUtils_a6e1f3369c2b553c06f2692c75e20667d}
+\hypertarget{classCvUtils_a74249b2e9b76b2a8ae2c01c4ff496663}{
+\index{CvUtils@{CvUtils}!draw\_\-rgb\_\-faces@{draw\_\-rgb\_\-faces}}
+\index{draw\_\-rgb\_\-faces@{draw\_\-rgb\_\-faces}!CvUtils@{CvUtils}}
+\subsubsection[{draw\_\-rgb\_\-faces}]{\setlength{\rightskip}{0pt plus 5cm}void CvUtils::draw\_\-rgb\_\-faces (Mat \& {\em img}, \/  vector$<$ Rect $>$ {\em faces})}}
+\label{classCvUtils_a74249b2e9b76b2a8ae2c01c4ff496663}
+\hypertarget{classCvUtils_ac86c2ad8adca706655831938b63ebaa2}{
+\index{CvUtils@{CvUtils}!draw\_\-tracking\_\-faces@{draw\_\-tracking\_\-faces}}
+\index{draw\_\-tracking\_\-faces@{draw\_\-tracking\_\-faces}!CvUtils@{CvUtils}}
+\subsubsection[{draw\_\-tracking\_\-faces}]{\setlength{\rightskip}{0pt plus 5cm}void CvUtils::draw\_\-tracking\_\-faces (Mat \& {\em img}, \/  vector$<$ {\bf StateData} $>$ {\em state\_\-datas})}}
+\label{classCvUtils_ac86c2ad8adca706655831938b63ebaa2}
+\hypertarget{classCvUtils_a349894b926e2d252d0ce224abcba698a}{
+\index{CvUtils@{CvUtils}!enlarge\_\-window@{enlarge\_\-window}}
+\index{enlarge\_\-window@{enlarge\_\-window}!CvUtils@{CvUtils}}
+\subsubsection[{enlarge\_\-window}]{\setlength{\rightskip}{0pt plus 5cm}Rect CvUtils::enlarge\_\-window (Rect {\em orgrect}, \/  Mat {\em image}, \/  double {\em scale} = {\ttfamily 2.0})}}
+\label{classCvUtils_a349894b926e2d252d0ce224abcba698a}
+\hypertarget{classCvUtils_a74b4a32b47136f704db2729b39095c02}{
+\index{CvUtils@{CvUtils}!euclidean\_\-distance@{euclidean\_\-distance}}
+\index{euclidean\_\-distance@{euclidean\_\-distance}!CvUtils@{CvUtils}}
+\subsubsection[{euclidean\_\-distance}]{\setlength{\rightskip}{0pt plus 5cm}double CvUtils::euclidean\_\-distance (Point {\em a}, \/  Point {\em b})}}
+\label{classCvUtils_a74b4a32b47136f704db2729b39095c02}
+This function calculates the Euclidean Distance given two 2D points a and b. \begin{DoxyReturn}{Returns}
+A double value of the computed Euclidean Distance. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em a}]A Point containing x and y coordinates. \item[{\em b}]A Point containing x and y coordinates. \end{DoxyParams}
+\hypertarget{classCvUtils_a20d53b92663d548bebf90da242d984f3}{
+\index{CvUtils@{CvUtils}!euclidean\_\-distance@{euclidean\_\-distance}}
+\index{euclidean\_\-distance@{euclidean\_\-distance}!CvUtils@{CvUtils}}
+\subsubsection[{euclidean\_\-distance}]{\setlength{\rightskip}{0pt plus 5cm}double CvUtils::euclidean\_\-distance (Point3f {\em a}, \/  Point3f {\em b})}}
+\label{classCvUtils_a20d53b92663d548bebf90da242d984f3}
+This function calculates the Euclidean Distance given two 3D points a and b. \begin{DoxyReturn}{Returns}
+A double value of the computed Euclidean Distance. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em a}]A Point3f containing x, y and z coordinates. \item[{\em b}]A Point3f containing x, y and z coordinates. \end{DoxyParams}
+\hypertarget{classCvUtils_a426439fc003e5557644932eee66c48b6}{
+\index{CvUtils@{CvUtils}!get\_\-non\_\-zeros@{get\_\-non\_\-zeros}}
+\index{get\_\-non\_\-zeros@{get\_\-non\_\-zeros}!CvUtils@{CvUtils}}
+\subsubsection[{get\_\-non\_\-zeros}]{\setlength{\rightskip}{0pt plus 5cm}void CvUtils::get\_\-non\_\-zeros (Mat {\em img}, \/  Mat {\em prob}, \/  vector$<$ Point3f $>$ $\ast$ {\em points}, \/  Point {\em pdiff} = {\ttfamily Point(0,~0)}, \/  double {\em scale} = {\ttfamily 1})}}
+\label{classCvUtils_a426439fc003e5557644932eee66c48b6}
+\hypertarget{classCvUtils_aa54494728db8503a7311ff2f9ad8ab1c}{
+\index{CvUtils@{CvUtils}!get\_\-rect\_\-centre@{get\_\-rect\_\-centre}}
+\index{get\_\-rect\_\-centre@{get\_\-rect\_\-centre}!CvUtils@{CvUtils}}
+\subsubsection[{get\_\-rect\_\-centre}]{\setlength{\rightskip}{0pt plus 5cm}Point CvUtils::get\_\-rect\_\-centre (Rect {\em rect})}}
+\label{classCvUtils_aa54494728db8503a7311ff2f9ad8ab1c}
+This function calculates the center of a rectangle given a rectangle. \begin{DoxyReturn}{Returns}
+A Point with x and y of the center. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em rect}]A Rect with x and y coordinates of the upper left corner, height and width. \end{DoxyParams}
+\hypertarget{classCvUtils_a9a91a1dbd7a74ef15257510129308277}{
+\index{CvUtils@{CvUtils}!get\_\-rect\_\-centre\_\-3d@{get\_\-rect\_\-centre\_\-3d}}
+\index{get\_\-rect\_\-centre\_\-3d@{get\_\-rect\_\-centre\_\-3d}!CvUtils@{CvUtils}}
+\subsubsection[{get\_\-rect\_\-centre\_\-3d}]{\setlength{\rightskip}{0pt plus 5cm}Point3f CvUtils::get\_\-rect\_\-centre\_\-3d (Rect {\em rect}, \/  Mat {\em depth\_\-image})}}
+\label{classCvUtils_a9a91a1dbd7a74ef15257510129308277}
+This function calculates the center of a rectangle given the rectangle and depth information. \begin{DoxyReturn}{Returns}
+A Point3f with x, y and z coordinates of the center. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em rect}]A Rect with x and y coordinates of the upper left corner, height and width. \item[{\em depth\_\-image}]A Mat where each pixel gives us depth information. \end{DoxyParams}
+\hypertarget{classCvUtils_a47189479acb67a1918f35557fc5906a6}{
+\index{CvUtils@{CvUtils}!preprocessing@{preprocessing}}
+\index{preprocessing@{preprocessing}!CvUtils@{CvUtils}}
+\subsubsection[{preprocessing}]{\setlength{\rightskip}{0pt plus 5cm}Mat CvUtils::preprocessing (Mat {\em image})}}
+\label{classCvUtils_a47189479acb67a1918f35557fc5906a6}
+This function fills the regions where the image values are equal to zero. \begin{DoxyReturn}{Returns}
+An image without zero values. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em image}]A Mat containing an image. \end{DoxyParams}
+\hypertarget{classCvUtils_aa5bded11699d39af25c420aed2ade0ba}{
+\index{CvUtils@{CvUtils}!rgb2bw@{rgb2bw}}
+\index{rgb2bw@{rgb2bw}!CvUtils@{CvUtils}}
+\subsubsection[{rgb2bw}]{\setlength{\rightskip}{0pt plus 5cm}Mat CvUtils::rgb2bw (Mat {\em im\_\-rgb})}}
+\label{classCvUtils_aa5bded11699d39af25c420aed2ade0ba}
+This function computes the binary image of a given one by setting to zero all the values smaller than 128. \begin{DoxyReturn}{Returns}
+The binary image in im\_\-bw. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em im\_\-rgb}]A Mat containing an image. \end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+The input can be a colour or gray image. 
+\end{DoxyPrecond}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{CvUtils_8h}{CvUtils.h}\item 
+\hyperlink{CvUtils_8cpp}{CvUtils.cpp}\end{DoxyCompactItemize}

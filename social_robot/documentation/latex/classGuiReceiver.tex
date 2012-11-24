@@ -1,0 +1,228 @@
+\hypertarget{classGuiReceiver}{
+\section{GuiReceiver Class Reference}
+\label{classGuiReceiver}\index{GuiReceiver@{GuiReceiver}}
+}
+
+
+{\ttfamily \#include $<$window\_\-QT.h$>$}
+
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classGuiReceiver_a59873b996659d0bb92d09638902ec4dc}{createWindow} (QString name, int flags=0)
+\item 
+void \hyperlink{classGuiReceiver_a86942e372e278c27c98af1930d9b9e97}{destroyWindow} (QString name)
+\item 
+void \hyperlink{classGuiReceiver_a748313239bdf5a50cc877dd91b3c1950}{destroyAllWindow} ()
+\item 
+void \hyperlink{classGuiReceiver_a8bd54a4f6d6f56083c2146173be6a1e3}{addSlider} (QString trackbar\_\-name, QString window\_\-name, void $\ast$value, int count, void $\ast$on\_\-change)
+\item 
+void \hyperlink{classGuiReceiver_a02ddc77f4583508363df717fd0859786}{addSlider2} (QString trackbar\_\-name, QString window\_\-name, void $\ast$value, int count, void $\ast$on\_\-change, void $\ast$userdata)
+\item 
+void \hyperlink{classGuiReceiver_abb7e0a41c2db119bfd76906651feb5aa}{moveWindow} (QString name, int x, int y)
+\item 
+void \hyperlink{classGuiReceiver_a42b8802376fe8f63922969475875eea6}{resizeWindow} (QString name, int width, int height)
+\item 
+void \hyperlink{classGuiReceiver_a185d6468377d45e2a2589bbb64a9ec62}{showImage} (QString name, void $\ast$arr)
+\item 
+void \hyperlink{classGuiReceiver_a1e010c3db9ebaaf1efddb8c03f558e88}{displayInfo} (QString name, QString text, int delayms)
+\item 
+void \hyperlink{classGuiReceiver_abfc7c7fb831a8c423a7a15e2b0ec994b}{displayStatusBar} (QString name, QString text, int delayms)
+\item 
+void \hyperlink{classGuiReceiver_aa8aab548c6a8fb1463c6cc7eb133ce7c}{timeOut} ()
+\item 
+void \hyperlink{classGuiReceiver_a50571c44603479d7d96426b1de23b010}{toggleFullScreen} (QString name, double flags)
+\item 
+double \hyperlink{classGuiReceiver_a6dd924ef78d8e7ec9e008f9007dbd032}{isFullScreen} (QString name)
+\item 
+double \hyperlink{classGuiReceiver_aff1aa23d540c06006c295ce69c8bb771}{getPropWindow} (QString name)
+\item 
+void \hyperlink{classGuiReceiver_a2f7df93bb22ec310b8f9b44844662b85}{setPropWindow} (QString name, double flags)
+\item 
+double \hyperlink{classGuiReceiver_aaf16c278a39a4ee6a02de8de5e348c5c}{getRatioWindow} (QString name)
+\item 
+void \hyperlink{classGuiReceiver_a42057f63804bb4f378c9ecb9a77f140c}{setRatioWindow} (QString name, double arg2)
+\item 
+void \hyperlink{classGuiReceiver_a0b4cb6c25ca109fdbcdc0538caf91da5}{saveWindowParameters} (QString name)
+\item 
+void \hyperlink{classGuiReceiver_afc852e63d8d8e4158984d37a444927ee}{loadWindowParameters} (QString name)
+\item 
+void \hyperlink{classGuiReceiver_a9d6fca288ed9086e22ad5d85ef0a3ae3}{putText} (void $\ast$arg1, QString text, QPoint org, void $\ast$font)
+\item 
+void \hyperlink{classGuiReceiver_aa1507b4023e4881e37c4b2a2ba0c2353}{addButton} (QString button\_\-name, int button\_\-type, int initial\_\-button\_\-state, void $\ast$on\_\-change, void $\ast$userdata)
+\item 
+void \hyperlink{classGuiReceiver_ad4c4385d49e830263e996416e16d137a}{enablePropertiesButtonEachWindow} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGuiReceiver_a0f840f04f1834a394fceeeca7dd88827}{GuiReceiver} ()
+\item 
+\hyperlink{classGuiReceiver_a7655140d1defb2adb481eab40193fd97}{$\sim$GuiReceiver} ()
+\item 
+int \hyperlink{classGuiReceiver_a4f0ca1781d324a9b658b01034895e1ee}{start} ()
+\item 
+void \hyperlink{classGuiReceiver_a9f788023836b17e8aed97b3770386ea9}{isLastWindow} ()
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classGuiReceiver_ad2d629b90a37e814db074e7ba1fc1aa9}{\_\-bTimeOut}
+\item 
+QTimer $\ast$ \hyperlink{classGuiReceiver_aeb64966586c4a35cfc02db46491afdf6}{timer}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGuiReceiver_a0f840f04f1834a394fceeeca7dd88827}{
+\index{GuiReceiver@{GuiReceiver}!GuiReceiver@{GuiReceiver}}
+\index{GuiReceiver@{GuiReceiver}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{GuiReceiver}]{\setlength{\rightskip}{0pt plus 5cm}GuiReceiver::GuiReceiver ()}}
+\label{classGuiReceiver_a0f840f04f1834a394fceeeca7dd88827}
+\hypertarget{classGuiReceiver_a7655140d1defb2adb481eab40193fd97}{
+\index{GuiReceiver@{GuiReceiver}!$\sim$GuiReceiver@{$\sim$GuiReceiver}}
+\index{$\sim$GuiReceiver@{$\sim$GuiReceiver}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{$\sim$GuiReceiver}]{\setlength{\rightskip}{0pt plus 5cm}GuiReceiver::$\sim$GuiReceiver ()}}
+\label{classGuiReceiver_a7655140d1defb2adb481eab40193fd97}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGuiReceiver_aa1507b4023e4881e37c4b2a2ba0c2353}{
+\index{GuiReceiver@{GuiReceiver}!addButton@{addButton}}
+\index{addButton@{addButton}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{addButton}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::addButton (QString {\em button\_\-name}, \/  int {\em button\_\-type}, \/  int {\em initial\_\-button\_\-state}, \/  void $\ast$ {\em on\_\-change}, \/  void $\ast$ {\em userdata})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_aa1507b4023e4881e37c4b2a2ba0c2353}
+\hypertarget{classGuiReceiver_a8bd54a4f6d6f56083c2146173be6a1e3}{
+\index{GuiReceiver@{GuiReceiver}!addSlider@{addSlider}}
+\index{addSlider@{addSlider}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{addSlider}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::addSlider (QString {\em trackbar\_\-name}, \/  QString {\em window\_\-name}, \/  void $\ast$ {\em value}, \/  int {\em count}, \/  void $\ast$ {\em on\_\-change})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_a8bd54a4f6d6f56083c2146173be6a1e3}
+\hypertarget{classGuiReceiver_a02ddc77f4583508363df717fd0859786}{
+\index{GuiReceiver@{GuiReceiver}!addSlider2@{addSlider2}}
+\index{addSlider2@{addSlider2}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{addSlider2}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::addSlider2 (QString {\em trackbar\_\-name}, \/  QString {\em window\_\-name}, \/  void $\ast$ {\em value}, \/  int {\em count}, \/  void $\ast$ {\em on\_\-change}, \/  void $\ast$ {\em userdata})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_a02ddc77f4583508363df717fd0859786}
+\hypertarget{classGuiReceiver_a59873b996659d0bb92d09638902ec4dc}{
+\index{GuiReceiver@{GuiReceiver}!createWindow@{createWindow}}
+\index{createWindow@{createWindow}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{createWindow}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::createWindow (QString {\em name}, \/  int {\em flags} = {\ttfamily 0})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_a59873b996659d0bb92d09638902ec4dc}
+\hypertarget{classGuiReceiver_a748313239bdf5a50cc877dd91b3c1950}{
+\index{GuiReceiver@{GuiReceiver}!destroyAllWindow@{destroyAllWindow}}
+\index{destroyAllWindow@{destroyAllWindow}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{destroyAllWindow}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::destroyAllWindow ()\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_a748313239bdf5a50cc877dd91b3c1950}
+\hypertarget{classGuiReceiver_a86942e372e278c27c98af1930d9b9e97}{
+\index{GuiReceiver@{GuiReceiver}!destroyWindow@{destroyWindow}}
+\index{destroyWindow@{destroyWindow}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{destroyWindow}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::destroyWindow (QString {\em name})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_a86942e372e278c27c98af1930d9b9e97}
+\hypertarget{classGuiReceiver_a1e010c3db9ebaaf1efddb8c03f558e88}{
+\index{GuiReceiver@{GuiReceiver}!displayInfo@{displayInfo}}
+\index{displayInfo@{displayInfo}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{displayInfo}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::displayInfo (QString {\em name}, \/  QString {\em text}, \/  int {\em delayms})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_a1e010c3db9ebaaf1efddb8c03f558e88}
+\hypertarget{classGuiReceiver_abfc7c7fb831a8c423a7a15e2b0ec994b}{
+\index{GuiReceiver@{GuiReceiver}!displayStatusBar@{displayStatusBar}}
+\index{displayStatusBar@{displayStatusBar}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{displayStatusBar}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::displayStatusBar (QString {\em name}, \/  QString {\em text}, \/  int {\em delayms})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_abfc7c7fb831a8c423a7a15e2b0ec994b}
+\hypertarget{classGuiReceiver_ad4c4385d49e830263e996416e16d137a}{
+\index{GuiReceiver@{GuiReceiver}!enablePropertiesButtonEachWindow@{enablePropertiesButtonEachWindow}}
+\index{enablePropertiesButtonEachWindow@{enablePropertiesButtonEachWindow}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{enablePropertiesButtonEachWindow}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::enablePropertiesButtonEachWindow ()\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_ad4c4385d49e830263e996416e16d137a}
+\hypertarget{classGuiReceiver_aff1aa23d540c06006c295ce69c8bb771}{
+\index{GuiReceiver@{GuiReceiver}!getPropWindow@{getPropWindow}}
+\index{getPropWindow@{getPropWindow}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{getPropWindow}]{\setlength{\rightskip}{0pt plus 5cm}double GuiReceiver::getPropWindow (QString {\em name})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_aff1aa23d540c06006c295ce69c8bb771}
+\hypertarget{classGuiReceiver_aaf16c278a39a4ee6a02de8de5e348c5c}{
+\index{GuiReceiver@{GuiReceiver}!getRatioWindow@{getRatioWindow}}
+\index{getRatioWindow@{getRatioWindow}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{getRatioWindow}]{\setlength{\rightskip}{0pt plus 5cm}double GuiReceiver::getRatioWindow (QString {\em name})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_aaf16c278a39a4ee6a02de8de5e348c5c}
+\hypertarget{classGuiReceiver_a6dd924ef78d8e7ec9e008f9007dbd032}{
+\index{GuiReceiver@{GuiReceiver}!isFullScreen@{isFullScreen}}
+\index{isFullScreen@{isFullScreen}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{isFullScreen}]{\setlength{\rightskip}{0pt plus 5cm}double GuiReceiver::isFullScreen (QString {\em name})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_a6dd924ef78d8e7ec9e008f9007dbd032}
+\hypertarget{classGuiReceiver_a9f788023836b17e8aed97b3770386ea9}{
+\index{GuiReceiver@{GuiReceiver}!isLastWindow@{isLastWindow}}
+\index{isLastWindow@{isLastWindow}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{isLastWindow}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::isLastWindow ()}}
+\label{classGuiReceiver_a9f788023836b17e8aed97b3770386ea9}
+\hypertarget{classGuiReceiver_afc852e63d8d8e4158984d37a444927ee}{
+\index{GuiReceiver@{GuiReceiver}!loadWindowParameters@{loadWindowParameters}}
+\index{loadWindowParameters@{loadWindowParameters}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{loadWindowParameters}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::loadWindowParameters (QString {\em name})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_afc852e63d8d8e4158984d37a444927ee}
+\hypertarget{classGuiReceiver_abb7e0a41c2db119bfd76906651feb5aa}{
+\index{GuiReceiver@{GuiReceiver}!moveWindow@{moveWindow}}
+\index{moveWindow@{moveWindow}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{moveWindow}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::moveWindow (QString {\em name}, \/  int {\em x}, \/  int {\em y})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_abb7e0a41c2db119bfd76906651feb5aa}
+\hypertarget{classGuiReceiver_a9d6fca288ed9086e22ad5d85ef0a3ae3}{
+\index{GuiReceiver@{GuiReceiver}!putText@{putText}}
+\index{putText@{putText}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{putText}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::putText (void $\ast$ {\em arg1}, \/  QString {\em text}, \/  QPoint {\em org}, \/  void $\ast$ {\em font})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_a9d6fca288ed9086e22ad5d85ef0a3ae3}
+\hypertarget{classGuiReceiver_a42b8802376fe8f63922969475875eea6}{
+\index{GuiReceiver@{GuiReceiver}!resizeWindow@{resizeWindow}}
+\index{resizeWindow@{resizeWindow}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{resizeWindow}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::resizeWindow (QString {\em name}, \/  int {\em width}, \/  int {\em height})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_a42b8802376fe8f63922969475875eea6}
+\hypertarget{classGuiReceiver_a0b4cb6c25ca109fdbcdc0538caf91da5}{
+\index{GuiReceiver@{GuiReceiver}!saveWindowParameters@{saveWindowParameters}}
+\index{saveWindowParameters@{saveWindowParameters}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{saveWindowParameters}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::saveWindowParameters (QString {\em name})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_a0b4cb6c25ca109fdbcdc0538caf91da5}
+\hypertarget{classGuiReceiver_a2f7df93bb22ec310b8f9b44844662b85}{
+\index{GuiReceiver@{GuiReceiver}!setPropWindow@{setPropWindow}}
+\index{setPropWindow@{setPropWindow}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{setPropWindow}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::setPropWindow (QString {\em name}, \/  double {\em flags})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_a2f7df93bb22ec310b8f9b44844662b85}
+\hypertarget{classGuiReceiver_a42057f63804bb4f378c9ecb9a77f140c}{
+\index{GuiReceiver@{GuiReceiver}!setRatioWindow@{setRatioWindow}}
+\index{setRatioWindow@{setRatioWindow}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{setRatioWindow}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::setRatioWindow (QString {\em name}, \/  double {\em arg2})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_a42057f63804bb4f378c9ecb9a77f140c}
+\hypertarget{classGuiReceiver_a185d6468377d45e2a2589bbb64a9ec62}{
+\index{GuiReceiver@{GuiReceiver}!showImage@{showImage}}
+\index{showImage@{showImage}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{showImage}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::showImage (QString {\em name}, \/  void $\ast$ {\em arr})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_a185d6468377d45e2a2589bbb64a9ec62}
+\hypertarget{classGuiReceiver_a4f0ca1781d324a9b658b01034895e1ee}{
+\index{GuiReceiver@{GuiReceiver}!start@{start}}
+\index{start@{start}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{start}]{\setlength{\rightskip}{0pt plus 5cm}int GuiReceiver::start ()}}
+\label{classGuiReceiver_a4f0ca1781d324a9b658b01034895e1ee}
+\hypertarget{classGuiReceiver_aa8aab548c6a8fb1463c6cc7eb133ce7c}{
+\index{GuiReceiver@{GuiReceiver}!timeOut@{timeOut}}
+\index{timeOut@{timeOut}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{timeOut}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::timeOut ()\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_aa8aab548c6a8fb1463c6cc7eb133ce7c}
+\hypertarget{classGuiReceiver_a50571c44603479d7d96426b1de23b010}{
+\index{GuiReceiver@{GuiReceiver}!toggleFullScreen@{toggleFullScreen}}
+\index{toggleFullScreen@{toggleFullScreen}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{toggleFullScreen}]{\setlength{\rightskip}{0pt plus 5cm}void GuiReceiver::toggleFullScreen (QString {\em name}, \/  double {\em flags})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classGuiReceiver_a50571c44603479d7d96426b1de23b010}
+
+
+\subsection{Field Documentation}
+\hypertarget{classGuiReceiver_ad2d629b90a37e814db074e7ba1fc1aa9}{
+\index{GuiReceiver@{GuiReceiver}!\_\-bTimeOut@{\_\-bTimeOut}}
+\index{\_\-bTimeOut@{\_\-bTimeOut}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{\_\-bTimeOut}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf GuiReceiver::\_\-bTimeOut}}}
+\label{classGuiReceiver_ad2d629b90a37e814db074e7ba1fc1aa9}
+\hypertarget{classGuiReceiver_aeb64966586c4a35cfc02db46491afdf6}{
+\index{GuiReceiver@{GuiReceiver}!timer@{timer}}
+\index{timer@{timer}!GuiReceiver@{GuiReceiver}}
+\subsubsection[{timer}]{\setlength{\rightskip}{0pt plus 5cm}QTimer$\ast$ {\bf GuiReceiver::timer}}}
+\label{classGuiReceiver_aeb64966586c4a35cfc02db46491afdf6}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{window__QT_8h}{window\_\-QT.h}\item 
+\hyperlink{window__QT_8cpp}{window\_\-QT.cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,307 @@
+\hypertarget{social__robot__depth_8cpp}{
+\section{social\_\-robot\_\-depth.cpp File Reference}
+\label{social__robot__depth_8cpp}\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}}
+}
+{\ttfamily \#include $<$ros/ros.h$>$}\par
+{\ttfamily \#include $<$std\_\-srvs/Empty.h$>$}\par
+{\ttfamily \#include $<$stereo\_\-msgs/DisparityImage.h$>$}\par
+{\ttfamily \#include $<$social\_\-robot/RegionOfInterests.h$>$}\par
+{\ttfamily \#include $<$omp.h$>$}\par
+{\ttfamily \#include \char`\"{}kinect\_\-proxy.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}CvUtils.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}PixelSimilarity.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}RosUtils.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}Template.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}social\_\-robot\_\-constants.h\char`\"{}}\par
+Include dependency graph for social\_\-robot\_\-depth.cpp:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{social__robot__depth_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ Point3f $>$ \hyperlink{social__robot__depth_8cpp_a3b2ea98582b2e7c6deb9c2bc21baf927}{chamfer\_\-matching} (Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image}, Mat template\_\-im)
+\item 
+vector$<$ \hyperlink{classPixelSimilarity}{PixelSimilarity} $>$ \hyperlink{social__robot__depth_8cpp_aae3fac2a2ac316e63a40462bff064398}{compute\_\-headparameters} (Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image}, vector$<$ Point3f $>$ \hyperlink{social__robot__depth_8cpp_ae49e0fd65160c33b3bd285afab7ffc7c}{chamfer})
+\item 
+vector$<$ \hyperlink{classPixelSimilarity}{PixelSimilarity} $>$ \hyperlink{social__robot__depth_8cpp_aa679aeec799663cbaf72d40f36d266d2}{false\_\-positives} (vector$<$ \hyperlink{classPixelSimilarity}{PixelSimilarity} $>$ tmpparams, int thr, int thr2)
+\item 
+vector$<$ \hyperlink{classPixelSimilarity}{PixelSimilarity} $>$ \hyperlink{social__robot__depth_8cpp_a853356277c496d822b979c9d9fd459d8}{match\_\-template3D} (vector$<$ \hyperlink{classPixelSimilarity}{PixelSimilarity} $>$ potentials, int n)
+\item 
+vector$<$ \hyperlink{classPixelSimilarity}{PixelSimilarity} $>$ \hyperlink{social__robot__depth_8cpp_ad86e0198948733670a7f245973ef7679}{merge\_\-rectangles} (vector$<$ \hyperlink{classPixelSimilarity}{PixelSimilarity} $>$ tmpcont)
+\item 
+vector$<$ Rect $>$ \hyperlink{social__robot__depth_8cpp_a4bfb72ee657a14dcba8c7d3d4100a704}{detect\_\-face\_\-depth} (Mat tmp\_\-depth, Mat tmp\_\-disparity)
+\item 
+bool \hyperlink{social__robot__depth_8cpp_afd0c09aff72c2db54711877905bc09a8}{update\_\-param\_\-cb} (std\_\-srvs::Empty::Request \&, std\_\-srvs::Empty::Response \&)
+\item 
+void \hyperlink{social__robot__depth_8cpp_a28a39594bde010e876dea0756b07304f}{publish\_\-data} (vector$<$ Rect $>$ depthfaces)
+\item 
+void \hyperlink{social__robot__depth_8cpp_a555c9c1104d52ad9cf90f36548ecf4c8}{depth\_\-cb} (const ImageConstPtr \&msg)
+\item 
+void \hyperlink{social__robot__depth_8cpp_a0d3fad22151b4866ff40824b1f16610c}{disparity\_\-cb} (const stereo\_\-msgs::DisparityImageConstPtr \&msg)
+\item 
+void \hyperlink{social__robot__depth_8cpp_a21672ee68356b45a8de7ab0090ee53a8}{load\_\-templates} ()
+\item 
+int \hyperlink{social__robot__depth_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classRosUtils}{RosUtils} \hyperlink{social__robot__depth_8cpp_abd0f83a9c271173baf120f2aed877bd4}{ros\_\-utils}
+\item 
+\hyperlink{structsocial__robot_1_1RegionOfInterests__}{social\_\-robot::RegionOfInterests} \hyperlink{social__robot__depth_8cpp_a4a2b91b2fcebc320555a721e900a7d15}{track\_\-pub\_\-rois}
+\item 
+ros::Publisher \hyperlink{social__robot__depth_8cpp_a6dfb787304f5c135c2d412c2333c5483}{track\_\-pub}
+\item 
+double \hyperlink{social__robot__depth_8cpp_a87fa9082ee506a29ae2fd3033a3c95e4}{canny\_\-thr1} = 5
+\item 
+double \hyperlink{social__robot__depth_8cpp_a5799325f4f6a0573e72d80506835632c}{canny\_\-thr2} = 7
+\item 
+double \hyperlink{social__robot__depth_8cpp_aebd343022649783a801b963924cfd962}{chamfer\_\-thr} = 10
+\item 
+double \hyperlink{social__robot__depth_8cpp_ac633607bb3073cf1db3469bf6bfa5309}{arc\_\-thr\_\-low} = 7
+\item 
+double \hyperlink{social__robot__depth_8cpp_ae7982520a0bf7932706e5022cf2d86dc}{arc\_\-thr\_\-high} = 20
+\item 
+double \hyperlink{social__robot__depth_8cpp_a438bd9379f94c2fd69cca23796c93396}{approx\_\-poly\_\-thr} = 1
+\item 
+double \hyperlink{social__robot__depth_8cpp_abde7cbf03136f44e7d314001efe07160}{max\_\-suppression} = 0.1
+\item 
+double \hyperlink{social__robot__depth_8cpp_a0e3eb2b15d4a06601824575fc6e8c7a5}{scale\_\-factor} = 0.75
+\item 
+double \hyperlink{social__robot__depth_8cpp_a571c3f1992940e689edb26f58286adc6}{match3D\_\-thr} = 0.4
+\item 
+int \hyperlink{social__robot__depth_8cpp_a706cc7c7163878b35e58171cc5aa8a3c}{scales} = 6
+\item 
+int \hyperlink{social__robot__depth_8cpp_a4f72b7c3cdf1b9774f4fa663851b0ac7}{framenum} = 0
+\item 
+int \hyperlink{social__robot__depth_8cpp_a54b9a67b1da8bb482d6dbe94372aeb21}{update\_\-rate} = 15
+\item 
+vector$<$ Point3f $>$ \hyperlink{social__robot__depth_8cpp_a836aea8e107b14ec65a0947d2330f2c0}{head\_\-matched\_\-points}
+\item 
+vector$<$ \hyperlink{classPixelSimilarity}{PixelSimilarity} $>$ \hyperlink{social__robot__depth_8cpp_a49836bedb0d8e569c7c55c9b7ae0fd56}{head\_\-features}
+\item 
+vector$<$ Point3f $>$ \hyperlink{social__robot__depth_8cpp_a16fd9f6882c2672eeec3abe12324b059}{head\_\-matched\_\-points2}
+\item 
+vector$<$ \hyperlink{classPixelSimilarity}{PixelSimilarity} $>$ \hyperlink{social__robot__depth_8cpp_afa4baa3f82a6ed5b7ea36c2d5e4b3537}{head\_\-features2}
+\item 
+vector$<$ \hyperlink{classTemplate}{Template} $>$ \hyperlink{social__robot__depth_8cpp_aad377da67d3841b2fa8e3c6ade8674e1}{templates}
+\item 
+Mat $\ast$ \hyperlink{social__robot__depth_8cpp_a457c8b7f7906547eba00552380ac9c4b}{pyramid} = new Mat\mbox{[}\hyperlink{social__robot__depth_8cpp_a706cc7c7163878b35e58171cc5aa8a3c}{scales}\mbox{]}
+\item 
+Mat $\ast$ \hyperlink{social__robot__depth_8cpp_ae49e0fd65160c33b3bd285afab7ffc7c}{chamfer} = new Mat\mbox{[}\hyperlink{social__robot__depth_8cpp_a706cc7c7163878b35e58171cc5aa8a3c}{scales}\mbox{]}
+\item 
+Mat $\ast$ \hyperlink{social__robot__depth_8cpp_a1ad5e89ff23cfb6db193cfd737de72f1}{matching} = new Mat\mbox{[}\hyperlink{social__robot__depth_8cpp_a706cc7c7163878b35e58171cc5aa8a3c}{scales}\mbox{]}
+\item 
+Mat \hyperlink{social__robot__depth_8cpp_a562c24171e2f8906922d1972dbd15f17}{canny\_\-im}
+\item 
+Mat \hyperlink{social__robot__depth_8cpp_a80005e5815baea49c1aed806e8e5c3ee}{image\_\-depth}
+\item 
+Mat \hyperlink{social__robot__depth_8cpp_adcb087e6e2cbf5d438cf6dd931addf2f}{image\_\-disparity}
+\item 
+\hyperlink{classCvUtils}{CvUtils} \hyperlink{social__robot__depth_8cpp_a199b98558819a161d93892eb6d1f766d}{cv\_\-utils}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{social__robot__depth_8cpp_a3b2ea98582b2e7c6deb9c2bc21baf927}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!chamfer\_\-matching@{chamfer\_\-matching}}
+\index{chamfer\_\-matching@{chamfer\_\-matching}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{chamfer\_\-matching}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Point3f $>$ chamfer\_\-matching (Mat {\em image}, \/  Mat {\em template\_\-im})}}
+\label{social__robot__depth_8cpp_a3b2ea98582b2e7c6deb9c2bc21baf927}
+\hypertarget{social__robot__depth_8cpp_aae3fac2a2ac316e63a40462bff064398}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!compute\_\-headparameters@{compute\_\-headparameters}}
+\index{compute\_\-headparameters@{compute\_\-headparameters}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{compute\_\-headparameters}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf PixelSimilarity} $>$ compute\_\-headparameters (Mat {\em image}, \/  vector$<$ Point3f $>$ {\em chamfer})}}
+\label{social__robot__depth_8cpp_aae3fac2a2ac316e63a40462bff064398}
+\hypertarget{social__robot__depth_8cpp_a555c9c1104d52ad9cf90f36548ecf4c8}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!depth\_\-cb@{depth\_\-cb}}
+\index{depth\_\-cb@{depth\_\-cb}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{depth\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void depth\_\-cb (const ImageConstPtr \& {\em msg})}}
+\label{social__robot__depth_8cpp_a555c9c1104d52ad9cf90f36548ecf4c8}
+\hypertarget{social__robot__depth_8cpp_a4bfb72ee657a14dcba8c7d3d4100a704}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!detect\_\-face\_\-depth@{detect\_\-face\_\-depth}}
+\index{detect\_\-face\_\-depth@{detect\_\-face\_\-depth}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{detect\_\-face\_\-depth}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Rect$>$ detect\_\-face\_\-depth (Mat {\em tmp\_\-depth}, \/  Mat {\em tmp\_\-disparity})}}
+\label{social__robot__depth_8cpp_a4bfb72ee657a14dcba8c7d3d4100a704}
+\hypertarget{social__robot__depth_8cpp_a0d3fad22151b4866ff40824b1f16610c}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!disparity\_\-cb@{disparity\_\-cb}}
+\index{disparity\_\-cb@{disparity\_\-cb}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{disparity\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void disparity\_\-cb (const stereo\_\-msgs::DisparityImageConstPtr \& {\em msg})}}
+\label{social__robot__depth_8cpp_a0d3fad22151b4866ff40824b1f16610c}
+\hypertarget{social__robot__depth_8cpp_aa679aeec799663cbaf72d40f36d266d2}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!false\_\-positives@{false\_\-positives}}
+\index{false\_\-positives@{false\_\-positives}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{false\_\-positives}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf PixelSimilarity} $>$ false\_\-positives (vector$<$ {\bf PixelSimilarity} $>$ {\em tmpparams}, \/  int {\em thr}, \/  int {\em thr2})}}
+\label{social__robot__depth_8cpp_aa679aeec799663cbaf72d40f36d266d2}
+\hypertarget{social__robot__depth_8cpp_a21672ee68356b45a8de7ab0090ee53a8}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!load\_\-templates@{load\_\-templates}}
+\index{load\_\-templates@{load\_\-templates}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{load\_\-templates}]{\setlength{\rightskip}{0pt plus 5cm}void load\_\-templates ()}}
+\label{social__robot__depth_8cpp_a21672ee68356b45a8de7ab0090ee53a8}
+\hypertarget{social__robot__depth_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!main@{main}}
+\index{main@{main}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$$\ast$ {\em argv})}}
+\label{social__robot__depth_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+\hypertarget{social__robot__depth_8cpp_a853356277c496d822b979c9d9fd459d8}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!match\_\-template3D@{match\_\-template3D}}
+\index{match\_\-template3D@{match\_\-template3D}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{match\_\-template3D}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf PixelSimilarity} $>$ match\_\-template3D (vector$<$ {\bf PixelSimilarity} $>$ {\em potentials}, \/  int {\em n})}}
+\label{social__robot__depth_8cpp_a853356277c496d822b979c9d9fd459d8}
+\hypertarget{social__robot__depth_8cpp_ad86e0198948733670a7f245973ef7679}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!merge\_\-rectangles@{merge\_\-rectangles}}
+\index{merge\_\-rectangles@{merge\_\-rectangles}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{merge\_\-rectangles}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf PixelSimilarity} $>$ merge\_\-rectangles (vector$<$ {\bf PixelSimilarity} $>$ {\em tmpcont})}}
+\label{social__robot__depth_8cpp_ad86e0198948733670a7f245973ef7679}
+\hypertarget{social__robot__depth_8cpp_a28a39594bde010e876dea0756b07304f}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!publish\_\-data@{publish\_\-data}}
+\index{publish\_\-data@{publish\_\-data}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{publish\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void publish\_\-data (vector$<$ Rect $>$ {\em depthfaces})}}
+\label{social__robot__depth_8cpp_a28a39594bde010e876dea0756b07304f}
+\hypertarget{social__robot__depth_8cpp_afd0c09aff72c2db54711877905bc09a8}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!update\_\-param\_\-cb@{update\_\-param\_\-cb}}
+\index{update\_\-param\_\-cb@{update\_\-param\_\-cb}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{update\_\-param\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}bool update\_\-param\_\-cb (std\_\-srvs::Empty::Request \&, \/  std\_\-srvs::Empty::Response \&)}}
+\label{social__robot__depth_8cpp_afd0c09aff72c2db54711877905bc09a8}
+
+
+\subsection{Variable Documentation}
+\hypertarget{social__robot__depth_8cpp_a438bd9379f94c2fd69cca23796c93396}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!approx\_\-poly\_\-thr@{approx\_\-poly\_\-thr}}
+\index{approx\_\-poly\_\-thr@{approx\_\-poly\_\-thr}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{approx\_\-poly\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf approx\_\-poly\_\-thr} = 1}}
+\label{social__robot__depth_8cpp_a438bd9379f94c2fd69cca23796c93396}
+\hypertarget{social__robot__depth_8cpp_ae7982520a0bf7932706e5022cf2d86dc}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!arc\_\-thr\_\-high@{arc\_\-thr\_\-high}}
+\index{arc\_\-thr\_\-high@{arc\_\-thr\_\-high}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{arc\_\-thr\_\-high}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf arc\_\-thr\_\-high} = 20}}
+\label{social__robot__depth_8cpp_ae7982520a0bf7932706e5022cf2d86dc}
+\hypertarget{social__robot__depth_8cpp_ac633607bb3073cf1db3469bf6bfa5309}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!arc\_\-thr\_\-low@{arc\_\-thr\_\-low}}
+\index{arc\_\-thr\_\-low@{arc\_\-thr\_\-low}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{arc\_\-thr\_\-low}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf arc\_\-thr\_\-low} = 7}}
+\label{social__robot__depth_8cpp_ac633607bb3073cf1db3469bf6bfa5309}
+\hypertarget{social__robot__depth_8cpp_a562c24171e2f8906922d1972dbd15f17}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!canny\_\-im@{canny\_\-im}}
+\index{canny\_\-im@{canny\_\-im}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{canny\_\-im}]{\setlength{\rightskip}{0pt plus 5cm}Mat {\bf canny\_\-im}}}
+\label{social__robot__depth_8cpp_a562c24171e2f8906922d1972dbd15f17}
+\hypertarget{social__robot__depth_8cpp_a87fa9082ee506a29ae2fd3033a3c95e4}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!canny\_\-thr1@{canny\_\-thr1}}
+\index{canny\_\-thr1@{canny\_\-thr1}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{canny\_\-thr1}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf canny\_\-thr1} = 5}}
+\label{social__robot__depth_8cpp_a87fa9082ee506a29ae2fd3033a3c95e4}
+\hypertarget{social__robot__depth_8cpp_a5799325f4f6a0573e72d80506835632c}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!canny\_\-thr2@{canny\_\-thr2}}
+\index{canny\_\-thr2@{canny\_\-thr2}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{canny\_\-thr2}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf canny\_\-thr2} = 7}}
+\label{social__robot__depth_8cpp_a5799325f4f6a0573e72d80506835632c}
+\hypertarget{social__robot__depth_8cpp_ae49e0fd65160c33b3bd285afab7ffc7c}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!chamfer@{chamfer}}
+\index{chamfer@{chamfer}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{chamfer}]{\setlength{\rightskip}{0pt plus 5cm}Mat$\ast$ {\bf chamfer} = new Mat\mbox{[}{\bf scales}\mbox{]}}}
+\label{social__robot__depth_8cpp_ae49e0fd65160c33b3bd285afab7ffc7c}
+\hypertarget{social__robot__depth_8cpp_aebd343022649783a801b963924cfd962}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!chamfer\_\-thr@{chamfer\_\-thr}}
+\index{chamfer\_\-thr@{chamfer\_\-thr}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{chamfer\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf chamfer\_\-thr} = 10}}
+\label{social__robot__depth_8cpp_aebd343022649783a801b963924cfd962}
+\hypertarget{social__robot__depth_8cpp_a199b98558819a161d93892eb6d1f766d}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!cv\_\-utils@{cv\_\-utils}}
+\index{cv\_\-utils@{cv\_\-utils}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{cv\_\-utils}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CvUtils} {\bf cv\_\-utils}}}
+\label{social__robot__depth_8cpp_a199b98558819a161d93892eb6d1f766d}
+\hypertarget{social__robot__depth_8cpp_a4f72b7c3cdf1b9774f4fa663851b0ac7}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!framenum@{framenum}}
+\index{framenum@{framenum}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{framenum}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf framenum} = 0}}
+\label{social__robot__depth_8cpp_a4f72b7c3cdf1b9774f4fa663851b0ac7}
+\hypertarget{social__robot__depth_8cpp_a49836bedb0d8e569c7c55c9b7ae0fd56}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!head\_\-features@{head\_\-features}}
+\index{head\_\-features@{head\_\-features}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{head\_\-features}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf PixelSimilarity}$>$ {\bf head\_\-features}}}
+\label{social__robot__depth_8cpp_a49836bedb0d8e569c7c55c9b7ae0fd56}
+\hypertarget{social__robot__depth_8cpp_afa4baa3f82a6ed5b7ea36c2d5e4b3537}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!head\_\-features2@{head\_\-features2}}
+\index{head\_\-features2@{head\_\-features2}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{head\_\-features2}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf PixelSimilarity}$>$ {\bf head\_\-features2}}}
+\label{social__robot__depth_8cpp_afa4baa3f82a6ed5b7ea36c2d5e4b3537}
+\hypertarget{social__robot__depth_8cpp_a836aea8e107b14ec65a0947d2330f2c0}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!head\_\-matched\_\-points@{head\_\-matched\_\-points}}
+\index{head\_\-matched\_\-points@{head\_\-matched\_\-points}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{head\_\-matched\_\-points}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Point3f$>$ {\bf head\_\-matched\_\-points}}}
+\label{social__robot__depth_8cpp_a836aea8e107b14ec65a0947d2330f2c0}
+\hypertarget{social__robot__depth_8cpp_a16fd9f6882c2672eeec3abe12324b059}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!head\_\-matched\_\-points2@{head\_\-matched\_\-points2}}
+\index{head\_\-matched\_\-points2@{head\_\-matched\_\-points2}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{head\_\-matched\_\-points2}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Point3f$>$ {\bf head\_\-matched\_\-points2}}}
+\label{social__robot__depth_8cpp_a16fd9f6882c2672eeec3abe12324b059}
+\hypertarget{social__robot__depth_8cpp_a80005e5815baea49c1aed806e8e5c3ee}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!image\_\-depth@{image\_\-depth}}
+\index{image\_\-depth@{image\_\-depth}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{image\_\-depth}]{\setlength{\rightskip}{0pt plus 5cm}Mat {\bf image\_\-depth}}}
+\label{social__robot__depth_8cpp_a80005e5815baea49c1aed806e8e5c3ee}
+\hypertarget{social__robot__depth_8cpp_adcb087e6e2cbf5d438cf6dd931addf2f}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!image\_\-disparity@{image\_\-disparity}}
+\index{image\_\-disparity@{image\_\-disparity}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{image\_\-disparity}]{\setlength{\rightskip}{0pt plus 5cm}Mat {\bf image\_\-disparity}}}
+\label{social__robot__depth_8cpp_adcb087e6e2cbf5d438cf6dd931addf2f}
+\hypertarget{social__robot__depth_8cpp_a571c3f1992940e689edb26f58286adc6}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!match3D\_\-thr@{match3D\_\-thr}}
+\index{match3D\_\-thr@{match3D\_\-thr}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{match3D\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf match3D\_\-thr} = 0.4}}
+\label{social__robot__depth_8cpp_a571c3f1992940e689edb26f58286adc6}
+\hypertarget{social__robot__depth_8cpp_a1ad5e89ff23cfb6db193cfd737de72f1}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!matching@{matching}}
+\index{matching@{matching}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{matching}]{\setlength{\rightskip}{0pt plus 5cm}Mat$\ast$ {\bf matching} = new Mat\mbox{[}{\bf scales}\mbox{]}}}
+\label{social__robot__depth_8cpp_a1ad5e89ff23cfb6db193cfd737de72f1}
+\hypertarget{social__robot__depth_8cpp_abde7cbf03136f44e7d314001efe07160}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!max\_\-suppression@{max\_\-suppression}}
+\index{max\_\-suppression@{max\_\-suppression}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{max\_\-suppression}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf max\_\-suppression} = 0.1}}
+\label{social__robot__depth_8cpp_abde7cbf03136f44e7d314001efe07160}
+\hypertarget{social__robot__depth_8cpp_a457c8b7f7906547eba00552380ac9c4b}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!pyramid@{pyramid}}
+\index{pyramid@{pyramid}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{pyramid}]{\setlength{\rightskip}{0pt plus 5cm}Mat$\ast$ {\bf pyramid} = new Mat\mbox{[}{\bf scales}\mbox{]}}}
+\label{social__robot__depth_8cpp_a457c8b7f7906547eba00552380ac9c4b}
+\hypertarget{social__robot__depth_8cpp_abd0f83a9c271173baf120f2aed877bd4}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!ros\_\-utils@{ros\_\-utils}}
+\index{ros\_\-utils@{ros\_\-utils}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{ros\_\-utils}]{\setlength{\rightskip}{0pt plus 5cm}{\bf RosUtils} {\bf ros\_\-utils}}}
+\label{social__robot__depth_8cpp_abd0f83a9c271173baf120f2aed877bd4}
+\hypertarget{social__robot__depth_8cpp_a0e3eb2b15d4a06601824575fc6e8c7a5}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!scale\_\-factor@{scale\_\-factor}}
+\index{scale\_\-factor@{scale\_\-factor}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{scale\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf scale\_\-factor} = 0.75}}
+\label{social__robot__depth_8cpp_a0e3eb2b15d4a06601824575fc6e8c7a5}
+\hypertarget{social__robot__depth_8cpp_a706cc7c7163878b35e58171cc5aa8a3c}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!scales@{scales}}
+\index{scales@{scales}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{scales}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf scales} = 6}}
+\label{social__robot__depth_8cpp_a706cc7c7163878b35e58171cc5aa8a3c}
+\hypertarget{social__robot__depth_8cpp_aad377da67d3841b2fa8e3c6ade8674e1}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!templates@{templates}}
+\index{templates@{templates}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{templates}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Template}$>$ {\bf templates}}}
+\label{social__robot__depth_8cpp_aad377da67d3841b2fa8e3c6ade8674e1}
+\hypertarget{social__robot__depth_8cpp_a6dfb787304f5c135c2d412c2333c5483}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!track\_\-pub@{track\_\-pub}}
+\index{track\_\-pub@{track\_\-pub}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{track\_\-pub}]{\setlength{\rightskip}{0pt plus 5cm}ros::Publisher {\bf track\_\-pub}}}
+\label{social__robot__depth_8cpp_a6dfb787304f5c135c2d412c2333c5483}
+\hypertarget{social__robot__depth_8cpp_a4a2b91b2fcebc320555a721e900a7d15}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!track\_\-pub\_\-rois@{track\_\-pub\_\-rois}}
+\index{track\_\-pub\_\-rois@{track\_\-pub\_\-rois}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{track\_\-pub\_\-rois}]{\setlength{\rightskip}{0pt plus 5cm}{\bf social\_\-robot::RegionOfInterests} {\bf track\_\-pub\_\-rois}}}
+\label{social__robot__depth_8cpp_a4a2b91b2fcebc320555a721e900a7d15}
+\hypertarget{social__robot__depth_8cpp_a54b9a67b1da8bb482d6dbe94372aeb21}{
+\index{social\_\-robot\_\-depth.cpp@{social\_\-robot\_\-depth.cpp}!update\_\-rate@{update\_\-rate}}
+\index{update\_\-rate@{update\_\-rate}!social_robot_depth.cpp@{social\_\-robot\_\-depth.cpp}}
+\subsubsection[{update\_\-rate}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf update\_\-rate} = 15}}
+\label{social__robot__depth_8cpp_a54b9a67b1da8bb482d6dbe94372aeb21}

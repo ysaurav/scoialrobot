@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" title="STL class." alt="" coords="15,96,127,123"/>
+<area shape="rect" href="$classRosUtils.html" title="This class is used for publishing the ouput rectangles in ROS." alt="" coords="160,187,229,213"/>
+<area shape="rect" href="$classCvUtils.html" title="This class contains useful functions for the image processing part." alt="" coords="253,187,315,213"/>
+</map>

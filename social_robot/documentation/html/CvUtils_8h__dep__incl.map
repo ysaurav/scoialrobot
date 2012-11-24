@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" href="$moc__SocialRobotGui_8cxx.html" title="moc_SocialRobotGui.cxx" alt="" coords="5,80,173,107"/>
+<area shape="rect" href="$social__robot_8cpp.html" title="social_robot.cpp" alt="" coords="221,80,336,107"/>
+<area shape="rect" href="$social__robot__depth_8cpp.html" title="social_robot_depth.cpp" alt="" coords="384,80,539,107"/>
+<area shape="rect" href="$social__robot__rgb_8cpp.html" title="social_robot_rgb.cpp" alt="" coords="563,80,704,107"/>
+<area shape="rect" href="$social__robot__test_8cpp.html" title="social_robot_test.cpp" alt="" coords="728,80,872,107"/>
+<area shape="rect" href="$SocialRobotGui_8h.html" title="SocialRobotGui.h" alt="" coords="896,80,1019,107"/>
+<area shape="rect" href="$SocialRobotGui_8cpp.html" title="SocialRobotGui.cpp" alt="" coords="889,155,1025,181"/>
+</map>
