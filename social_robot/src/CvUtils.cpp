@@ -34,7 +34,7 @@ Mat CvUtils::rgb2bw ( Mat im_rgb )
  * @return The binary image in im_bw.
  * @param im_rgb A Mat containing an image.
  * @pre The input can be a colour or gray image.
- * 
+ *
  * */
 
 Mat CvUtils::preprocessing ( Mat image )
@@ -80,15 +80,15 @@ void CvUtils::get_non_zeros ( Mat img, Mat prob, vector<Point3f> *points, Point 
  * @return void
  * @param img A Mat containing an image with 0's and 1's, it is the mask image, it has H x W dimensions.
  * @param prob A Mat containing probability values in each pixel, it has H' x W' dimensions.
- * @param *points A pointer to vector<Point3f>, it is the output parameter. 
- * @param pdiff A point with the required shift in x and y coordinates to bring the point from prob to img coordinates. 
+ * @param *points A pointer to vector<Point3f>, it is the output parameter.
+ * @param pdiff A point with the required shift in x and y coordinates to bring the point from prob to img coordinates.
  * @param scale A double for the current scale, it is used to bring the calculated coordinates to the original image size.
  * @pre The images img and prob do not have the same dimensions.
  * */
 
 
 /** @name Drawing functions
-* 
+*
 */
 //@{
 void CvUtils::draw_rgb_faces ( Mat &img, vector<Rect> faces )
@@ -145,10 +145,13 @@ void CvUtils::draw_tracking_faces ( Mat &img, vector<StateData> state_datas )
 
 void CvUtils::draw_depth_faces ( Mat &img, vector<Rect> faces )
 {
+  Rect bounds ( 0, 0, img.cols, img.rows );
+
   int i = 0;
   for ( vector<Rect>::const_iterator r = faces.begin(); r != faces.end(); r++, i++ )
     {
-      Scalar color = colors[i % 8];
+      Scalar color = BLUE;
+      Rect rect = *r & bounds;
       rectangle ( img, *r, color, 3, 8, 0 );
     }
 }
@@ -161,7 +164,7 @@ void CvUtils::draw_depth_faces ( Mat &img, vector<Rect> faces )
 //@}
 
 /** @name Get the center of a rectangle
-* 
+*
 */
 //@{
 Point CvUtils::get_rect_centre ( Rect rect )
@@ -174,7 +177,7 @@ Point CvUtils::get_rect_centre ( Rect rect )
 /**<
  * This function calculates the center of a rectangle given a rectangle.
  * @return A Point with x and y of the center.
- * @param rect A Rect with x and y coordinates of the upper left corner, height and width. 
+ * @param rect A Rect with x and y coordinates of the upper left corner, height and width.
  * */
 
 Point3f CvUtils::get_rect_centre_3d ( Rect rect, Mat depth_image )
@@ -188,7 +191,7 @@ Point3f CvUtils::get_rect_centre_3d ( Rect rect, Mat depth_image )
 /**<
  * This function calculates the center of a rectangle given the rectangle and depth information.
  * @return A Point3f with x, y and z coordinates of the center.
- * @param rect A Rect with x and y coordinates of the upper left corner, height and width. 
+ * @param rect A Rect with x and y coordinates of the upper left corner, height and width.
  * @param depth_image A Mat where each pixel gives us depth information.
  * */
 //@}
@@ -217,3 +220,16 @@ double CvUtils::euclidean_distance ( Point a, Point b )
  * @param a A Point containing x and y coordinates.
  * @param b A Point containing x and y coordinates.
  * */
+
+Rect CvUtils::enlarge_window ( Rect orgrect, Mat image, double scale )
+{
+  Rect window;
+  Point center ( orgrect.x + orgrect.width / 2, orgrect.y + orgrect.height / 2 );
+
+  window = Rect ( center.x - scale * orgrect.width / 2, center.y - scale * orgrect.height / 2, scale * orgrect.width, scale * orgrect.height );
+
+  Rect bounds ( 0, 0, image.cols, image.rows );
+  window = window & bounds;
+
+  return window;
+}

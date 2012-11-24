@@ -1,5 +1,4 @@
 #include "StateData.h"
-#include "../CvUtils.h"
 
 using namespace std;
 using namespace cv;
@@ -13,7 +12,10 @@ void StateData::tracking ( double cost )
 {
   is_associated = false;
   detection_confidence = detection_confidence - cost;
-  filter->update ( image, image_depth, selection.size(), target_histogram, hist_type );
+  // TODO: fix the size
+//   cout << "Scale: " << filter->get_estimated_scale() << " size: " << selection.size().width << "," << selection.size().height << endl;
+  Size target_size(selection.size().width * filter->get_estimated_scale(), selection.size().height * filter->get_estimated_scale());
+  filter->update ( image, image_depth, target_size, target_histogram, hist_type );
 }
 
 void StateData::initialise ( int num_particles, Mat image_, Rect selection_, Mat image_depth_, int hist_type_ )

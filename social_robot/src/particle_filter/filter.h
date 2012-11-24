@@ -50,6 +50,7 @@ class ParticleFilter : private ConDensation
     void redistribute ( const float lower_bound[], const float upper_bound[] );
 
     cv::Rect get_estimated_state ( void );
+    float get_estimated_scale ( void );
 
     const cv::Mat& state() const
     { return m_state; }
@@ -63,6 +64,7 @@ class ParticleFilter : private ConDensation
 
     float m_mean_confidence;
     cv::Rect region;
+    float scale;
 
   };
 
