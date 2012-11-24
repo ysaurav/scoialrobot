@@ -223,8 +223,11 @@ void OpenNINodelet::setupDevice (ros::NodeHandle& param_nh)
 
     string file_path;
     param_nh.param ("file_path", file_path, std::string());
+    bool to_be_repeated;
+    cout << "CHECKING IF VIDEO HAS TO BE REPEATED!\n";
+    param_nh.param ("to_be_repeated", to_be_repeated, false);
     ROS_INFO("FILE %s ACTS AS KINECT.", file_path.c_str());
-    device_ = driver.createVirtualDevice(file_path, true, true);
+    device_ = driver.createVirtualDevice(file_path, to_be_repeated, true);
   } while (!device_);
 
   NODELET_INFO ("[%s] Opened '%s' on bus %d:%d with serial number '%s'", getName ().c_str (),
