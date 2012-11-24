@@ -1,0 +1,195 @@
+\hypertarget{window__QT_8h}{\section{window\-\_\-\-Q\-T.\-h File Reference}
+\label{window__QT_8h}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}
+}
+{\ttfamily \#include $<$opencv2/highgui/highgui\-\_\-c.\-h$>$}\\*
+{\ttfamily \#include $<$Q\-Abstract\-Event\-Dispatcher$>$}\\*
+{\ttfamily \#include $<$Qt\-Gui/\-Q\-Application$>$}\\*
+{\ttfamily \#include $<$Q\-File$>$}\\*
+{\ttfamily \#include $<$Q\-Push\-Button$>$}\\*
+{\ttfamily \#include $<$Qt\-Gui/\-Q\-Graphics\-View$>$}\\*
+{\ttfamily \#include $<$Q\-Size\-Policy$>$}\\*
+{\ttfamily \#include $<$Q\-Input\-Dialog$>$}\\*
+{\ttfamily \#include $<$Qt\-Gui/\-Q\-Box\-Layout$>$}\\*
+{\ttfamily \#include $<$Q\-Settings$>$}\\*
+{\ttfamily \#include $<$qtimer.\-h$>$}\\*
+{\ttfamily \#include $<$Qt\-Concurrent\-Run$>$}\\*
+{\ttfamily \#include $<$Q\-Wait\-Condition$>$}\\*
+{\ttfamily \#include $<$Q\-Key\-Event$>$}\\*
+{\ttfamily \#include $<$Q\-Meta\-Object$>$}\\*
+{\ttfamily \#include $<$Q\-Pointer$>$}\\*
+{\ttfamily \#include $<$Q\-Slider$>$}\\*
+{\ttfamily \#include $<$Q\-Label$>$}\\*
+{\ttfamily \#include $<$Q\-I\-O\-Device$>$}\\*
+{\ttfamily \#include $<$Q\-Shortcut$>$}\\*
+{\ttfamily \#include $<$Q\-Status\-Bar$>$}\\*
+{\ttfamily \#include $<$Q\-Var\-Length\-Array$>$}\\*
+{\ttfamily \#include $<$Q\-File\-Info$>$}\\*
+{\ttfamily \#include $<$Q\-Date$>$}\\*
+{\ttfamily \#include $<$Q\-File\-Dialog$>$}\\*
+{\ttfamily \#include $<$Q\-Tool\-Bar$>$}\\*
+{\ttfamily \#include $<$Q\-Action$>$}\\*
+{\ttfamily \#include $<$Q\-Check\-Box$>$}\\*
+{\ttfamily \#include $<$Q\-Radio\-Button$>$}\\*
+{\ttfamily \#include $<$Q\-Button\-Group$>$}\\*
+{\ttfamily \#include $<$Q\-Menu$>$}\\*
+Include dependency graph for window\-\_\-\-Q\-T.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{window__QT_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{window__QT_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classGuiReceiver}{Gui\-Receiver}
+\item 
+class \hyperlink{classCvBar}{Cv\-Bar}
+\item 
+class \hyperlink{classCvButtonbar}{Cv\-Buttonbar}
+\item 
+class \hyperlink{classCvPushButton}{Cv\-Push\-Button}
+\item 
+class \hyperlink{classCvCheckBox}{Cv\-Check\-Box}
+\item 
+class \hyperlink{classCvRadioButton}{Cv\-Radio\-Button}
+\item 
+class \hyperlink{classCvTrackbar}{Cv\-Trackbar}
+\item 
+class \hyperlink{classCvWinModel}{Cv\-Win\-Model}
+\item 
+class \hyperlink{classCvWinProperties}{Cv\-Win\-Properties}
+\item 
+class \hyperlink{classCvWindow}{Cv\-Window}
+\item 
+class \hyperlink{classViewPort}{View\-Port}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \hyperlink{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7a8f4516cd4423037ff9e7c533c4084e64}{C\-V\-\_\-\-M\-O\-D\-E\-\_\-\-N\-O\-R\-M\-A\-L} = 0, 
+\hyperlink{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7ab34a167a835f6bdfe77b2f0b310ce3b8}{C\-V\-\_\-\-M\-O\-D\-E\-\_\-\-O\-P\-E\-N\-G\-L} = 1
+ \}
+\item 
+enum \{ \\*
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a8fd7258a9d98219cb39d07c7674c9176}{shortcut\-\_\-zoom\-\_\-normal} = Qt\-:\-:C\-T\-R\-L + Qt\-:\-:Key\-\_\-\-Z, 
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5aff386d7c5872ba76c312f11d8cb20f53}{shortcut\-\_\-zoom\-\_\-img\-Region} = Qt\-:\-:C\-T\-R\-L + Qt\-:\-:Key\-\_\-\-X, 
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a27828af4a6ceac7d1bd888b01175542a}{shortcut\-\_\-save\-\_\-img} = Qt\-:\-:C\-T\-R\-L + Qt\-:\-:Key\-\_\-\-S, 
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a991f69bc842e0e75284c89d270cc697c}{shortcut\-\_\-properties\-\_\-win} = Qt\-:\-:C\-T\-R\-L + Qt\-:\-:Key\-\_\-\-P, 
+\\*
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a15913d7abe9547760a8a6ff2a22088c8}{shortcut\-\_\-zoom\-\_\-in} = Qt\-:\-:C\-T\-R\-L + Qt\-:\-:Key\-\_\-\-Plus, 
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a146340e603a547ccbc10edcbd0ae91a0}{shortcut\-\_\-zoom\-\_\-out} = Qt\-:\-:C\-T\-R\-L + Qt\-:\-:Key\-\_\-\-Minus, 
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a0bc4aaa211adf3114a153c9de698efcc}{shortcut\-\_\-panning\-\_\-left} = Qt\-:\-:C\-T\-R\-L + Qt\-:\-:Key\-\_\-\-Left, 
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a47ac3f8dd8730aec3f3257f810f769cf}{shortcut\-\_\-panning\-\_\-right} = Qt\-:\-:C\-T\-R\-L + Qt\-:\-:Key\-\_\-\-Right, 
+\\*
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a6a2f3dc79134e34addc119ffc08e53e7}{shortcut\-\_\-panning\-\_\-up} = Qt\-:\-:C\-T\-R\-L + Qt\-:\-:Key\-\_\-\-Up, 
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a9e5ab0c066c4ee41cda9f54a5eb018ac}{shortcut\-\_\-panning\-\_\-down} = Qt\-:\-:C\-T\-R\-L + Qt\-:\-:Key\-\_\-\-Down
+ \}
+\item 
+enum \hyperlink{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3}{type\-Bar} \{ \hyperlink{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3a62c1a22549173457479f11d643de3ae7}{type\-\_\-\-Cv\-Trackbar} = 0, 
+\hyperlink{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3a470eefc3c7b89872dba3ea6c0ef3a037}{type\-\_\-\-Cv\-Buttonbar} = 1
+ \}
+\item 
+enum \hyperlink{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70}{type\-Window} \{ \hyperlink{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70aa1f1d525da3c30c32d7971f7add21c40}{type\-\_\-\-Cv\-Window} = 1, 
+\hyperlink{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70ae4e0590ab0d080b24e3edc0c919ff415}{type\-\_\-\-Cv\-Win\-Properties} = 2
+ \}
+\item 
+enum \hyperlink{window__QT_8h_abe80154198f354a572df04c3c7522935}{type\-\_\-mouse\-\_\-event} \{ \hyperlink{window__QT_8h_abe80154198f354a572df04c3c7522935a887b89fa907437110e4104c2a9098846}{mouse\-\_\-up} = 0, 
+\hyperlink{window__QT_8h_abe80154198f354a572df04c3c7522935a2ffc5e85cdc2c2f7ecee2ab4433e71b8}{mouse\-\_\-down} = 1, 
+\hyperlink{window__QT_8h_abe80154198f354a572df04c3c7522935a1bb683990bd260fa995a69fe6d6c6017}{mouse\-\_\-dbclick} = 2, 
+\hyperlink{window__QT_8h_abe80154198f354a572df04c3c7522935af5148ad19854953ab8488417db97897a}{mouse\-\_\-move} = 3
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7}{\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}\label{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7}
+\begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{C\-V\-\_\-\-M\-O\-D\-E\-\_\-\-N\-O\-R\-M\-A\-L@{C\-V\-\_\-\-M\-O\-D\-E\-\_\-\-N\-O\-R\-M\-A\-L}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!C\-V\-\_\-\-M\-O\-D\-E\-\_\-\-N\-O\-R\-M\-A\-L@{C\-V\-\_\-\-M\-O\-D\-E\-\_\-\-N\-O\-R\-M\-A\-L}}\item[{\em 
+\hypertarget{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7a8f4516cd4423037ff9e7c533c4084e64}{C\-V\-\_\-\-M\-O\-D\-E\-\_\-\-N\-O\-R\-M\-A\-L}\label{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7a8f4516cd4423037ff9e7c533c4084e64}
+}]\index{C\-V\-\_\-\-M\-O\-D\-E\-\_\-\-O\-P\-E\-N\-G\-L@{C\-V\-\_\-\-M\-O\-D\-E\-\_\-\-O\-P\-E\-N\-G\-L}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!C\-V\-\_\-\-M\-O\-D\-E\-\_\-\-O\-P\-E\-N\-G\-L@{C\-V\-\_\-\-M\-O\-D\-E\-\_\-\-O\-P\-E\-N\-G\-L}}\item[{\em 
+\hypertarget{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7ab34a167a835f6bdfe77b2f0b310ce3b8}{C\-V\-\_\-\-M\-O\-D\-E\-\_\-\-O\-P\-E\-N\-G\-L}\label{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7ab34a167a835f6bdfe77b2f0b310ce3b8}
+}]\end{description}
+\end{Desc}
+
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5}{\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5}
+\begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{shortcut\-\_\-zoom\-\_\-normal@{shortcut\-\_\-zoom\-\_\-normal}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!shortcut\-\_\-zoom\-\_\-normal@{shortcut\-\_\-zoom\-\_\-normal}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a8fd7258a9d98219cb39d07c7674c9176}{shortcut\-\_\-zoom\-\_\-normal}\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a8fd7258a9d98219cb39d07c7674c9176}
+}]\index{shortcut\-\_\-zoom\-\_\-img\-Region@{shortcut\-\_\-zoom\-\_\-img\-Region}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!shortcut\-\_\-zoom\-\_\-img\-Region@{shortcut\-\_\-zoom\-\_\-img\-Region}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5aff386d7c5872ba76c312f11d8cb20f53}{shortcut\-\_\-zoom\-\_\-img\-Region}\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5aff386d7c5872ba76c312f11d8cb20f53}
+}]\index{shortcut\-\_\-save\-\_\-img@{shortcut\-\_\-save\-\_\-img}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!shortcut\-\_\-save\-\_\-img@{shortcut\-\_\-save\-\_\-img}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a27828af4a6ceac7d1bd888b01175542a}{shortcut\-\_\-save\-\_\-img}\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a27828af4a6ceac7d1bd888b01175542a}
+}]\index{shortcut\-\_\-properties\-\_\-win@{shortcut\-\_\-properties\-\_\-win}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!shortcut\-\_\-properties\-\_\-win@{shortcut\-\_\-properties\-\_\-win}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a991f69bc842e0e75284c89d270cc697c}{shortcut\-\_\-properties\-\_\-win}\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a991f69bc842e0e75284c89d270cc697c}
+}]\index{shortcut\-\_\-zoom\-\_\-in@{shortcut\-\_\-zoom\-\_\-in}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!shortcut\-\_\-zoom\-\_\-in@{shortcut\-\_\-zoom\-\_\-in}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a15913d7abe9547760a8a6ff2a22088c8}{shortcut\-\_\-zoom\-\_\-in}\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a15913d7abe9547760a8a6ff2a22088c8}
+}]\index{shortcut\-\_\-zoom\-\_\-out@{shortcut\-\_\-zoom\-\_\-out}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!shortcut\-\_\-zoom\-\_\-out@{shortcut\-\_\-zoom\-\_\-out}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a146340e603a547ccbc10edcbd0ae91a0}{shortcut\-\_\-zoom\-\_\-out}\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a146340e603a547ccbc10edcbd0ae91a0}
+}]\index{shortcut\-\_\-panning\-\_\-left@{shortcut\-\_\-panning\-\_\-left}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!shortcut\-\_\-panning\-\_\-left@{shortcut\-\_\-panning\-\_\-left}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a0bc4aaa211adf3114a153c9de698efcc}{shortcut\-\_\-panning\-\_\-left}\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a0bc4aaa211adf3114a153c9de698efcc}
+}]\index{shortcut\-\_\-panning\-\_\-right@{shortcut\-\_\-panning\-\_\-right}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!shortcut\-\_\-panning\-\_\-right@{shortcut\-\_\-panning\-\_\-right}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a47ac3f8dd8730aec3f3257f810f769cf}{shortcut\-\_\-panning\-\_\-right}\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a47ac3f8dd8730aec3f3257f810f769cf}
+}]\index{shortcut\-\_\-panning\-\_\-up@{shortcut\-\_\-panning\-\_\-up}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!shortcut\-\_\-panning\-\_\-up@{shortcut\-\_\-panning\-\_\-up}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a6a2f3dc79134e34addc119ffc08e53e7}{shortcut\-\_\-panning\-\_\-up}\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a6a2f3dc79134e34addc119ffc08e53e7}
+}]\index{shortcut\-\_\-panning\-\_\-down@{shortcut\-\_\-panning\-\_\-down}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!shortcut\-\_\-panning\-\_\-down@{shortcut\-\_\-panning\-\_\-down}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a9e5ab0c066c4ee41cda9f54a5eb018ac}{shortcut\-\_\-panning\-\_\-down}\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a9e5ab0c066c4ee41cda9f54a5eb018ac}
+}]\end{description}
+\end{Desc}
+
+\hypertarget{window__QT_8h_abe80154198f354a572df04c3c7522935}{\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!type\-\_\-mouse\-\_\-event@{type\-\_\-mouse\-\_\-event}}
+\index{type\-\_\-mouse\-\_\-event@{type\-\_\-mouse\-\_\-event}!window_QT.h@{window\-\_\-\-Q\-T.\-h}}
+\subsubsection[{type\-\_\-mouse\-\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf type\-\_\-mouse\-\_\-event}}}\label{window__QT_8h_abe80154198f354a572df04c3c7522935}
+\begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{mouse\-\_\-up@{mouse\-\_\-up}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!mouse\-\_\-up@{mouse\-\_\-up}}\item[{\em 
+\hypertarget{window__QT_8h_abe80154198f354a572df04c3c7522935a887b89fa907437110e4104c2a9098846}{mouse\-\_\-up}\label{window__QT_8h_abe80154198f354a572df04c3c7522935a887b89fa907437110e4104c2a9098846}
+}]\index{mouse\-\_\-down@{mouse\-\_\-down}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!mouse\-\_\-down@{mouse\-\_\-down}}\item[{\em 
+\hypertarget{window__QT_8h_abe80154198f354a572df04c3c7522935a2ffc5e85cdc2c2f7ecee2ab4433e71b8}{mouse\-\_\-down}\label{window__QT_8h_abe80154198f354a572df04c3c7522935a2ffc5e85cdc2c2f7ecee2ab4433e71b8}
+}]\index{mouse\-\_\-dbclick@{mouse\-\_\-dbclick}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!mouse\-\_\-dbclick@{mouse\-\_\-dbclick}}\item[{\em 
+\hypertarget{window__QT_8h_abe80154198f354a572df04c3c7522935a1bb683990bd260fa995a69fe6d6c6017}{mouse\-\_\-dbclick}\label{window__QT_8h_abe80154198f354a572df04c3c7522935a1bb683990bd260fa995a69fe6d6c6017}
+}]\index{mouse\-\_\-move@{mouse\-\_\-move}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!mouse\-\_\-move@{mouse\-\_\-move}}\item[{\em 
+\hypertarget{window__QT_8h_abe80154198f354a572df04c3c7522935af5148ad19854953ab8488417db97897a}{mouse\-\_\-move}\label{window__QT_8h_abe80154198f354a572df04c3c7522935af5148ad19854953ab8488417db97897a}
+}]\end{description}
+\end{Desc}
+
+\hypertarget{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3}{\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!type\-Bar@{type\-Bar}}
+\index{type\-Bar@{type\-Bar}!window_QT.h@{window\-\_\-\-Q\-T.\-h}}
+\subsubsection[{type\-Bar}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf type\-Bar}}}\label{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3}
+\begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{type\-\_\-\-Cv\-Trackbar@{type\-\_\-\-Cv\-Trackbar}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!type\-\_\-\-Cv\-Trackbar@{type\-\_\-\-Cv\-Trackbar}}\item[{\em 
+\hypertarget{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3a62c1a22549173457479f11d643de3ae7}{type\-\_\-\-Cv\-Trackbar}\label{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3a62c1a22549173457479f11d643de3ae7}
+}]\index{type\-\_\-\-Cv\-Buttonbar@{type\-\_\-\-Cv\-Buttonbar}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!type\-\_\-\-Cv\-Buttonbar@{type\-\_\-\-Cv\-Buttonbar}}\item[{\em 
+\hypertarget{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3a470eefc3c7b89872dba3ea6c0ef3a037}{type\-\_\-\-Cv\-Buttonbar}\label{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3a470eefc3c7b89872dba3ea6c0ef3a037}
+}]\end{description}
+\end{Desc}
+
+\hypertarget{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70}{\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!type\-Window@{type\-Window}}
+\index{type\-Window@{type\-Window}!window_QT.h@{window\-\_\-\-Q\-T.\-h}}
+\subsubsection[{type\-Window}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf type\-Window}}}\label{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70}
+\begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{type\-\_\-\-Cv\-Window@{type\-\_\-\-Cv\-Window}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!type\-\_\-\-Cv\-Window@{type\-\_\-\-Cv\-Window}}\item[{\em 
+\hypertarget{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70aa1f1d525da3c30c32d7971f7add21c40}{type\-\_\-\-Cv\-Window}\label{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70aa1f1d525da3c30c32d7971f7add21c40}
+}]\index{type\-\_\-\-Cv\-Win\-Properties@{type\-\_\-\-Cv\-Win\-Properties}!window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}}\index{window\-\_\-\-Q\-T.\-h@{window\-\_\-\-Q\-T.\-h}!type\-\_\-\-Cv\-Win\-Properties@{type\-\_\-\-Cv\-Win\-Properties}}\item[{\em 
+\hypertarget{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70ae4e0590ab0d080b24e3edc0c919ff415}{type\-\_\-\-Cv\-Win\-Properties}\label{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70ae4e0590ab0d080b24e3edc0c919ff415}
+}]\end{description}
+\end{Desc}
+

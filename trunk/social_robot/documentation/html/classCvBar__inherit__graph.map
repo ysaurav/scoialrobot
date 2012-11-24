@@ -1,0 +1,4 @@
+<map id="CvBar" name="CvBar">
+<area shape="rect" id="node5" href="$classCvButtonbar.html" title="CvButtonbar" alt="" coords="5,160,99,189"/>
+<area shape="rect" id="node7" href="$classCvTrackbar.html" title="CvTrackbar" alt="" coords="123,160,213,189"/>
+</map>

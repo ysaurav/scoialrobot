@@ -1,0 +1,26 @@
+var classSocialRobotGui =
+[
+    [ "SocialRobotGui", "classSocialRobotGui.html#a5eaed12731bfb6967d261ae8433d2110", null ],
+    [ "~SocialRobotGui", "classSocialRobotGui.html#afd21dde21c5d13e302cec9edda1e9abc", null ],
+    [ "depth_cb", "classSocialRobotGui.html#a20bf403e17980a1c2d9f3efaf99a0ddd", null ],
+    [ "depth_rois_cb", "classSocialRobotGui.html#a0c36cf4cb20fec7ec4d79abeb04b140d", null ],
+    [ "init", "classSocialRobotGui.html#a3a979f567341925976347b3c1b735347", null ],
+    [ "rgb_cb", "classSocialRobotGui.html#adeb531e38774a69cf8411aa18d2af8e2", null ],
+    [ "rgb_rois_cb", "classSocialRobotGui.html#aac3a124449c975e2bc69fbc71d891e16", null ],
+    [ "run", "classSocialRobotGui.html#ac9171915901ff625cfbc1492ee8f267e", null ],
+    [ "threshold_arc_high", "classSocialRobotGui.html#a5108ee2ec82ffc7561421e5c8576cef4", null ],
+    [ "threshold_arc_low", "classSocialRobotGui.html#acdabf6f9c428cca8e0c0b74bd9035b82", null ],
+    [ "threshold_chamfer", "classSocialRobotGui.html#a35d2e5e74b8e201cb269e8dd3c1b8dab", null ],
+    [ "threshold_confidence", "classSocialRobotGui.html#a2345763f68b3da1cff958a9a24218da6", null ],
+    [ "threshold_detection", "classSocialRobotGui.html#a9931a08dd5eda16aa454d6edccdfb015", null ],
+    [ "threshold_eucdis", "classSocialRobotGui.html#ac701acad18c8d5d0358886765ba8abb9", null ],
+    [ "threshold_scales", "classSocialRobotGui.html#a5f6fedb5046ca5cc46c021cca4778385", null ],
+    [ "threshold_template_matching_3d", "classSocialRobotGui.html#a77d605da08f98863b272ccef00b42666", null ],
+    [ "track_rois_cb", "classSocialRobotGui.html#a3333bd4377889eb97216ebfbb10f8104", null ],
+    [ "update_image", "classSocialRobotGui.html#aba07bb0bb3b8fa3f317539e9d6698aee", null ],
+    [ "display_depth_faces", "classSocialRobotGui.html#a1d32e49a34a1a0eafe6a7e160307bf82", null ],
+    [ "display_depth_image", "classSocialRobotGui.html#aec418c0fe6ac3e995e2fedda35d0237e", null ],
+    [ "display_rgb_faces", "classSocialRobotGui.html#a57c8e1f9be7edfe29703853268aa8aba", null ],
+    [ "display_rgb_image", "classSocialRobotGui.html#a29d1ccc0fd91a27bdd56364aef82d351", null ],
+    [ "display_track_faces", "classSocialRobotGui.html#a28e6dc7627b92c85adb014bcaeb641bd", null ]
+];

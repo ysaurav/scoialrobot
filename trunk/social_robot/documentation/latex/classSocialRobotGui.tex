@@ -1,0 +1,239 @@
+\hypertarget{classSocialRobotGui}{\section{Social\-Robot\-Gui Class Reference}
+\label{classSocialRobotGui}\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}}
+}
+
+
+{\ttfamily \#include $<$Social\-Robot\-Gui.\-h$>$}
+
+
+
+Inheritance diagram for Social\-Robot\-Gui\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classSocialRobotGui__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Social\-Robot\-Gui\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classSocialRobotGui__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classSocialRobotGui_aba07bb0bb3b8fa3f317539e9d6698aee}{update\-\_\-image} (const Mat \&)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSocialRobotGui_a5eaed12731bfb6967d261ae8433d2110}{Social\-Robot\-Gui} (int argc, char $\ast$$\ast$argv)
+\item 
+\hyperlink{classSocialRobotGui_afd21dde21c5d13e302cec9edda1e9abc}{$\sim$\-Social\-Robot\-Gui} ()
+\item 
+void \hyperlink{classSocialRobotGui_a3a979f567341925976347b3c1b735347}{init} ()
+\item 
+void \hyperlink{classSocialRobotGui_ac9171915901ff625cfbc1492ee8f267e}{run} ()
+\item 
+void \hyperlink{classSocialRobotGui_adeb531e38774a69cf8411aa18d2af8e2}{rgb\-\_\-cb} (const sensor\-\_\-msgs\-::\-Image\-Const\-Ptr \&msg)
+\item 
+void \hyperlink{classSocialRobotGui_a20bf403e17980a1c2d9f3efaf99a0ddd}{depth\-\_\-cb} (const sensor\-\_\-msgs\-::\-Image\-Const\-Ptr \&msg)
+\item 
+void \hyperlink{classSocialRobotGui_aac3a124449c975e2bc69fbc71d891e16}{rgb\-\_\-rois\-\_\-cb} (const social\-\_\-robot\-::\-Region\-Of\-Interests \&msg)
+\item 
+void \hyperlink{classSocialRobotGui_a0c36cf4cb20fec7ec4d79abeb04b140d}{depth\-\_\-rois\-\_\-cb} (const social\-\_\-robot\-::\-Region\-Of\-Interests \&msg)
+\item 
+void \hyperlink{classSocialRobotGui_a3333bd4377889eb97216ebfbb10f8104}{track\-\_\-rois\-\_\-cb} (const social\-\_\-robot\-::\-Region\-Of\-Interests \&msg)
+\item 
+void \hyperlink{classSocialRobotGui_a77d605da08f98863b272ccef00b42666}{threshold\-\_\-template\-\_\-matching\-\_\-3d} (double threshold)
+\item 
+void \hyperlink{classSocialRobotGui_a5f6fedb5046ca5cc46c021cca4778385}{threshold\-\_\-scales} (int threshold)
+\item 
+void \hyperlink{classSocialRobotGui_a35d2e5e74b8e201cb269e8dd3c1b8dab}{threshold\-\_\-chamfer} (double threshold)
+\item 
+void \hyperlink{classSocialRobotGui_acdabf6f9c428cca8e0c0b74bd9035b82}{threshold\-\_\-arc\-\_\-low} (int threshold)
+\item 
+void \hyperlink{classSocialRobotGui_a5108ee2ec82ffc7561421e5c8576cef4}{threshold\-\_\-arc\-\_\-high} (int threshold)
+\item 
+void \hyperlink{classSocialRobotGui_a2345763f68b3da1cff958a9a24218da6}{threshold\-\_\-confidence} (double threshold)
+\item 
+void \hyperlink{classSocialRobotGui_a9931a08dd5eda16aa454d6edccdfb015}{threshold\-\_\-detection} (double threshold)
+\item 
+void \hyperlink{classSocialRobotGui_ac701acad18c8d5d0358886765ba8abb9}{threshold\-\_\-eucdis} (double threshold)
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classSocialRobotGui_a57c8e1f9be7edfe29703853268aa8aba}{display\-\_\-rgb\-\_\-faces}
+\item 
+bool \hyperlink{classSocialRobotGui_a1d32e49a34a1a0eafe6a7e160307bf82}{display\-\_\-depth\-\_\-faces}
+\item 
+bool \hyperlink{classSocialRobotGui_a28e6dc7627b92c85adb014bcaeb641bd}{display\-\_\-track\-\_\-faces}
+\item 
+bool \hyperlink{classSocialRobotGui_a29d1ccc0fd91a27bdd56364aef82d351}{display\-\_\-rgb\-\_\-image}
+\item 
+bool \hyperlink{classSocialRobotGui_aec418c0fe6ac3e995e2fedda35d0237e}{display\-\_\-depth\-\_\-image}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classSocialRobotGui_a5eaed12731bfb6967d261ae8433d2110}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!Social\-Robot\-Gui@{Social\-Robot\-Gui}}
+\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{Social\-Robot\-Gui}]{\setlength{\rightskip}{0pt plus 5cm}Social\-Robot\-Gui\-::\-Social\-Robot\-Gui (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_a5eaed12731bfb6967d261ae8433d2110}
+\hypertarget{classSocialRobotGui_afd21dde21c5d13e302cec9edda1e9abc}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!$\sim$\-Social\-Robot\-Gui@{$\sim$\-Social\-Robot\-Gui}}
+\index{$\sim$\-Social\-Robot\-Gui@{$\sim$\-Social\-Robot\-Gui}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{$\sim$\-Social\-Robot\-Gui}]{\setlength{\rightskip}{0pt plus 5cm}Social\-Robot\-Gui\-::$\sim$\-Social\-Robot\-Gui (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_afd21dde21c5d13e302cec9edda1e9abc}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classSocialRobotGui_a20bf403e17980a1c2d9f3efaf99a0ddd}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!depth\-\_\-cb@{depth\-\_\-cb}}
+\index{depth\-\_\-cb@{depth\-\_\-cb}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{depth\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::depth\-\_\-cb (
+\begin{DoxyParamCaption}
+\item[{const sensor\-\_\-msgs\-::\-Image\-Const\-Ptr \&}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_a20bf403e17980a1c2d9f3efaf99a0ddd}
+\hypertarget{classSocialRobotGui_a0c36cf4cb20fec7ec4d79abeb04b140d}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!depth\-\_\-rois\-\_\-cb@{depth\-\_\-rois\-\_\-cb}}
+\index{depth\-\_\-rois\-\_\-cb@{depth\-\_\-rois\-\_\-cb}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{depth\-\_\-rois\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::depth\-\_\-rois\-\_\-cb (
+\begin{DoxyParamCaption}
+\item[{const social\-\_\-robot\-::\-Region\-Of\-Interests \&}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_a0c36cf4cb20fec7ec4d79abeb04b140d}
+\hypertarget{classSocialRobotGui_a3a979f567341925976347b3c1b735347}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!init@{init}}
+\index{init@{init}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_a3a979f567341925976347b3c1b735347}
+\hypertarget{classSocialRobotGui_adeb531e38774a69cf8411aa18d2af8e2}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!rgb\-\_\-cb@{rgb\-\_\-cb}}
+\index{rgb\-\_\-cb@{rgb\-\_\-cb}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{rgb\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::rgb\-\_\-cb (
+\begin{DoxyParamCaption}
+\item[{const sensor\-\_\-msgs\-::\-Image\-Const\-Ptr \&}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_adeb531e38774a69cf8411aa18d2af8e2}
+\hypertarget{classSocialRobotGui_aac3a124449c975e2bc69fbc71d891e16}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!rgb\-\_\-rois\-\_\-cb@{rgb\-\_\-rois\-\_\-cb}}
+\index{rgb\-\_\-rois\-\_\-cb@{rgb\-\_\-rois\-\_\-cb}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{rgb\-\_\-rois\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::rgb\-\_\-rois\-\_\-cb (
+\begin{DoxyParamCaption}
+\item[{const social\-\_\-robot\-::\-Region\-Of\-Interests \&}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_aac3a124449c975e2bc69fbc71d891e16}
+\hypertarget{classSocialRobotGui_ac9171915901ff625cfbc1492ee8f267e}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!run@{run}}
+\index{run@{run}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::run (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_ac9171915901ff625cfbc1492ee8f267e}
+\hypertarget{classSocialRobotGui_a5108ee2ec82ffc7561421e5c8576cef4}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!threshold\-\_\-arc\-\_\-high@{threshold\-\_\-arc\-\_\-high}}
+\index{threshold\-\_\-arc\-\_\-high@{threshold\-\_\-arc\-\_\-high}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{threshold\-\_\-arc\-\_\-high}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::threshold\-\_\-arc\-\_\-high (
+\begin{DoxyParamCaption}
+\item[{int}]{threshold}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_a5108ee2ec82ffc7561421e5c8576cef4}
+\hypertarget{classSocialRobotGui_acdabf6f9c428cca8e0c0b74bd9035b82}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!threshold\-\_\-arc\-\_\-low@{threshold\-\_\-arc\-\_\-low}}
+\index{threshold\-\_\-arc\-\_\-low@{threshold\-\_\-arc\-\_\-low}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{threshold\-\_\-arc\-\_\-low}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::threshold\-\_\-arc\-\_\-low (
+\begin{DoxyParamCaption}
+\item[{int}]{threshold}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_acdabf6f9c428cca8e0c0b74bd9035b82}
+\hypertarget{classSocialRobotGui_a35d2e5e74b8e201cb269e8dd3c1b8dab}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!threshold\-\_\-chamfer@{threshold\-\_\-chamfer}}
+\index{threshold\-\_\-chamfer@{threshold\-\_\-chamfer}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{threshold\-\_\-chamfer}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::threshold\-\_\-chamfer (
+\begin{DoxyParamCaption}
+\item[{double}]{threshold}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_a35d2e5e74b8e201cb269e8dd3c1b8dab}
+\hypertarget{classSocialRobotGui_a2345763f68b3da1cff958a9a24218da6}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!threshold\-\_\-confidence@{threshold\-\_\-confidence}}
+\index{threshold\-\_\-confidence@{threshold\-\_\-confidence}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{threshold\-\_\-confidence}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::threshold\-\_\-confidence (
+\begin{DoxyParamCaption}
+\item[{double}]{threshold}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_a2345763f68b3da1cff958a9a24218da6}
+\hypertarget{classSocialRobotGui_a9931a08dd5eda16aa454d6edccdfb015}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!threshold\-\_\-detection@{threshold\-\_\-detection}}
+\index{threshold\-\_\-detection@{threshold\-\_\-detection}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{threshold\-\_\-detection}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::threshold\-\_\-detection (
+\begin{DoxyParamCaption}
+\item[{double}]{threshold}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_a9931a08dd5eda16aa454d6edccdfb015}
+\hypertarget{classSocialRobotGui_ac701acad18c8d5d0358886765ba8abb9}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!threshold\-\_\-eucdis@{threshold\-\_\-eucdis}}
+\index{threshold\-\_\-eucdis@{threshold\-\_\-eucdis}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{threshold\-\_\-eucdis}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::threshold\-\_\-eucdis (
+\begin{DoxyParamCaption}
+\item[{double}]{threshold}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_ac701acad18c8d5d0358886765ba8abb9}
+\hypertarget{classSocialRobotGui_a5f6fedb5046ca5cc46c021cca4778385}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!threshold\-\_\-scales@{threshold\-\_\-scales}}
+\index{threshold\-\_\-scales@{threshold\-\_\-scales}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{threshold\-\_\-scales}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::threshold\-\_\-scales (
+\begin{DoxyParamCaption}
+\item[{int}]{threshold}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_a5f6fedb5046ca5cc46c021cca4778385}
+\hypertarget{classSocialRobotGui_a77d605da08f98863b272ccef00b42666}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!threshold\-\_\-template\-\_\-matching\-\_\-3d@{threshold\-\_\-template\-\_\-matching\-\_\-3d}}
+\index{threshold\-\_\-template\-\_\-matching\-\_\-3d@{threshold\-\_\-template\-\_\-matching\-\_\-3d}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{threshold\-\_\-template\-\_\-matching\-\_\-3d}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::threshold\-\_\-template\-\_\-matching\-\_\-3d (
+\begin{DoxyParamCaption}
+\item[{double}]{threshold}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_a77d605da08f98863b272ccef00b42666}
+\hypertarget{classSocialRobotGui_a3333bd4377889eb97216ebfbb10f8104}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!track\-\_\-rois\-\_\-cb@{track\-\_\-rois\-\_\-cb}}
+\index{track\-\_\-rois\-\_\-cb@{track\-\_\-rois\-\_\-cb}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{track\-\_\-rois\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::track\-\_\-rois\-\_\-cb (
+\begin{DoxyParamCaption}
+\item[{const social\-\_\-robot\-::\-Region\-Of\-Interests \&}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classSocialRobotGui_a3333bd4377889eb97216ebfbb10f8104}
+\hypertarget{classSocialRobotGui_aba07bb0bb3b8fa3f317539e9d6698aee}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!update\-\_\-image@{update\-\_\-image}}
+\index{update\-\_\-image@{update\-\_\-image}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{update\-\_\-image}]{\setlength{\rightskip}{0pt plus 5cm}void Social\-Robot\-Gui\-::update\-\_\-image (
+\begin{DoxyParamCaption}
+\item[{const Mat \&}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{classSocialRobotGui_aba07bb0bb3b8fa3f317539e9d6698aee}
+
+
+\subsection{Field Documentation}
+\hypertarget{classSocialRobotGui_a1d32e49a34a1a0eafe6a7e160307bf82}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!display\-\_\-depth\-\_\-faces@{display\-\_\-depth\-\_\-faces}}
+\index{display\-\_\-depth\-\_\-faces@{display\-\_\-depth\-\_\-faces}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{display\-\_\-depth\-\_\-faces}]{\setlength{\rightskip}{0pt plus 5cm}bool Social\-Robot\-Gui\-::display\-\_\-depth\-\_\-faces}}\label{classSocialRobotGui_a1d32e49a34a1a0eafe6a7e160307bf82}
+\hypertarget{classSocialRobotGui_aec418c0fe6ac3e995e2fedda35d0237e}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!display\-\_\-depth\-\_\-image@{display\-\_\-depth\-\_\-image}}
+\index{display\-\_\-depth\-\_\-image@{display\-\_\-depth\-\_\-image}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{display\-\_\-depth\-\_\-image}]{\setlength{\rightskip}{0pt plus 5cm}bool Social\-Robot\-Gui\-::display\-\_\-depth\-\_\-image}}\label{classSocialRobotGui_aec418c0fe6ac3e995e2fedda35d0237e}
+\hypertarget{classSocialRobotGui_a57c8e1f9be7edfe29703853268aa8aba}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!display\-\_\-rgb\-\_\-faces@{display\-\_\-rgb\-\_\-faces}}
+\index{display\-\_\-rgb\-\_\-faces@{display\-\_\-rgb\-\_\-faces}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{display\-\_\-rgb\-\_\-faces}]{\setlength{\rightskip}{0pt plus 5cm}bool Social\-Robot\-Gui\-::display\-\_\-rgb\-\_\-faces}}\label{classSocialRobotGui_a57c8e1f9be7edfe29703853268aa8aba}
+\hypertarget{classSocialRobotGui_a29d1ccc0fd91a27bdd56364aef82d351}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!display\-\_\-rgb\-\_\-image@{display\-\_\-rgb\-\_\-image}}
+\index{display\-\_\-rgb\-\_\-image@{display\-\_\-rgb\-\_\-image}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{display\-\_\-rgb\-\_\-image}]{\setlength{\rightskip}{0pt plus 5cm}bool Social\-Robot\-Gui\-::display\-\_\-rgb\-\_\-image}}\label{classSocialRobotGui_a29d1ccc0fd91a27bdd56364aef82d351}
+\hypertarget{classSocialRobotGui_a28e6dc7627b92c85adb014bcaeb641bd}{\index{Social\-Robot\-Gui@{Social\-Robot\-Gui}!display\-\_\-track\-\_\-faces@{display\-\_\-track\-\_\-faces}}
+\index{display\-\_\-track\-\_\-faces@{display\-\_\-track\-\_\-faces}!SocialRobotGui@{Social\-Robot\-Gui}}
+\subsubsection[{display\-\_\-track\-\_\-faces}]{\setlength{\rightskip}{0pt plus 5cm}bool Social\-Robot\-Gui\-::display\-\_\-track\-\_\-faces}}\label{classSocialRobotGui_a28e6dc7627b92c85adb014bcaeb641bd}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{SocialRobotGui_8h}{Social\-Robot\-Gui.\-h}\item 
+\hyperlink{SocialRobotGui_8cpp}{Social\-Robot\-Gui.\-cpp}\end{DoxyCompactItemize}

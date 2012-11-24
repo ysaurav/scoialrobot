@@ -1,0 +1,271 @@
+\hypertarget{classViewPort}{\section{View\-Port Class Reference}
+\label{classViewPort}\index{View\-Port@{View\-Port}}
+}
+
+
+{\ttfamily \#include $<$window\-\_\-\-Q\-T.\-h$>$}
+
+
+
+Inheritance diagram for View\-Port\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classViewPort__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for View\-Port\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classViewPort__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classViewPort_af68a292bada1aadd5b3cbcd5cd86620c}{scale\-View} (qreal scale\-Factor, Q\-Point\-F center)
+\item 
+void \hyperlink{classViewPort_a60f919b3f7329bb5de060fa3befda08b}{img\-Region} ()
+\item 
+void \hyperlink{classViewPort_a3e318f428a0d0cc2e5c3835f1c77cc06}{move\-View} (Q\-Point\-F delta)
+\item 
+void \hyperlink{classViewPort_af9e56726827ee1679b536d90586b3add}{reset\-Zoom} ()
+\item 
+void \hyperlink{classViewPort_a4a67d1ac61dfdf063909b9fa5299893f}{Zoom\-In} ()
+\item 
+void \hyperlink{classViewPort_a4f26ce0e84539f49b95aa5d43820bb85}{Zoom\-Out} ()
+\item 
+void \hyperlink{classViewPort_ab8d8fbc8a150d158840e73dc3d28d4e9}{sift\-Window\-On\-Left} ()
+\item 
+void \hyperlink{classViewPort_ad75dd8cdf0fcefa9f3afb7af78ffa1fc}{sift\-Window\-On\-Right} ()
+\item 
+void \hyperlink{classViewPort_a539a1c2895777e89b1431146ccb26a26}{sift\-Window\-On\-Up} ()
+\item 
+void \hyperlink{classViewPort_aa05e98b5c021662068856f9b8f25a299}{sift\-Window\-On\-Down} ()
+\item 
+void \hyperlink{classViewPort_a7a1fec5745e2bd12c11f0f4a8c17183f}{resize\-Event} (Q\-Resize\-Event $\ast$)
+\item 
+void \hyperlink{classViewPort_a69445bb6b5b203923b6707b583cdc0d8}{save\-View} ()
+\item 
+void \hyperlink{classViewPort_af3c98b34c5ff602bd74c5b95425de4a9}{context\-Menu\-Event} (Q\-Context\-Menu\-Event $\ast$event)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classViewPort_ae986eca6567919eccfa84fa11d152519}{View\-Port} (\hyperlink{classCvWindow}{Cv\-Window} $\ast$central\-Widget, int mode=\hyperlink{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7a8f4516cd4423037ff9e7c533c4084e64}{C\-V\-\_\-\-M\-O\-D\-E\-\_\-\-N\-O\-R\-M\-A\-L}, int keep\-Ratio=C\-V\-\_\-\-W\-I\-N\-D\-O\-W\-\_\-\-K\-E\-E\-P\-R\-A\-T\-I\-O)
+\item 
+\hyperlink{classViewPort_aa9e30578206a4c74b8e3e0bf1cbed5a1}{$\sim$\-View\-Port} ()
+\item 
+void \hyperlink{classViewPort_a19c83263889430a83e5f9d1aaee4741b}{update\-Image} (const Cv\-Arr $\ast$arr)
+\item 
+void \hyperlink{classViewPort_a2618b2c40f1770ab153cbae4da9c5313}{start\-Display\-Info} (Q\-String text, int delayms)
+\item 
+void \hyperlink{classViewPort_a725688baa203c6247e9a147acaa7597a}{set\-Mouse\-Call\-Back} (Cv\-Mouse\-Callback m, void $\ast$param)
+\item 
+int \hyperlink{classViewPort_a969eb1a036822f1f500dd832c1f45d11}{get\-Ratio} ()
+\item 
+void \hyperlink{classViewPort_ad250b6cf4dd6d571128a7ad0d4d98175}{set\-Ratio} (int arg)
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+Q\-Transform \hyperlink{classViewPort_a4404db6e34a91d2e2e4c5026840a2adc}{param\-\_\-matrix\-World}
+\item 
+int \hyperlink{classViewPort_a2ad627e7c8f030da5b252cfbb056164b}{param\-\_\-keep\-Ratio}
+\item 
+Cv\-Mat $\ast$ \hyperlink{classViewPort_af6a3576406241b379379cc6d1a6d0c4f}{image2\-Draw\-\_\-mat}
+\item 
+Q\-Image \hyperlink{classViewPort_affb4d66105d8c57b62a8d1ca3a2f2aae}{image2\-Draw\-\_\-qt}
+\item 
+Q\-Image \hyperlink{classViewPort_a69c446903d67c1e328c8398341c2da21}{image2\-Draw\-\_\-qt\-\_\-resized}
+\item 
+int \hyperlink{classViewPort_abdd3f74adf3deb4bc1808f669d8815a4}{mode\-\_\-display}
+\item 
+int \hyperlink{classViewPort_a023381fa2838df1c3ef3a9183f4abbd1}{nb\-Channel\-Origin\-Image}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classViewPort_ae986eca6567919eccfa84fa11d152519}{\index{View\-Port@{View\-Port}!View\-Port@{View\-Port}}
+\index{View\-Port@{View\-Port}!ViewPort@{View\-Port}}
+\subsubsection[{View\-Port}]{\setlength{\rightskip}{0pt plus 5cm}View\-Port\-::\-View\-Port (
+\begin{DoxyParamCaption}
+\item[{{\bf Cv\-Window} $\ast$}]{central\-Widget, }
+\item[{int}]{mode = {\ttfamily {\bf C\-V\-\_\-\-M\-O\-D\-E\-\_\-\-N\-O\-R\-M\-A\-L}}, }
+\item[{int}]{keep\-Ratio = {\ttfamily CV\-\_\-WINDOW\-\_\-KEEPRATIO}}
+\end{DoxyParamCaption}
+)}}\label{classViewPort_ae986eca6567919eccfa84fa11d152519}
+\hypertarget{classViewPort_aa9e30578206a4c74b8e3e0bf1cbed5a1}{\index{View\-Port@{View\-Port}!$\sim$\-View\-Port@{$\sim$\-View\-Port}}
+\index{$\sim$\-View\-Port@{$\sim$\-View\-Port}!ViewPort@{View\-Port}}
+\subsubsection[{$\sim$\-View\-Port}]{\setlength{\rightskip}{0pt plus 5cm}View\-Port\-::$\sim$\-View\-Port (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classViewPort_aa9e30578206a4c74b8e3e0bf1cbed5a1}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classViewPort_af3c98b34c5ff602bd74c5b95425de4a9}{\index{View\-Port@{View\-Port}!context\-Menu\-Event@{context\-Menu\-Event}}
+\index{context\-Menu\-Event@{context\-Menu\-Event}!ViewPort@{View\-Port}}
+\subsubsection[{context\-Menu\-Event}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::context\-Menu\-Event (
+\begin{DoxyParamCaption}
+\item[{Q\-Context\-Menu\-Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classViewPort_af3c98b34c5ff602bd74c5b95425de4a9}
+\hypertarget{classViewPort_a969eb1a036822f1f500dd832c1f45d11}{\index{View\-Port@{View\-Port}!get\-Ratio@{get\-Ratio}}
+\index{get\-Ratio@{get\-Ratio}!ViewPort@{View\-Port}}
+\subsubsection[{get\-Ratio}]{\setlength{\rightskip}{0pt plus 5cm}int View\-Port\-::get\-Ratio (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classViewPort_a969eb1a036822f1f500dd832c1f45d11}
+\hypertarget{classViewPort_a60f919b3f7329bb5de060fa3befda08b}{\index{View\-Port@{View\-Port}!img\-Region@{img\-Region}}
+\index{img\-Region@{img\-Region}!ViewPort@{View\-Port}}
+\subsubsection[{img\-Region}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::img\-Region (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classViewPort_a60f919b3f7329bb5de060fa3befda08b}
+\hypertarget{classViewPort_a3e318f428a0d0cc2e5c3835f1c77cc06}{\index{View\-Port@{View\-Port}!move\-View@{move\-View}}
+\index{move\-View@{move\-View}!ViewPort@{View\-Port}}
+\subsubsection[{move\-View}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::move\-View (
+\begin{DoxyParamCaption}
+\item[{Q\-Point\-F}]{delta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classViewPort_a3e318f428a0d0cc2e5c3835f1c77cc06}
+\hypertarget{classViewPort_af9e56726827ee1679b536d90586b3add}{\index{View\-Port@{View\-Port}!reset\-Zoom@{reset\-Zoom}}
+\index{reset\-Zoom@{reset\-Zoom}!ViewPort@{View\-Port}}
+\subsubsection[{reset\-Zoom}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::reset\-Zoom (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classViewPort_af9e56726827ee1679b536d90586b3add}
+\hypertarget{classViewPort_a7a1fec5745e2bd12c11f0f4a8c17183f}{\index{View\-Port@{View\-Port}!resize\-Event@{resize\-Event}}
+\index{resize\-Event@{resize\-Event}!ViewPort@{View\-Port}}
+\subsubsection[{resize\-Event}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::resize\-Event (
+\begin{DoxyParamCaption}
+\item[{Q\-Resize\-Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classViewPort_a7a1fec5745e2bd12c11f0f4a8c17183f}
+\hypertarget{classViewPort_a69445bb6b5b203923b6707b583cdc0d8}{\index{View\-Port@{View\-Port}!save\-View@{save\-View}}
+\index{save\-View@{save\-View}!ViewPort@{View\-Port}}
+\subsubsection[{save\-View}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::save\-View (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classViewPort_a69445bb6b5b203923b6707b583cdc0d8}
+\hypertarget{classViewPort_af68a292bada1aadd5b3cbcd5cd86620c}{\index{View\-Port@{View\-Port}!scale\-View@{scale\-View}}
+\index{scale\-View@{scale\-View}!ViewPort@{View\-Port}}
+\subsubsection[{scale\-View}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::scale\-View (
+\begin{DoxyParamCaption}
+\item[{qreal}]{scale\-Factor, }
+\item[{Q\-Point\-F}]{center}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classViewPort_af68a292bada1aadd5b3cbcd5cd86620c}
+\hypertarget{classViewPort_a725688baa203c6247e9a147acaa7597a}{\index{View\-Port@{View\-Port}!set\-Mouse\-Call\-Back@{set\-Mouse\-Call\-Back}}
+\index{set\-Mouse\-Call\-Back@{set\-Mouse\-Call\-Back}!ViewPort@{View\-Port}}
+\subsubsection[{set\-Mouse\-Call\-Back}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::set\-Mouse\-Call\-Back (
+\begin{DoxyParamCaption}
+\item[{Cv\-Mouse\-Callback}]{m, }
+\item[{void $\ast$}]{param}
+\end{DoxyParamCaption}
+)}}\label{classViewPort_a725688baa203c6247e9a147acaa7597a}
+\hypertarget{classViewPort_ad250b6cf4dd6d571128a7ad0d4d98175}{\index{View\-Port@{View\-Port}!set\-Ratio@{set\-Ratio}}
+\index{set\-Ratio@{set\-Ratio}!ViewPort@{View\-Port}}
+\subsubsection[{set\-Ratio}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::set\-Ratio (
+\begin{DoxyParamCaption}
+\item[{int}]{arg}
+\end{DoxyParamCaption}
+)}}\label{classViewPort_ad250b6cf4dd6d571128a7ad0d4d98175}
+\hypertarget{classViewPort_aa05e98b5c021662068856f9b8f25a299}{\index{View\-Port@{View\-Port}!sift\-Window\-On\-Down@{sift\-Window\-On\-Down}}
+\index{sift\-Window\-On\-Down@{sift\-Window\-On\-Down}!ViewPort@{View\-Port}}
+\subsubsection[{sift\-Window\-On\-Down}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::sift\-Window\-On\-Down (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classViewPort_aa05e98b5c021662068856f9b8f25a299}
+\hypertarget{classViewPort_ab8d8fbc8a150d158840e73dc3d28d4e9}{\index{View\-Port@{View\-Port}!sift\-Window\-On\-Left@{sift\-Window\-On\-Left}}
+\index{sift\-Window\-On\-Left@{sift\-Window\-On\-Left}!ViewPort@{View\-Port}}
+\subsubsection[{sift\-Window\-On\-Left}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::sift\-Window\-On\-Left (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classViewPort_ab8d8fbc8a150d158840e73dc3d28d4e9}
+\hypertarget{classViewPort_ad75dd8cdf0fcefa9f3afb7af78ffa1fc}{\index{View\-Port@{View\-Port}!sift\-Window\-On\-Right@{sift\-Window\-On\-Right}}
+\index{sift\-Window\-On\-Right@{sift\-Window\-On\-Right}!ViewPort@{View\-Port}}
+\subsubsection[{sift\-Window\-On\-Right}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::sift\-Window\-On\-Right (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classViewPort_ad75dd8cdf0fcefa9f3afb7af78ffa1fc}
+\hypertarget{classViewPort_a539a1c2895777e89b1431146ccb26a26}{\index{View\-Port@{View\-Port}!sift\-Window\-On\-Up@{sift\-Window\-On\-Up}}
+\index{sift\-Window\-On\-Up@{sift\-Window\-On\-Up}!ViewPort@{View\-Port}}
+\subsubsection[{sift\-Window\-On\-Up}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::sift\-Window\-On\-Up (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classViewPort_a539a1c2895777e89b1431146ccb26a26}
+\hypertarget{classViewPort_a2618b2c40f1770ab153cbae4da9c5313}{\index{View\-Port@{View\-Port}!start\-Display\-Info@{start\-Display\-Info}}
+\index{start\-Display\-Info@{start\-Display\-Info}!ViewPort@{View\-Port}}
+\subsubsection[{start\-Display\-Info}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::start\-Display\-Info (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{text, }
+\item[{int}]{delayms}
+\end{DoxyParamCaption}
+)}}\label{classViewPort_a2618b2c40f1770ab153cbae4da9c5313}
+\hypertarget{classViewPort_a19c83263889430a83e5f9d1aaee4741b}{\index{View\-Port@{View\-Port}!update\-Image@{update\-Image}}
+\index{update\-Image@{update\-Image}!ViewPort@{View\-Port}}
+\subsubsection[{update\-Image}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::update\-Image (
+\begin{DoxyParamCaption}
+\item[{const Cv\-Arr $\ast$}]{arr}
+\end{DoxyParamCaption}
+)}}\label{classViewPort_a19c83263889430a83e5f9d1aaee4741b}
+\hypertarget{classViewPort_a4a67d1ac61dfdf063909b9fa5299893f}{\index{View\-Port@{View\-Port}!Zoom\-In@{Zoom\-In}}
+\index{Zoom\-In@{Zoom\-In}!ViewPort@{View\-Port}}
+\subsubsection[{Zoom\-In}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::\-Zoom\-In (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classViewPort_a4a67d1ac61dfdf063909b9fa5299893f}
+\hypertarget{classViewPort_a4f26ce0e84539f49b95aa5d43820bb85}{\index{View\-Port@{View\-Port}!Zoom\-Out@{Zoom\-Out}}
+\index{Zoom\-Out@{Zoom\-Out}!ViewPort@{View\-Port}}
+\subsubsection[{Zoom\-Out}]{\setlength{\rightskip}{0pt plus 5cm}void View\-Port\-::\-Zoom\-Out (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classViewPort_a4f26ce0e84539f49b95aa5d43820bb85}
+
+
+\subsection{Field Documentation}
+\hypertarget{classViewPort_af6a3576406241b379379cc6d1a6d0c4f}{\index{View\-Port@{View\-Port}!image2\-Draw\-\_\-mat@{image2\-Draw\-\_\-mat}}
+\index{image2\-Draw\-\_\-mat@{image2\-Draw\-\_\-mat}!ViewPort@{View\-Port}}
+\subsubsection[{image2\-Draw\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}Cv\-Mat$\ast$ View\-Port\-::image2\-Draw\-\_\-mat}}\label{classViewPort_af6a3576406241b379379cc6d1a6d0c4f}
+\hypertarget{classViewPort_affb4d66105d8c57b62a8d1ca3a2f2aae}{\index{View\-Port@{View\-Port}!image2\-Draw\-\_\-qt@{image2\-Draw\-\_\-qt}}
+\index{image2\-Draw\-\_\-qt@{image2\-Draw\-\_\-qt}!ViewPort@{View\-Port}}
+\subsubsection[{image2\-Draw\-\_\-qt}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Image View\-Port\-::image2\-Draw\-\_\-qt}}\label{classViewPort_affb4d66105d8c57b62a8d1ca3a2f2aae}
+\hypertarget{classViewPort_a69c446903d67c1e328c8398341c2da21}{\index{View\-Port@{View\-Port}!image2\-Draw\-\_\-qt\-\_\-resized@{image2\-Draw\-\_\-qt\-\_\-resized}}
+\index{image2\-Draw\-\_\-qt\-\_\-resized@{image2\-Draw\-\_\-qt\-\_\-resized}!ViewPort@{View\-Port}}
+\subsubsection[{image2\-Draw\-\_\-qt\-\_\-resized}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Image View\-Port\-::image2\-Draw\-\_\-qt\-\_\-resized}}\label{classViewPort_a69c446903d67c1e328c8398341c2da21}
+\hypertarget{classViewPort_abdd3f74adf3deb4bc1808f669d8815a4}{\index{View\-Port@{View\-Port}!mode\-\_\-display@{mode\-\_\-display}}
+\index{mode\-\_\-display@{mode\-\_\-display}!ViewPort@{View\-Port}}
+\subsubsection[{mode\-\_\-display}]{\setlength{\rightskip}{0pt plus 5cm}int View\-Port\-::mode\-\_\-display}}\label{classViewPort_abdd3f74adf3deb4bc1808f669d8815a4}
+\hypertarget{classViewPort_a023381fa2838df1c3ef3a9183f4abbd1}{\index{View\-Port@{View\-Port}!nb\-Channel\-Origin\-Image@{nb\-Channel\-Origin\-Image}}
+\index{nb\-Channel\-Origin\-Image@{nb\-Channel\-Origin\-Image}!ViewPort@{View\-Port}}
+\subsubsection[{nb\-Channel\-Origin\-Image}]{\setlength{\rightskip}{0pt plus 5cm}int View\-Port\-::nb\-Channel\-Origin\-Image}}\label{classViewPort_a023381fa2838df1c3ef3a9183f4abbd1}
+\hypertarget{classViewPort_a2ad627e7c8f030da5b252cfbb056164b}{\index{View\-Port@{View\-Port}!param\-\_\-keep\-Ratio@{param\-\_\-keep\-Ratio}}
+\index{param\-\_\-keep\-Ratio@{param\-\_\-keep\-Ratio}!ViewPort@{View\-Port}}
+\subsubsection[{param\-\_\-keep\-Ratio}]{\setlength{\rightskip}{0pt plus 5cm}int View\-Port\-::param\-\_\-keep\-Ratio}}\label{classViewPort_a2ad627e7c8f030da5b252cfbb056164b}
+\hypertarget{classViewPort_a4404db6e34a91d2e2e4c5026840a2adc}{\index{View\-Port@{View\-Port}!param\-\_\-matrix\-World@{param\-\_\-matrix\-World}}
+\index{param\-\_\-matrix\-World@{param\-\_\-matrix\-World}!ViewPort@{View\-Port}}
+\subsubsection[{param\-\_\-matrix\-World}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Transform View\-Port\-::param\-\_\-matrix\-World}}\label{classViewPort_a4404db6e34a91d2e2e4c5026840a2adc}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{window__QT_8h}{window\-\_\-\-Q\-T.\-h}\item 
+\hyperlink{window__QT_8cpp}{window\-\_\-\-Q\-T.\-cpp}\end{DoxyCompactItemize}

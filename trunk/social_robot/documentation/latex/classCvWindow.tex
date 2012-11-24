@@ -1,0 +1,249 @@
+\hypertarget{classCvWindow}{\section{Cv\-Window Class Reference}
+\label{classCvWindow}\index{Cv\-Window@{Cv\-Window}}
+}
+
+
+{\ttfamily \#include $<$window\-\_\-\-Q\-T.\-h$>$}
+
+
+
+Inheritance diagram for Cv\-Window\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{classCvWindow__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Cv\-Window\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{classCvWindow__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classCvWindow_a2d516104e7e29c293d53a3797f29fff6}{Cv\-Window} (Q\-String arg2, int flag=C\-V\-\_\-\-W\-I\-N\-D\-O\-W\-\_\-\-N\-O\-R\-M\-A\-L)
+\item 
+\hyperlink{classCvWindow_aac9ea5f91071477dc506ed9a04f758f1}{$\sim$\-Cv\-Window} ()
+\item 
+void \hyperlink{classCvWindow_a8fa9463b57ffb2f049703a6f14e586fb}{set\-Mouse\-Call\-Back} (Cv\-Mouse\-Callback m, void $\ast$param)
+\item 
+void \hyperlink{classCvWindow_a9fc4a9246e0ea710076d2d58851ce1f8}{update\-Image} (void $\ast$arr)
+\item 
+void \hyperlink{classCvWindow_a577841174681451e47735cc125de0af9}{display\-Info} (Q\-String text, int delayms)
+\item 
+void \hyperlink{classCvWindow_a37a9d43cf4e722abbb32a20fc507c8a9}{display\-Status\-Bar} (Q\-String text, int delayms)
+\item 
+void \hyperlink{classCvWindow_a7f8fdaeec81ca1900a8878bdfc779f13}{read\-Settings} ()
+\item 
+void \hyperlink{classCvWindow_a30c9687c99f22a7f7d9a61c00bf42a57}{write\-Settings} ()
+\item 
+void \hyperlink{classCvWindow_a40da445af152145b663ebdc5a2547351}{hide\-Tools} ()
+\item 
+void \hyperlink{classCvWindow_a0e911ed5861b7d39a991671af7aabfbc}{show\-Tools} ()
+\item 
+Q\-Size \hyperlink{classCvWindow_a323bcaa31cfe862e2b13a110248293cc}{get\-Available\-Size} ()
+\item 
+\hyperlink{classViewPort}{View\-Port} $\ast$ \hyperlink{classCvWindow_a6bfa17ceb41e3fad856b9dd32d25e048}{get\-View} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classCvWindow_a2ed13c03bc5fa9fd2e7b579d2fc1bd6d}{add\-Slider} (\hyperlink{classCvWindow}{Cv\-Window} $\ast$w, Q\-String name, int $\ast$value, int count, Cv\-Trackbar\-Callback on\-\_\-change C\-V\-\_\-\-D\-E\-F\-A\-U\-L\-T(N\-U\-L\-L))
+\item 
+static void \hyperlink{classCvWindow_a87c0aa2a8a5986293be621a9f949e33e}{add\-Slider2} (\hyperlink{classCvWindow}{Cv\-Window} $\ast$w, Q\-String name, int $\ast$value, int count, Cv\-Trackbar\-Callback2 on\-\_\-change C\-V\-\_\-\-D\-E\-F\-A\-U\-L\-T(N\-U\-L\-L), void $\ast$userdata C\-V\-\_\-\-D\-E\-F\-A\-U\-L\-T(0))
+\item 
+static \hyperlink{classCvButtonbar}{Cv\-Buttonbar} $\ast$ \hyperlink{classCvWindow_a219c9032d1611f4e394eae3dea4011ab}{create\-Buttonbar} (Q\-String bar\-\_\-name)
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+Q\-Pointer$<$ Q\-Box\-Layout $>$ \hyperlink{classCvWindow_a706d24419e22947d0fcdcef9d3194605}{my\-Global\-Layout}
+\item 
+Q\-Pointer$<$ Q\-Box\-Layout $>$ \hyperlink{classCvWindow_a1c1ba7aa00c19ca8a99da650f8bd6fb1}{my\-Bar\-Layout}
+\item 
+Q\-Pointer$<$ Q\-Status\-Bar $>$ \hyperlink{classCvWindow_ad21a9548c597a6651b73d41a3383a1d3}{my\-Status\-Bar}
+\item 
+Q\-Pointer$<$ Q\-Tool\-Bar $>$ \hyperlink{classCvWindow_a147b82422fa5d532192990f77e6ae2d8}{my\-Tool\-Bar}
+\item 
+Q\-Pointer$<$ Q\-Label $>$ \hyperlink{classCvWindow_a62c523f9df3830591bcbb44145c85db4}{my\-Status\-Bar\-\_\-msg}
+\item 
+Q\-String \hyperlink{classCvWindow_a2f2e2a14703dbe479049862f5f43ac13}{param\-\_\-name}
+\item 
+int \hyperlink{classCvWindow_ae79962eeb12c2dbcedafb23362ba1847}{param\-\_\-flags}
+\item 
+int \hyperlink{classCvWindow_a1503f81d43bec919c329a1c98cb3f559}{param\-\_\-gui\-\_\-mode}
+\item 
+int \hyperlink{classCvWindow_a9d97fe990d3fb23daa031ac39483b059}{param\-\_\-ratio\-\_\-mode}
+\item 
+Q\-Vector$<$ Q\-Action $\ast$ $>$ \hyperlink{classCvWindow_a55d09660aba2ef83bf2eaa4fe80bb746}{vect\-\_\-\-Q\-Actions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classCvWindow_a2d516104e7e29c293d53a3797f29fff6}{\index{Cv\-Window@{Cv\-Window}!Cv\-Window@{Cv\-Window}}
+\index{Cv\-Window@{Cv\-Window}!CvWindow@{Cv\-Window}}
+\subsubsection[{Cv\-Window}]{\setlength{\rightskip}{0pt plus 5cm}Cv\-Window\-::\-Cv\-Window (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{arg2, }
+\item[{int}]{flag = {\ttfamily CV\-\_\-WINDOW\-\_\-NORMAL}}
+\end{DoxyParamCaption}
+)}}\label{classCvWindow_a2d516104e7e29c293d53a3797f29fff6}
+\hypertarget{classCvWindow_aac9ea5f91071477dc506ed9a04f758f1}{\index{Cv\-Window@{Cv\-Window}!$\sim$\-Cv\-Window@{$\sim$\-Cv\-Window}}
+\index{$\sim$\-Cv\-Window@{$\sim$\-Cv\-Window}!CvWindow@{Cv\-Window}}
+\subsubsection[{$\sim$\-Cv\-Window}]{\setlength{\rightskip}{0pt plus 5cm}Cv\-Window\-::$\sim$\-Cv\-Window (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCvWindow_aac9ea5f91071477dc506ed9a04f758f1}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classCvWindow_a2ed13c03bc5fa9fd2e7b579d2fc1bd6d}{\index{Cv\-Window@{Cv\-Window}!add\-Slider@{add\-Slider}}
+\index{add\-Slider@{add\-Slider}!CvWindow@{Cv\-Window}}
+\subsubsection[{add\-Slider}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Window\-::add\-Slider (
+\begin{DoxyParamCaption}
+\item[{{\bf Cv\-Window} $\ast$}]{w, }
+\item[{Q\-String}]{name, }
+\item[{int $\ast$}]{value, }
+\item[{int}]{count, }
+\item[{Cv\-Trackbar\-Callback on\-\_\-change }]{C\-V\-\_\-\-D\-E\-F\-A\-U\-L\-TN\-U\-L\-L}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classCvWindow_a2ed13c03bc5fa9fd2e7b579d2fc1bd6d}
+\hypertarget{classCvWindow_a87c0aa2a8a5986293be621a9f949e33e}{\index{Cv\-Window@{Cv\-Window}!add\-Slider2@{add\-Slider2}}
+\index{add\-Slider2@{add\-Slider2}!CvWindow@{Cv\-Window}}
+\subsubsection[{add\-Slider2}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Window\-::add\-Slider2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Cv\-Window} $\ast$}]{w, }
+\item[{Q\-String}]{name, }
+\item[{int $\ast$}]{value, }
+\item[{int}]{count, }
+\item[{Cv\-Trackbar\-Callback2 on\-\_\-change }]{C\-V\-\_\-\-D\-E\-F\-A\-U\-L\-TN\-U\-L\-L, }
+\item[{void $\ast$userdata }]{C\-V\-\_\-\-D\-E\-F\-A\-U\-L\-T0}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classCvWindow_a87c0aa2a8a5986293be621a9f949e33e}
+\hypertarget{classCvWindow_a219c9032d1611f4e394eae3dea4011ab}{\index{Cv\-Window@{Cv\-Window}!create\-Buttonbar@{create\-Buttonbar}}
+\index{create\-Buttonbar@{create\-Buttonbar}!CvWindow@{Cv\-Window}}
+\subsubsection[{create\-Buttonbar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cv\-Buttonbar} $\ast$ Cv\-Window\-::create\-Buttonbar (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{bar\-\_\-name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classCvWindow_a219c9032d1611f4e394eae3dea4011ab}
+\hypertarget{classCvWindow_a577841174681451e47735cc125de0af9}{\index{Cv\-Window@{Cv\-Window}!display\-Info@{display\-Info}}
+\index{display\-Info@{display\-Info}!CvWindow@{Cv\-Window}}
+\subsubsection[{display\-Info}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Window\-::display\-Info (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{text, }
+\item[{int}]{delayms}
+\end{DoxyParamCaption}
+)}}\label{classCvWindow_a577841174681451e47735cc125de0af9}
+\hypertarget{classCvWindow_a37a9d43cf4e722abbb32a20fc507c8a9}{\index{Cv\-Window@{Cv\-Window}!display\-Status\-Bar@{display\-Status\-Bar}}
+\index{display\-Status\-Bar@{display\-Status\-Bar}!CvWindow@{Cv\-Window}}
+\subsubsection[{display\-Status\-Bar}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Window\-::display\-Status\-Bar (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{text, }
+\item[{int}]{delayms}
+\end{DoxyParamCaption}
+)}}\label{classCvWindow_a37a9d43cf4e722abbb32a20fc507c8a9}
+\hypertarget{classCvWindow_a323bcaa31cfe862e2b13a110248293cc}{\index{Cv\-Window@{Cv\-Window}!get\-Available\-Size@{get\-Available\-Size}}
+\index{get\-Available\-Size@{get\-Available\-Size}!CvWindow@{Cv\-Window}}
+\subsubsection[{get\-Available\-Size}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Size Cv\-Window\-::get\-Available\-Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCvWindow_a323bcaa31cfe862e2b13a110248293cc}
+\hypertarget{classCvWindow_a6bfa17ceb41e3fad856b9dd32d25e048}{\index{Cv\-Window@{Cv\-Window}!get\-View@{get\-View}}
+\index{get\-View@{get\-View}!CvWindow@{Cv\-Window}}
+\subsubsection[{get\-View}]{\setlength{\rightskip}{0pt plus 5cm}{\bf View\-Port} $\ast$ Cv\-Window\-::get\-View (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCvWindow_a6bfa17ceb41e3fad856b9dd32d25e048}
+\hypertarget{classCvWindow_a40da445af152145b663ebdc5a2547351}{\index{Cv\-Window@{Cv\-Window}!hide\-Tools@{hide\-Tools}}
+\index{hide\-Tools@{hide\-Tools}!CvWindow@{Cv\-Window}}
+\subsubsection[{hide\-Tools}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Window\-::hide\-Tools (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCvWindow_a40da445af152145b663ebdc5a2547351}
+\hypertarget{classCvWindow_a7f8fdaeec81ca1900a8878bdfc779f13}{\index{Cv\-Window@{Cv\-Window}!read\-Settings@{read\-Settings}}
+\index{read\-Settings@{read\-Settings}!CvWindow@{Cv\-Window}}
+\subsubsection[{read\-Settings}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Window\-::read\-Settings (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCvWindow_a7f8fdaeec81ca1900a8878bdfc779f13}
+\hypertarget{classCvWindow_a8fa9463b57ffb2f049703a6f14e586fb}{\index{Cv\-Window@{Cv\-Window}!set\-Mouse\-Call\-Back@{set\-Mouse\-Call\-Back}}
+\index{set\-Mouse\-Call\-Back@{set\-Mouse\-Call\-Back}!CvWindow@{Cv\-Window}}
+\subsubsection[{set\-Mouse\-Call\-Back}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Window\-::set\-Mouse\-Call\-Back (
+\begin{DoxyParamCaption}
+\item[{Cv\-Mouse\-Callback}]{m, }
+\item[{void $\ast$}]{param}
+\end{DoxyParamCaption}
+)}}\label{classCvWindow_a8fa9463b57ffb2f049703a6f14e586fb}
+\hypertarget{classCvWindow_a0e911ed5861b7d39a991671af7aabfbc}{\index{Cv\-Window@{Cv\-Window}!show\-Tools@{show\-Tools}}
+\index{show\-Tools@{show\-Tools}!CvWindow@{Cv\-Window}}
+\subsubsection[{show\-Tools}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Window\-::show\-Tools (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCvWindow_a0e911ed5861b7d39a991671af7aabfbc}
+\hypertarget{classCvWindow_a9fc4a9246e0ea710076d2d58851ce1f8}{\index{Cv\-Window@{Cv\-Window}!update\-Image@{update\-Image}}
+\index{update\-Image@{update\-Image}!CvWindow@{Cv\-Window}}
+\subsubsection[{update\-Image}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Window\-::update\-Image (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arr}
+\end{DoxyParamCaption}
+)}}\label{classCvWindow_a9fc4a9246e0ea710076d2d58851ce1f8}
+\hypertarget{classCvWindow_a30c9687c99f22a7f7d9a61c00bf42a57}{\index{Cv\-Window@{Cv\-Window}!write\-Settings@{write\-Settings}}
+\index{write\-Settings@{write\-Settings}!CvWindow@{Cv\-Window}}
+\subsubsection[{write\-Settings}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Window\-::write\-Settings (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCvWindow_a30c9687c99f22a7f7d9a61c00bf42a57}
+
+
+\subsection{Field Documentation}
+\hypertarget{classCvWindow_a1c1ba7aa00c19ca8a99da650f8bd6fb1}{\index{Cv\-Window@{Cv\-Window}!my\-Bar\-Layout@{my\-Bar\-Layout}}
+\index{my\-Bar\-Layout@{my\-Bar\-Layout}!CvWindow@{Cv\-Window}}
+\subsubsection[{my\-Bar\-Layout}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Pointer$<$Q\-Box\-Layout$>$ Cv\-Window\-::my\-Bar\-Layout}}\label{classCvWindow_a1c1ba7aa00c19ca8a99da650f8bd6fb1}
+\hypertarget{classCvWindow_a706d24419e22947d0fcdcef9d3194605}{\index{Cv\-Window@{Cv\-Window}!my\-Global\-Layout@{my\-Global\-Layout}}
+\index{my\-Global\-Layout@{my\-Global\-Layout}!CvWindow@{Cv\-Window}}
+\subsubsection[{my\-Global\-Layout}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Pointer$<$Q\-Box\-Layout$>$ Cv\-Window\-::my\-Global\-Layout}}\label{classCvWindow_a706d24419e22947d0fcdcef9d3194605}
+\hypertarget{classCvWindow_ad21a9548c597a6651b73d41a3383a1d3}{\index{Cv\-Window@{Cv\-Window}!my\-Status\-Bar@{my\-Status\-Bar}}
+\index{my\-Status\-Bar@{my\-Status\-Bar}!CvWindow@{Cv\-Window}}
+\subsubsection[{my\-Status\-Bar}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Pointer$<$Q\-Status\-Bar$>$ Cv\-Window\-::my\-Status\-Bar}}\label{classCvWindow_ad21a9548c597a6651b73d41a3383a1d3}
+\hypertarget{classCvWindow_a62c523f9df3830591bcbb44145c85db4}{\index{Cv\-Window@{Cv\-Window}!my\-Status\-Bar\-\_\-msg@{my\-Status\-Bar\-\_\-msg}}
+\index{my\-Status\-Bar\-\_\-msg@{my\-Status\-Bar\-\_\-msg}!CvWindow@{Cv\-Window}}
+\subsubsection[{my\-Status\-Bar\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Pointer$<$Q\-Label$>$ Cv\-Window\-::my\-Status\-Bar\-\_\-msg}}\label{classCvWindow_a62c523f9df3830591bcbb44145c85db4}
+\hypertarget{classCvWindow_a147b82422fa5d532192990f77e6ae2d8}{\index{Cv\-Window@{Cv\-Window}!my\-Tool\-Bar@{my\-Tool\-Bar}}
+\index{my\-Tool\-Bar@{my\-Tool\-Bar}!CvWindow@{Cv\-Window}}
+\subsubsection[{my\-Tool\-Bar}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Pointer$<$Q\-Tool\-Bar$>$ Cv\-Window\-::my\-Tool\-Bar}}\label{classCvWindow_a147b82422fa5d532192990f77e6ae2d8}
+\hypertarget{classCvWindow_ae79962eeb12c2dbcedafb23362ba1847}{\index{Cv\-Window@{Cv\-Window}!param\-\_\-flags@{param\-\_\-flags}}
+\index{param\-\_\-flags@{param\-\_\-flags}!CvWindow@{Cv\-Window}}
+\subsubsection[{param\-\_\-flags}]{\setlength{\rightskip}{0pt plus 5cm}int Cv\-Window\-::param\-\_\-flags}}\label{classCvWindow_ae79962eeb12c2dbcedafb23362ba1847}
+\hypertarget{classCvWindow_a1503f81d43bec919c329a1c98cb3f559}{\index{Cv\-Window@{Cv\-Window}!param\-\_\-gui\-\_\-mode@{param\-\_\-gui\-\_\-mode}}
+\index{param\-\_\-gui\-\_\-mode@{param\-\_\-gui\-\_\-mode}!CvWindow@{Cv\-Window}}
+\subsubsection[{param\-\_\-gui\-\_\-mode}]{\setlength{\rightskip}{0pt plus 5cm}int Cv\-Window\-::param\-\_\-gui\-\_\-mode}}\label{classCvWindow_a1503f81d43bec919c329a1c98cb3f559}
+\hypertarget{classCvWindow_a2f2e2a14703dbe479049862f5f43ac13}{\index{Cv\-Window@{Cv\-Window}!param\-\_\-name@{param\-\_\-name}}
+\index{param\-\_\-name@{param\-\_\-name}!CvWindow@{Cv\-Window}}
+\subsubsection[{param\-\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Cv\-Window\-::param\-\_\-name}}\label{classCvWindow_a2f2e2a14703dbe479049862f5f43ac13}
+\hypertarget{classCvWindow_a9d97fe990d3fb23daa031ac39483b059}{\index{Cv\-Window@{Cv\-Window}!param\-\_\-ratio\-\_\-mode@{param\-\_\-ratio\-\_\-mode}}
+\index{param\-\_\-ratio\-\_\-mode@{param\-\_\-ratio\-\_\-mode}!CvWindow@{Cv\-Window}}
+\subsubsection[{param\-\_\-ratio\-\_\-mode}]{\setlength{\rightskip}{0pt plus 5cm}int Cv\-Window\-::param\-\_\-ratio\-\_\-mode}}\label{classCvWindow_a9d97fe990d3fb23daa031ac39483b059}
+\hypertarget{classCvWindow_a55d09660aba2ef83bf2eaa4fe80bb746}{\index{Cv\-Window@{Cv\-Window}!vect\-\_\-\-Q\-Actions@{vect\-\_\-\-Q\-Actions}}
+\index{vect\-\_\-\-Q\-Actions@{vect\-\_\-\-Q\-Actions}!CvWindow@{Cv\-Window}}
+\subsubsection[{vect\-\_\-\-Q\-Actions}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Vector$<$Q\-Action$\ast$$>$ Cv\-Window\-::vect\-\_\-\-Q\-Actions}}\label{classCvWindow_a55d09660aba2ef83bf2eaa4fe80bb746}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{window__QT_8h}{window\-\_\-\-Q\-T.\-h}\item 
+\hyperlink{window__QT_8cpp}{window\-\_\-\-Q\-T.\-cpp}\end{DoxyCompactItemize}

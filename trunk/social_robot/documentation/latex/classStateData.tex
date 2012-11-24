@@ -1,0 +1,134 @@
+\hypertarget{classStateData}{\section{State\-Data Class Reference}
+\label{classStateData}\index{State\-Data@{State\-Data}}
+}
+
+
+{\ttfamily \#include $<$State\-Data.\-h$>$}
+
+
+
+Collaboration diagram for State\-Data\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=302pt]{classStateData__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classStateData_a3bbfa4301403ebf5d24d5d16cf246b88}{State\-Data} (void)
+\item 
+void \hyperlink{classStateData_af4bbe24b619137cba16b7b85970e1bd7}{tracking} (double cost=0.\-01)
+\item 
+void \hyperlink{classStateData_a3fe497a97247af50f8eb876d6284da69}{initialise} (int \hyperlink{social__robot_8cpp_acf574bc864f7f0fc111320f1d6c449d5}{num\-\_\-particles}, Mat image\-\_\-, Rect selection\-\_\-, Mat image\-\_\-depth\-\_\-, int hist\-\_\-type\-\_\-)
+\item 
+Rect \hyperlink{classStateData_aa2c20a09eecd353d4454e707ac17f143}{get\-\_\-target\-\_\-position} (void)
+\item 
+void \hyperlink{classStateData_a2b26ea86bd2d1d3d37debec000fefa01}{update\-\_\-target\-\_\-histogram} (Mat \&newimage, Mat \&newdepth, Rect new\-\_\-selection)
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+Mat \hyperlink{classStateData_ab1a1e2be2b9a55c78bc579024d30cf64}{image}
+\item 
+Mat \hyperlink{classStateData_a662c82a423f855845f2be8700af72817}{image\-\_\-depth}
+\item 
+Mat \hyperlink{classStateData_ac778c44e62237a225361a80894a48ee8}{target}
+\item 
+Mat \hyperlink{classStateData_af93e02e6025c07b7a383b2e755f52dca}{target\-\_\-histogram}
+\item 
+Rect \hyperlink{classStateData_afea0bc5d1743e2db008238bfe9f574ce}{selection}
+\item 
+double \hyperlink{classStateData_abe87d63070a9fc98cd9f1475495725e6}{detection\-\_\-confidence}
+\item 
+int \hyperlink{classStateData_a14b4b6d403b4517d7102f49a501d51ed}{hist\-\_\-type}
+\item 
+bool \hyperlink{classStateData_ad5f3d2a522bfdcff47e7d028bf19f012}{is\-\_\-associated}
+\item 
+\hyperlink{classParticleFilter}{Particle\-Filter} $\ast$ \hyperlink{classStateData_a42c35fd351a6634b67fd1fd2f5a09cf4}{filter}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classStateData_a3bbfa4301403ebf5d24d5d16cf246b88}{\index{State\-Data@{State\-Data}!State\-Data@{State\-Data}}
+\index{State\-Data@{State\-Data}!StateData@{State\-Data}}
+\subsubsection[{State\-Data}]{\setlength{\rightskip}{0pt plus 5cm}State\-Data\-::\-State\-Data (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classStateData_a3bbfa4301403ebf5d24d5d16cf246b88}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classStateData_aa2c20a09eecd353d4454e707ac17f143}{\index{State\-Data@{State\-Data}!get\-\_\-target\-\_\-position@{get\-\_\-target\-\_\-position}}
+\index{get\-\_\-target\-\_\-position@{get\-\_\-target\-\_\-position}!StateData@{State\-Data}}
+\subsubsection[{get\-\_\-target\-\_\-position}]{\setlength{\rightskip}{0pt plus 5cm}Rect State\-Data\-::get\-\_\-target\-\_\-position (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classStateData_aa2c20a09eecd353d4454e707ac17f143}
+\hypertarget{classStateData_a3fe497a97247af50f8eb876d6284da69}{\index{State\-Data@{State\-Data}!initialise@{initialise}}
+\index{initialise@{initialise}!StateData@{State\-Data}}
+\subsubsection[{initialise}]{\setlength{\rightskip}{0pt plus 5cm}void State\-Data\-::initialise (
+\begin{DoxyParamCaption}
+\item[{int}]{num\-\_\-particles, }
+\item[{Mat}]{image\-\_\-, }
+\item[{Rect}]{selection\-\_\-, }
+\item[{Mat}]{image\-\_\-depth\-\_\-, }
+\item[{int}]{hist\-\_\-type\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{classStateData_a3fe497a97247af50f8eb876d6284da69}
+\hypertarget{classStateData_af4bbe24b619137cba16b7b85970e1bd7}{\index{State\-Data@{State\-Data}!tracking@{tracking}}
+\index{tracking@{tracking}!StateData@{State\-Data}}
+\subsubsection[{tracking}]{\setlength{\rightskip}{0pt plus 5cm}void State\-Data\-::tracking (
+\begin{DoxyParamCaption}
+\item[{double}]{cost = {\ttfamily 0.01}}
+\end{DoxyParamCaption}
+)}}\label{classStateData_af4bbe24b619137cba16b7b85970e1bd7}
+\hypertarget{classStateData_a2b26ea86bd2d1d3d37debec000fefa01}{\index{State\-Data@{State\-Data}!update\-\_\-target\-\_\-histogram@{update\-\_\-target\-\_\-histogram}}
+\index{update\-\_\-target\-\_\-histogram@{update\-\_\-target\-\_\-histogram}!StateData@{State\-Data}}
+\subsubsection[{update\-\_\-target\-\_\-histogram}]{\setlength{\rightskip}{0pt plus 5cm}void State\-Data\-::update\-\_\-target\-\_\-histogram (
+\begin{DoxyParamCaption}
+\item[{Mat \&}]{newimage, }
+\item[{Mat \&}]{newdepth, }
+\item[{Rect}]{new\-\_\-selection}
+\end{DoxyParamCaption}
+)}}\label{classStateData_a2b26ea86bd2d1d3d37debec000fefa01}
+
+
+\subsection{Field Documentation}
+\hypertarget{classStateData_abe87d63070a9fc98cd9f1475495725e6}{\index{State\-Data@{State\-Data}!detection\-\_\-confidence@{detection\-\_\-confidence}}
+\index{detection\-\_\-confidence@{detection\-\_\-confidence}!StateData@{State\-Data}}
+\subsubsection[{detection\-\_\-confidence}]{\setlength{\rightskip}{0pt plus 5cm}double State\-Data\-::detection\-\_\-confidence}}\label{classStateData_abe87d63070a9fc98cd9f1475495725e6}
+\hypertarget{classStateData_a42c35fd351a6634b67fd1fd2f5a09cf4}{\index{State\-Data@{State\-Data}!filter@{filter}}
+\index{filter@{filter}!StateData@{State\-Data}}
+\subsubsection[{filter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Particle\-Filter}$\ast$ State\-Data\-::filter}}\label{classStateData_a42c35fd351a6634b67fd1fd2f5a09cf4}
+\hypertarget{classStateData_a14b4b6d403b4517d7102f49a501d51ed}{\index{State\-Data@{State\-Data}!hist\-\_\-type@{hist\-\_\-type}}
+\index{hist\-\_\-type@{hist\-\_\-type}!StateData@{State\-Data}}
+\subsubsection[{hist\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}int State\-Data\-::hist\-\_\-type}}\label{classStateData_a14b4b6d403b4517d7102f49a501d51ed}
+\hypertarget{classStateData_ab1a1e2be2b9a55c78bc579024d30cf64}{\index{State\-Data@{State\-Data}!image@{image}}
+\index{image@{image}!StateData@{State\-Data}}
+\subsubsection[{image}]{\setlength{\rightskip}{0pt plus 5cm}Mat State\-Data\-::image}}\label{classStateData_ab1a1e2be2b9a55c78bc579024d30cf64}
+\hypertarget{classStateData_a662c82a423f855845f2be8700af72817}{\index{State\-Data@{State\-Data}!image\-\_\-depth@{image\-\_\-depth}}
+\index{image\-\_\-depth@{image\-\_\-depth}!StateData@{State\-Data}}
+\subsubsection[{image\-\_\-depth}]{\setlength{\rightskip}{0pt plus 5cm}Mat State\-Data\-::image\-\_\-depth}}\label{classStateData_a662c82a423f855845f2be8700af72817}
+\hypertarget{classStateData_ad5f3d2a522bfdcff47e7d028bf19f012}{\index{State\-Data@{State\-Data}!is\-\_\-associated@{is\-\_\-associated}}
+\index{is\-\_\-associated@{is\-\_\-associated}!StateData@{State\-Data}}
+\subsubsection[{is\-\_\-associated}]{\setlength{\rightskip}{0pt plus 5cm}bool State\-Data\-::is\-\_\-associated}}\label{classStateData_ad5f3d2a522bfdcff47e7d028bf19f012}
+\hypertarget{classStateData_afea0bc5d1743e2db008238bfe9f574ce}{\index{State\-Data@{State\-Data}!selection@{selection}}
+\index{selection@{selection}!StateData@{State\-Data}}
+\subsubsection[{selection}]{\setlength{\rightskip}{0pt plus 5cm}Rect State\-Data\-::selection}}\label{classStateData_afea0bc5d1743e2db008238bfe9f574ce}
+\hypertarget{classStateData_ac778c44e62237a225361a80894a48ee8}{\index{State\-Data@{State\-Data}!target@{target}}
+\index{target@{target}!StateData@{State\-Data}}
+\subsubsection[{target}]{\setlength{\rightskip}{0pt plus 5cm}Mat State\-Data\-::target}}\label{classStateData_ac778c44e62237a225361a80894a48ee8}
+\hypertarget{classStateData_af93e02e6025c07b7a383b2e755f52dca}{\index{State\-Data@{State\-Data}!target\-\_\-histogram@{target\-\_\-histogram}}
+\index{target\-\_\-histogram@{target\-\_\-histogram}!StateData@{State\-Data}}
+\subsubsection[{target\-\_\-histogram}]{\setlength{\rightskip}{0pt plus 5cm}Mat State\-Data\-::target\-\_\-histogram}}\label{classStateData_af93e02e6025c07b7a383b2e755f52dca}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{StateData_8h}{State\-Data.\-h}\item 
+\hyperlink{StateData_8cpp}{State\-Data.\-cpp}\end{DoxyCompactItemize}

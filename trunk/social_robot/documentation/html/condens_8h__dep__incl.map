@@ -1,0 +1,19 @@
+<map id="condens.h" name="condens.h">
+<area shape="rect" id="node3" href="$filter_8h.html" title="filter.h" alt="" coords="324,83,383,112"/>
+<area shape="rect" id="node40" href="$condens_8cpp.html" title="condens.cpp" alt="" coords="407,83,503,112"/>
+<area shape="rect" id="node5" href="$StateData_8h.html" title="StateData.h" alt="" coords="449,160,540,189"/>
+<area shape="rect" id="node13" href="$filter_8cpp.html" title="filter.cpp" alt="" coords="5,315,77,344"/>
+<area shape="rect" id="node15" href="$social__robot_8cpp.html" title="social_robot.cpp" alt="" coords="101,315,219,344"/>
+<area shape="rect" id="node19" href="$social__robot__rgb_8cpp.html" title="social_robot_rgb.cpp" alt="" coords="976,315,1117,344"/>
+<area shape="rect" id="node7" href="$CvUtils_8h.html" title="CvUtils.h" alt="" coords="456,237,533,267"/>
+<area shape="rect" id="node33" href="$StateData_8cpp.html" title="StateData.cpp" alt="" coords="557,237,664,267"/>
+<area shape="rect" id="node9" href="$CvUtils_8cpp.html" title="CvUtils.cpp" alt="" coords="739,315,829,344"/>
+<area shape="rect" id="node11" href="$rgbWriter_8cpp.html" title="rgbWriter.cpp" alt="" coords="853,315,952,344"/>
+<area shape="rect" id="node17" href="$social__robot__depth_8cpp.html" title="social_robot_depth.cpp" alt="" coords="243,315,397,344"/>
+<area shape="rect" id="node21" href="$social__robot__test_8cpp.html" title="social_robot_test.cpp" alt="" coords="421,315,568,344"/>
+<area shape="rect" id="node23" href="$SocialRobotGui_8h.html" title="SocialRobotGui.h" alt="" coords="592,315,715,344"/>
+<area shape="rect" id="node25" href="$SocialRobotGui_8cpp.html" title="SocialRobotGui.cpp" alt="" coords="524,392,663,421"/>
+<area shape="rect" id="node27" href="$gui_8h.html" title="gui.h" alt="" coords="687,392,737,421"/>
+<area shape="rect" id="node29" href="$gui_8cpp.html" title="gui.cpp" alt="" coords="633,469,697,499"/>
+<area shape="rect" id="node31" href="$main_8cpp.html" title="main.cpp" alt="" coords="721,469,796,499"/>
+</map>

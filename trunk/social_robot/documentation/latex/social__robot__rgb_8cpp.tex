@@ -1,0 +1,123 @@
+\hypertarget{social__robot__rgb_8cpp}{\section{social\-\_\-robot\-\_\-rgb.\-cpp File Reference}
+\label{social__robot__rgb_8cpp}\index{social\-\_\-robot\-\_\-rgb.\-cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}}
+}
+{\ttfamily \#include $<$ros/ros.\-h$>$}\\*
+{\ttfamily \#include $<$std\-\_\-srvs/\-Empty.\-h$>$}\\*
+{\ttfamily \#include $<$social\-\_\-robot/\-Region\-Of\-Interests.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}kinect\-\_\-proxy.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Cv\-Utils.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Ros\-Utils.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}particle\-\_\-filter/\-State\-Data.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}particle\-\_\-filter/hist.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}particle\-\_\-filter/filter.\-h\char`\"{}}\\*
+Include dependency graph for social\-\_\-robot\-\_\-rgb.\-cpp\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{social__robot__rgb_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ Rect $>$ \hyperlink{social__robot__rgb_8cpp_ac6852b105a276962381d5d624de969ef}{detect\-\_\-face\-\_\-rgb} (Mat img)
+\item 
+bool \hyperlink{social__robot__rgb_8cpp_afd0c09aff72c2db54711877905bc09a8}{update\-\_\-param\-\_\-cb} (std\-\_\-srvs\-::\-Empty\-::\-Request \&, std\-\_\-srvs\-::\-Empty\-::\-Response \&)
+\item 
+void \hyperlink{social__robot__rgb_8cpp_ab94482aff4236702db66ce45c57dd4ae}{publish\-\_\-data} (vector$<$ Rect $>$ rgbfaces)
+\item 
+void \hyperlink{social__robot__rgb_8cpp_a470b337493deec335e4849fd2458dff5}{rgb\-\_\-cb} (const Image\-Const\-Ptr \&msg)
+\item 
+bool \hyperlink{social__robot__rgb_8cpp_a43e03fa22d78ac4c16ae278025561a95}{load\-\_\-classifiers} ()
+\item 
+int \hyperlink{social__robot__rgb_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Cascade\-Classifier \hyperlink{social__robot__rgb_8cpp_a07ace2605bf523778b02dc621edac5d0}{classifier}
+\item 
+\hyperlink{classRosUtils}{Ros\-Utils} \hyperlink{social__robot__rgb_8cpp_abd0f83a9c271173baf120f2aed877bd4}{ros\-\_\-utils}
+\item 
+social\-\_\-robot\-::\-Region\-Of\-Interests \hyperlink{social__robot__rgb_8cpp_af423222e5e307bc785d52368351dc258}{rgb\-\_\-pub\-\_\-rois}
+\item 
+ros\-::\-Publisher \hyperlink{social__robot__rgb_8cpp_a28c3b0afdbbd93eef7429f9f096d70d3}{rgb\-\_\-pub}
+\item 
+int \hyperlink{social__robot__rgb_8cpp_a4f72b7c3cdf1b9774f4fa663851b0ac7}{framenum} = 0
+\item 
+int \hyperlink{social__robot__rgb_8cpp_a54b9a67b1da8bb482d6dbe94372aeb21}{update\-\_\-rate} = 15
+\item 
+\hyperlink{classCvUtils}{Cv\-Utils} \hyperlink{social__robot__rgb_8cpp_a199b98558819a161d93892eb6d1f766d}{cv\-\_\-utils}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{social__robot__rgb_8cpp_ac6852b105a276962381d5d624de969ef}{\index{social\-\_\-robot\-\_\-rgb.\-cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}!detect\-\_\-face\-\_\-rgb@{detect\-\_\-face\-\_\-rgb}}
+\index{detect\-\_\-face\-\_\-rgb@{detect\-\_\-face\-\_\-rgb}!social_robot_rgb.cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}}
+\subsubsection[{detect\-\_\-face\-\_\-rgb}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Rect$>$ detect\-\_\-face\-\_\-rgb (
+\begin{DoxyParamCaption}
+\item[{Mat}]{img}
+\end{DoxyParamCaption}
+)}}\label{social__robot__rgb_8cpp_ac6852b105a276962381d5d624de969ef}
+\hypertarget{social__robot__rgb_8cpp_a43e03fa22d78ac4c16ae278025561a95}{\index{social\-\_\-robot\-\_\-rgb.\-cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}!load\-\_\-classifiers@{load\-\_\-classifiers}}
+\index{load\-\_\-classifiers@{load\-\_\-classifiers}!social_robot_rgb.cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}}
+\subsubsection[{load\-\_\-classifiers}]{\setlength{\rightskip}{0pt plus 5cm}bool load\-\_\-classifiers (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{social__robot__rgb_8cpp_a43e03fa22d78ac4c16ae278025561a95}
+\hypertarget{social__robot__rgb_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{\index{social\-\_\-robot\-\_\-rgb.\-cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}!main@{main}}
+\index{main@{main}!social_robot_rgb.cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{social__robot__rgb_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+\hypertarget{social__robot__rgb_8cpp_ab94482aff4236702db66ce45c57dd4ae}{\index{social\-\_\-robot\-\_\-rgb.\-cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}!publish\-\_\-data@{publish\-\_\-data}}
+\index{publish\-\_\-data@{publish\-\_\-data}!social_robot_rgb.cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}}
+\subsubsection[{publish\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void publish\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{vector$<$ Rect $>$}]{rgbfaces}
+\end{DoxyParamCaption}
+)}}\label{social__robot__rgb_8cpp_ab94482aff4236702db66ce45c57dd4ae}
+\hypertarget{social__robot__rgb_8cpp_a470b337493deec335e4849fd2458dff5}{\index{social\-\_\-robot\-\_\-rgb.\-cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}!rgb\-\_\-cb@{rgb\-\_\-cb}}
+\index{rgb\-\_\-cb@{rgb\-\_\-cb}!social_robot_rgb.cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}}
+\subsubsection[{rgb\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void rgb\-\_\-cb (
+\begin{DoxyParamCaption}
+\item[{const Image\-Const\-Ptr \&}]{msg}
+\end{DoxyParamCaption}
+)}}\label{social__robot__rgb_8cpp_a470b337493deec335e4849fd2458dff5}
+\hypertarget{social__robot__rgb_8cpp_afd0c09aff72c2db54711877905bc09a8}{\index{social\-\_\-robot\-\_\-rgb.\-cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}!update\-\_\-param\-\_\-cb@{update\-\_\-param\-\_\-cb}}
+\index{update\-\_\-param\-\_\-cb@{update\-\_\-param\-\_\-cb}!social_robot_rgb.cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}}
+\subsubsection[{update\-\_\-param\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}bool update\-\_\-param\-\_\-cb (
+\begin{DoxyParamCaption}
+\item[{std\-\_\-srvs\-::\-Empty\-::\-Request \&}]{, }
+\item[{std\-\_\-srvs\-::\-Empty\-::\-Response \&}]{}
+\end{DoxyParamCaption}
+)}}\label{social__robot__rgb_8cpp_afd0c09aff72c2db54711877905bc09a8}
+
+
+\subsection{Variable Documentation}
+\hypertarget{social__robot__rgb_8cpp_a07ace2605bf523778b02dc621edac5d0}{\index{social\-\_\-robot\-\_\-rgb.\-cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}!classifier@{classifier}}
+\index{classifier@{classifier}!social_robot_rgb.cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}}
+\subsubsection[{classifier}]{\setlength{\rightskip}{0pt plus 5cm}Cascade\-Classifier classifier}}\label{social__robot__rgb_8cpp_a07ace2605bf523778b02dc621edac5d0}
+\hypertarget{social__robot__rgb_8cpp_a199b98558819a161d93892eb6d1f766d}{\index{social\-\_\-robot\-\_\-rgb.\-cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}!cv\-\_\-utils@{cv\-\_\-utils}}
+\index{cv\-\_\-utils@{cv\-\_\-utils}!social_robot_rgb.cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}}
+\subsubsection[{cv\-\_\-utils}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cv\-Utils} cv\-\_\-utils}}\label{social__robot__rgb_8cpp_a199b98558819a161d93892eb6d1f766d}
+\hypertarget{social__robot__rgb_8cpp_a4f72b7c3cdf1b9774f4fa663851b0ac7}{\index{social\-\_\-robot\-\_\-rgb.\-cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}!framenum@{framenum}}
+\index{framenum@{framenum}!social_robot_rgb.cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}}
+\subsubsection[{framenum}]{\setlength{\rightskip}{0pt plus 5cm}int framenum = 0}}\label{social__robot__rgb_8cpp_a4f72b7c3cdf1b9774f4fa663851b0ac7}
+\hypertarget{social__robot__rgb_8cpp_a28c3b0afdbbd93eef7429f9f096d70d3}{\index{social\-\_\-robot\-\_\-rgb.\-cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}!rgb\-\_\-pub@{rgb\-\_\-pub}}
+\index{rgb\-\_\-pub@{rgb\-\_\-pub}!social_robot_rgb.cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}}
+\subsubsection[{rgb\-\_\-pub}]{\setlength{\rightskip}{0pt plus 5cm}ros\-::\-Publisher rgb\-\_\-pub}}\label{social__robot__rgb_8cpp_a28c3b0afdbbd93eef7429f9f096d70d3}
+\hypertarget{social__robot__rgb_8cpp_af423222e5e307bc785d52368351dc258}{\index{social\-\_\-robot\-\_\-rgb.\-cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}!rgb\-\_\-pub\-\_\-rois@{rgb\-\_\-pub\-\_\-rois}}
+\index{rgb\-\_\-pub\-\_\-rois@{rgb\-\_\-pub\-\_\-rois}!social_robot_rgb.cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}}
+\subsubsection[{rgb\-\_\-pub\-\_\-rois}]{\setlength{\rightskip}{0pt plus 5cm}social\-\_\-robot\-::\-Region\-Of\-Interests rgb\-\_\-pub\-\_\-rois}}\label{social__robot__rgb_8cpp_af423222e5e307bc785d52368351dc258}
+\hypertarget{social__robot__rgb_8cpp_abd0f83a9c271173baf120f2aed877bd4}{\index{social\-\_\-robot\-\_\-rgb.\-cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}!ros\-\_\-utils@{ros\-\_\-utils}}
+\index{ros\-\_\-utils@{ros\-\_\-utils}!social_robot_rgb.cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}}
+\subsubsection[{ros\-\_\-utils}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ros\-Utils} ros\-\_\-utils}}\label{social__robot__rgb_8cpp_abd0f83a9c271173baf120f2aed877bd4}
+\hypertarget{social__robot__rgb_8cpp_a54b9a67b1da8bb482d6dbe94372aeb21}{\index{social\-\_\-robot\-\_\-rgb.\-cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}!update\-\_\-rate@{update\-\_\-rate}}
+\index{update\-\_\-rate@{update\-\_\-rate}!social_robot_rgb.cpp@{social\-\_\-robot\-\_\-rgb.\-cpp}}
+\subsubsection[{update\-\_\-rate}]{\setlength{\rightskip}{0pt plus 5cm}int update\-\_\-rate = 15}}\label{social__robot__rgb_8cpp_a54b9a67b1da8bb482d6dbe94372aeb21}
