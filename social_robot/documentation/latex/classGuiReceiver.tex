@@ -1,0 +1,324 @@
+\hypertarget{classGuiReceiver}{\section{Gui\-Receiver Class Reference}
+\label{classGuiReceiver}\index{Gui\-Receiver@{Gui\-Receiver}}
+}
+
+
+{\ttfamily \#include $<$window\-\_\-\-Q\-T.\-h$>$}
+
+
+
+Inheritance diagram for Gui\-Receiver\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=150pt]{classGuiReceiver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Gui\-Receiver\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=150pt]{classGuiReceiver__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classGuiReceiver_a59873b996659d0bb92d09638902ec4dc}{create\-Window} (Q\-String name, int flags=0)
+\item 
+void \hyperlink{classGuiReceiver_a86942e372e278c27c98af1930d9b9e97}{destroy\-Window} (Q\-String name)
+\item 
+void \hyperlink{classGuiReceiver_a748313239bdf5a50cc877dd91b3c1950}{destroy\-All\-Window} ()
+\item 
+void \hyperlink{classGuiReceiver_a8bd54a4f6d6f56083c2146173be6a1e3}{add\-Slider} (Q\-String trackbar\-\_\-name, Q\-String window\-\_\-name, void $\ast$value, int count, void $\ast$on\-\_\-change)
+\item 
+void \hyperlink{classGuiReceiver_a02ddc77f4583508363df717fd0859786}{add\-Slider2} (Q\-String trackbar\-\_\-name, Q\-String window\-\_\-name, void $\ast$value, int count, void $\ast$on\-\_\-change, void $\ast$userdata)
+\item 
+void \hyperlink{classGuiReceiver_abb7e0a41c2db119bfd76906651feb5aa}{move\-Window} (Q\-String name, int x, int y)
+\item 
+void \hyperlink{classGuiReceiver_a42b8802376fe8f63922969475875eea6}{resize\-Window} (Q\-String name, int width, int height)
+\item 
+void \hyperlink{classGuiReceiver_a185d6468377d45e2a2589bbb64a9ec62}{show\-Image} (Q\-String name, void $\ast$arr)
+\item 
+void \hyperlink{classGuiReceiver_a1e010c3db9ebaaf1efddb8c03f558e88}{display\-Info} (Q\-String name, Q\-String text, int delayms)
+\item 
+void \hyperlink{classGuiReceiver_abfc7c7fb831a8c423a7a15e2b0ec994b}{display\-Status\-Bar} (Q\-String name, Q\-String text, int delayms)
+\item 
+void \hyperlink{classGuiReceiver_aa8aab548c6a8fb1463c6cc7eb133ce7c}{time\-Out} ()
+\item 
+void \hyperlink{classGuiReceiver_a50571c44603479d7d96426b1de23b010}{toggle\-Full\-Screen} (Q\-String name, double flags)
+\item 
+double \hyperlink{classGuiReceiver_a6dd924ef78d8e7ec9e008f9007dbd032}{is\-Full\-Screen} (Q\-String name)
+\item 
+double \hyperlink{classGuiReceiver_aff1aa23d540c06006c295ce69c8bb771}{get\-Prop\-Window} (Q\-String name)
+\item 
+void \hyperlink{classGuiReceiver_a2f7df93bb22ec310b8f9b44844662b85}{set\-Prop\-Window} (Q\-String name, double flags)
+\item 
+double \hyperlink{classGuiReceiver_aaf16c278a39a4ee6a02de8de5e348c5c}{get\-Ratio\-Window} (Q\-String name)
+\item 
+void \hyperlink{classGuiReceiver_a42057f63804bb4f378c9ecb9a77f140c}{set\-Ratio\-Window} (Q\-String name, double arg2)
+\item 
+void \hyperlink{classGuiReceiver_a0b4cb6c25ca109fdbcdc0538caf91da5}{save\-Window\-Parameters} (Q\-String name)
+\item 
+void \hyperlink{classGuiReceiver_afc852e63d8d8e4158984d37a444927ee}{load\-Window\-Parameters} (Q\-String name)
+\item 
+void \hyperlink{classGuiReceiver_a9d6fca288ed9086e22ad5d85ef0a3ae3}{put\-Text} (void $\ast$arg1, Q\-String text, Q\-Point org, void $\ast$font)
+\item 
+void \hyperlink{classGuiReceiver_aa1507b4023e4881e37c4b2a2ba0c2353}{add\-Button} (Q\-String button\-\_\-name, int button\-\_\-type, int initial\-\_\-button\-\_\-state, void $\ast$on\-\_\-change, void $\ast$userdata)
+\item 
+void \hyperlink{classGuiReceiver_ad4c4385d49e830263e996416e16d137a}{enable\-Properties\-Button\-Each\-Window} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGuiReceiver_a0f840f04f1834a394fceeeca7dd88827}{Gui\-Receiver} ()
+\item 
+\hyperlink{classGuiReceiver_a7655140d1defb2adb481eab40193fd97}{$\sim$\-Gui\-Receiver} ()
+\item 
+int \hyperlink{classGuiReceiver_a4f0ca1781d324a9b658b01034895e1ee}{start} ()
+\item 
+void \hyperlink{classGuiReceiver_a9f788023836b17e8aed97b3770386ea9}{is\-Last\-Window} ()
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classGuiReceiver_ad2d629b90a37e814db074e7ba1fc1aa9}{\-\_\-b\-Time\-Out}
+\item 
+Q\-Timer $\ast$ \hyperlink{classGuiReceiver_aeb64966586c4a35cfc02db46491afdf6}{timer}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGuiReceiver_a0f840f04f1834a394fceeeca7dd88827}{\index{Gui\-Receiver@{Gui\-Receiver}!Gui\-Receiver@{Gui\-Receiver}}
+\index{Gui\-Receiver@{Gui\-Receiver}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{Gui\-Receiver}]{\setlength{\rightskip}{0pt plus 5cm}Gui\-Receiver\-::\-Gui\-Receiver (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGuiReceiver_a0f840f04f1834a394fceeeca7dd88827}
+\hypertarget{classGuiReceiver_a7655140d1defb2adb481eab40193fd97}{\index{Gui\-Receiver@{Gui\-Receiver}!$\sim$\-Gui\-Receiver@{$\sim$\-Gui\-Receiver}}
+\index{$\sim$\-Gui\-Receiver@{$\sim$\-Gui\-Receiver}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{$\sim$\-Gui\-Receiver}]{\setlength{\rightskip}{0pt plus 5cm}Gui\-Receiver\-::$\sim$\-Gui\-Receiver (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGuiReceiver_a7655140d1defb2adb481eab40193fd97}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGuiReceiver_aa1507b4023e4881e37c4b2a2ba0c2353}{\index{Gui\-Receiver@{Gui\-Receiver}!add\-Button@{add\-Button}}
+\index{add\-Button@{add\-Button}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{add\-Button}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::add\-Button (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{button\-\_\-name, }
+\item[{int}]{button\-\_\-type, }
+\item[{int}]{initial\-\_\-button\-\_\-state, }
+\item[{void $\ast$}]{on\-\_\-change, }
+\item[{void $\ast$}]{userdata}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_aa1507b4023e4881e37c4b2a2ba0c2353}
+\hypertarget{classGuiReceiver_a8bd54a4f6d6f56083c2146173be6a1e3}{\index{Gui\-Receiver@{Gui\-Receiver}!add\-Slider@{add\-Slider}}
+\index{add\-Slider@{add\-Slider}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{add\-Slider}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::add\-Slider (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{trackbar\-\_\-name, }
+\item[{Q\-String}]{window\-\_\-name, }
+\item[{void $\ast$}]{value, }
+\item[{int}]{count, }
+\item[{void $\ast$}]{on\-\_\-change}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_a8bd54a4f6d6f56083c2146173be6a1e3}
+\hypertarget{classGuiReceiver_a02ddc77f4583508363df717fd0859786}{\index{Gui\-Receiver@{Gui\-Receiver}!add\-Slider2@{add\-Slider2}}
+\index{add\-Slider2@{add\-Slider2}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{add\-Slider2}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::add\-Slider2 (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{trackbar\-\_\-name, }
+\item[{Q\-String}]{window\-\_\-name, }
+\item[{void $\ast$}]{value, }
+\item[{int}]{count, }
+\item[{void $\ast$}]{on\-\_\-change, }
+\item[{void $\ast$}]{userdata}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_a02ddc77f4583508363df717fd0859786}
+\hypertarget{classGuiReceiver_a59873b996659d0bb92d09638902ec4dc}{\index{Gui\-Receiver@{Gui\-Receiver}!create\-Window@{create\-Window}}
+\index{create\-Window@{create\-Window}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{create\-Window}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::create\-Window (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name, }
+\item[{int}]{flags = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_a59873b996659d0bb92d09638902ec4dc}
+\hypertarget{classGuiReceiver_a748313239bdf5a50cc877dd91b3c1950}{\index{Gui\-Receiver@{Gui\-Receiver}!destroy\-All\-Window@{destroy\-All\-Window}}
+\index{destroy\-All\-Window@{destroy\-All\-Window}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{destroy\-All\-Window}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::destroy\-All\-Window (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_a748313239bdf5a50cc877dd91b3c1950}
+\hypertarget{classGuiReceiver_a86942e372e278c27c98af1930d9b9e97}{\index{Gui\-Receiver@{Gui\-Receiver}!destroy\-Window@{destroy\-Window}}
+\index{destroy\-Window@{destroy\-Window}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{destroy\-Window}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::destroy\-Window (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_a86942e372e278c27c98af1930d9b9e97}
+\hypertarget{classGuiReceiver_a1e010c3db9ebaaf1efddb8c03f558e88}{\index{Gui\-Receiver@{Gui\-Receiver}!display\-Info@{display\-Info}}
+\index{display\-Info@{display\-Info}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{display\-Info}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::display\-Info (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name, }
+\item[{Q\-String}]{text, }
+\item[{int}]{delayms}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_a1e010c3db9ebaaf1efddb8c03f558e88}
+\hypertarget{classGuiReceiver_abfc7c7fb831a8c423a7a15e2b0ec994b}{\index{Gui\-Receiver@{Gui\-Receiver}!display\-Status\-Bar@{display\-Status\-Bar}}
+\index{display\-Status\-Bar@{display\-Status\-Bar}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{display\-Status\-Bar}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::display\-Status\-Bar (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name, }
+\item[{Q\-String}]{text, }
+\item[{int}]{delayms}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_abfc7c7fb831a8c423a7a15e2b0ec994b}
+\hypertarget{classGuiReceiver_ad4c4385d49e830263e996416e16d137a}{\index{Gui\-Receiver@{Gui\-Receiver}!enable\-Properties\-Button\-Each\-Window@{enable\-Properties\-Button\-Each\-Window}}
+\index{enable\-Properties\-Button\-Each\-Window@{enable\-Properties\-Button\-Each\-Window}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{enable\-Properties\-Button\-Each\-Window}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::enable\-Properties\-Button\-Each\-Window (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_ad4c4385d49e830263e996416e16d137a}
+\hypertarget{classGuiReceiver_aff1aa23d540c06006c295ce69c8bb771}{\index{Gui\-Receiver@{Gui\-Receiver}!get\-Prop\-Window@{get\-Prop\-Window}}
+\index{get\-Prop\-Window@{get\-Prop\-Window}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{get\-Prop\-Window}]{\setlength{\rightskip}{0pt plus 5cm}double Gui\-Receiver\-::get\-Prop\-Window (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_aff1aa23d540c06006c295ce69c8bb771}
+\hypertarget{classGuiReceiver_aaf16c278a39a4ee6a02de8de5e348c5c}{\index{Gui\-Receiver@{Gui\-Receiver}!get\-Ratio\-Window@{get\-Ratio\-Window}}
+\index{get\-Ratio\-Window@{get\-Ratio\-Window}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{get\-Ratio\-Window}]{\setlength{\rightskip}{0pt plus 5cm}double Gui\-Receiver\-::get\-Ratio\-Window (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_aaf16c278a39a4ee6a02de8de5e348c5c}
+\hypertarget{classGuiReceiver_a6dd924ef78d8e7ec9e008f9007dbd032}{\index{Gui\-Receiver@{Gui\-Receiver}!is\-Full\-Screen@{is\-Full\-Screen}}
+\index{is\-Full\-Screen@{is\-Full\-Screen}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{is\-Full\-Screen}]{\setlength{\rightskip}{0pt plus 5cm}double Gui\-Receiver\-::is\-Full\-Screen (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_a6dd924ef78d8e7ec9e008f9007dbd032}
+\hypertarget{classGuiReceiver_a9f788023836b17e8aed97b3770386ea9}{\index{Gui\-Receiver@{Gui\-Receiver}!is\-Last\-Window@{is\-Last\-Window}}
+\index{is\-Last\-Window@{is\-Last\-Window}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{is\-Last\-Window}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::is\-Last\-Window (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGuiReceiver_a9f788023836b17e8aed97b3770386ea9}
+\hypertarget{classGuiReceiver_afc852e63d8d8e4158984d37a444927ee}{\index{Gui\-Receiver@{Gui\-Receiver}!load\-Window\-Parameters@{load\-Window\-Parameters}}
+\index{load\-Window\-Parameters@{load\-Window\-Parameters}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{load\-Window\-Parameters}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::load\-Window\-Parameters (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_afc852e63d8d8e4158984d37a444927ee}
+\hypertarget{classGuiReceiver_abb7e0a41c2db119bfd76906651feb5aa}{\index{Gui\-Receiver@{Gui\-Receiver}!move\-Window@{move\-Window}}
+\index{move\-Window@{move\-Window}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{move\-Window}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::move\-Window (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name, }
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_abb7e0a41c2db119bfd76906651feb5aa}
+\hypertarget{classGuiReceiver_a9d6fca288ed9086e22ad5d85ef0a3ae3}{\index{Gui\-Receiver@{Gui\-Receiver}!put\-Text@{put\-Text}}
+\index{put\-Text@{put\-Text}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{put\-Text}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::put\-Text (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg1, }
+\item[{Q\-String}]{text, }
+\item[{Q\-Point}]{org, }
+\item[{void $\ast$}]{font}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_a9d6fca288ed9086e22ad5d85ef0a3ae3}
+\hypertarget{classGuiReceiver_a42b8802376fe8f63922969475875eea6}{\index{Gui\-Receiver@{Gui\-Receiver}!resize\-Window@{resize\-Window}}
+\index{resize\-Window@{resize\-Window}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{resize\-Window}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::resize\-Window (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name, }
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_a42b8802376fe8f63922969475875eea6}
+\hypertarget{classGuiReceiver_a0b4cb6c25ca109fdbcdc0538caf91da5}{\index{Gui\-Receiver@{Gui\-Receiver}!save\-Window\-Parameters@{save\-Window\-Parameters}}
+\index{save\-Window\-Parameters@{save\-Window\-Parameters}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{save\-Window\-Parameters}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::save\-Window\-Parameters (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_a0b4cb6c25ca109fdbcdc0538caf91da5}
+\hypertarget{classGuiReceiver_a2f7df93bb22ec310b8f9b44844662b85}{\index{Gui\-Receiver@{Gui\-Receiver}!set\-Prop\-Window@{set\-Prop\-Window}}
+\index{set\-Prop\-Window@{set\-Prop\-Window}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{set\-Prop\-Window}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::set\-Prop\-Window (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name, }
+\item[{double}]{flags}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_a2f7df93bb22ec310b8f9b44844662b85}
+\hypertarget{classGuiReceiver_a42057f63804bb4f378c9ecb9a77f140c}{\index{Gui\-Receiver@{Gui\-Receiver}!set\-Ratio\-Window@{set\-Ratio\-Window}}
+\index{set\-Ratio\-Window@{set\-Ratio\-Window}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{set\-Ratio\-Window}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::set\-Ratio\-Window (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name, }
+\item[{double}]{arg2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_a42057f63804bb4f378c9ecb9a77f140c}
+\hypertarget{classGuiReceiver_a185d6468377d45e2a2589bbb64a9ec62}{\index{Gui\-Receiver@{Gui\-Receiver}!show\-Image@{show\-Image}}
+\index{show\-Image@{show\-Image}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{show\-Image}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::show\-Image (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name, }
+\item[{void $\ast$}]{arr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_a185d6468377d45e2a2589bbb64a9ec62}
+\hypertarget{classGuiReceiver_a4f0ca1781d324a9b658b01034895e1ee}{\index{Gui\-Receiver@{Gui\-Receiver}!start@{start}}
+\index{start@{start}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{start}]{\setlength{\rightskip}{0pt plus 5cm}int Gui\-Receiver\-::start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGuiReceiver_a4f0ca1781d324a9b658b01034895e1ee}
+\hypertarget{classGuiReceiver_aa8aab548c6a8fb1463c6cc7eb133ce7c}{\index{Gui\-Receiver@{Gui\-Receiver}!time\-Out@{time\-Out}}
+\index{time\-Out@{time\-Out}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{time\-Out}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::time\-Out (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_aa8aab548c6a8fb1463c6cc7eb133ce7c}
+\hypertarget{classGuiReceiver_a50571c44603479d7d96426b1de23b010}{\index{Gui\-Receiver@{Gui\-Receiver}!toggle\-Full\-Screen@{toggle\-Full\-Screen}}
+\index{toggle\-Full\-Screen@{toggle\-Full\-Screen}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{toggle\-Full\-Screen}]{\setlength{\rightskip}{0pt plus 5cm}void Gui\-Receiver\-::toggle\-Full\-Screen (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name, }
+\item[{double}]{flags}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classGuiReceiver_a50571c44603479d7d96426b1de23b010}
+
+
+\subsection{Field Documentation}
+\hypertarget{classGuiReceiver_ad2d629b90a37e814db074e7ba1fc1aa9}{\index{Gui\-Receiver@{Gui\-Receiver}!\-\_\-b\-Time\-Out@{\-\_\-b\-Time\-Out}}
+\index{\-\_\-b\-Time\-Out@{\-\_\-b\-Time\-Out}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{\-\_\-b\-Time\-Out}]{\setlength{\rightskip}{0pt plus 5cm}bool Gui\-Receiver\-::\-\_\-b\-Time\-Out}}\label{classGuiReceiver_ad2d629b90a37e814db074e7ba1fc1aa9}
+\hypertarget{classGuiReceiver_aeb64966586c4a35cfc02db46491afdf6}{\index{Gui\-Receiver@{Gui\-Receiver}!timer@{timer}}
+\index{timer@{timer}!GuiReceiver@{Gui\-Receiver}}
+\subsubsection[{timer}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Timer$\ast$ Gui\-Receiver\-::timer}}\label{classGuiReceiver_aeb64966586c4a35cfc02db46491afdf6}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{window__QT_8h}{window\-\_\-\-Q\-T.\-h}\item 
+\hyperlink{window__QT_8cpp}{window\-\_\-\-Q\-T.\-cpp}\end{DoxyCompactItemize}

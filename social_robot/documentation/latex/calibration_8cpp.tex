@@ -1,0 +1,169 @@
+\hypertarget{calibration_8cpp}{\section{calibration.\-cpp File Reference}
+\label{calibration_8cpp}\index{calibration.\-cpp@{calibration.\-cpp}}
+}
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include $<$opencv2/core/core.\-hpp$>$}\\*
+{\ttfamily \#include $<$opencv2/imgproc/imgproc.\-hpp$>$}\\*
+{\ttfamily \#include $<$opencv2/calib3d/calib3d.\-hpp$>$}\\*
+{\ttfamily \#include $<$opencv2/highgui/highgui.\-hpp$>$}\\*
+Include dependency graph for calibration.\-cpp\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{calibration_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classSettings}{Settings}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \hyperlink{calibration_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba167a7ee1aabe9f27e010fff93c0ba971}{D\-E\-T\-E\-C\-T\-I\-O\-N} = 0, 
+\hyperlink{calibration_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba53f5d985011ab26db21516188f46a94f}{C\-A\-P\-T\-U\-R\-I\-N\-G} = 1, 
+\hyperlink{calibration_8cpp_a06fc87d81c62e9abb8790b6e5713c55baf7834eaf5a327e180e039aa05dd3ebd1}{C\-A\-L\-I\-B\-R\-A\-T\-E\-D} = 2
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{calibration_8cpp_a97ee70a8770dc30d06c744b24eb2fcfc}{help} ()
+\item 
+void \hyperlink{calibration_8cpp_ad65b890186a9457365cd03758285fddf}{write} (File\-Storage \&fs, const std\-::string \&, const \hyperlink{classSettings}{Settings} \&x)
+\item 
+void \hyperlink{calibration_8cpp_a65ae1a5d1f33d123d2df3d98c712dbfe}{read} (const File\-Node \&node, \hyperlink{classSettings}{Settings} \&x, const \hyperlink{classSettings}{Settings} \&default\-\_\-value=\hyperlink{classSettings}{Settings}())
+\item 
+bool \hyperlink{calibration_8cpp_ac7558c8da6af683fc1c86c2ede7bb31c}{run\-Calibration\-And\-Save} (\hyperlink{classSettings}{Settings} \&s, Size image\-Size, Mat \&camera\-Matrix, Mat \&dist\-Coeffs, vector$<$ vector$<$ Point2f $>$ $>$ image\-Points)
+\item 
+int \hyperlink{calibration_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+double \hyperlink{calibration_8cpp_a0bbc34496fc640878798ba7229d514ec}{compute\-Reprojection\-Errors} (const vector$<$ vector$<$ Point3f $>$ $>$ \&object\-Points, const vector$<$ vector$<$ Point2f $>$ $>$ \&image\-Points, const vector$<$ Mat $>$ \&rvecs, const vector$<$ Mat $>$ \&tvecs, const Mat \&camera\-Matrix, const Mat \&dist\-Coeffs, vector$<$ float $>$ \&per\-View\-Errors)
+\item 
+void \hyperlink{calibration_8cpp_a106905425fe65b4bacf6dcb8c9383c01}{calc\-Board\-Corner\-Positions} (Size board\-Size, float square\-Size, vector$<$ Point3f $>$ \&corners, \hyperlink{classSettings_a0e7117abd9427a6f8bc1d1d8d456b5c8}{Settings\-::\-Pattern} pattern\-Type)
+\item 
+bool \hyperlink{calibration_8cpp_a0f93cc3ec5089639392edb9fa2e90515}{run\-Calibration} (\hyperlink{classSettings}{Settings} \&s, Size \&image\-Size, Mat \&camera\-Matrix, Mat \&dist\-Coeffs, vector$<$ vector$<$ Point2f $>$ $>$ image\-Points, vector$<$ Mat $>$ \&rvecs, vector$<$ Mat $>$ \&tvecs, vector$<$ float $>$ \&reproj\-Errs, double \&total\-Avg\-Err)
+\item 
+void \hyperlink{calibration_8cpp_a7a3f85be8905453b3e87ba98fe7dcbd5}{save\-Camera\-Params} (\hyperlink{classSettings}{Settings} \&s, Size \&image\-Size, Mat \&camera\-Matrix, Mat \&dist\-Coeffs, const vector$<$ Mat $>$ \&rvecs, const vector$<$ Mat $>$ \&tvecs, const vector$<$ float $>$ \&reproj\-Errs, const vector$<$ vector$<$ Point2f $>$ $>$ \&image\-Points, double total\-Avg\-Err)
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{calibration_8cpp_a06fc87d81c62e9abb8790b6e5713c55b}{\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}\label{calibration_8cpp_a06fc87d81c62e9abb8790b6e5713c55b}
+\begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{D\-E\-T\-E\-C\-T\-I\-O\-N@{D\-E\-T\-E\-C\-T\-I\-O\-N}!calibration.\-cpp@{calibration.\-cpp}}\index{calibration.\-cpp@{calibration.\-cpp}!D\-E\-T\-E\-C\-T\-I\-O\-N@{D\-E\-T\-E\-C\-T\-I\-O\-N}}\item[{\em 
+\hypertarget{calibration_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba167a7ee1aabe9f27e010fff93c0ba971}{D\-E\-T\-E\-C\-T\-I\-O\-N}\label{calibration_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba167a7ee1aabe9f27e010fff93c0ba971}
+}]\index{C\-A\-P\-T\-U\-R\-I\-N\-G@{C\-A\-P\-T\-U\-R\-I\-N\-G}!calibration.\-cpp@{calibration.\-cpp}}\index{calibration.\-cpp@{calibration.\-cpp}!C\-A\-P\-T\-U\-R\-I\-N\-G@{C\-A\-P\-T\-U\-R\-I\-N\-G}}\item[{\em 
+\hypertarget{calibration_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba53f5d985011ab26db21516188f46a94f}{C\-A\-P\-T\-U\-R\-I\-N\-G}\label{calibration_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba53f5d985011ab26db21516188f46a94f}
+}]\index{C\-A\-L\-I\-B\-R\-A\-T\-E\-D@{C\-A\-L\-I\-B\-R\-A\-T\-E\-D}!calibration.\-cpp@{calibration.\-cpp}}\index{calibration.\-cpp@{calibration.\-cpp}!C\-A\-L\-I\-B\-R\-A\-T\-E\-D@{C\-A\-L\-I\-B\-R\-A\-T\-E\-D}}\item[{\em 
+\hypertarget{calibration_8cpp_a06fc87d81c62e9abb8790b6e5713c55baf7834eaf5a327e180e039aa05dd3ebd1}{C\-A\-L\-I\-B\-R\-A\-T\-E\-D}\label{calibration_8cpp_a06fc87d81c62e9abb8790b6e5713c55baf7834eaf5a327e180e039aa05dd3ebd1}
+}]\end{description}
+\end{Desc}
+
+
+
+\subsection{Function Documentation}
+\hypertarget{calibration_8cpp_a106905425fe65b4bacf6dcb8c9383c01}{\index{calibration.\-cpp@{calibration.\-cpp}!calc\-Board\-Corner\-Positions@{calc\-Board\-Corner\-Positions}}
+\index{calc\-Board\-Corner\-Positions@{calc\-Board\-Corner\-Positions}!calibration.cpp@{calibration.\-cpp}}
+\subsubsection[{calc\-Board\-Corner\-Positions}]{\setlength{\rightskip}{0pt plus 5cm}void calc\-Board\-Corner\-Positions (
+\begin{DoxyParamCaption}
+\item[{Size}]{board\-Size, }
+\item[{float}]{square\-Size, }
+\item[{vector$<$ Point3f $>$ \&}]{corners, }
+\item[{{\bf Settings\-::\-Pattern}}]{pattern\-Type}
+\end{DoxyParamCaption}
+)}}\label{calibration_8cpp_a106905425fe65b4bacf6dcb8c9383c01}
+\hypertarget{calibration_8cpp_a0bbc34496fc640878798ba7229d514ec}{\index{calibration.\-cpp@{calibration.\-cpp}!compute\-Reprojection\-Errors@{compute\-Reprojection\-Errors}}
+\index{compute\-Reprojection\-Errors@{compute\-Reprojection\-Errors}!calibration.cpp@{calibration.\-cpp}}
+\subsubsection[{compute\-Reprojection\-Errors}]{\setlength{\rightskip}{0pt plus 5cm}double compute\-Reprojection\-Errors (
+\begin{DoxyParamCaption}
+\item[{const vector$<$ vector$<$ Point3f $>$ $>$ \&}]{object\-Points, }
+\item[{const vector$<$ vector$<$ Point2f $>$ $>$ \&}]{image\-Points, }
+\item[{const vector$<$ Mat $>$ \&}]{rvecs, }
+\item[{const vector$<$ Mat $>$ \&}]{tvecs, }
+\item[{const Mat \&}]{camera\-Matrix, }
+\item[{const Mat \&}]{dist\-Coeffs, }
+\item[{vector$<$ float $>$ \&}]{per\-View\-Errors}
+\end{DoxyParamCaption}
+)}}\label{calibration_8cpp_a0bbc34496fc640878798ba7229d514ec}
+\hypertarget{calibration_8cpp_a97ee70a8770dc30d06c744b24eb2fcfc}{\index{calibration.\-cpp@{calibration.\-cpp}!help@{help}}
+\index{help@{help}!calibration.cpp@{calibration.\-cpp}}
+\subsubsection[{help}]{\setlength{\rightskip}{0pt plus 5cm}void help (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{calibration_8cpp_a97ee70a8770dc30d06c744b24eb2fcfc}
+\hypertarget{calibration_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{\index{calibration.\-cpp@{calibration.\-cpp}!main@{main}}
+\index{main@{main}!calibration.cpp@{calibration.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{calibration_8cpp_a0ddf1224851353fc92bfbff6f499fa97}
+\hypertarget{calibration_8cpp_a65ae1a5d1f33d123d2df3d98c712dbfe}{\index{calibration.\-cpp@{calibration.\-cpp}!read@{read}}
+\index{read@{read}!calibration.cpp@{calibration.\-cpp}}
+\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}void read (
+\begin{DoxyParamCaption}
+\item[{const File\-Node \&}]{node, }
+\item[{{\bf Settings} \&}]{x, }
+\item[{const {\bf Settings} \&}]{default\-\_\-value = {\ttfamily {\bf Settings}()}}
+\end{DoxyParamCaption}
+)}}\label{calibration_8cpp_a65ae1a5d1f33d123d2df3d98c712dbfe}
+\hypertarget{calibration_8cpp_a0f93cc3ec5089639392edb9fa2e90515}{\index{calibration.\-cpp@{calibration.\-cpp}!run\-Calibration@{run\-Calibration}}
+\index{run\-Calibration@{run\-Calibration}!calibration.cpp@{calibration.\-cpp}}
+\subsubsection[{run\-Calibration}]{\setlength{\rightskip}{0pt plus 5cm}bool run\-Calibration (
+\begin{DoxyParamCaption}
+\item[{{\bf Settings} \&}]{s, }
+\item[{Size \&}]{image\-Size, }
+\item[{Mat \&}]{camera\-Matrix, }
+\item[{Mat \&}]{dist\-Coeffs, }
+\item[{vector$<$ vector$<$ Point2f $>$ $>$}]{image\-Points, }
+\item[{vector$<$ Mat $>$ \&}]{rvecs, }
+\item[{vector$<$ Mat $>$ \&}]{tvecs, }
+\item[{vector$<$ float $>$ \&}]{reproj\-Errs, }
+\item[{double \&}]{total\-Avg\-Err}
+\end{DoxyParamCaption}
+)}}\label{calibration_8cpp_a0f93cc3ec5089639392edb9fa2e90515}
+\hypertarget{calibration_8cpp_ac7558c8da6af683fc1c86c2ede7bb31c}{\index{calibration.\-cpp@{calibration.\-cpp}!run\-Calibration\-And\-Save@{run\-Calibration\-And\-Save}}
+\index{run\-Calibration\-And\-Save@{run\-Calibration\-And\-Save}!calibration.cpp@{calibration.\-cpp}}
+\subsubsection[{run\-Calibration\-And\-Save}]{\setlength{\rightskip}{0pt plus 5cm}bool run\-Calibration\-And\-Save (
+\begin{DoxyParamCaption}
+\item[{{\bf Settings} \&}]{s, }
+\item[{Size}]{image\-Size, }
+\item[{Mat \&}]{camera\-Matrix, }
+\item[{Mat \&}]{dist\-Coeffs, }
+\item[{vector$<$ vector$<$ Point2f $>$ $>$}]{image\-Points}
+\end{DoxyParamCaption}
+)}}\label{calibration_8cpp_ac7558c8da6af683fc1c86c2ede7bb31c}
+\hypertarget{calibration_8cpp_a7a3f85be8905453b3e87ba98fe7dcbd5}{\index{calibration.\-cpp@{calibration.\-cpp}!save\-Camera\-Params@{save\-Camera\-Params}}
+\index{save\-Camera\-Params@{save\-Camera\-Params}!calibration.cpp@{calibration.\-cpp}}
+\subsubsection[{save\-Camera\-Params}]{\setlength{\rightskip}{0pt plus 5cm}void save\-Camera\-Params (
+\begin{DoxyParamCaption}
+\item[{{\bf Settings} \&}]{s, }
+\item[{Size \&}]{image\-Size, }
+\item[{Mat \&}]{camera\-Matrix, }
+\item[{Mat \&}]{dist\-Coeffs, }
+\item[{const vector$<$ Mat $>$ \&}]{rvecs, }
+\item[{const vector$<$ Mat $>$ \&}]{tvecs, }
+\item[{const vector$<$ float $>$ \&}]{reproj\-Errs, }
+\item[{const vector$<$ vector$<$ Point2f $>$ $>$ \&}]{image\-Points, }
+\item[{double}]{total\-Avg\-Err}
+\end{DoxyParamCaption}
+)}}\label{calibration_8cpp_a7a3f85be8905453b3e87ba98fe7dcbd5}
+\hypertarget{calibration_8cpp_ad65b890186a9457365cd03758285fddf}{\index{calibration.\-cpp@{calibration.\-cpp}!write@{write}}
+\index{write@{write}!calibration.cpp@{calibration.\-cpp}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}void write (
+\begin{DoxyParamCaption}
+\item[{File\-Storage \&}]{fs, }
+\item[{const std\-::string \&}]{, }
+\item[{const {\bf Settings} \&}]{x}
+\end{DoxyParamCaption}
+)}}\label{calibration_8cpp_ad65b890186a9457365cd03758285fddf}

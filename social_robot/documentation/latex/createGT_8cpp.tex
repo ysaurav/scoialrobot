@@ -1,0 +1,98 @@
+\hypertarget{createGT_8cpp}{\section{create\-G\-T.\-cpp File Reference}
+\label{createGT_8cpp}\index{create\-G\-T.\-cpp@{create\-G\-T.\-cpp}}
+}
+{\ttfamily \#include \char`\"{}opencv2/objdetect/objdetect.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}opencv2/video/background\-\_\-segm.\-hpp\char`\"{}}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$ctype.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$opencv-\/2.\-3.\-1/opencv2/highgui/highgui.\-hpp$>$}\\*
+Include dependency graph for create\-G\-T.\-cpp\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{createGT_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{createGT_8cpp_a6c81aa00b4dcf0cbae98a14c37683ed9}{on\-Mouse} (int event, int x, int y, int, void $\ast$)
+\item 
+void \hyperlink{createGT_8cpp_aebb0550776d5f429fb7a03f7574545ec}{write\-\_\-results\-\_\-to\-\_\-file} (string file\-\_\-name, vector$<$ Rect $>$ \hyperlink{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{rois})
+\item 
+int \hyperlink{createGT_8cpp_a217dbf8b442f20279ea00b898af96f52}{main} (int argc, const char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image}
+\item 
+int \hyperlink{createGT_8cpp_a88f176e4e65e22a17093a8cd24003a66}{track\-Object} = 0
+\item 
+bool \hyperlink{createGT_8cpp_a71a276a0dc4ef6aa35740b58f10bcb39}{select\-Object} = false
+\item 
+bool \hyperlink{createGT_8cpp_a1692a08e70fa31c61e66b87cdb53dbd5}{is\-\_\-first\-\_\-frame} = true
+\item 
+Point \hyperlink{createGT_8cpp_a903d0d8820c696aaa1170c50deb3633f}{origin}
+\item 
+Rect \hyperlink{createGT_8cpp_a15633c47538e3790df1e008a7f6dbfea}{selection}
+\item 
+vector$<$ Rect $>$ \hyperlink{createGT_8cpp_acee6f4679f3fb598d19b3dcdd30c04a3}{to\-\_\-be\-\_\-saved}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{createGT_8cpp_a217dbf8b442f20279ea00b898af96f52}{\index{create\-G\-T.\-cpp@{create\-G\-T.\-cpp}!main@{main}}
+\index{main@{main}!createGT.cpp@{create\-G\-T.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{const char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{createGT_8cpp_a217dbf8b442f20279ea00b898af96f52}
+\hypertarget{createGT_8cpp_a6c81aa00b4dcf0cbae98a14c37683ed9}{\index{create\-G\-T.\-cpp@{create\-G\-T.\-cpp}!on\-Mouse@{on\-Mouse}}
+\index{on\-Mouse@{on\-Mouse}!createGT.cpp@{create\-G\-T.\-cpp}}
+\subsubsection[{on\-Mouse}]{\setlength{\rightskip}{0pt plus 5cm}void on\-Mouse (
+\begin{DoxyParamCaption}
+\item[{int}]{event, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{, }
+\item[{void $\ast$}]{}
+\end{DoxyParamCaption}
+)}}\label{createGT_8cpp_a6c81aa00b4dcf0cbae98a14c37683ed9}
+\hypertarget{createGT_8cpp_aebb0550776d5f429fb7a03f7574545ec}{\index{create\-G\-T.\-cpp@{create\-G\-T.\-cpp}!write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}}
+\index{write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}!createGT.cpp@{create\-G\-T.\-cpp}}
+\subsubsection[{write\-\_\-results\-\_\-to\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void write\-\_\-results\-\_\-to\-\_\-file (
+\begin{DoxyParamCaption}
+\item[{string}]{file\-\_\-name, }
+\item[{vector$<$ Rect $>$}]{rois}
+\end{DoxyParamCaption}
+)}}\label{createGT_8cpp_aebb0550776d5f429fb7a03f7574545ec}
+
+
+\subsection{Variable Documentation}
+\hypertarget{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{\index{create\-G\-T.\-cpp@{create\-G\-T.\-cpp}!image@{image}}
+\index{image@{image}!createGT.cpp@{create\-G\-T.\-cpp}}
+\subsubsection[{image}]{\setlength{\rightskip}{0pt plus 5cm}Mat image}}\label{createGT_8cpp_aabb27b8973575043030df51be47cd24a}
+\hypertarget{createGT_8cpp_a1692a08e70fa31c61e66b87cdb53dbd5}{\index{create\-G\-T.\-cpp@{create\-G\-T.\-cpp}!is\-\_\-first\-\_\-frame@{is\-\_\-first\-\_\-frame}}
+\index{is\-\_\-first\-\_\-frame@{is\-\_\-first\-\_\-frame}!createGT.cpp@{create\-G\-T.\-cpp}}
+\subsubsection[{is\-\_\-first\-\_\-frame}]{\setlength{\rightskip}{0pt plus 5cm}bool is\-\_\-first\-\_\-frame = true}}\label{createGT_8cpp_a1692a08e70fa31c61e66b87cdb53dbd5}
+\hypertarget{createGT_8cpp_a903d0d8820c696aaa1170c50deb3633f}{\index{create\-G\-T.\-cpp@{create\-G\-T.\-cpp}!origin@{origin}}
+\index{origin@{origin}!createGT.cpp@{create\-G\-T.\-cpp}}
+\subsubsection[{origin}]{\setlength{\rightskip}{0pt plus 5cm}Point origin}}\label{createGT_8cpp_a903d0d8820c696aaa1170c50deb3633f}
+\hypertarget{createGT_8cpp_a15633c47538e3790df1e008a7f6dbfea}{\index{create\-G\-T.\-cpp@{create\-G\-T.\-cpp}!selection@{selection}}
+\index{selection@{selection}!createGT.cpp@{create\-G\-T.\-cpp}}
+\subsubsection[{selection}]{\setlength{\rightskip}{0pt plus 5cm}Rect selection}}\label{createGT_8cpp_a15633c47538e3790df1e008a7f6dbfea}
+\hypertarget{createGT_8cpp_a71a276a0dc4ef6aa35740b58f10bcb39}{\index{create\-G\-T.\-cpp@{create\-G\-T.\-cpp}!select\-Object@{select\-Object}}
+\index{select\-Object@{select\-Object}!createGT.cpp@{create\-G\-T.\-cpp}}
+\subsubsection[{select\-Object}]{\setlength{\rightskip}{0pt plus 5cm}bool select\-Object = false}}\label{createGT_8cpp_a71a276a0dc4ef6aa35740b58f10bcb39}
+\hypertarget{createGT_8cpp_acee6f4679f3fb598d19b3dcdd30c04a3}{\index{create\-G\-T.\-cpp@{create\-G\-T.\-cpp}!to\-\_\-be\-\_\-saved@{to\-\_\-be\-\_\-saved}}
+\index{to\-\_\-be\-\_\-saved@{to\-\_\-be\-\_\-saved}!createGT.cpp@{create\-G\-T.\-cpp}}
+\subsubsection[{to\-\_\-be\-\_\-saved}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Rect$>$ to\-\_\-be\-\_\-saved}}\label{createGT_8cpp_acee6f4679f3fb598d19b3dcdd30c04a3}
+\hypertarget{createGT_8cpp_a88f176e4e65e22a17093a8cd24003a66}{\index{create\-G\-T.\-cpp@{create\-G\-T.\-cpp}!track\-Object@{track\-Object}}
+\index{track\-Object@{track\-Object}!createGT.cpp@{create\-G\-T.\-cpp}}
+\subsubsection[{track\-Object}]{\setlength{\rightskip}{0pt plus 5cm}int track\-Object = 0}}\label{createGT_8cpp_a88f176e4e65e22a17093a8cd24003a66}

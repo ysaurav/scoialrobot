@@ -1,0 +1,153 @@
+\hypertarget{classConDensation}{\section{Con\-Densation Class Reference}
+\label{classConDensation}\index{Con\-Densation@{Con\-Densation}}
+}
+
+
+{\ttfamily \#include $<$condens.\-h$>$}
+
+
+
+Inheritance diagram for Con\-Densation\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{classConDensation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Con\-Densation\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=302pt]{classConDensation__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classConDensation_a3c7e76ac520287c7eb12bf3b05ad5fa0}{Con\-Densation} (unsigned int dynam\-\_\-params, unsigned int \hyperlink{social__robot_8cpp_acf574bc864f7f0fc111320f1d6c449d5}{num\-\_\-particles})
+\item 
+virtual \hyperlink{classConDensation_aa8176dc480168102bdd41ea10b977878}{$\sim$\-Con\-Densation} ()
+\item 
+void \hyperlink{classConDensation_aa61120a09e253fe429ee6a912f856fd5}{init\-\_\-sample\-\_\-set} (const float initial\mbox{[}$\,$\mbox{]}, const float std\-\_\-dev\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{classConDensation_a5aef436b8879d0e97b4503b609678740}{time\-\_\-update} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{classConDensation_a19d27b83f57f5704c920a2ce0276639f}{m\-\_\-num\-\_\-states}
+\item 
+cv\-::\-Mat\-\_\-$<$ float $>$ \hyperlink{classConDensation_a4aef4dc8a1246b56ca4996cddb4ddebf}{m\-\_\-transition\-\_\-matrix}
+\item 
+cv\-::\-Mat\-\_\-$<$ float $>$ \hyperlink{classConDensation_ae50f5310d9c2b5574a7fe502b78f2ca1}{m\-\_\-state}
+\item 
+unsigned int \hyperlink{classConDensation_a6dd623ea8aa0fda252df3676dec562be}{m\-\_\-num\-\_\-particles}
+\item 
+std\-::vector$<$ cv\-::\-Mat\-\_\-$<$ float $>$ $>$ \hyperlink{classConDensation_a0500c90957d129d1f17512aa0ec4f490}{m\-\_\-particles}
+\item 
+std\-::vector$<$ float $>$ \hyperlink{classConDensation_abc5be0956acb4bd5c6383c4e095aac86}{m\-\_\-confidence}
+\item 
+std\-::vector$<$ cv\-::\-Mat\-\_\-$<$ float $>$ $>$ \hyperlink{classConDensation_a489443034896778939e5e24741d42728}{m\-\_\-new\-\_\-particles}
+\item 
+std\-::vector$<$ float $>$ \hyperlink{classConDensation_a9062fce705b93a2ab93c114aa579943a}{m\-\_\-cumulative}
+\item 
+cv\-::\-Mat\-\_\-$<$ float $>$ \hyperlink{classConDensation_a3908e7f2187a4b0010fadff24b950130}{m\-\_\-temp}
+\item 
+cv\-::\-R\-N\-G \hyperlink{classConDensation_a3485c3841850db0017d06781fa7064cf}{m\-\_\-rng}
+\item 
+const float $\ast$ \hyperlink{classConDensation_ace037712799e93339a0146a5f2891e35}{m\-\_\-std\-\_\-dev}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyCopyright}{Copyright}
+
+\end{DoxyCopyright}
+Copyright 2012 Kevin Schluff
+
+This program is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License version 2, as published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classConDensation_a3c7e76ac520287c7eb12bf3b05ad5fa0}{\index{Con\-Densation@{Con\-Densation}!Con\-Densation@{Con\-Densation}}
+\index{Con\-Densation@{Con\-Densation}!ConDensation@{Con\-Densation}}
+\subsubsection[{Con\-Densation}]{\setlength{\rightskip}{0pt plus 5cm}Con\-Densation\-::\-Con\-Densation (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{dynam\-\_\-params, }
+\item[{unsigned int}]{num\-\_\-particles}
+\end{DoxyParamCaption}
+)}}\label{classConDensation_a3c7e76ac520287c7eb12bf3b05ad5fa0}
+\hypertarget{classConDensation_aa8176dc480168102bdd41ea10b977878}{\index{Con\-Densation@{Con\-Densation}!$\sim$\-Con\-Densation@{$\sim$\-Con\-Densation}}
+\index{$\sim$\-Con\-Densation@{$\sim$\-Con\-Densation}!ConDensation@{Con\-Densation}}
+\subsubsection[{$\sim$\-Con\-Densation}]{\setlength{\rightskip}{0pt plus 5cm}Con\-Densation\-::$\sim$\-Con\-Densation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classConDensation_aa8176dc480168102bdd41ea10b977878}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classConDensation_aa61120a09e253fe429ee6a912f856fd5}{\index{Con\-Densation@{Con\-Densation}!init\-\_\-sample\-\_\-set@{init\-\_\-sample\-\_\-set}}
+\index{init\-\_\-sample\-\_\-set@{init\-\_\-sample\-\_\-set}!ConDensation@{Con\-Densation}}
+\subsubsection[{init\-\_\-sample\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Densation\-::init\-\_\-sample\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{const float}]{initial\mbox{[}$\,$\mbox{]}, }
+\item[{const float}]{std\-\_\-dev\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{classConDensation_aa61120a09e253fe429ee6a912f856fd5}
+\hypertarget{classConDensation_a5aef436b8879d0e97b4503b609678740}{\index{Con\-Densation@{Con\-Densation}!time\-\_\-update@{time\-\_\-update}}
+\index{time\-\_\-update@{time\-\_\-update}!ConDensation@{Con\-Densation}}
+\subsubsection[{time\-\_\-update}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Densation\-::time\-\_\-update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classConDensation_a5aef436b8879d0e97b4503b609678740}
+
+
+\subsection{Field Documentation}
+\hypertarget{classConDensation_abc5be0956acb4bd5c6383c4e095aac86}{\index{Con\-Densation@{Con\-Densation}!m\-\_\-confidence@{m\-\_\-confidence}}
+\index{m\-\_\-confidence@{m\-\_\-confidence}!ConDensation@{Con\-Densation}}
+\subsubsection[{m\-\_\-confidence}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$float$>$ Con\-Densation\-::m\-\_\-confidence\hspace{0.3cm}{\ttfamily [protected]}}}\label{classConDensation_abc5be0956acb4bd5c6383c4e095aac86}
+\hypertarget{classConDensation_a9062fce705b93a2ab93c114aa579943a}{\index{Con\-Densation@{Con\-Densation}!m\-\_\-cumulative@{m\-\_\-cumulative}}
+\index{m\-\_\-cumulative@{m\-\_\-cumulative}!ConDensation@{Con\-Densation}}
+\subsubsection[{m\-\_\-cumulative}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$float$>$ Con\-Densation\-::m\-\_\-cumulative\hspace{0.3cm}{\ttfamily [protected]}}}\label{classConDensation_a9062fce705b93a2ab93c114aa579943a}
+\hypertarget{classConDensation_a489443034896778939e5e24741d42728}{\index{Con\-Densation@{Con\-Densation}!m\-\_\-new\-\_\-particles@{m\-\_\-new\-\_\-particles}}
+\index{m\-\_\-new\-\_\-particles@{m\-\_\-new\-\_\-particles}!ConDensation@{Con\-Densation}}
+\subsubsection[{m\-\_\-new\-\_\-particles}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$cv\-::\-Mat\-\_\-$<$float$>$ $>$ Con\-Densation\-::m\-\_\-new\-\_\-particles\hspace{0.3cm}{\ttfamily [protected]}}}\label{classConDensation_a489443034896778939e5e24741d42728}
+\hypertarget{classConDensation_a6dd623ea8aa0fda252df3676dec562be}{\index{Con\-Densation@{Con\-Densation}!m\-\_\-num\-\_\-particles@{m\-\_\-num\-\_\-particles}}
+\index{m\-\_\-num\-\_\-particles@{m\-\_\-num\-\_\-particles}!ConDensation@{Con\-Densation}}
+\subsubsection[{m\-\_\-num\-\_\-particles}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Con\-Densation\-::m\-\_\-num\-\_\-particles\hspace{0.3cm}{\ttfamily [protected]}}}\label{classConDensation_a6dd623ea8aa0fda252df3676dec562be}
+\hypertarget{classConDensation_a19d27b83f57f5704c920a2ce0276639f}{\index{Con\-Densation@{Con\-Densation}!m\-\_\-num\-\_\-states@{m\-\_\-num\-\_\-states}}
+\index{m\-\_\-num\-\_\-states@{m\-\_\-num\-\_\-states}!ConDensation@{Con\-Densation}}
+\subsubsection[{m\-\_\-num\-\_\-states}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Con\-Densation\-::m\-\_\-num\-\_\-states\hspace{0.3cm}{\ttfamily [protected]}}}\label{classConDensation_a19d27b83f57f5704c920a2ce0276639f}
+\hypertarget{classConDensation_a0500c90957d129d1f17512aa0ec4f490}{\index{Con\-Densation@{Con\-Densation}!m\-\_\-particles@{m\-\_\-particles}}
+\index{m\-\_\-particles@{m\-\_\-particles}!ConDensation@{Con\-Densation}}
+\subsubsection[{m\-\_\-particles}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$cv\-::\-Mat\-\_\-$<$float$>$ $>$ Con\-Densation\-::m\-\_\-particles\hspace{0.3cm}{\ttfamily [protected]}}}\label{classConDensation_a0500c90957d129d1f17512aa0ec4f490}
+\hypertarget{classConDensation_a3485c3841850db0017d06781fa7064cf}{\index{Con\-Densation@{Con\-Densation}!m\-\_\-rng@{m\-\_\-rng}}
+\index{m\-\_\-rng@{m\-\_\-rng}!ConDensation@{Con\-Densation}}
+\subsubsection[{m\-\_\-rng}]{\setlength{\rightskip}{0pt plus 5cm}cv\-::\-R\-N\-G Con\-Densation\-::m\-\_\-rng\hspace{0.3cm}{\ttfamily [protected]}}}\label{classConDensation_a3485c3841850db0017d06781fa7064cf}
+\hypertarget{classConDensation_ae50f5310d9c2b5574a7fe502b78f2ca1}{\index{Con\-Densation@{Con\-Densation}!m\-\_\-state@{m\-\_\-state}}
+\index{m\-\_\-state@{m\-\_\-state}!ConDensation@{Con\-Densation}}
+\subsubsection[{m\-\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}cv\-::\-Mat\-\_\-$<$float$>$ Con\-Densation\-::m\-\_\-state\hspace{0.3cm}{\ttfamily [protected]}}}\label{classConDensation_ae50f5310d9c2b5574a7fe502b78f2ca1}
+\hypertarget{classConDensation_ace037712799e93339a0146a5f2891e35}{\index{Con\-Densation@{Con\-Densation}!m\-\_\-std\-\_\-dev@{m\-\_\-std\-\_\-dev}}
+\index{m\-\_\-std\-\_\-dev@{m\-\_\-std\-\_\-dev}!ConDensation@{Con\-Densation}}
+\subsubsection[{m\-\_\-std\-\_\-dev}]{\setlength{\rightskip}{0pt plus 5cm}const float$\ast$ Con\-Densation\-::m\-\_\-std\-\_\-dev\hspace{0.3cm}{\ttfamily [protected]}}}\label{classConDensation_ace037712799e93339a0146a5f2891e35}
+\hypertarget{classConDensation_a3908e7f2187a4b0010fadff24b950130}{\index{Con\-Densation@{Con\-Densation}!m\-\_\-temp@{m\-\_\-temp}}
+\index{m\-\_\-temp@{m\-\_\-temp}!ConDensation@{Con\-Densation}}
+\subsubsection[{m\-\_\-temp}]{\setlength{\rightskip}{0pt plus 5cm}cv\-::\-Mat\-\_\-$<$float$>$ Con\-Densation\-::m\-\_\-temp\hspace{0.3cm}{\ttfamily [protected]}}}\label{classConDensation_a3908e7f2187a4b0010fadff24b950130}
+\hypertarget{classConDensation_a4aef4dc8a1246b56ca4996cddb4ddebf}{\index{Con\-Densation@{Con\-Densation}!m\-\_\-transition\-\_\-matrix@{m\-\_\-transition\-\_\-matrix}}
+\index{m\-\_\-transition\-\_\-matrix@{m\-\_\-transition\-\_\-matrix}!ConDensation@{Con\-Densation}}
+\subsubsection[{m\-\_\-transition\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}cv\-::\-Mat\-\_\-$<$float$>$ Con\-Densation\-::m\-\_\-transition\-\_\-matrix\hspace{0.3cm}{\ttfamily [protected]}}}\label{classConDensation_a4aef4dc8a1246b56ca4996cddb4ddebf}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{condens_8h}{condens.\-h}\item 
+\hyperlink{condens_8cpp}{condens.\-cpp}\end{DoxyCompactItemize}

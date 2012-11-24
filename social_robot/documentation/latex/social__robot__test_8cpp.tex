@@ -1,0 +1,160 @@
+\hypertarget{social__robot__test_8cpp}{\section{social\-\_\-robot\-\_\-test.\-cpp File Reference}
+\label{social__robot__test_8cpp}\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+}
+{\ttfamily \#include $<$ros/ros.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}kinect\-\_\-proxy.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Pixel\-Similarity.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Template.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Cv\-Utils.\-h\char`\"{}}\\*
+Include dependency graph for social\-\_\-robot\-\_\-test.\-cpp\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{social__robot__test_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{social__robot__test_8cpp_a8c6eddd513e54b8eddb8b1a77b084501}{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E1}~\char`\"{}pictures/template3.\-png\char`\"{}
+\item 
+\#define \hyperlink{social__robot__test_8cpp_a69980f025fa1338d2ad9db0abcf521cc}{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E2}~\char`\"{}pictures/template.\-png\char`\"{}
+\item 
+\#define \hyperlink{social__robot__test_8cpp_a165d075a21bc8c70793744bee22cadc5}{N\-U\-M\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E\-S}~2
+\item 
+\#define \hyperlink{social__robot__test_8cpp_ab2583e3c7c2e28899a25dd925ac36db9}{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E3\-D2}~\char`\"{}pictures/template3\-D.\-png\char`\"{}
+\item 
+\#define \hyperlink{social__robot__test_8cpp_a1ccd6c40e0fc717c16cfa0bc36271d18}{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E3\-D}~\char`\"{}pictures/template3\-D.\-png\char`\"{}
+\item 
+\#define \hyperlink{social__robot__test_8cpp_a0bf9d7f51fbc2f78a952fb61198bf863}{T\-H\-R1}~5
+\item 
+\#define \hyperlink{social__robot__test_8cpp_a39321230afd60ab5d0185705f43f4917}{T\-H\-R2}~7
+\item 
+\#define \hyperlink{social__robot__test_8cpp_ab9b411b12ea1104812bd0f9f3a103b58}{T\-H\-R3}~20
+\item 
+\#define \hyperlink{social__robot__test_8cpp_a08c808cd3c370170b3157fba697ae01a}{S\-C\-A\-L\-E\-S}~5
+\item 
+\#define \hyperlink{social__robot__test_8cpp_adb1f1d5b685f5a444190abe4ac18d972}{S\-C\-A\-L\-E\-\_\-\-F\-A\-C\-T\-O\-R}~0.\-75
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ Point3f $>$ \hyperlink{social__robot__test_8cpp_ab1b039a15129c07f54976faa90cf07da}{chamfer\-\_\-matching} (Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image}, Mat template\-\_\-im)
+\item 
+vector$<$ Point3f $>$ \hyperlink{social__robot__test_8cpp_a0847a8b0c5e4f5f08cb3901a7c409f98}{chamfer\-\_\-matching\-\_\-fusion} (Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image}, vector$<$ Mat $>$ template\-\_\-im)
+\item 
+vector$<$ \hyperlink{classPixelSimilarity}{Pixel\-Similarity} $>$ \hyperlink{social__robot__test_8cpp_a9f1b03628622d7a6ad356f419f035780}{compute\-\_\-headparameters} (Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image}, vector$<$ Point3f $>$ \hyperlink{social__robot__depth_8cpp_ae49e0fd65160c33b3bd285afab7ffc7c}{chamfer})
+\item 
+void \hyperlink{social__robot__test_8cpp_a72436f5f6d6ac15dc02f0419fabccc56}{detect\-\_\-face} (Mat \&img, Cascade\-Classifier \&cascade)
+\item 
+vector$<$ \hyperlink{classPixelSimilarity}{Pixel\-Similarity} $>$ \hyperlink{social__robot__test_8cpp_ad9dc6b51184affc24a5328c0aae03173}{false\-\_\-positives} (vector$<$ \hyperlink{classPixelSimilarity}{Pixel\-Similarity} $>$ tmpparams, int thr, int thr2)
+\item 
+int \hyperlink{social__robot__test_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{social__robot__test_8cpp_aa2c44ce91044d71b417fff8b492ce62c}{cascade\-\_\-name} = \char`\"{}rsrc/haarcascades/haarcascade\-\_\-frontalface\-\_\-alt.\-xml\char`\"{}
+\item 
+\hyperlink{classCvUtils}{Cv\-Utils} \hyperlink{social__robot__test_8cpp_a199b98558819a161d93892eb6d1f766d}{cv\-\_\-utils}
+\item 
+Mat \hyperlink{social__robot__test_8cpp_a562c24171e2f8906922d1972dbd15f17}{canny\-\_\-im}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{social__robot__test_8cpp_a8c6eddd513e54b8eddb8b1a77b084501}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E1@{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E1}}
+\index{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E1@{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E1}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E1}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E1~\char`\"{}pictures/template3.\-png\char`\"{}}}\label{social__robot__test_8cpp_a8c6eddd513e54b8eddb8b1a77b084501}
+\hypertarget{social__robot__test_8cpp_a69980f025fa1338d2ad9db0abcf521cc}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E2@{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E2}}
+\index{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E2@{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E2}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E2}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E2~\char`\"{}pictures/template.\-png\char`\"{}}}\label{social__robot__test_8cpp_a69980f025fa1338d2ad9db0abcf521cc}
+\hypertarget{social__robot__test_8cpp_a1ccd6c40e0fc717c16cfa0bc36271d18}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E3\-D@{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E3\-D}}
+\index{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E3\-D@{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E3\-D}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E3\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E3\-D~\char`\"{}pictures/template3\-D.\-png\char`\"{}}}\label{social__robot__test_8cpp_a1ccd6c40e0fc717c16cfa0bc36271d18}
+\hypertarget{social__robot__test_8cpp_ab2583e3c7c2e28899a25dd925ac36db9}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E3\-D2@{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E3\-D2}}
+\index{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E3\-D2@{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E3\-D2}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E3\-D2}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-E\-A\-D\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E3\-D2~\char`\"{}pictures/template3\-D.\-png\char`\"{}}}\label{social__robot__test_8cpp_ab2583e3c7c2e28899a25dd925ac36db9}
+\hypertarget{social__robot__test_8cpp_a165d075a21bc8c70793744bee22cadc5}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!N\-U\-M\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E\-S@{N\-U\-M\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E\-S}}
+\index{N\-U\-M\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E\-S@{N\-U\-M\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E\-S}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{N\-U\-M\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\-U\-M\-\_\-\-T\-E\-M\-P\-L\-A\-T\-E\-S~2}}\label{social__robot__test_8cpp_a165d075a21bc8c70793744bee22cadc5}
+\hypertarget{social__robot__test_8cpp_adb1f1d5b685f5a444190abe4ac18d972}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!S\-C\-A\-L\-E\-\_\-\-F\-A\-C\-T\-O\-R@{S\-C\-A\-L\-E\-\_\-\-F\-A\-C\-T\-O\-R}}
+\index{S\-C\-A\-L\-E\-\_\-\-F\-A\-C\-T\-O\-R@{S\-C\-A\-L\-E\-\_\-\-F\-A\-C\-T\-O\-R}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{S\-C\-A\-L\-E\-\_\-\-F\-A\-C\-T\-O\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-C\-A\-L\-E\-\_\-\-F\-A\-C\-T\-O\-R~0.\-75}}\label{social__robot__test_8cpp_adb1f1d5b685f5a444190abe4ac18d972}
+\hypertarget{social__robot__test_8cpp_a08c808cd3c370170b3157fba697ae01a}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!S\-C\-A\-L\-E\-S@{S\-C\-A\-L\-E\-S}}
+\index{S\-C\-A\-L\-E\-S@{S\-C\-A\-L\-E\-S}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{S\-C\-A\-L\-E\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-C\-A\-L\-E\-S~5}}\label{social__robot__test_8cpp_a08c808cd3c370170b3157fba697ae01a}
+\hypertarget{social__robot__test_8cpp_a0bf9d7f51fbc2f78a952fb61198bf863}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!T\-H\-R1@{T\-H\-R1}}
+\index{T\-H\-R1@{T\-H\-R1}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{T\-H\-R1}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-H\-R1~5}}\label{social__robot__test_8cpp_a0bf9d7f51fbc2f78a952fb61198bf863}
+\hypertarget{social__robot__test_8cpp_a39321230afd60ab5d0185705f43f4917}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!T\-H\-R2@{T\-H\-R2}}
+\index{T\-H\-R2@{T\-H\-R2}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{T\-H\-R2}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-H\-R2~7}}\label{social__robot__test_8cpp_a39321230afd60ab5d0185705f43f4917}
+\hypertarget{social__robot__test_8cpp_ab9b411b12ea1104812bd0f9f3a103b58}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!T\-H\-R3@{T\-H\-R3}}
+\index{T\-H\-R3@{T\-H\-R3}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{T\-H\-R3}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-H\-R3~20}}\label{social__robot__test_8cpp_ab9b411b12ea1104812bd0f9f3a103b58}
+
+
+\subsection{Function Documentation}
+\hypertarget{social__robot__test_8cpp_ab1b039a15129c07f54976faa90cf07da}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!chamfer\-\_\-matching@{chamfer\-\_\-matching}}
+\index{chamfer\-\_\-matching@{chamfer\-\_\-matching}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{chamfer\-\_\-matching}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Point3f$>$ chamfer\-\_\-matching (
+\begin{DoxyParamCaption}
+\item[{Mat}]{image, }
+\item[{Mat}]{template\-\_\-im}
+\end{DoxyParamCaption}
+)}}\label{social__robot__test_8cpp_ab1b039a15129c07f54976faa90cf07da}
+\hypertarget{social__robot__test_8cpp_a0847a8b0c5e4f5f08cb3901a7c409f98}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!chamfer\-\_\-matching\-\_\-fusion@{chamfer\-\_\-matching\-\_\-fusion}}
+\index{chamfer\-\_\-matching\-\_\-fusion@{chamfer\-\_\-matching\-\_\-fusion}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{chamfer\-\_\-matching\-\_\-fusion}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Point3f$>$ chamfer\-\_\-matching\-\_\-fusion (
+\begin{DoxyParamCaption}
+\item[{Mat}]{image, }
+\item[{vector$<$ Mat $>$}]{template\-\_\-im}
+\end{DoxyParamCaption}
+)}}\label{social__robot__test_8cpp_a0847a8b0c5e4f5f08cb3901a7c409f98}
+\hypertarget{social__robot__test_8cpp_a9f1b03628622d7a6ad356f419f035780}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!compute\-\_\-headparameters@{compute\-\_\-headparameters}}
+\index{compute\-\_\-headparameters@{compute\-\_\-headparameters}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{compute\-\_\-headparameters}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Pixel\-Similarity}$>$ compute\-\_\-headparameters (
+\begin{DoxyParamCaption}
+\item[{Mat}]{image, }
+\item[{vector$<$ Point3f $>$}]{chamfer}
+\end{DoxyParamCaption}
+)}}\label{social__robot__test_8cpp_a9f1b03628622d7a6ad356f419f035780}
+\hypertarget{social__robot__test_8cpp_a72436f5f6d6ac15dc02f0419fabccc56}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!detect\-\_\-face@{detect\-\_\-face}}
+\index{detect\-\_\-face@{detect\-\_\-face}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{detect\-\_\-face}]{\setlength{\rightskip}{0pt plus 5cm}void detect\-\_\-face (
+\begin{DoxyParamCaption}
+\item[{Mat \&}]{img, }
+\item[{Cascade\-Classifier \&}]{cascade}
+\end{DoxyParamCaption}
+)}}\label{social__robot__test_8cpp_a72436f5f6d6ac15dc02f0419fabccc56}
+\hypertarget{social__robot__test_8cpp_ad9dc6b51184affc24a5328c0aae03173}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!false\-\_\-positives@{false\-\_\-positives}}
+\index{false\-\_\-positives@{false\-\_\-positives}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{false\-\_\-positives}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Pixel\-Similarity}$>$ false\-\_\-positives (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Pixel\-Similarity} $>$}]{tmpparams, }
+\item[{int}]{thr, }
+\item[{int}]{thr2}
+\end{DoxyParamCaption}
+)}}\label{social__robot__test_8cpp_ad9dc6b51184affc24a5328c0aae03173}
+\hypertarget{social__robot__test_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!main@{main}}
+\index{main@{main}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{social__robot__test_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+\subsection{Variable Documentation}
+\hypertarget{social__robot__test_8cpp_a562c24171e2f8906922d1972dbd15f17}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!canny\-\_\-im@{canny\-\_\-im}}
+\index{canny\-\_\-im@{canny\-\_\-im}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{canny\-\_\-im}]{\setlength{\rightskip}{0pt plus 5cm}Mat canny\-\_\-im}}\label{social__robot__test_8cpp_a562c24171e2f8906922d1972dbd15f17}
+\hypertarget{social__robot__test_8cpp_aa2c44ce91044d71b417fff8b492ce62c}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!cascade\-\_\-name@{cascade\-\_\-name}}
+\index{cascade\-\_\-name@{cascade\-\_\-name}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{cascade\-\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}string cascade\-\_\-name = \char`\"{}rsrc/haarcascades/haarcascade\-\_\-frontalface\-\_\-alt.\-xml\char`\"{}}}\label{social__robot__test_8cpp_aa2c44ce91044d71b417fff8b492ce62c}
+\hypertarget{social__robot__test_8cpp_a199b98558819a161d93892eb6d1f766d}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!cv\-\_\-utils@{cv\-\_\-utils}}
+\index{cv\-\_\-utils@{cv\-\_\-utils}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
+\subsubsection[{cv\-\_\-utils}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cv\-Utils} cv\-\_\-utils}}\label{social__robot__test_8cpp_a199b98558819a161d93892eb6d1f766d}

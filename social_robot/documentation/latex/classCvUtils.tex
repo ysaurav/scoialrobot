@@ -1,0 +1,261 @@
+\hypertarget{classCvUtils}{\section{Cv\-Utils Class Reference}
+\label{classCvUtils}\index{Cv\-Utils@{Cv\-Utils}}
+}
+
+
+This class contains useful functions for the image processing part.  
+
+
+
+
+{\ttfamily \#include $<$Cv\-Utils.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Mat \hyperlink{classCvUtils_aa5bded11699d39af25c420aed2ade0ba}{rgb2bw} (Mat im\-\_\-rgb)
+\item 
+Mat \hyperlink{classCvUtils_a47189479acb67a1918f35557fc5906a6}{preprocessing} (Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image})
+\item 
+void \hyperlink{classCvUtils_a426439fc003e5557644932eee66c48b6}{get\-\_\-non\-\_\-zeros} (Mat img, Mat prob, vector$<$ Point3f $>$ $\ast$points, Point pdiff=Point(0, 0), double scale=1)
+\end{DoxyCompactItemize}
+\begin{Indent}{\bf Drawing functions}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classCvUtils_a74249b2e9b76b2a8ae2c01c4ff496663}{draw\-\_\-rgb\-\_\-faces} (Mat \&img, vector$<$ Rect $>$ faces)
+\item 
+void \hyperlink{classCvUtils_ac86c2ad8adca706655831938b63ebaa2}{draw\-\_\-tracking\-\_\-faces} (Mat \&img, vector$<$ \hyperlink{classStateData}{State\-Data} $>$ \hyperlink{social__robot_8cpp_a63ba5e41659a1483954bc6564bca605a}{state\-\_\-datas})
+\item 
+void \hyperlink{classCvUtils_a6e1f3369c2b553c06f2692c75e20667d}{draw\-\_\-depth\-\_\-faces} (Mat \&img, vector$<$ Rect $>$ faces)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Get the center of a rectangle}\par
+\begin{DoxyCompactItemize}
+\item 
+Point \hyperlink{classCvUtils_aa54494728db8503a7311ff2f9ad8ab1c}{get\-\_\-rect\-\_\-centre} (Rect rect)
+\item 
+Point3f \hyperlink{classCvUtils_a9a91a1dbd7a74ef15257510129308277}{get\-\_\-rect\-\_\-centre\-\_\-3d} (Rect rect, Mat \hyperlink{social__robot__onethread_8cpp_a5b613972ff73fd7b34e0ee18acc5c1a6}{depth\-\_\-image})
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Euclidean Distance}\par
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classCvUtils_a20d53b92663d548bebf90da242d984f3}{euclidean\-\_\-distance} (Point3f a, Point3f b)
+\item 
+double \hyperlink{classCvUtils_a74b4a32b47136f704db2729b39095c02}{euclidean\-\_\-distance} (Point a, Point b)
+\item 
+Rect \hyperlink{classCvUtils_a349894b926e2d252d0ce224abcba698a}{enlarge\-\_\-window} (Rect orgrect, Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image}, double scale=2.\-0)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+This class contains useful functions for the image processing part. 
+
+\begin{DoxyAuthor}{Author}
+Social Robot 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classCvUtils_a6e1f3369c2b553c06f2692c75e20667d}{\index{Cv\-Utils@{Cv\-Utils}!draw\-\_\-depth\-\_\-faces@{draw\-\_\-depth\-\_\-faces}}
+\index{draw\-\_\-depth\-\_\-faces@{draw\-\_\-depth\-\_\-faces}!CvUtils@{Cv\-Utils}}
+\subsubsection[{draw\-\_\-depth\-\_\-faces}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::draw\-\_\-depth\-\_\-faces (
+\begin{DoxyParamCaption}
+\item[{Mat \&}]{img, }
+\item[{vector$<$ Rect $>$}]{faces}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a6e1f3369c2b553c06f2692c75e20667d}
+This function draws the rectangles given in a vector in a depth image. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em \&img} & A Mat containing an image. \\
+\hline
+{\em faces} & A vector$<$\-Rect$>$ that contains the rectangles bounding the faces. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a74249b2e9b76b2a8ae2c01c4ff496663}{\index{Cv\-Utils@{Cv\-Utils}!draw\-\_\-rgb\-\_\-faces@{draw\-\_\-rgb\-\_\-faces}}
+\index{draw\-\_\-rgb\-\_\-faces@{draw\-\_\-rgb\-\_\-faces}!CvUtils@{Cv\-Utils}}
+\subsubsection[{draw\-\_\-rgb\-\_\-faces}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::draw\-\_\-rgb\-\_\-faces (
+\begin{DoxyParamCaption}
+\item[{Mat \&}]{img, }
+\item[{vector$<$ Rect $>$}]{faces}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a74249b2e9b76b2a8ae2c01c4ff496663}
+This function draws the rectangles given in a vector in a colour image. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em \&img} & A Mat containing an image. \\
+\hline
+{\em faces} & A vector$<$\-Rect$>$ that contains the rectangles bounding the faces. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_ac86c2ad8adca706655831938b63ebaa2}{\index{Cv\-Utils@{Cv\-Utils}!draw\-\_\-tracking\-\_\-faces@{draw\-\_\-tracking\-\_\-faces}}
+\index{draw\-\_\-tracking\-\_\-faces@{draw\-\_\-tracking\-\_\-faces}!CvUtils@{Cv\-Utils}}
+\subsubsection[{draw\-\_\-tracking\-\_\-faces}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::draw\-\_\-tracking\-\_\-faces (
+\begin{DoxyParamCaption}
+\item[{Mat \&}]{img, }
+\item[{vector$<$ {\bf State\-Data} $>$}]{state\-\_\-datas}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_ac86c2ad8adca706655831938b63ebaa2}
+This function draws in the input colour image all the rectangles given in a vector of state data that verify a certain confidence value. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em \&img} & A Mat containing an image. \\
+\hline
+{\em state\-\_\-datas} & A vector$<$\-State\-Data$>$ containing the states of the different tracking faces. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a349894b926e2d252d0ce224abcba698a}{\index{Cv\-Utils@{Cv\-Utils}!enlarge\-\_\-window@{enlarge\-\_\-window}}
+\index{enlarge\-\_\-window@{enlarge\-\_\-window}!CvUtils@{Cv\-Utils}}
+\subsubsection[{enlarge\-\_\-window}]{\setlength{\rightskip}{0pt plus 5cm}Rect Cv\-Utils\-::enlarge\-\_\-window (
+\begin{DoxyParamCaption}
+\item[{Rect}]{orgrect, }
+\item[{Mat}]{image, }
+\item[{double}]{scale = {\ttfamily 2.0}}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a349894b926e2d252d0ce224abcba698a}
+\hypertarget{classCvUtils_a20d53b92663d548bebf90da242d984f3}{\index{Cv\-Utils@{Cv\-Utils}!euclidean\-\_\-distance@{euclidean\-\_\-distance}}
+\index{euclidean\-\_\-distance@{euclidean\-\_\-distance}!CvUtils@{Cv\-Utils}}
+\subsubsection[{euclidean\-\_\-distance}]{\setlength{\rightskip}{0pt plus 5cm}double Cv\-Utils\-::euclidean\-\_\-distance (
+\begin{DoxyParamCaption}
+\item[{Point3f}]{a, }
+\item[{Point3f}]{b}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a20d53b92663d548bebf90da242d984f3}
+This function calculates the Euclidean Distance given two 3\-D points a and b. \begin{DoxyReturn}{Returns}
+A double value of the computed Euclidean Distance. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em a} & A Point3f containing x, y and z coordinates. \\
+\hline
+{\em b} & A Point3f containing x, y and z coordinates. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a74b4a32b47136f704db2729b39095c02}{\index{Cv\-Utils@{Cv\-Utils}!euclidean\-\_\-distance@{euclidean\-\_\-distance}}
+\index{euclidean\-\_\-distance@{euclidean\-\_\-distance}!CvUtils@{Cv\-Utils}}
+\subsubsection[{euclidean\-\_\-distance}]{\setlength{\rightskip}{0pt plus 5cm}double Cv\-Utils\-::euclidean\-\_\-distance (
+\begin{DoxyParamCaption}
+\item[{Point}]{a, }
+\item[{Point}]{b}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a74b4a32b47136f704db2729b39095c02}
+This function calculates the Euclidean Distance given two 2\-D points a and b. \begin{DoxyReturn}{Returns}
+A double value of the computed Euclidean Distance. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em a} & A Point containing x and y coordinates. \\
+\hline
+{\em b} & A Point containing x and y coordinates. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a426439fc003e5557644932eee66c48b6}{\index{Cv\-Utils@{Cv\-Utils}!get\-\_\-non\-\_\-zeros@{get\-\_\-non\-\_\-zeros}}
+\index{get\-\_\-non\-\_\-zeros@{get\-\_\-non\-\_\-zeros}!CvUtils@{Cv\-Utils}}
+\subsubsection[{get\-\_\-non\-\_\-zeros}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::get\-\_\-non\-\_\-zeros (
+\begin{DoxyParamCaption}
+\item[{Mat}]{img, }
+\item[{Mat}]{prob, }
+\item[{vector$<$ Point3f $>$ $\ast$}]{points, }
+\item[{Point}]{pdiff = {\ttfamily Point~(~0,~0~)}, }
+\item[{double}]{scale = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a426439fc003e5557644932eee66c48b6}
+This function returns a pointer to vector$<$\-Point3f$>$ given a mask image, only the non zero values are taken into account, and a probability image from a matching previous step. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em img} & A Mat containing an image with 0's and 1's, it is the mask image, it has H x W dimensions. \\
+\hline
+{\em prob} & A Mat containing probability values in each pixel, it has H' x W' dimensions. \\
+\hline
+{\em $\ast$points} & A pointer to vector$<$\-Point3f$>$, it is the output parameter. \\
+\hline
+{\em pdiff} & A point with the required shift in x and y coordinates to bring the point from prob to img coordinates. \\
+\hline
+{\em scale} & A double for the current scale, it is used to bring the calculated coordinates to the original image size. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+The images img and prob do not have the same dimensions. 
+\end{DoxyPrecond}
+\hypertarget{classCvUtils_aa54494728db8503a7311ff2f9ad8ab1c}{\index{Cv\-Utils@{Cv\-Utils}!get\-\_\-rect\-\_\-centre@{get\-\_\-rect\-\_\-centre}}
+\index{get\-\_\-rect\-\_\-centre@{get\-\_\-rect\-\_\-centre}!CvUtils@{Cv\-Utils}}
+\subsubsection[{get\-\_\-rect\-\_\-centre}]{\setlength{\rightskip}{0pt plus 5cm}Point Cv\-Utils\-::get\-\_\-rect\-\_\-centre (
+\begin{DoxyParamCaption}
+\item[{Rect}]{rect}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_aa54494728db8503a7311ff2f9ad8ab1c}
+This function calculates the center of a rectangle given a rectangle. \begin{DoxyReturn}{Returns}
+A Point with x and y of the center. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em rect} & A Rect with x and y coordinates of the upper left corner, height and width. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a9a91a1dbd7a74ef15257510129308277}{\index{Cv\-Utils@{Cv\-Utils}!get\-\_\-rect\-\_\-centre\-\_\-3d@{get\-\_\-rect\-\_\-centre\-\_\-3d}}
+\index{get\-\_\-rect\-\_\-centre\-\_\-3d@{get\-\_\-rect\-\_\-centre\-\_\-3d}!CvUtils@{Cv\-Utils}}
+\subsubsection[{get\-\_\-rect\-\_\-centre\-\_\-3d}]{\setlength{\rightskip}{0pt plus 5cm}Point3f Cv\-Utils\-::get\-\_\-rect\-\_\-centre\-\_\-3d (
+\begin{DoxyParamCaption}
+\item[{Rect}]{rect, }
+\item[{Mat}]{depth\-\_\-image}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a9a91a1dbd7a74ef15257510129308277}
+This function calculates the center of a rectangle given the rectangle and depth information. \begin{DoxyReturn}{Returns}
+A Point3f with x, y and z coordinates of the center. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em rect} & A Rect with x and y coordinates of the upper left corner, height and width. \\
+\hline
+{\em depth\-\_\-image} & A Mat where each pixel gives us depth information. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a47189479acb67a1918f35557fc5906a6}{\index{Cv\-Utils@{Cv\-Utils}!preprocessing@{preprocessing}}
+\index{preprocessing@{preprocessing}!CvUtils@{Cv\-Utils}}
+\subsubsection[{preprocessing}]{\setlength{\rightskip}{0pt plus 5cm}Mat Cv\-Utils\-::preprocessing (
+\begin{DoxyParamCaption}
+\item[{Mat}]{image}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a47189479acb67a1918f35557fc5906a6}
+This function fills the regions where the image values are equal to zero. \begin{DoxyReturn}{Returns}
+An image without zero values. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em image} & A Mat containing an image. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_aa5bded11699d39af25c420aed2ade0ba}{\index{Cv\-Utils@{Cv\-Utils}!rgb2bw@{rgb2bw}}
+\index{rgb2bw@{rgb2bw}!CvUtils@{Cv\-Utils}}
+\subsubsection[{rgb2bw}]{\setlength{\rightskip}{0pt plus 5cm}Mat Cv\-Utils\-::rgb2bw (
+\begin{DoxyParamCaption}
+\item[{Mat}]{im\-\_\-rgb}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_aa5bded11699d39af25c420aed2ade0ba}
+This function computes the binary image of a given one by setting to zero all the values smaller than 128. \begin{DoxyReturn}{Returns}
+The binary image in im\-\_\-bw. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em im\-\_\-rgb} & A Mat containing an image. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+The input can be a colour or gray image. 
+\end{DoxyPrecond}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{CvUtils_8h}{Cv\-Utils.\-h}\item 
+\hyperlink{CvUtils_8cpp}{Cv\-Utils.\-cpp}\end{DoxyCompactItemize}
