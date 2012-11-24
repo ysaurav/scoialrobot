@@ -1,4 +1,5 @@
 #include "StateData.h"
+#include "../CvUtils.h"
 
 using namespace std;
 using namespace cv;
@@ -14,7 +15,7 @@ void StateData::tracking ( double cost )
   detection_confidence = detection_confidence - cost;
   // TODO: fix the size
 //   cout << "Scale: " << filter->get_estimated_scale() << " size: " << selection.size().width << "," << selection.size().height << endl;
-  Size target_size(selection.size().width * filter->get_estimated_scale(), selection.size().height * filter->get_estimated_scale());
+  Size target_size ( selection.size().width * filter->get_estimated_scale(), selection.size().height * filter->get_estimated_scale() );
   filter->update ( image, image_depth, target_size, target_histogram, hist_type );
 }
 
@@ -46,5 +47,27 @@ void StateData::update_target_histogram ( Mat& newimage, Mat& newdepth, Rect new
   roi.copyTo ( target );
 
   calc_hist ( roi, depth_roi, target_histogram, hist_type );
-  normalize ( target_histogram, target_histogram );  
+  normalize ( target_histogram, target_histogram );
 }
+
+void StateData::draw_estimated_state ( Mat& img )
+{
+  Size target_size ( selection.size().width * filter->get_estimated_scale(), selection.size().height * filter->get_estimated_scale() );
+  // Draw estimated state with color based on confidence
+  float confidence = filter->confidence();
+
+  // TODO - Make these values not arbitrary
+  if ( confidence > 0.1 )
+    {
+      filter->draw_estimated_state ( img, target_size, GREEN );
+    }
+  else if ( confidence > 0.025 )
+    {
+      filter->draw_estimated_state ( img, target_size, YELLOW );
+    }
+  else
+    {
+      filter->draw_estimated_state ( img, target_size, RED );
+    }
+}
+

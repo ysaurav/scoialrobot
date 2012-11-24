@@ -7,15 +7,14 @@
 #include <opencv2/objdetect/objdetect.hpp>
 #include <iostream>
 #include <vector>
-#include "particle_filter/StateData.h"
 
-/** 
+/**
 * @class CvUtils
 *
 * @brief This class contains useful functions for the image processing part.
-* 
+*
 * @author Social Robot
-* 
+*
 */
 
 using namespace std;
@@ -33,12 +32,13 @@ const Scalar BLACK = Scalar ( 0, 0, 0 );
 class CvUtils
   {
   public:
+
+    CvUtils ( void );
     Mat rgb2bw ( Mat im_rgb );
     Mat preprocessing ( Mat image );
     void get_non_zeros ( Mat img, Mat prob, vector<Point3f> *points, Point pdiff = Point ( 0, 0 ), double scale = 1 );
 
     void draw_rgb_faces ( Mat &img, vector<Rect> faces );
-    void draw_tracking_faces ( Mat &img, vector<StateData> state_datas );
     void draw_depth_faces ( Mat &img, vector<Rect> faces );
 
     Point get_rect_centre ( Rect rect );
@@ -46,8 +46,12 @@ class CvUtils
 
     double euclidean_distance ( Point3f a, Point3f b );
     double euclidean_distance ( Point a, Point b );
-    
+
+    bool is_there_face ( Mat &image, Rect rect );
     Rect enlarge_window ( Rect orgrect, Mat image, double scale = 2.0 );
+
+  private:
+    CascadeClassifier classifier;
   };
 
 #endif // CVUTILS_H
