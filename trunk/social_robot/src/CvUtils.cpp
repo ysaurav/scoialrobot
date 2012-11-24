@@ -204,12 +204,12 @@ double CvUtils::euclidean_distance ( Point a, Point b )
  * @param b A Point containing x and y coordinates.
  * */
 
-bool CvUtils::is_there_face ( Mat &image, Rect rect  )
+bool CvUtils::is_there_face ( Mat &image, Rect rect )
 {
   vector<Rect> detected_faces;
 
   rect = enlarge_window ( rect, image, 1.1 );
-  Mat roi(image, rect);
+  Mat roi ( image, rect );
   Mat gray;
   Mat frame ( cvRound ( roi.rows ), cvRound ( roi.cols ), CV_8UC1 );
 
@@ -231,9 +231,35 @@ bool CvUtils::is_there_face ( Mat &image, Rect rect  )
 Rect CvUtils::enlarge_window ( Rect orgrect, Mat image, double scale )
 {
   Rect window;
-  Point center ( orgrect.x + orgrect.width / 2, orgrect.y + orgrect.height / 2 );
+  Point center = get_rect_centre ( orgrect );
 
   window = Rect ( center.x - scale * orgrect.width / 2, center.y - scale * orgrect.height / 2, scale * orgrect.width, scale * orgrect.height );
+
+  Rect bounds ( 0, 0, image.cols, image.rows );
+  window = window & bounds;
+
+  return window;
+}
+
+cv::Rect CvUtils::enlarge_window_width ( Rect orgrect, Mat image, double scale )
+{
+  Rect window;
+  Point center = get_rect_centre ( orgrect );
+
+  window = Rect ( center.x - scale * orgrect.width / 2, orgrect.y, scale * orgrect.width, orgrect.height );
+
+  Rect bounds ( 0, 0, image.cols, image.rows );
+  window = window & bounds;
+
+  return window;
+}
+
+cv::Rect CvUtils::enlarge_window_height ( Rect orgrect, Mat image, double scale )
+{
+  Rect window;
+  Point center = get_rect_centre ( orgrect );
+
+  window = Rect ( orgrect.x, center.y - scale * orgrect.height / 2, orgrect.width, scale * orgrect.height );
 
   Rect bounds ( 0, 0, image.cols, image.rows );
   window = window & bounds;

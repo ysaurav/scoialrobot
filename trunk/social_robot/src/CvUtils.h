@@ -49,6 +49,8 @@ class CvUtils
 
     bool is_there_face ( Mat &image, Rect rect );
     Rect enlarge_window ( Rect orgrect, Mat image, double scale = 2.0 );
+    Rect enlarge_window_width ( Rect orgrect, Mat image, double scale = 2.0 );
+    Rect enlarge_window_height ( Rect orgrect, Mat image, double scale = 2.0 );
 
   private:
     CascadeClassifier classifier;
