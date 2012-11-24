@@ -1,0 +1,244 @@
+\hypertarget{window__QT_8h}{
+\section{window\_\-QT.h File Reference}
+\label{window__QT_8h}\index{window\_\-QT.h@{window\_\-QT.h}}
+}
+{\ttfamily \#include $<$opencv2/highgui/highgui\_\-c.h$>$}\par
+{\ttfamily \#include $<$QAbstractEventDispatcher$>$}\par
+{\ttfamily \#include $<$QtGui/QApplication$>$}\par
+{\ttfamily \#include $<$QFile$>$}\par
+{\ttfamily \#include $<$QPushButton$>$}\par
+{\ttfamily \#include $<$QtGui/QGraphicsView$>$}\par
+{\ttfamily \#include $<$QSizePolicy$>$}\par
+{\ttfamily \#include $<$QInputDialog$>$}\par
+{\ttfamily \#include $<$QtGui/QBoxLayout$>$}\par
+{\ttfamily \#include $<$QSettings$>$}\par
+{\ttfamily \#include $<$qtimer.h$>$}\par
+{\ttfamily \#include $<$QtConcurrentRun$>$}\par
+{\ttfamily \#include $<$QWaitCondition$>$}\par
+{\ttfamily \#include $<$QKeyEvent$>$}\par
+{\ttfamily \#include $<$QMetaObject$>$}\par
+{\ttfamily \#include $<$QPointer$>$}\par
+{\ttfamily \#include $<$QSlider$>$}\par
+{\ttfamily \#include $<$QLabel$>$}\par
+{\ttfamily \#include $<$QIODevice$>$}\par
+{\ttfamily \#include $<$QShortcut$>$}\par
+{\ttfamily \#include $<$QStatusBar$>$}\par
+{\ttfamily \#include $<$QVarLengthArray$>$}\par
+{\ttfamily \#include $<$QFileInfo$>$}\par
+{\ttfamily \#include $<$QDate$>$}\par
+{\ttfamily \#include $<$QFileDialog$>$}\par
+{\ttfamily \#include $<$QToolBar$>$}\par
+{\ttfamily \#include $<$QAction$>$}\par
+{\ttfamily \#include $<$QCheckBox$>$}\par
+{\ttfamily \#include $<$QRadioButton$>$}\par
+{\ttfamily \#include $<$QButtonGroup$>$}\par
+{\ttfamily \#include $<$QMenu$>$}\par
+Include dependency graph for window\_\-QT.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{window__QT_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=145pt]{window__QT_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classGuiReceiver}{GuiReceiver}
+\item 
+class \hyperlink{classCvBar}{CvBar}
+\item 
+class \hyperlink{classCvButtonbar}{CvButtonbar}
+\item 
+class \hyperlink{classCvPushButton}{CvPushButton}
+\item 
+class \hyperlink{classCvCheckBox}{CvCheckBox}
+\item 
+class \hyperlink{classCvRadioButton}{CvRadioButton}
+\item 
+class \hyperlink{classCvTrackbar}{CvTrackbar}
+\item 
+class \hyperlink{classCvWinModel}{CvWinModel}
+\item 
+class \hyperlink{classCvWinProperties}{CvWinProperties}
+\item 
+class \hyperlink{classCvWindow}{CvWindow}
+\item 
+class \hyperlink{classViewPort}{ViewPort}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \hyperlink{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7a8f4516cd4423037ff9e7c533c4084e64}{CV\_\-MODE\_\-NORMAL} =  0, 
+\hyperlink{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7ab34a167a835f6bdfe77b2f0b310ce3b8}{CV\_\-MODE\_\-OPENGL} =  1
+ \}
+\item 
+enum \{ \par
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a8fd7258a9d98219cb39d07c7674c9176}{shortcut\_\-zoom\_\-normal} =  Qt::CTRL + Qt::Key\_\-Z, 
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5aff386d7c5872ba76c312f11d8cb20f53}{shortcut\_\-zoom\_\-imgRegion} =  Qt::CTRL + Qt::Key\_\-X, 
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a27828af4a6ceac7d1bd888b01175542a}{shortcut\_\-save\_\-img} =  Qt::CTRL + Qt::Key\_\-S, 
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a991f69bc842e0e75284c89d270cc697c}{shortcut\_\-properties\_\-win} =  Qt::CTRL + Qt::Key\_\-P, 
+\par
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a15913d7abe9547760a8a6ff2a22088c8}{shortcut\_\-zoom\_\-in} =  Qt::CTRL + Qt::Key\_\-Plus, 
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a146340e603a547ccbc10edcbd0ae91a0}{shortcut\_\-zoom\_\-out} =  Qt::CTRL + Qt::Key\_\-Minus, 
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a0bc4aaa211adf3114a153c9de698efcc}{shortcut\_\-panning\_\-left} =  Qt::CTRL + Qt::Key\_\-Left, 
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a47ac3f8dd8730aec3f3257f810f769cf}{shortcut\_\-panning\_\-right} =  Qt::CTRL + Qt::Key\_\-Right, 
+\par
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a6a2f3dc79134e34addc119ffc08e53e7}{shortcut\_\-panning\_\-up} =  Qt::CTRL + Qt::Key\_\-Up, 
+\hyperlink{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a9e5ab0c066c4ee41cda9f54a5eb018ac}{shortcut\_\-panning\_\-down} =  Qt::CTRL + Qt::Key\_\-Down
+ \}
+\item 
+enum \hyperlink{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3}{typeBar} \{ \hyperlink{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3a62c1a22549173457479f11d643de3ae7}{type\_\-CvTrackbar} =  0, 
+\hyperlink{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3a470eefc3c7b89872dba3ea6c0ef3a037}{type\_\-CvButtonbar} =  1
+ \}
+\item 
+enum \hyperlink{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70}{typeWindow} \{ \hyperlink{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70aa1f1d525da3c30c32d7971f7add21c40}{type\_\-CvWindow} =  1, 
+\hyperlink{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70ae4e0590ab0d080b24e3edc0c919ff415}{type\_\-CvWinProperties} =  2
+ \}
+\item 
+enum \hyperlink{window__QT_8h_abe80154198f354a572df04c3c7522935}{type\_\-mouse\_\-event} \{ \hyperlink{window__QT_8h_abe80154198f354a572df04c3c7522935a887b89fa907437110e4104c2a9098846}{mouse\_\-up} =  0, 
+\hyperlink{window__QT_8h_abe80154198f354a572df04c3c7522935a2ffc5e85cdc2c2f7ecee2ab4433e71b8}{mouse\_\-down} =  1, 
+\hyperlink{window__QT_8h_abe80154198f354a572df04c3c7522935a1bb683990bd260fa995a69fe6d6c6017}{mouse\_\-dbclick} =  2, 
+\hyperlink{window__QT_8h_abe80154198f354a572df04c3c7522935af5148ad19854953ab8488417db97897a}{mouse\_\-move} =  3
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7}{
+\subsubsection[{"@1}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}
+\label{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{CV\_\-MODE\_\-NORMAL@{CV\_\-MODE\_\-NORMAL}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!CV\_\-MODE\_\-NORMAL@{CV\_\-MODE\_\-NORMAL}}\item[{\em 
+\hypertarget{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7a8f4516cd4423037ff9e7c533c4084e64}{
+CV\_\-MODE\_\-NORMAL}
+\label{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7a8f4516cd4423037ff9e7c533c4084e64}
+}]\index{CV\_\-MODE\_\-OPENGL@{CV\_\-MODE\_\-OPENGL}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!CV\_\-MODE\_\-OPENGL@{CV\_\-MODE\_\-OPENGL}}\item[{\em 
+\hypertarget{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7ab34a167a835f6bdfe77b2f0b310ce3b8}{
+CV\_\-MODE\_\-OPENGL}
+\label{window__QT_8h_adf764cbdea00d65edcd07bb9953ad2b7ab34a167a835f6bdfe77b2f0b310ce3b8}
+}]\end{description}
+\end{Desc}
+
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5}{
+\subsubsection[{"@2}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}
+\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{shortcut\_\-zoom\_\-normal@{shortcut\_\-zoom\_\-normal}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!shortcut\_\-zoom\_\-normal@{shortcut\_\-zoom\_\-normal}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a8fd7258a9d98219cb39d07c7674c9176}{
+shortcut\_\-zoom\_\-normal}
+\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a8fd7258a9d98219cb39d07c7674c9176}
+}]\index{shortcut\_\-zoom\_\-imgRegion@{shortcut\_\-zoom\_\-imgRegion}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!shortcut\_\-zoom\_\-imgRegion@{shortcut\_\-zoom\_\-imgRegion}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5aff386d7c5872ba76c312f11d8cb20f53}{
+shortcut\_\-zoom\_\-imgRegion}
+\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5aff386d7c5872ba76c312f11d8cb20f53}
+}]\index{shortcut\_\-save\_\-img@{shortcut\_\-save\_\-img}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!shortcut\_\-save\_\-img@{shortcut\_\-save\_\-img}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a27828af4a6ceac7d1bd888b01175542a}{
+shortcut\_\-save\_\-img}
+\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a27828af4a6ceac7d1bd888b01175542a}
+}]\index{shortcut\_\-properties\_\-win@{shortcut\_\-properties\_\-win}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!shortcut\_\-properties\_\-win@{shortcut\_\-properties\_\-win}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a991f69bc842e0e75284c89d270cc697c}{
+shortcut\_\-properties\_\-win}
+\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a991f69bc842e0e75284c89d270cc697c}
+}]\index{shortcut\_\-zoom\_\-in@{shortcut\_\-zoom\_\-in}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!shortcut\_\-zoom\_\-in@{shortcut\_\-zoom\_\-in}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a15913d7abe9547760a8a6ff2a22088c8}{
+shortcut\_\-zoom\_\-in}
+\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a15913d7abe9547760a8a6ff2a22088c8}
+}]\index{shortcut\_\-zoom\_\-out@{shortcut\_\-zoom\_\-out}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!shortcut\_\-zoom\_\-out@{shortcut\_\-zoom\_\-out}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a146340e603a547ccbc10edcbd0ae91a0}{
+shortcut\_\-zoom\_\-out}
+\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a146340e603a547ccbc10edcbd0ae91a0}
+}]\index{shortcut\_\-panning\_\-left@{shortcut\_\-panning\_\-left}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!shortcut\_\-panning\_\-left@{shortcut\_\-panning\_\-left}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a0bc4aaa211adf3114a153c9de698efcc}{
+shortcut\_\-panning\_\-left}
+\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a0bc4aaa211adf3114a153c9de698efcc}
+}]\index{shortcut\_\-panning\_\-right@{shortcut\_\-panning\_\-right}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!shortcut\_\-panning\_\-right@{shortcut\_\-panning\_\-right}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a47ac3f8dd8730aec3f3257f810f769cf}{
+shortcut\_\-panning\_\-right}
+\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a47ac3f8dd8730aec3f3257f810f769cf}
+}]\index{shortcut\_\-panning\_\-up@{shortcut\_\-panning\_\-up}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!shortcut\_\-panning\_\-up@{shortcut\_\-panning\_\-up}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a6a2f3dc79134e34addc119ffc08e53e7}{
+shortcut\_\-panning\_\-up}
+\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a6a2f3dc79134e34addc119ffc08e53e7}
+}]\index{shortcut\_\-panning\_\-down@{shortcut\_\-panning\_\-down}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!shortcut\_\-panning\_\-down@{shortcut\_\-panning\_\-down}}\item[{\em 
+\hypertarget{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a9e5ab0c066c4ee41cda9f54a5eb018ac}{
+shortcut\_\-panning\_\-down}
+\label{window__QT_8h_a99fb83031ce9923c84392b4e92f956b5a9e5ab0c066c4ee41cda9f54a5eb018ac}
+}]\end{description}
+\end{Desc}
+
+\hypertarget{window__QT_8h_abe80154198f354a572df04c3c7522935}{
+\index{window\_\-QT.h@{window\_\-QT.h}!type\_\-mouse\_\-event@{type\_\-mouse\_\-event}}
+\index{type\_\-mouse\_\-event@{type\_\-mouse\_\-event}!window_QT.h@{window\_\-QT.h}}
+\subsubsection[{type\_\-mouse\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf type\_\-mouse\_\-event}}}
+\label{window__QT_8h_abe80154198f354a572df04c3c7522935}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{mouse\_\-up@{mouse\_\-up}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!mouse\_\-up@{mouse\_\-up}}\item[{\em 
+\hypertarget{window__QT_8h_abe80154198f354a572df04c3c7522935a887b89fa907437110e4104c2a9098846}{
+mouse\_\-up}
+\label{window__QT_8h_abe80154198f354a572df04c3c7522935a887b89fa907437110e4104c2a9098846}
+}]\index{mouse\_\-down@{mouse\_\-down}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!mouse\_\-down@{mouse\_\-down}}\item[{\em 
+\hypertarget{window__QT_8h_abe80154198f354a572df04c3c7522935a2ffc5e85cdc2c2f7ecee2ab4433e71b8}{
+mouse\_\-down}
+\label{window__QT_8h_abe80154198f354a572df04c3c7522935a2ffc5e85cdc2c2f7ecee2ab4433e71b8}
+}]\index{mouse\_\-dbclick@{mouse\_\-dbclick}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!mouse\_\-dbclick@{mouse\_\-dbclick}}\item[{\em 
+\hypertarget{window__QT_8h_abe80154198f354a572df04c3c7522935a1bb683990bd260fa995a69fe6d6c6017}{
+mouse\_\-dbclick}
+\label{window__QT_8h_abe80154198f354a572df04c3c7522935a1bb683990bd260fa995a69fe6d6c6017}
+}]\index{mouse\_\-move@{mouse\_\-move}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!mouse\_\-move@{mouse\_\-move}}\item[{\em 
+\hypertarget{window__QT_8h_abe80154198f354a572df04c3c7522935af5148ad19854953ab8488417db97897a}{
+mouse\_\-move}
+\label{window__QT_8h_abe80154198f354a572df04c3c7522935af5148ad19854953ab8488417db97897a}
+}]\end{description}
+\end{Desc}
+
+\hypertarget{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3}{
+\index{window\_\-QT.h@{window\_\-QT.h}!typeBar@{typeBar}}
+\index{typeBar@{typeBar}!window_QT.h@{window\_\-QT.h}}
+\subsubsection[{typeBar}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf typeBar}}}
+\label{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{type\_\-CvTrackbar@{type\_\-CvTrackbar}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!type\_\-CvTrackbar@{type\_\-CvTrackbar}}\item[{\em 
+\hypertarget{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3a62c1a22549173457479f11d643de3ae7}{
+type\_\-CvTrackbar}
+\label{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3a62c1a22549173457479f11d643de3ae7}
+}]\index{type\_\-CvButtonbar@{type\_\-CvButtonbar}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!type\_\-CvButtonbar@{type\_\-CvButtonbar}}\item[{\em 
+\hypertarget{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3a470eefc3c7b89872dba3ea6c0ef3a037}{
+type\_\-CvButtonbar}
+\label{window__QT_8h_a4003d2816fd898b0f71eb5addfe80af3a470eefc3c7b89872dba3ea6c0ef3a037}
+}]\end{description}
+\end{Desc}
+
+\hypertarget{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70}{
+\index{window\_\-QT.h@{window\_\-QT.h}!typeWindow@{typeWindow}}
+\index{typeWindow@{typeWindow}!window_QT.h@{window\_\-QT.h}}
+\subsubsection[{typeWindow}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf typeWindow}}}
+\label{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{type\_\-CvWindow@{type\_\-CvWindow}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!type\_\-CvWindow@{type\_\-CvWindow}}\item[{\em 
+\hypertarget{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70aa1f1d525da3c30c32d7971f7add21c40}{
+type\_\-CvWindow}
+\label{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70aa1f1d525da3c30c32d7971f7add21c40}
+}]\index{type\_\-CvWinProperties@{type\_\-CvWinProperties}!window\_\-QT.h@{window\_\-QT.h}}\index{window\_\-QT.h@{window\_\-QT.h}!type\_\-CvWinProperties@{type\_\-CvWinProperties}}\item[{\em 
+\hypertarget{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70ae4e0590ab0d080b24e3edc0c919ff415}{
+type\_\-CvWinProperties}
+\label{window__QT_8h_a3ce3f41fe742c83e94d4cd007e7b4c70ae4e0590ab0d080b24e3edc0c919ff415}
+}]\end{description}
+\end{Desc}
+

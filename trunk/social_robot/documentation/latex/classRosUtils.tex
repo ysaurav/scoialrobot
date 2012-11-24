@@ -1,0 +1,74 @@
+\hypertarget{classRosUtils}{
+\section{RosUtils Class Reference}
+\label{classRosUtils}\index{RosUtils@{RosUtils}}
+}
+
+
+This class is used for publishing the ouput rectangles in ROS.  
+
+
+
+
+{\ttfamily \#include $<$RosUtils.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+RegionOfInterest \hyperlink{classRosUtils_a14c90d8ff6c7a2eb6d030226cc19cf7e}{cvrect2rosroi} (Rect rect)
+\item 
+Rect \hyperlink{classRosUtils_af79ad6781024a9d081fdc8cf67782269}{rosroi2cvrect} (RegionOfInterest roi)
+\item 
+vector$<$ RegionOfInterest $>$ \hyperlink{classRosUtils_a10a6552d95ab7a6ee4122af4c4137523}{cvrects2rosrois} (vector$<$ Rect $>$ rects)
+\item 
+vector$<$ Rect $>$ \hyperlink{classRosUtils_aadb640f35f26394dfd6240b17c95c942}{rosrois2cvrects} (vector$<$ RegionOfInterest $>$ \hyperlink{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{rois})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class is used for publishing the ouput rectangles in ROS. \begin{DoxyAuthor}{Author}
+Social Robot 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classRosUtils_a14c90d8ff6c7a2eb6d030226cc19cf7e}{
+\index{RosUtils@{RosUtils}!cvrect2rosroi@{cvrect2rosroi}}
+\index{cvrect2rosroi@{cvrect2rosroi}!RosUtils@{RosUtils}}
+\subsubsection[{cvrect2rosroi}]{\setlength{\rightskip}{0pt plus 5cm}RegionOfInterest RosUtils::cvrect2rosroi (Rect {\em rect})}}
+\label{classRosUtils_a14c90d8ff6c7a2eb6d030226cc19cf7e}
+This function returns a given rectangle in a regionofinterest used in ROS. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em template2d}]A Mat containing a binary image. \item[{\em template3d}]A Mat containing a grayscale image. Notice that template3d is a grayscale image, it is used 3d when the matching is done with the depth image. \end{DoxyParams}
+\hypertarget{classRosUtils_a10a6552d95ab7a6ee4122af4c4137523}{
+\index{RosUtils@{RosUtils}!cvrects2rosrois@{cvrects2rosrois}}
+\index{cvrects2rosrois@{cvrects2rosrois}!RosUtils@{RosUtils}}
+\subsubsection[{cvrects2rosrois}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ RegionOfInterest $>$ RosUtils::cvrects2rosrois (vector$<$ Rect $>$ {\em rects})}}
+\label{classRosUtils_a10a6552d95ab7a6ee4122af4c4137523}
+Constructor given 2D and 3D templates. 
+\begin{DoxyParams}{Parameters}
+\item[{\em template2d}]A Mat containing a binary image. \item[{\em template3d}]A Mat containing a grayscale image. Notice that template3d is a grayscale image, it is used 3d when the matching is done with the depth image. \end{DoxyParams}
+\hypertarget{classRosUtils_af79ad6781024a9d081fdc8cf67782269}{
+\index{RosUtils@{RosUtils}!rosroi2cvrect@{rosroi2cvrect}}
+\index{rosroi2cvrect@{rosroi2cvrect}!RosUtils@{RosUtils}}
+\subsubsection[{rosroi2cvrect}]{\setlength{\rightskip}{0pt plus 5cm}Rect RosUtils::rosroi2cvrect (RegionOfInterest {\em roi})}}
+\label{classRosUtils_af79ad6781024a9d081fdc8cf67782269}
+Constructor given 2D and 3D templates. 
+\begin{DoxyParams}{Parameters}
+\item[{\em template2d}]A Mat containing a binary image. \item[{\em template3d}]A Mat containing a grayscale image. Notice that template3d is a grayscale image, it is used 3d when the matching is done with the depth image. \end{DoxyParams}
+\hypertarget{classRosUtils_aadb640f35f26394dfd6240b17c95c942}{
+\index{RosUtils@{RosUtils}!rosrois2cvrects@{rosrois2cvrects}}
+\index{rosrois2cvrects@{rosrois2cvrects}!RosUtils@{RosUtils}}
+\subsubsection[{rosrois2cvrects}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Rect $>$ RosUtils::rosrois2cvrects (vector$<$ RegionOfInterest $>$ {\em rois})}}
+\label{classRosUtils_aadb640f35f26394dfd6240b17c95c942}
+Constructor given 2D and 3D templates. 
+\begin{DoxyParams}{Parameters}
+\item[{\em template2d}]A Mat containing a binary image. \item[{\em template3d}]A Mat containing a grayscale image. Notice that template3d is a grayscale image, it is used 3d when the matching is done with the depth image. \end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{RosUtils_8h}{RosUtils.h}\item 
+\hyperlink{RosUtils_8cpp}{RosUtils.cpp}\end{DoxyCompactItemize}

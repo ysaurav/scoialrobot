@@ -1,0 +1,141 @@
+\hypertarget{kinect__proxy_8cpp}{
+\section{kinect\_\-proxy.cpp File Reference}
+\label{kinect__proxy_8cpp}\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}}
+}
+{\ttfamily \#include \char`\"{}kinect\_\-proxy.h\char`\"{}}\par
+{\ttfamily \#include $<$ros/ros.h$>$}\par
+{\ttfamily \#include $<$ros/package.h$>$}\par
+{\ttfamily \#include $<$image\_\-transport/image\_\-transport.h$>$}\par
+{\ttfamily \#include $<$cv\_\-bridge/cv\_\-bridge.h$>$}\par
+{\ttfamily \#include $<$sensor\_\-msgs/image\_\-encodings.h$>$}\par
+{\ttfamily \#include $<$opencv2/core/core.hpp$>$}\par
+{\ttfamily \#include $<$opencv2/imgproc/imgproc.hpp$>$}\par
+{\ttfamily \#include $<$opencv2/highgui/highgui.hpp$>$}\par
+{\ttfamily \#include $<$string$>$}\par
+{\ttfamily \#include $<$iostream$>$}\par
+{\ttfamily \#include $<$std\_\-srvs/Empty.h$>$}\par
+{\ttfamily \#include $<$stereo\_\-msgs/DisparityImage.h$>$}\par
+Include dependency graph for kinect\_\-proxy.cpp:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{kinect__proxy_8cpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=76pt]{kinect__proxy_8cpp__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{kinect__proxy_8cpp_a9ae57c8616e667d87eb886fabacc1558}{save\_\-all} (std\_\-srvs::Empty::Request \&, std\_\-srvs::Empty::Response \&)
+\item 
+bool \hyperlink{kinect__proxy_8cpp_a0e8a83ce1a9ac4b71609a8b3888fa52e}{save\_\-depth} (std\_\-srvs::Empty::Request \&, std\_\-srvs::Empty::Response \&)
+\item 
+bool \hyperlink{kinect__proxy_8cpp_a090bbb3c5d76fadb440d9a20bdd89711}{save\_\-rgb} (std\_\-srvs::Empty::Request \&, std\_\-srvs::Empty::Response \&)
+\item 
+bool \hyperlink{kinect__proxy_8cpp_a44369042abd96f9024b35acbb673c272}{save\_\-disparity} (std\_\-srvs::Empty::Request \&, std\_\-srvs::Empty::Response \&)
+\item 
+bool \hyperlink{kinect__proxy_8cpp_a9a4ea1ed390aea879b048dd9953b90df}{save\_\-ir} (std\_\-srvs::Empty::Request \&, std\_\-srvs::Empty::Response \&)
+\item 
+void \hyperlink{kinect__proxy_8cpp_a8822e21670e8549d4c51bad4c96890d9}{rgb\_\-cb} (const sensor\_\-msgs::ImageConstPtr \&msg)
+\item 
+void \hyperlink{kinect__proxy_8cpp_aa59cb262fc28be47854d4ce4314ccbe1}{depth\_\-cb} (const sensor\_\-msgs::ImageConstPtr \&msg)
+\item 
+void \hyperlink{kinect__proxy_8cpp_a0d3fad22151b4866ff40824b1f16610c}{disparity\_\-cb} (const stereo\_\-msgs::DisparityImageConstPtr \&msg)
+\item 
+void \hyperlink{kinect__proxy_8cpp_a10eead4448e002f15c22164d23e2744c}{ir\_\-cb} (const sensor\_\-msgs::ImageConstPtr \&msg)
+\item 
+void \hyperlink{kinect__proxy_8cpp_a2fbba66df0f87e05ea50652ba86376a1}{init\_\-kinect} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+cv\_\-bridge::CvImagePtr \hyperlink{kinect__proxy_8cpp_a5df8b6f1edb3949553518acb419629e5}{cv\_\-rgb}
+\item 
+cv\_\-bridge::CvImagePtr \hyperlink{kinect__proxy_8cpp_a12179be667cc00598b34397d4591f4d7}{cv\_\-depth}
+\item 
+cv\_\-bridge::CvImagePtr \hyperlink{kinect__proxy_8cpp_a25c3fe76b7fae57b1989dc80ceee2070}{cv\_\-disparity}
+\item 
+cv\_\-bridge::CvImagePtr \hyperlink{kinect__proxy_8cpp_a749b79c9dbed1006896a465bd08ca4a1}{cv\_\-ir}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{kinect__proxy_8cpp_aa59cb262fc28be47854d4ce4314ccbe1}{
+\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}!depth\_\-cb@{depth\_\-cb}}
+\index{depth\_\-cb@{depth\_\-cb}!kinect_proxy.cpp@{kinect\_\-proxy.cpp}}
+\subsubsection[{depth\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void depth\_\-cb (const sensor\_\-msgs::ImageConstPtr \& {\em msg})}}
+\label{kinect__proxy_8cpp_aa59cb262fc28be47854d4ce4314ccbe1}
+\hypertarget{kinect__proxy_8cpp_a0d3fad22151b4866ff40824b1f16610c}{
+\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}!disparity\_\-cb@{disparity\_\-cb}}
+\index{disparity\_\-cb@{disparity\_\-cb}!kinect_proxy.cpp@{kinect\_\-proxy.cpp}}
+\subsubsection[{disparity\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void disparity\_\-cb (const stereo\_\-msgs::DisparityImageConstPtr \& {\em msg})}}
+\label{kinect__proxy_8cpp_a0d3fad22151b4866ff40824b1f16610c}
+\hypertarget{kinect__proxy_8cpp_a2fbba66df0f87e05ea50652ba86376a1}{
+\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}!init\_\-kinect@{init\_\-kinect}}
+\index{init\_\-kinect@{init\_\-kinect}!kinect_proxy.cpp@{kinect\_\-proxy.cpp}}
+\subsubsection[{init\_\-kinect}]{\setlength{\rightskip}{0pt plus 5cm}void init\_\-kinect (void)}}
+\label{kinect__proxy_8cpp_a2fbba66df0f87e05ea50652ba86376a1}
+\hypertarget{kinect__proxy_8cpp_a10eead4448e002f15c22164d23e2744c}{
+\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}!ir\_\-cb@{ir\_\-cb}}
+\index{ir\_\-cb@{ir\_\-cb}!kinect_proxy.cpp@{kinect\_\-proxy.cpp}}
+\subsubsection[{ir\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void ir\_\-cb (const sensor\_\-msgs::ImageConstPtr \& {\em msg})}}
+\label{kinect__proxy_8cpp_a10eead4448e002f15c22164d23e2744c}
+\hypertarget{kinect__proxy_8cpp_a8822e21670e8549d4c51bad4c96890d9}{
+\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}!rgb\_\-cb@{rgb\_\-cb}}
+\index{rgb\_\-cb@{rgb\_\-cb}!kinect_proxy.cpp@{kinect\_\-proxy.cpp}}
+\subsubsection[{rgb\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void rgb\_\-cb (const sensor\_\-msgs::ImageConstPtr \& {\em msg})}}
+\label{kinect__proxy_8cpp_a8822e21670e8549d4c51bad4c96890d9}
+\hypertarget{kinect__proxy_8cpp_a9ae57c8616e667d87eb886fabacc1558}{
+\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}!save\_\-all@{save\_\-all}}
+\index{save\_\-all@{save\_\-all}!kinect_proxy.cpp@{kinect\_\-proxy.cpp}}
+\subsubsection[{save\_\-all}]{\setlength{\rightskip}{0pt plus 5cm}bool save\_\-all (std\_\-srvs::Empty::Request \&, \/  std\_\-srvs::Empty::Response \&)}}
+\label{kinect__proxy_8cpp_a9ae57c8616e667d87eb886fabacc1558}
+\hypertarget{kinect__proxy_8cpp_a0e8a83ce1a9ac4b71609a8b3888fa52e}{
+\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}!save\_\-depth@{save\_\-depth}}
+\index{save\_\-depth@{save\_\-depth}!kinect_proxy.cpp@{kinect\_\-proxy.cpp}}
+\subsubsection[{save\_\-depth}]{\setlength{\rightskip}{0pt plus 5cm}bool save\_\-depth (std\_\-srvs::Empty::Request \&, \/  std\_\-srvs::Empty::Response \&)}}
+\label{kinect__proxy_8cpp_a0e8a83ce1a9ac4b71609a8b3888fa52e}
+\hypertarget{kinect__proxy_8cpp_a44369042abd96f9024b35acbb673c272}{
+\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}!save\_\-disparity@{save\_\-disparity}}
+\index{save\_\-disparity@{save\_\-disparity}!kinect_proxy.cpp@{kinect\_\-proxy.cpp}}
+\subsubsection[{save\_\-disparity}]{\setlength{\rightskip}{0pt plus 5cm}bool save\_\-disparity (std\_\-srvs::Empty::Request \&, \/  std\_\-srvs::Empty::Response \&)}}
+\label{kinect__proxy_8cpp_a44369042abd96f9024b35acbb673c272}
+\hypertarget{kinect__proxy_8cpp_a9a4ea1ed390aea879b048dd9953b90df}{
+\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}!save\_\-ir@{save\_\-ir}}
+\index{save\_\-ir@{save\_\-ir}!kinect_proxy.cpp@{kinect\_\-proxy.cpp}}
+\subsubsection[{save\_\-ir}]{\setlength{\rightskip}{0pt plus 5cm}bool save\_\-ir (std\_\-srvs::Empty::Request \&, \/  std\_\-srvs::Empty::Response \&)}}
+\label{kinect__proxy_8cpp_a9a4ea1ed390aea879b048dd9953b90df}
+\hypertarget{kinect__proxy_8cpp_a090bbb3c5d76fadb440d9a20bdd89711}{
+\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}!save\_\-rgb@{save\_\-rgb}}
+\index{save\_\-rgb@{save\_\-rgb}!kinect_proxy.cpp@{kinect\_\-proxy.cpp}}
+\subsubsection[{save\_\-rgb}]{\setlength{\rightskip}{0pt plus 5cm}bool save\_\-rgb (std\_\-srvs::Empty::Request \&, \/  std\_\-srvs::Empty::Response \&)}}
+\label{kinect__proxy_8cpp_a090bbb3c5d76fadb440d9a20bdd89711}
+
+
+\subsection{Variable Documentation}
+\hypertarget{kinect__proxy_8cpp_a12179be667cc00598b34397d4591f4d7}{
+\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}!cv\_\-depth@{cv\_\-depth}}
+\index{cv\_\-depth@{cv\_\-depth}!kinect_proxy.cpp@{kinect\_\-proxy.cpp}}
+\subsubsection[{cv\_\-depth}]{\setlength{\rightskip}{0pt plus 5cm}cv\_\-bridge::CvImagePtr {\bf cv\_\-depth}}}
+\label{kinect__proxy_8cpp_a12179be667cc00598b34397d4591f4d7}
+\hypertarget{kinect__proxy_8cpp_a25c3fe76b7fae57b1989dc80ceee2070}{
+\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}!cv\_\-disparity@{cv\_\-disparity}}
+\index{cv\_\-disparity@{cv\_\-disparity}!kinect_proxy.cpp@{kinect\_\-proxy.cpp}}
+\subsubsection[{cv\_\-disparity}]{\setlength{\rightskip}{0pt plus 5cm}cv\_\-bridge::CvImagePtr {\bf cv\_\-disparity}}}
+\label{kinect__proxy_8cpp_a25c3fe76b7fae57b1989dc80ceee2070}
+\hypertarget{kinect__proxy_8cpp_a749b79c9dbed1006896a465bd08ca4a1}{
+\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}!cv\_\-ir@{cv\_\-ir}}
+\index{cv\_\-ir@{cv\_\-ir}!kinect_proxy.cpp@{kinect\_\-proxy.cpp}}
+\subsubsection[{cv\_\-ir}]{\setlength{\rightskip}{0pt plus 5cm}cv\_\-bridge::CvImagePtr {\bf cv\_\-ir}}}
+\label{kinect__proxy_8cpp_a749b79c9dbed1006896a465bd08ca4a1}
+\hypertarget{kinect__proxy_8cpp_a5df8b6f1edb3949553518acb419629e5}{
+\index{kinect\_\-proxy.cpp@{kinect\_\-proxy.cpp}!cv\_\-rgb@{cv\_\-rgb}}
+\index{cv\_\-rgb@{cv\_\-rgb}!kinect_proxy.cpp@{kinect\_\-proxy.cpp}}
+\subsubsection[{cv\_\-rgb}]{\setlength{\rightskip}{0pt plus 5cm}cv\_\-bridge::CvImagePtr {\bf cv\_\-rgb}}}
+\label{kinect__proxy_8cpp_a5df8b6f1edb3949553518acb419629e5}

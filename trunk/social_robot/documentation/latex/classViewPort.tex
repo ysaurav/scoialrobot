@@ -1,0 +1,221 @@
+\hypertarget{classViewPort}{
+\section{ViewPort Class Reference}
+\label{classViewPort}\index{ViewPort@{ViewPort}}
+}
+
+
+{\ttfamily \#include $<$window\_\-QT.h$>$}
+
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classViewPort_af68a292bada1aadd5b3cbcd5cd86620c}{scaleView} (qreal scaleFactor, QPointF center)
+\item 
+void \hyperlink{classViewPort_a60f919b3f7329bb5de060fa3befda08b}{imgRegion} ()
+\item 
+void \hyperlink{classViewPort_a3e318f428a0d0cc2e5c3835f1c77cc06}{moveView} (QPointF delta)
+\item 
+void \hyperlink{classViewPort_af9e56726827ee1679b536d90586b3add}{resetZoom} ()
+\item 
+void \hyperlink{classViewPort_a4a67d1ac61dfdf063909b9fa5299893f}{ZoomIn} ()
+\item 
+void \hyperlink{classViewPort_a4f26ce0e84539f49b95aa5d43820bb85}{ZoomOut} ()
+\item 
+void \hyperlink{classViewPort_ab8d8fbc8a150d158840e73dc3d28d4e9}{siftWindowOnLeft} ()
+\item 
+void \hyperlink{classViewPort_ad75dd8cdf0fcefa9f3afb7af78ffa1fc}{siftWindowOnRight} ()
+\item 
+void \hyperlink{classViewPort_a539a1c2895777e89b1431146ccb26a26}{siftWindowOnUp} ()
+\item 
+void \hyperlink{classViewPort_aa05e98b5c021662068856f9b8f25a299}{siftWindowOnDown} ()
+\item 
+void \hyperlink{classViewPort_a7a1fec5745e2bd12c11f0f4a8c17183f}{resizeEvent} (QResizeEvent $\ast$)
+\item 
+void \hyperlink{classViewPort_a69445bb6b5b203923b6707b583cdc0d8}{saveView} ()
+\item 
+void \hyperlink{classViewPort_af3c98b34c5ff602bd74c5b95425de4a9}{contextMenuEvent} (QContextMenuEvent $\ast$event)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classViewPort_ae986eca6567919eccfa84fa11d152519}{ViewPort} (\hyperlink{classCvWindow}{CvWindow} $\ast$centralWidget, int mode=CV\_\-MODE\_\-NORMAL, int keepRatio=CV\_\-WINDOW\_\-KEEPRATIO)
+\item 
+\hyperlink{classViewPort_aa9e30578206a4c74b8e3e0bf1cbed5a1}{$\sim$ViewPort} ()
+\item 
+void \hyperlink{classViewPort_a19c83263889430a83e5f9d1aaee4741b}{updateImage} (const CvArr $\ast$arr)
+\item 
+void \hyperlink{classViewPort_a2618b2c40f1770ab153cbae4da9c5313}{startDisplayInfo} (QString text, int delayms)
+\item 
+void \hyperlink{classViewPort_a725688baa203c6247e9a147acaa7597a}{setMouseCallBack} (CvMouseCallback m, void $\ast$param)
+\item 
+int \hyperlink{classViewPort_a969eb1a036822f1f500dd832c1f45d11}{getRatio} ()
+\item 
+void \hyperlink{classViewPort_ad250b6cf4dd6d571128a7ad0d4d98175}{setRatio} (int arg)
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+QTransform \hyperlink{classViewPort_a4404db6e34a91d2e2e4c5026840a2adc}{param\_\-matrixWorld}
+\item 
+int \hyperlink{classViewPort_a2ad627e7c8f030da5b252cfbb056164b}{param\_\-keepRatio}
+\item 
+CvMat $\ast$ \hyperlink{classViewPort_af6a3576406241b379379cc6d1a6d0c4f}{image2Draw\_\-mat}
+\item 
+QImage \hyperlink{classViewPort_affb4d66105d8c57b62a8d1ca3a2f2aae}{image2Draw\_\-qt}
+\item 
+QImage \hyperlink{classViewPort_a69c446903d67c1e328c8398341c2da21}{image2Draw\_\-qt\_\-resized}
+\item 
+int \hyperlink{classViewPort_abdd3f74adf3deb4bc1808f669d8815a4}{mode\_\-display}
+\item 
+int \hyperlink{classViewPort_a023381fa2838df1c3ef3a9183f4abbd1}{nbChannelOriginImage}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classViewPort_ae986eca6567919eccfa84fa11d152519}{
+\index{ViewPort@{ViewPort}!ViewPort@{ViewPort}}
+\index{ViewPort@{ViewPort}!ViewPort@{ViewPort}}
+\subsubsection[{ViewPort}]{\setlength{\rightskip}{0pt plus 5cm}ViewPort::ViewPort ({\bf CvWindow} $\ast$ {\em centralWidget}, \/  int {\em mode} = {\ttfamily CV\_\-MODE\_\-NORMAL}, \/  int {\em keepRatio} = {\ttfamily CV\_\-WINDOW\_\-KEEPRATIO})}}
+\label{classViewPort_ae986eca6567919eccfa84fa11d152519}
+\hypertarget{classViewPort_aa9e30578206a4c74b8e3e0bf1cbed5a1}{
+\index{ViewPort@{ViewPort}!$\sim$ViewPort@{$\sim$ViewPort}}
+\index{$\sim$ViewPort@{$\sim$ViewPort}!ViewPort@{ViewPort}}
+\subsubsection[{$\sim$ViewPort}]{\setlength{\rightskip}{0pt plus 5cm}ViewPort::$\sim$ViewPort ()}}
+\label{classViewPort_aa9e30578206a4c74b8e3e0bf1cbed5a1}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classViewPort_af3c98b34c5ff602bd74c5b95425de4a9}{
+\index{ViewPort@{ViewPort}!contextMenuEvent@{contextMenuEvent}}
+\index{contextMenuEvent@{contextMenuEvent}!ViewPort@{ViewPort}}
+\subsubsection[{contextMenuEvent}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::contextMenuEvent (QContextMenuEvent $\ast$ {\em event})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classViewPort_af3c98b34c5ff602bd74c5b95425de4a9}
+\hypertarget{classViewPort_a969eb1a036822f1f500dd832c1f45d11}{
+\index{ViewPort@{ViewPort}!getRatio@{getRatio}}
+\index{getRatio@{getRatio}!ViewPort@{ViewPort}}
+\subsubsection[{getRatio}]{\setlength{\rightskip}{0pt plus 5cm}int ViewPort::getRatio ()}}
+\label{classViewPort_a969eb1a036822f1f500dd832c1f45d11}
+\hypertarget{classViewPort_a60f919b3f7329bb5de060fa3befda08b}{
+\index{ViewPort@{ViewPort}!imgRegion@{imgRegion}}
+\index{imgRegion@{imgRegion}!ViewPort@{ViewPort}}
+\subsubsection[{imgRegion}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::imgRegion ()\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classViewPort_a60f919b3f7329bb5de060fa3befda08b}
+\hypertarget{classViewPort_a3e318f428a0d0cc2e5c3835f1c77cc06}{
+\index{ViewPort@{ViewPort}!moveView@{moveView}}
+\index{moveView@{moveView}!ViewPort@{ViewPort}}
+\subsubsection[{moveView}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::moveView (QPointF {\em delta})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classViewPort_a3e318f428a0d0cc2e5c3835f1c77cc06}
+\hypertarget{classViewPort_af9e56726827ee1679b536d90586b3add}{
+\index{ViewPort@{ViewPort}!resetZoom@{resetZoom}}
+\index{resetZoom@{resetZoom}!ViewPort@{ViewPort}}
+\subsubsection[{resetZoom}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::resetZoom ()\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classViewPort_af9e56726827ee1679b536d90586b3add}
+\hypertarget{classViewPort_a7a1fec5745e2bd12c11f0f4a8c17183f}{
+\index{ViewPort@{ViewPort}!resizeEvent@{resizeEvent}}
+\index{resizeEvent@{resizeEvent}!ViewPort@{ViewPort}}
+\subsubsection[{resizeEvent}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::resizeEvent (QResizeEvent $\ast$ {\em event})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classViewPort_a7a1fec5745e2bd12c11f0f4a8c17183f}
+\hypertarget{classViewPort_a69445bb6b5b203923b6707b583cdc0d8}{
+\index{ViewPort@{ViewPort}!saveView@{saveView}}
+\index{saveView@{saveView}!ViewPort@{ViewPort}}
+\subsubsection[{saveView}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::saveView ()\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classViewPort_a69445bb6b5b203923b6707b583cdc0d8}
+\hypertarget{classViewPort_af68a292bada1aadd5b3cbcd5cd86620c}{
+\index{ViewPort@{ViewPort}!scaleView@{scaleView}}
+\index{scaleView@{scaleView}!ViewPort@{ViewPort}}
+\subsubsection[{scaleView}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::scaleView (qreal {\em scaleFactor}, \/  QPointF {\em center})\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classViewPort_af68a292bada1aadd5b3cbcd5cd86620c}
+\hypertarget{classViewPort_a725688baa203c6247e9a147acaa7597a}{
+\index{ViewPort@{ViewPort}!setMouseCallBack@{setMouseCallBack}}
+\index{setMouseCallBack@{setMouseCallBack}!ViewPort@{ViewPort}}
+\subsubsection[{setMouseCallBack}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::setMouseCallBack (CvMouseCallback {\em m}, \/  void $\ast$ {\em param})}}
+\label{classViewPort_a725688baa203c6247e9a147acaa7597a}
+\hypertarget{classViewPort_ad250b6cf4dd6d571128a7ad0d4d98175}{
+\index{ViewPort@{ViewPort}!setRatio@{setRatio}}
+\index{setRatio@{setRatio}!ViewPort@{ViewPort}}
+\subsubsection[{setRatio}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::setRatio (int {\em arg})}}
+\label{classViewPort_ad250b6cf4dd6d571128a7ad0d4d98175}
+\hypertarget{classViewPort_aa05e98b5c021662068856f9b8f25a299}{
+\index{ViewPort@{ViewPort}!siftWindowOnDown@{siftWindowOnDown}}
+\index{siftWindowOnDown@{siftWindowOnDown}!ViewPort@{ViewPort}}
+\subsubsection[{siftWindowOnDown}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::siftWindowOnDown ()\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classViewPort_aa05e98b5c021662068856f9b8f25a299}
+\hypertarget{classViewPort_ab8d8fbc8a150d158840e73dc3d28d4e9}{
+\index{ViewPort@{ViewPort}!siftWindowOnLeft@{siftWindowOnLeft}}
+\index{siftWindowOnLeft@{siftWindowOnLeft}!ViewPort@{ViewPort}}
+\subsubsection[{siftWindowOnLeft}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::siftWindowOnLeft ()\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classViewPort_ab8d8fbc8a150d158840e73dc3d28d4e9}
+\hypertarget{classViewPort_ad75dd8cdf0fcefa9f3afb7af78ffa1fc}{
+\index{ViewPort@{ViewPort}!siftWindowOnRight@{siftWindowOnRight}}
+\index{siftWindowOnRight@{siftWindowOnRight}!ViewPort@{ViewPort}}
+\subsubsection[{siftWindowOnRight}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::siftWindowOnRight ()\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classViewPort_ad75dd8cdf0fcefa9f3afb7af78ffa1fc}
+\hypertarget{classViewPort_a539a1c2895777e89b1431146ccb26a26}{
+\index{ViewPort@{ViewPort}!siftWindowOnUp@{siftWindowOnUp}}
+\index{siftWindowOnUp@{siftWindowOnUp}!ViewPort@{ViewPort}}
+\subsubsection[{siftWindowOnUp}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::siftWindowOnUp ()\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classViewPort_a539a1c2895777e89b1431146ccb26a26}
+\hypertarget{classViewPort_a2618b2c40f1770ab153cbae4da9c5313}{
+\index{ViewPort@{ViewPort}!startDisplayInfo@{startDisplayInfo}}
+\index{startDisplayInfo@{startDisplayInfo}!ViewPort@{ViewPort}}
+\subsubsection[{startDisplayInfo}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::startDisplayInfo (QString {\em text}, \/  int {\em delayms})}}
+\label{classViewPort_a2618b2c40f1770ab153cbae4da9c5313}
+\hypertarget{classViewPort_a19c83263889430a83e5f9d1aaee4741b}{
+\index{ViewPort@{ViewPort}!updateImage@{updateImage}}
+\index{updateImage@{updateImage}!ViewPort@{ViewPort}}
+\subsubsection[{updateImage}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::updateImage (const CvArr $\ast$ {\em arr})}}
+\label{classViewPort_a19c83263889430a83e5f9d1aaee4741b}
+\hypertarget{classViewPort_a4a67d1ac61dfdf063909b9fa5299893f}{
+\index{ViewPort@{ViewPort}!ZoomIn@{ZoomIn}}
+\index{ZoomIn@{ZoomIn}!ViewPort@{ViewPort}}
+\subsubsection[{ZoomIn}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::ZoomIn ()\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classViewPort_a4a67d1ac61dfdf063909b9fa5299893f}
+\hypertarget{classViewPort_a4f26ce0e84539f49b95aa5d43820bb85}{
+\index{ViewPort@{ViewPort}!ZoomOut@{ZoomOut}}
+\index{ZoomOut@{ZoomOut}!ViewPort@{ViewPort}}
+\subsubsection[{ZoomOut}]{\setlength{\rightskip}{0pt plus 5cm}void ViewPort::ZoomOut ()\hspace{0.3cm}{\ttfamily  \mbox{[}slot\mbox{]}}}}
+\label{classViewPort_a4f26ce0e84539f49b95aa5d43820bb85}
+
+
+\subsection{Field Documentation}
+\hypertarget{classViewPort_af6a3576406241b379379cc6d1a6d0c4f}{
+\index{ViewPort@{ViewPort}!image2Draw\_\-mat@{image2Draw\_\-mat}}
+\index{image2Draw\_\-mat@{image2Draw\_\-mat}!ViewPort@{ViewPort}}
+\subsubsection[{image2Draw\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}CvMat$\ast$ {\bf ViewPort::image2Draw\_\-mat}}}
+\label{classViewPort_af6a3576406241b379379cc6d1a6d0c4f}
+\hypertarget{classViewPort_affb4d66105d8c57b62a8d1ca3a2f2aae}{
+\index{ViewPort@{ViewPort}!image2Draw\_\-qt@{image2Draw\_\-qt}}
+\index{image2Draw\_\-qt@{image2Draw\_\-qt}!ViewPort@{ViewPort}}
+\subsubsection[{image2Draw\_\-qt}]{\setlength{\rightskip}{0pt plus 5cm}QImage {\bf ViewPort::image2Draw\_\-qt}}}
+\label{classViewPort_affb4d66105d8c57b62a8d1ca3a2f2aae}
+\hypertarget{classViewPort_a69c446903d67c1e328c8398341c2da21}{
+\index{ViewPort@{ViewPort}!image2Draw\_\-qt\_\-resized@{image2Draw\_\-qt\_\-resized}}
+\index{image2Draw\_\-qt\_\-resized@{image2Draw\_\-qt\_\-resized}!ViewPort@{ViewPort}}
+\subsubsection[{image2Draw\_\-qt\_\-resized}]{\setlength{\rightskip}{0pt plus 5cm}QImage {\bf ViewPort::image2Draw\_\-qt\_\-resized}}}
+\label{classViewPort_a69c446903d67c1e328c8398341c2da21}
+\hypertarget{classViewPort_abdd3f74adf3deb4bc1808f669d8815a4}{
+\index{ViewPort@{ViewPort}!mode\_\-display@{mode\_\-display}}
+\index{mode\_\-display@{mode\_\-display}!ViewPort@{ViewPort}}
+\subsubsection[{mode\_\-display}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf ViewPort::mode\_\-display}}}
+\label{classViewPort_abdd3f74adf3deb4bc1808f669d8815a4}
+\hypertarget{classViewPort_a023381fa2838df1c3ef3a9183f4abbd1}{
+\index{ViewPort@{ViewPort}!nbChannelOriginImage@{nbChannelOriginImage}}
+\index{nbChannelOriginImage@{nbChannelOriginImage}!ViewPort@{ViewPort}}
+\subsubsection[{nbChannelOriginImage}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf ViewPort::nbChannelOriginImage}}}
+\label{classViewPort_a023381fa2838df1c3ef3a9183f4abbd1}
+\hypertarget{classViewPort_a2ad627e7c8f030da5b252cfbb056164b}{
+\index{ViewPort@{ViewPort}!param\_\-keepRatio@{param\_\-keepRatio}}
+\index{param\_\-keepRatio@{param\_\-keepRatio}!ViewPort@{ViewPort}}
+\subsubsection[{param\_\-keepRatio}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf ViewPort::param\_\-keepRatio}}}
+\label{classViewPort_a2ad627e7c8f030da5b252cfbb056164b}
+\hypertarget{classViewPort_a4404db6e34a91d2e2e4c5026840a2adc}{
+\index{ViewPort@{ViewPort}!param\_\-matrixWorld@{param\_\-matrixWorld}}
+\index{param\_\-matrixWorld@{param\_\-matrixWorld}!ViewPort@{ViewPort}}
+\subsubsection[{param\_\-matrixWorld}]{\setlength{\rightskip}{0pt plus 5cm}QTransform {\bf ViewPort::param\_\-matrixWorld}}}
+\label{classViewPort_a4404db6e34a91d2e2e4c5026840a2adc}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{window__QT_8h}{window\_\-QT.h}\item 
+\hyperlink{window__QT_8cpp}{window\_\-QT.cpp}\end{DoxyCompactItemize}

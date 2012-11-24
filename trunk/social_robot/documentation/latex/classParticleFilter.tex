@@ -1,0 +1,178 @@
+\hypertarget{classParticleFilter}{
+\section{ParticleFilter Class Reference}
+\label{classParticleFilter}\index{ParticleFilter@{ParticleFilter}}
+}
+
+
+{\ttfamily \#include $<$filter.h$>$}
+
+
+
+Inheritance diagram for ParticleFilter:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=120pt]{classParticleFilter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ParticleFilter:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=310pt]{classParticleFilter__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816a}{FilterStates} \{ \par
+\hyperlink{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aa592f65912830c1757e3dd87aaf094ded}{STATE\_\-X}, 
+\hyperlink{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aaaccdf213f2315178644fa199657af377}{STATE\_\-Y}, 
+\hyperlink{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aa8f405cfb59cb161e13f67ac80f048d64}{STATE\_\-X\_\-VEL}, 
+\hyperlink{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aaa5c18829321e55f7f3ccbe9521160d43}{STATE\_\-Y\_\-VEL}, 
+\par
+\hyperlink{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aac85f631868fa888a31c4b1048f26c9b9}{STATE\_\-SCALE}, 
+\hyperlink{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aa6be500dda12c848a8fa746cecf967e59}{NUM\_\-STATES}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classParticleFilter_a76dd2772cb2d4a3eece16415691bc39c}{ParticleFilter} (int \hyperlink{social__robot_8cpp_acf574bc864f7f0fc111320f1d6c449d5}{num\_\-particles})
+\item 
+virtual \hyperlink{classParticleFilter_a4f4ccdfa224f0a62c411230f7fb0cd65}{$\sim$ParticleFilter} ()
+\item 
+void \hyperlink{classParticleFilter_a06b39d5e76cbb5de792d7c1021c02557}{init} (const cv::Rect \&\hyperlink{createGT_8cpp_a15633c47538e3790df1e008a7f6dbfea}{selection})
+\item 
+cv::Mat \& \hyperlink{classParticleFilter_a8960c05cc9f6ec361dfcbb168eecb602}{update} (cv::Mat \&\hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image}, cv::Mat \&\hyperlink{social__robot__onethread_8cpp_a5b613972ff73fd7b34e0ee18acc5c1a6}{depth\_\-image}, const cv::Size \&target\_\-size, cv::Mat \&target\_\-hist, int hist\_\-type)
+\item 
+void \hyperlink{classParticleFilter_a93b28af3da883f2b1a8d662fe72ddb2b}{draw\_\-estimated\_\-state} (cv::Mat \&\hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image}, const cv::Size \&target\_\-size, const cv::Scalar \&color)
+\item 
+void \hyperlink{classParticleFilter_aff7ddfc78e3b1e46e344603cfc4b0632}{draw\_\-particles} (cv::Mat \&\hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image}, const cv::Size \&target\_\-size, const cv::Scalar \&color)
+\item 
+void \hyperlink{classParticleFilter_a7054878a2bed0544f0915b4eecc2ffca}{redistribute} (const float lower\_\-bound\mbox{[}$\,$\mbox{]}, const float upper\_\-bound\mbox{[}$\,$\mbox{]})
+\item 
+cv::Rect \hyperlink{classParticleFilter_a74680a952aac5da591c2854ede6fbbd7}{get\_\-estimated\_\-state} (void)
+\item 
+float \hyperlink{classParticleFilter_a7d3863cfb7922787bdfae897bf24a734}{get\_\-estimated\_\-scale} (void)
+\item 
+const cv::Mat \& \hyperlink{classParticleFilter_a4c909c7d4af1dd9ea2d06a568212e3dc}{state} () const 
+\item 
+float \hyperlink{classParticleFilter_aba8448793be2944625d91b2ca1a2af17}{confidence} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Copyright 2012 Kevin Schluff
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 2, as published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see $<$\href{http://www.gnu.org/licenses/}{\tt http://www.gnu.org/licenses/}$>$. 
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816a}{
+\index{ParticleFilter@{ParticleFilter}!FilterStates@{FilterStates}}
+\index{FilterStates@{FilterStates}!ParticleFilter@{ParticleFilter}}
+\subsubsection[{FilterStates}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf ParticleFilter::FilterStates}}}
+\label{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816a}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{STATE\_\-X@{STATE\_\-X}!ParticleFilter@{ParticleFilter}}\index{ParticleFilter@{ParticleFilter}!STATE\_\-X@{STATE\_\-X}}\item[{\em 
+\hypertarget{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aa592f65912830c1757e3dd87aaf094ded}{
+STATE\_\-X}
+\label{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aa592f65912830c1757e3dd87aaf094ded}
+}]\index{STATE\_\-Y@{STATE\_\-Y}!ParticleFilter@{ParticleFilter}}\index{ParticleFilter@{ParticleFilter}!STATE\_\-Y@{STATE\_\-Y}}\item[{\em 
+\hypertarget{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aaaccdf213f2315178644fa199657af377}{
+STATE\_\-Y}
+\label{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aaaccdf213f2315178644fa199657af377}
+}]\index{STATE\_\-X\_\-VEL@{STATE\_\-X\_\-VEL}!ParticleFilter@{ParticleFilter}}\index{ParticleFilter@{ParticleFilter}!STATE\_\-X\_\-VEL@{STATE\_\-X\_\-VEL}}\item[{\em 
+\hypertarget{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aa8f405cfb59cb161e13f67ac80f048d64}{
+STATE\_\-X\_\-VEL}
+\label{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aa8f405cfb59cb161e13f67ac80f048d64}
+}]\index{STATE\_\-Y\_\-VEL@{STATE\_\-Y\_\-VEL}!ParticleFilter@{ParticleFilter}}\index{ParticleFilter@{ParticleFilter}!STATE\_\-Y\_\-VEL@{STATE\_\-Y\_\-VEL}}\item[{\em 
+\hypertarget{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aaa5c18829321e55f7f3ccbe9521160d43}{
+STATE\_\-Y\_\-VEL}
+\label{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aaa5c18829321e55f7f3ccbe9521160d43}
+}]\index{STATE\_\-SCALE@{STATE\_\-SCALE}!ParticleFilter@{ParticleFilter}}\index{ParticleFilter@{ParticleFilter}!STATE\_\-SCALE@{STATE\_\-SCALE}}\item[{\em 
+\hypertarget{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aac85f631868fa888a31c4b1048f26c9b9}{
+STATE\_\-SCALE}
+\label{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aac85f631868fa888a31c4b1048f26c9b9}
+}]\index{NUM\_\-STATES@{NUM\_\-STATES}!ParticleFilter@{ParticleFilter}}\index{ParticleFilter@{ParticleFilter}!NUM\_\-STATES@{NUM\_\-STATES}}\item[{\em 
+\hypertarget{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aa6be500dda12c848a8fa746cecf967e59}{
+NUM\_\-STATES}
+\label{classParticleFilter_a5fd916dcc074edfb45cf0f90e6e7816aa6be500dda12c848a8fa746cecf967e59}
+}]\end{description}
+\end{Desc}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classParticleFilter_a76dd2772cb2d4a3eece16415691bc39c}{
+\index{ParticleFilter@{ParticleFilter}!ParticleFilter@{ParticleFilter}}
+\index{ParticleFilter@{ParticleFilter}!ParticleFilter@{ParticleFilter}}
+\subsubsection[{ParticleFilter}]{\setlength{\rightskip}{0pt plus 5cm}ParticleFilter::ParticleFilter (int {\em num\_\-particles})}}
+\label{classParticleFilter_a76dd2772cb2d4a3eece16415691bc39c}
+\hypertarget{classParticleFilter_a4f4ccdfa224f0a62c411230f7fb0cd65}{
+\index{ParticleFilter@{ParticleFilter}!$\sim$ParticleFilter@{$\sim$ParticleFilter}}
+\index{$\sim$ParticleFilter@{$\sim$ParticleFilter}!ParticleFilter@{ParticleFilter}}
+\subsubsection[{$\sim$ParticleFilter}]{\setlength{\rightskip}{0pt plus 5cm}ParticleFilter::$\sim$ParticleFilter ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classParticleFilter_a4f4ccdfa224f0a62c411230f7fb0cd65}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classParticleFilter_aba8448793be2944625d91b2ca1a2af17}{
+\index{ParticleFilter@{ParticleFilter}!confidence@{confidence}}
+\index{confidence@{confidence}!ParticleFilter@{ParticleFilter}}
+\subsubsection[{confidence}]{\setlength{\rightskip}{0pt plus 5cm}float ParticleFilter::confidence () const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classParticleFilter_aba8448793be2944625d91b2ca1a2af17}
+\hypertarget{classParticleFilter_a93b28af3da883f2b1a8d662fe72ddb2b}{
+\index{ParticleFilter@{ParticleFilter}!draw\_\-estimated\_\-state@{draw\_\-estimated\_\-state}}
+\index{draw\_\-estimated\_\-state@{draw\_\-estimated\_\-state}!ParticleFilter@{ParticleFilter}}
+\subsubsection[{draw\_\-estimated\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}void ParticleFilter::draw\_\-estimated\_\-state (cv::Mat \& {\em image}, \/  const cv::Size \& {\em target\_\-size}, \/  const cv::Scalar \& {\em color})}}
+\label{classParticleFilter_a93b28af3da883f2b1a8d662fe72ddb2b}
+\hypertarget{classParticleFilter_aff7ddfc78e3b1e46e344603cfc4b0632}{
+\index{ParticleFilter@{ParticleFilter}!draw\_\-particles@{draw\_\-particles}}
+\index{draw\_\-particles@{draw\_\-particles}!ParticleFilter@{ParticleFilter}}
+\subsubsection[{draw\_\-particles}]{\setlength{\rightskip}{0pt plus 5cm}void ParticleFilter::draw\_\-particles (cv::Mat \& {\em image}, \/  const cv::Size \& {\em target\_\-size}, \/  const cv::Scalar \& {\em color})}}
+\label{classParticleFilter_aff7ddfc78e3b1e46e344603cfc4b0632}
+\hypertarget{classParticleFilter_a7d3863cfb7922787bdfae897bf24a734}{
+\index{ParticleFilter@{ParticleFilter}!get\_\-estimated\_\-scale@{get\_\-estimated\_\-scale}}
+\index{get\_\-estimated\_\-scale@{get\_\-estimated\_\-scale}!ParticleFilter@{ParticleFilter}}
+\subsubsection[{get\_\-estimated\_\-scale}]{\setlength{\rightskip}{0pt plus 5cm}float ParticleFilter::get\_\-estimated\_\-scale (void)}}
+\label{classParticleFilter_a7d3863cfb7922787bdfae897bf24a734}
+\hypertarget{classParticleFilter_a74680a952aac5da591c2854ede6fbbd7}{
+\index{ParticleFilter@{ParticleFilter}!get\_\-estimated\_\-state@{get\_\-estimated\_\-state}}
+\index{get\_\-estimated\_\-state@{get\_\-estimated\_\-state}!ParticleFilter@{ParticleFilter}}
+\subsubsection[{get\_\-estimated\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}Rect ParticleFilter::get\_\-estimated\_\-state (void)}}
+\label{classParticleFilter_a74680a952aac5da591c2854ede6fbbd7}
+\hypertarget{classParticleFilter_a06b39d5e76cbb5de792d7c1021c02557}{
+\index{ParticleFilter@{ParticleFilter}!init@{init}}
+\index{init@{init}!ParticleFilter@{ParticleFilter}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void ParticleFilter::init (const cv::Rect \& {\em selection})}}
+\label{classParticleFilter_a06b39d5e76cbb5de792d7c1021c02557}
+\hypertarget{classParticleFilter_a7054878a2bed0544f0915b4eecc2ffca}{
+\index{ParticleFilter@{ParticleFilter}!redistribute@{redistribute}}
+\index{redistribute@{redistribute}!ParticleFilter@{ParticleFilter}}
+\subsubsection[{redistribute}]{\setlength{\rightskip}{0pt plus 5cm}void ParticleFilter::redistribute (const float {\em lower\_\-bound}\mbox{[}$\,$\mbox{]}, \/  const float {\em upper\_\-bound}\mbox{[}$\,$\mbox{]})}}
+\label{classParticleFilter_a7054878a2bed0544f0915b4eecc2ffca}
+\hypertarget{classParticleFilter_a4c909c7d4af1dd9ea2d06a568212e3dc}{
+\index{ParticleFilter@{ParticleFilter}!state@{state}}
+\index{state@{state}!ParticleFilter@{ParticleFilter}}
+\subsubsection[{state}]{\setlength{\rightskip}{0pt plus 5cm}const cv::Mat\& ParticleFilter::state () const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classParticleFilter_a4c909c7d4af1dd9ea2d06a568212e3dc}
+\hypertarget{classParticleFilter_a8960c05cc9f6ec361dfcbb168eecb602}{
+\index{ParticleFilter@{ParticleFilter}!update@{update}}
+\index{update@{update}!ParticleFilter@{ParticleFilter}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}cv::Mat\& ParticleFilter::update (cv::Mat \& {\em image}, \/  cv::Mat \& {\em depth\_\-image}, \/  const cv::Size \& {\em target\_\-size}, \/  cv::Mat \& {\em target\_\-hist}, \/  int {\em hist\_\-type})}}
+\label{classParticleFilter_a8960c05cc9f6ec361dfcbb168eecb602}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{filter_8h}{filter.h}\item 
+\hyperlink{filter_8cpp}{filter.cpp}\end{DoxyCompactItemize}

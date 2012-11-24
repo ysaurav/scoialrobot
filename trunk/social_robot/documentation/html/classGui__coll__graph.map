@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" href="$classSocialRobotGui.html" title="SocialRobotGui" alt="" coords="155,309,267,336"/>
+<area shape="rect" title="STL class." alt="" coords="15,96,127,123"/>
+<area shape="rect" href="$classRosUtils.html" title="This class is used for publishing the ouput rectangles in ROS." alt="" coords="160,187,229,213"/>
+<area shape="rect" href="$classCvUtils.html" title="This class contains useful functions for the image processing part." alt="" coords="253,187,315,213"/>
+<area shape="rect" href="$classCvWindow.html" title="CvWindow" alt="" coords="345,309,425,336"/>
+<area shape="rect" href="$classCvWinModel.html" title="CvWinModel" alt="" coords="339,187,432,213"/>
+<area shape="rect" href="$classUi_1_1Gui.html" title="Ui::Gui" alt="" coords="451,309,512,336"/>
+<area shape="rect" href="$classUi__Gui.html" title="Ui_Gui" alt="" coords="456,187,515,213"/>
+<area shape="rect" href="$classImageFrame.html" title="ImageFrame" alt="" coords="439,96,532,123"/>
+</map>
