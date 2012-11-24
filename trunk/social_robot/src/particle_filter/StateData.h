@@ -23,10 +23,11 @@ class StateData
     StateData ( void );
     void tracking ( double cost = 0.01 );
     void initialise ( int num_particles, Mat image_, Rect selection_, Mat image_depth_, int hist_type_ );
-    Rect get_target_position (void );
+    Rect get_target_position ( void );
     void update_target_histogram ( Mat& newimage, Mat& newdepth, Rect new_selection );
+    void draw_estimated_state ( Mat& img );
 
-  private:    
+  private:
   };
 
 #endif // STATEDATA_H

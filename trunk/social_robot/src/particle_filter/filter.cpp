@@ -112,12 +112,12 @@ Mat& ParticleFilter::update ( Mat& image, Mat& depth_image, const cv::Size& targ
   // between the modelled motion and actual motion.
   if ( !bounds.contains ( Point ( round ( m_state ( STATE_X ) ), round ( m_state ( STATE_Y ) ) ) ) )
     {
-      if ( m_mean_confidence > 0.3 )
+      if ( m_mean_confidence > 0.6 )
         {
           // TODO: look for smaller scales.
-          Rect enlarged_region = cv_utils.enlarge_window ( region, image, 2.0 );
-          static const float lower_bound[NUM_STATES] = {enlarged_region.x, enlarged_region.y, -0.5, -0.5, 0.0};
-          static const float upper_bound[NUM_STATES] = {enlarged_region.br().x, enlarged_region.br().y, 0.5, 0.5, 2.0};
+          Rect enlarged_region = cv_utils.enlarge_window ( region, image, 2.5 );
+          static const float lower_bound[NUM_STATES] = {enlarged_region.x, enlarged_region.y, -0.5, -0.5, 0.5};
+          static const float upper_bound[NUM_STATES] = {enlarged_region.br().x, enlarged_region.br().y, 0.5, 0.5, 1.5};
 
           cout << "locally: " << m_state << " " << m_mean_confidence << endl;
           redistribute ( lower_bound, upper_bound );

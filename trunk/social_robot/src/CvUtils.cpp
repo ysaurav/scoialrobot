@@ -1,4 +1,5 @@
 #include "CvUtils.h"
+#include <ros/package.h>
 
 const static Scalar colors[] =
 {
@@ -11,6 +12,19 @@ const static Scalar colors[] =
   CV_RGB ( 255, 0, 0 ),
   CV_RGB ( 255, 0, 255 )
 };
+
+CvUtils::CvUtils ( void )
+{
+  string package_path = ros::package::getPath ( "social_robot" );
+
+  string cascade_name;
+  cascade_name.append ( package_path );
+  cascade_name.append ( "/rsrc/haarcascades/haarcascade_frontalface_alt.xml" );
+  if ( !classifier.load ( cascade_name ) )
+    {
+      cerr << "ERROR: Could not load cascade classifier \"" << cascade_name << "\"" << endl;
+    }
+}
 
 
 Mat CvUtils::rgb2bw ( Mat im_rgb )
@@ -112,37 +126,6 @@ void CvUtils::draw_rgb_faces ( Mat &img, vector<Rect> faces )
  * @param faces A vector<Rect> that contains the rectangles bounding the faces.
  * */
 
-void CvUtils::draw_tracking_faces ( Mat &img, vector<StateData> state_datas )
-{
-  for ( unsigned int i = 0; i < state_datas.size(); i++ )
-    {
-      Size target_size ( state_datas[i].target.cols, state_datas[i].target.rows );
-      // Draw estimated state with color based on confidence
-      float confidence = state_datas[i].filter->confidence();
-
-      // TODO - Make these values not arbitrary
-      if ( confidence > 0.1 )
-        {
-          state_datas[i].filter->draw_estimated_state ( img, target_size, GREEN );
-        }
-      else if ( confidence > 0.025 )
-        {
-          state_datas[i].filter->draw_estimated_state ( img, target_size, YELLOW );
-        }
-      else
-        {
-          state_datas[i].filter->draw_estimated_state ( img, target_size, RED );
-        }
-    }
-}
-/**<
- * This function draws in the input colour image all the rectangles given in a vector
- * of state data that verify a certain confidence value.
- * @return void
- * @param &img A Mat containing an image.
- * @param state_datas A vector<StateData> containing the states of the different tracking faces.
- * */
-
 void CvUtils::draw_depth_faces ( Mat &img, vector<Rect> faces )
 {
   Rect bounds ( 0, 0, img.cols, img.rows );
@@ -220,6 +203,30 @@ double CvUtils::euclidean_distance ( Point a, Point b )
  * @param a A Point containing x and y coordinates.
  * @param b A Point containing x and y coordinates.
  * */
+
+bool CvUtils::is_there_face ( Mat &image, Rect rect  )
+{
+  vector<Rect> detected_faces;
+
+  rect = enlarge_window ( rect, image, 1.1 );
+  Mat roi(image, rect);
+  Mat gray;
+  Mat frame ( cvRound ( roi.rows ), cvRound ( roi.cols ), CV_8UC1 );
+
+  cvtColor ( roi, gray, CV_BGR2GRAY );
+  resize ( gray, frame, frame.size(), 0, 0, INTER_LINEAR );
+  equalizeHist ( frame, frame );
+
+  classifier.detectMultiScale ( frame, detected_faces,
+                                1.1, 2, 0
+                                //|CV_HAAR_FIND_BIGGEST_OBJECT
+                                //|CV_HAAR_DO_ROUGH_SEARCH
+                                |CV_HAAR_SCALE_IMAGE
+                                ,
+                                Size ( 30, 30 ) );
+
+  return !detected_faces.empty();
+}
 
 Rect CvUtils::enlarge_window ( Rect orgrect, Mat image, double scale )
 {

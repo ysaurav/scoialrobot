@@ -28,8 +28,8 @@ ros::Publisher track_pub;
 
 // TODO: put value on detetion to kill outliers or keep objects if they have over 90 threshold
 double track_thr = 75;
-double confidence_level_thr = 0.75;
-double detection_confidence_thr = 0.50;
+double confidence_level_thr = 0.50;
+double detection_confidence_thr = 0.75;
 int num_particles = 300;
 
 Mat image_disparity;
@@ -59,13 +59,22 @@ void do_tracking ( void )
     {
       it->image_depth = image_disparity;
       it->image = image_rgb;
-      it->tracking();
-      if ( it->detection_confidence < ( detection_confidence_thr / 2 ) || it->filter->confidence() < ( confidence_level_thr / 2 ) )
+      it->tracking ( 0.02 );
+
+      if ( it->detection_confidence < ( detection_confidence_thr / 2 ) )
         {
-          cout << i << " ### conf " << it->filter->confidence() << " detec: " << it->detection_confidence << endl;
-          it = state_datas.erase ( it );
+          if ( cv_utils.is_there_face ( image_rgb, it->get_target_position() ) )
+            {
+              it->detection_confidence = 1.0;
+              it++;
+            }
+          else
+            {
+              cout << i << " ### conf " << it->filter->confidence() << " detec: " << it->detection_confidence << endl;
+              it = state_datas.erase ( it );
+            }
         }
-      else if ( it->filter->confidence() > confidence_level_thr || it->detection_confidence > detection_confidence_thr )
+      else if ( it->filter->confidence() > confidence_level_thr )
         {
           it++;
         }
