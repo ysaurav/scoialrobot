@@ -1,0 +1,11 @@
+This package acts as virtual Kinect with an .oni file.
+
+Installation
+ 1. roscd openni_ros/
+ 2. rosdep install openni_camera_deprecated
+
+Usage
+ 1. roscore
+    if 'roscore' is already running skip this step.
+ 2. roslaunch openni_camera_deprecated openni_node.launch file_path:=/examplefolder/example.oni
+    please change '/examplefolder/example.oni' with the correct path of intented oni file.

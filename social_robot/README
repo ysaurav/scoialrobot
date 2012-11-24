@@ -1,0 +1,51 @@
+This ros package has number of components for face detection and tracking from 
+Kinect images.
+
+Instalation
+ 1. roscd socia_robot
+ 2. rosmake
+
+--------------------------------------------------------------------------------
+
+# social_robot_rgb
+
+  This executable file detects the faces from RGB images and publishes the 
+  region of interests.
+  
+  * usage
+    1. make
+    2. rosrun social_robot social_robot_rgb
+  
+--------------------------------------------------------------------------------
+
+# social_robot_depth
+
+  This executable file detects the faces from Depth images and publishes the 
+  region of interests.
+  
+  * usage
+    1. make
+    2. rosrun social_robot social_robot_depth
+
+--------------------------------------------------------------------------------
+
+# social_sobot
+
+  This executable file subscribes to the publications of 'social_robot_rgb' and
+  'social_robot_depth'. It tracks the faces detected from those two modules.
+   
+  * usage
+    1. make
+    2. rosrun social_robot social_robot
+
+--------------------------------------------------------------------------------
+
+# social_robot_gui
+
+  This executable file is a simple QT application to see the video with detected
+  and tracked faces.
+  
+  * usage
+    1. make
+    2. rosrun social_robot social_robot_gui
+
