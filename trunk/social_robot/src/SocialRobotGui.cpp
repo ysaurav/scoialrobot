@@ -66,7 +66,7 @@ void SocialRobotGui::depth_cb ( const sensor_msgs::ImageConstPtr& msg )
             }
           if ( display_track_faces )
             {
-              cv_utils.draw_rgb_faces ( image_depth, track_rois );
+              cv_utils.draw_depth_faces ( image_depth, track_rois );
             }
           emit update_image ( image_depth );
         }
@@ -95,7 +95,7 @@ void SocialRobotGui::rgb_cb ( const sensor_msgs::ImageConstPtr &msg )
             }
           if ( display_track_faces )
             {
-              cv_utils.draw_rgb_faces ( image_rgb, track_rois );
+              cv_utils.draw_depth_faces ( image_rgb, track_rois );
             }
           emit update_image ( image_rgb );
         }

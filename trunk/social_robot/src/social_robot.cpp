@@ -26,9 +26,10 @@ RosUtils ros_utils;
 social_robot::RegionOfInterests track_pub_rois;
 ros::Publisher track_pub;
 
-double track_thr = 150;
+// TODO: put value on detetion to kill outliers or keep objects if they have over 90 threshold
+double track_thr = 75;
 double confidence_level_thr = 0.75;
-double detection_confidence_thr = 0.75;
+double detection_confidence_thr = 0.50;
 int num_particles = 300;
 
 Mat image_disparity;

@@ -19,10 +19,13 @@
 
 #include "filter.h"
 #include "hist.h"
+#include "../CvUtils.h"
+
 #include <iostream>
 using namespace cv;
 using namespace std;
 typedef unsigned int uint;
+CvUtils cv_utils;
 
 ParticleFilter::ParticleFilter ( int num_particles )
     :ConDensation ( NUM_STATES, num_particles ),
@@ -48,6 +51,8 @@ void ParticleFilter::init ( const Rect& selection )
                             0, 0,  0,  1,  0,
                             0, 0,  0,  0,  1 );
 
+  region = selection;
+  scale = 1.0;
   const float initial[NUM_STATES] = {selection.x + selection.width / 2, selection.y + selection.height / 2, 0, 0, 1.0};
   static const float std_dev[NUM_STATES] = { 2,  2,  0.5,  0.5,  0.1};
 
@@ -73,10 +78,10 @@ Mat& ParticleFilter::update ( Mat& image, Mat& depth_image, const cv::Size& targ
   // Update the confidence for each particle
   for ( uint i = 0; i < m_num_particles; i++ )
     {
-      float scale = MAX ( 0.1, m_particles[i] ( STATE_SCALE ) );
-      m_particles[i] ( STATE_SCALE ) = scale;
-      int width = round ( target_size.width * scale );
-      int height = round ( target_size.height * scale );
+      float tmpscale = MAX ( 0.1, m_particles[i] ( STATE_SCALE ) );
+      m_particles[i] ( STATE_SCALE ) = tmpscale;
+      int width = round ( target_size.width * tmpscale );
+      int height = round ( target_size.height * tmpscale );
       int x = round ( m_particles[i] ( STATE_X ) ) - width / 2;
       int y = round ( m_particles[i] ( STATE_Y ) ) - height / 2;
 
@@ -90,7 +95,7 @@ Mat& ParticleFilter::update ( Mat& image, Mat& depth_image, const cv::Size& targ
   time_update();
 
   // Update the confidence at the mean state
-  float scale = MAX ( 0.1, m_state ( STATE_SCALE ) );
+  scale = MAX ( 0.1, m_state ( STATE_SCALE ) );
   m_state ( STATE_SCALE ) = scale;
   int width = round ( target_size.width * scale );
   int height = round ( target_size.height * scale );
@@ -107,11 +112,24 @@ Mat& ParticleFilter::update ( Mat& image, Mat& depth_image, const cv::Size& targ
   // between the modelled motion and actual motion.
   if ( !bounds.contains ( Point ( round ( m_state ( STATE_X ) ), round ( m_state ( STATE_Y ) ) ) ) )
     {
-      static const float lower_bound[NUM_STATES] = {0, 0, -0.5, -0.5, 1.0};
-      static const float upper_bound[NUM_STATES] = {image.cols, image.rows, 0.5, 0.5, 2.0};
+      if ( m_mean_confidence > 0.3 )
+        {
+          // TODO: look for smaller scales.
+          Rect enlarged_region = cv_utils.enlarge_window ( region, image, 2.0 );
+          static const float lower_bound[NUM_STATES] = {enlarged_region.x, enlarged_region.y, -0.5, -0.5, 0.0};
+          static const float upper_bound[NUM_STATES] = {enlarged_region.br().x, enlarged_region.br().y, 0.5, 0.5, 2.0};
 
-      cout << "Redistribute: " << m_state << " " << m_mean_confidence << endl;
-      redistribute ( lower_bound, upper_bound );
+          cout << "locally: " << m_state << " " << m_mean_confidence << endl;
+          redistribute ( lower_bound, upper_bound );
+        }
+      else
+        {
+          static const float lower_bound[NUM_STATES] = {0, 0, -0.5, -0.5, 1.0};
+          static const float upper_bound[NUM_STATES] = {image.cols, image.rows, 0.5, 0.5, 2.0};
+
+          cout << "Redistribute: " << m_state << " " << m_mean_confidence << endl;
+          redistribute ( lower_bound, upper_bound );
+        }
     }
 
   return m_state;
@@ -126,7 +144,7 @@ float ParticleFilter::calc_likelyhood ( Mat& image_roi, Mat& depth_roi, Mat& tar
   calc_hist ( image_roi, depth_roi, hist, hist_type );
   normalize ( hist, hist );
 
-  float bc = compareHist ( target_hist, hist, CV_COMP_CORREL );  
+  float bc = compareHist ( target_hist, hist, CV_COMP_CORREL );
   float prob = 0.f;
   if ( bc != 1.f ) // Clamp total mismatch to 0 likelyhood
     {
@@ -150,6 +168,11 @@ void ParticleFilter::draw_estimated_state ( Mat& image, const Size& target_size,
 Rect ParticleFilter::get_estimated_state ( void )
 {
   return region;
+}
+
+float ParticleFilter::get_estimated_scale ( void )
+{
+  return scale;
 }
 
 void ParticleFilter::draw_particles ( Mat& image, const Size& target_size, const Scalar& color )

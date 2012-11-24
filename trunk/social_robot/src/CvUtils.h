@@ -46,6 +46,8 @@ class CvUtils
 
     double euclidean_distance ( Point3f a, Point3f b );
     double euclidean_distance ( Point a, Point b );
+    
+    Rect enlarge_window ( Rect orgrect, Mat image, double scale = 2.0 );
   };
 
 #endif // CVUTILS_H

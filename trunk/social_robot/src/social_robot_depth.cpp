@@ -34,7 +34,7 @@ double scale_factor = 0.75;
 double match3D_thr = 0.4;
 int scales = 6;
 int framenum = 0;
-int update_rate = 30;
+int update_rate = 15;
 
 vector<Point3f> head_matched_points;
 vector<PixelSimilarity> head_features;

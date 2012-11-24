@@ -59,7 +59,7 @@ void ConDensation::time_update()
   for ( uint i = 0; i < m_num_particles; i++ )
     {
       uint j = 0;
-      while ( ( m_cumulative[j] <= ( float ) i * mean_confidence ) && ( j < m_num_particles-1 ) )
+      while ( ( m_cumulative[j] <= ( float ) i * mean_confidence ) && ( j < m_num_particles - 1 ) )
         {
           j++;
         }
