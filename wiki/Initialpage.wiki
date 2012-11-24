@@ -20,7 +20,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
   * [Tracking]
  # [#Implementation Implementation]
   * [SoftwareArchitecture Software Architecture]
-  * [Documentation Documentation]
+  * [http://scoialrobot.googlecode.com/svn/trunk/social_robot/documentation/html/index.html Documentation]
  # [#Demo Demo]
  # [#Conclusions Conclusions]
  # [References References]
