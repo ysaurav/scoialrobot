@@ -17,4 +17,10 @@
 #define SOCIAL_ROBOT_DEPTH "social_robot_depth"
 #define SOCIAL_ROBOT "social_robot"
 
+// calculating histograms
+#define HIST_BGR    0
+#define HIST_D      1
+#define HIST_BGRD   2
+#define HIST_HS     3
+
 #endif

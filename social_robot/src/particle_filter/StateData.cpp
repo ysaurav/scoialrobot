@@ -9,6 +9,14 @@ StateData::StateData ( void )
 
 }
 
+void StateData::set_image_depth ( Mat image_depth )
+{
+  if ( !image_depth.empty() )
+    {
+      image_depth.copyTo ( this->image_depth );
+    }
+}
+
 void StateData::tracking ( double cost )
 {
   is_associated = false;
@@ -24,7 +32,14 @@ void StateData::initialise ( int num_particles, Mat image_, Rect selection_, Mat
   is_associated = true;
   filter = new ParticleFilter ( num_particles );
   image_.copyTo ( image );
-  image_depth_.copyTo ( image_depth );
+  if ( !image_depth_.empty() )
+    {
+      image_depth_.copyTo ( image_depth );
+    }
+  else
+    {
+      image_depth = Mat::zeros ( image.rows, image.cols, CV_8UC1 );
+    }
   selection = selection_;
   hist_type = hist_type_;
   detection_confidence = 1.0;
@@ -46,8 +61,7 @@ void StateData::update_target_histogram ( Mat& newimage, Mat& newdepth, Rect new
   Mat roi ( newimage, selection ), depth_roi ( newdepth, selection );
   roi.copyTo ( target );
 
-  calc_hist ( roi, depth_roi, target_histogram, hist_type );
-  normalize ( target_histogram, target_histogram );
+  calc_hist ( roi, depth_roi, target_histogram, hist_type );  
 }
 
 void StateData::draw_estimated_state ( Mat& img )
@@ -70,4 +84,3 @@ void StateData::draw_estimated_state ( Mat& img )
       filter->draw_estimated_state ( img, target_size, RED );
     }
 }
-
