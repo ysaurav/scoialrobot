@@ -61,7 +61,7 @@ void do_tracking ( void )
   int i = 0;
   for ( vector<StateData>::iterator it = state_datas.begin(); it != state_datas.end(); )
     {
-      it->image_depth = image_disparity;
+      it->set_image_depth ( image_disparity );
       it->image = image_rgb;
       it->tracking ( 0.02 );
 
@@ -101,10 +101,10 @@ void data_association ( vector<Rect> &faces )
       bool associated = false;
       for ( unsigned int j = 0; j < state_datas.size(); j++ )
         {
-          if ( state_datas[j].is_associated )
-            {
-              continue;
-            }
+//           if ( state_datas[j].is_associated )
+//             {
+//               continue;
+//             }
 //           Point3f track_centre = cv_utils.get_rect_centre_3d ( state_datas[j].get_target_position(), image_depth );
           Point track_centre = cv_utils.get_rect_centre ( state_datas[j].get_target_position() );
           double euc_dis = cv_utils.euclidean_distance ( face_centre, track_centre );
@@ -122,7 +122,7 @@ void data_association ( vector<Rect> &faces )
       if ( !associated )
         {
           StateData state_data;
-          state_data.initialise ( num_particles, image_rgb, faces[i], image_disparity, 0 );
+          state_data.initialise ( num_particles, image_rgb, faces[i], image_disparity, HIST_HS );
           state_datas.push_back ( state_data );
         }
     }
@@ -230,7 +230,7 @@ int main ( int argc, char **argv )
 {
   ros::init ( argc, argv, "social_robot_track" );
   ros::NodeHandle nh;
-  ros::MultiThreadedSpinner spinner ( 0 );
+//   ros::MultiThreadedSpinner spinner ( 0 );
 
   // to register the depth
   nh.setParam ( "/camera/driver/depth_registration", true );
@@ -251,7 +251,8 @@ int main ( int argc, char **argv )
   // publications
   depth_pub = nh.advertise<social_robot::RegionOfInterests> ( "/social_robot/track/rois", 1 );
 
-  spinner.spin();
+//   spinner.spin();
+  ros::spin();
 
   return 0;
 }

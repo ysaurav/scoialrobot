@@ -354,13 +354,7 @@ int main ( int argc, char **argv )
       if( trackObject < 0 )
         {
           image_rgb.copyTo ( disp_image );
-          rectangle(disp_image, selection, colors[0], 3, 8, 0);
-          Rect newrect = cv_utils.enlarge_window(selection, image_rgb, 2.5);
-          rectangle(disp_image, newrect, colors[1], 3, 8, 0);
-          Rect newrectw = cv_utils.enlarge_window_width(selection, image_rgb, 2.5);
-          rectangle(disp_image, newrectw, colors[2], 3, 8, 0);
-          Rect newrecth = cv_utils.enlarge_window_height(selection, image_rgb, 2.5);
-          rectangle(disp_image, newrecth, colors[3], 3, 8, 0);          
+          cv_utils.is_there_face_depth(image_depth, image_dispa, selection);
           trackObject = 0;
         }
       if ( selectObject && selection.width > 0 && selection.height > 0 )

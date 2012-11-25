@@ -142,7 +142,6 @@ float ParticleFilter::calc_likelyhood ( Mat& image_roi, Mat& depth_roi, Mat& tar
   static Mat hist;
 
   calc_hist ( image_roi, depth_roi, hist, hist_type );
-  normalize ( hist, hist );
 
   float bc = compareHist ( target_hist, hist, CV_COMP_CORREL );
   float prob = 0.f;
