@@ -64,12 +64,14 @@ void write_results_to_file ( string file_name, vector<Rect> rois )
     centre_file.append ( "_centre.yaml" );
     FileStorage fsr ( rect_file, FileStorage::WRITE );
     FileStorage fsc ( centre_file, FileStorage::WRITE );
-
+    fsr<<"roi"<<"[";
+    fsc<<"center"<<"[";
     for ( unsigned int i = 0; i < rois.size(); i++ )
     {
-        fsr << "roi" << rois[i];
+        
+        fsr << "{:"<< "x" << rois[i].x << "y" << rois[i].y << "w" << rois[i].width << "h" << rois[i].height <<"}";
         Point center ( rois[i].x + ( rois[i].width / 2 ), rois[i].y + ( rois[i].height / 2 ) );
-        fsc << "center" << center;
+        fsc << "{:"<< "x" << center.x << "y" << center.y <<"}";
     }
     fsr.release();
     fsc.release();
