@@ -60,6 +60,7 @@ Many methods have been used to generate a head pose estimation. Appearance-based
  * [Tracking]
 == Demo ==
 == Implementation ==
+ * [Kinect Getting Started with Kinect]
  * [SoftwareArchitecture Software Architecture]
  * [http://scoialrobot.googlecode.com/svn/trunk/social_robot/documentation/html/index.html Documentation]
 == Conclusions ==
