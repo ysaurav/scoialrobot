@@ -7,5 +7,6 @@ Installation
 Usage
  1. roscore
     if 'roscore' is already running skip this step.
- 2. roslaunch openni_camera_deprecated openni_node.launch file_path:=/examplefolder/example.oni
+ 2. roslaunch openni_camera_deprecated openni_node.launch file_path:=/examplefolder/example.oni to_be_repeated:=false
     please change '/examplefolder/example.oni' with the correct path of intented oni file.
+    please change 'to_be_repeated:=false' with 'to_be_repeated:=true' if you want the stream be repeated.

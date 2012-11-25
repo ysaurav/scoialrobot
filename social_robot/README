@@ -5,6 +5,17 @@ Instalation
  1. roscd socia_robot
  2. rosmake
 
+Usage
+ 1. rosrun social_robot social_robot_gui
+ 2. rosrun social_robot social_robot_rgb
+    detects the faces in RGB, if you want to test only with depth, don't run
+    this step. 
+ 3. rosrun social_robot social_robot_depth
+    detects the faces in Depth, if you want to test only with RGB, don't run
+    this step.
+ 4. rosrun social_robot social_robot
+    tracks the detected faces from RGB and depth.
+
 --------------------------------------------------------------------------------
 
 # social_robot_rgb
