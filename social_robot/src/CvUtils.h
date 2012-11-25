@@ -7,6 +7,7 @@
 #include <opencv2/objdetect/objdetect.hpp>
 #include <iostream>
 #include <vector>
+#include "DepthFaceDetector.h"
 
 /**
 * @class CvUtils
@@ -19,6 +20,8 @@
 
 using namespace std;
 using namespace cv;
+
+class DepthFaceDetector;
 
 const Scalar RED = Scalar ( 0, 0, 255 );
 const Scalar BLUE = Scalar ( 255, 0, 0 );
@@ -47,13 +50,18 @@ class CvUtils
     double euclidean_distance ( Point3f a, Point3f b );
     double euclidean_distance ( Point a, Point b );
 
-    bool is_there_face ( Mat &image, Rect rect );
+    bool is_there_face_rgb ( Mat &image, Rect rect );
+    bool is_there_face_depth ( Mat &depth_image, Mat &disparity_image, Rect rect );
+    vector<Rect> detect_face_rgb ( Mat image );
+    vector<Rect> detect_face_depth ( Mat depth_image, Mat disparity_image );
+    
     Rect enlarge_window ( Rect orgrect, Mat image, double scale = 2.0 );
     Rect enlarge_window_width ( Rect orgrect, Mat image, double scale = 2.0 );
     Rect enlarge_window_height ( Rect orgrect, Mat image, double scale = 2.0 );
 
   private:
     CascadeClassifier classifier;
+    DepthFaceDetector depth_face_detector;
   };
 
 #endif // CVUTILS_H

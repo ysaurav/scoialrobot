@@ -26,7 +26,6 @@ CvUtils::CvUtils ( void )
     }
 }
 
-
 Mat CvUtils::rgb2bw ( Mat im_rgb )
 {
   Mat im_gray;
@@ -99,7 +98,6 @@ void CvUtils::get_non_zeros ( Mat img, Mat prob, vector<Point3f> *points, Point 
  * @param scale A double for the current scale, it is used to bring the calculated coordinates to the original image size.
  * @pre The images img and prob do not have the same dimensions.
  * */
-
 
 /** @name Drawing functions
 *
@@ -204,16 +202,32 @@ double CvUtils::euclidean_distance ( Point a, Point b )
  * @param b A Point containing x and y coordinates.
  * */
 
-bool CvUtils::is_there_face ( Mat &image, Rect rect )
+bool CvUtils::is_there_face_rgb ( Mat &image, Rect rect )
+{
+  rect = enlarge_window ( rect, image, 1.1 );
+  Mat roi ( image, rect );
+  vector<Rect> detected_faces = detect_face_rgb ( roi );
+
+  return !detected_faces.empty();
+}
+
+bool CvUtils::is_there_face_depth ( Mat &depth_image, Mat &disparity_image, Rect rect )
+{
+  Mat depth_roi ( depth_image, rect );
+  Mat disparity_roi ( disparity_image, rect );
+  vector<Rect> detected_faces = detect_face_depth ( depth_roi, disparity_roi );
+
+  return !detected_faces.empty();
+}
+
+vector<Rect> CvUtils::detect_face_rgb ( Mat image )
 {
   vector<Rect> detected_faces;
 
-  rect = enlarge_window ( rect, image, 1.1 );
-  Mat roi ( image, rect );
   Mat gray;
-  Mat frame ( cvRound ( roi.rows ), cvRound ( roi.cols ), CV_8UC1 );
+  Mat frame ( cvRound ( image.rows ), cvRound ( image.cols ), CV_8UC1 );
 
-  cvtColor ( roi, gray, CV_BGR2GRAY );
+  cvtColor ( image, gray, CV_BGR2GRAY );
   resize ( gray, frame, frame.size(), 0, 0, INTER_LINEAR );
   equalizeHist ( frame, frame );
 
@@ -225,7 +239,14 @@ bool CvUtils::is_there_face ( Mat &image, Rect rect )
                                 ,
                                 Size ( 30, 30 ) );
 
-  return !detected_faces.empty();
+  return detected_faces;
+}
+
+vector<Rect> CvUtils::detect_face_depth ( Mat depth_image, Mat disparity_image )
+{
+  vector<Rect> detected_faces = depth_face_detector.detect_face_depth ( depth_image, disparity_image );
+
+  return detected_faces;
 }
 
 Rect CvUtils::enlarge_window ( Rect orgrect, Mat image, double scale )
