@@ -31,6 +31,10 @@ double track_thr = 75;
 double confidence_level_thr = 0.50;
 double detection_confidence_thr = 0.75;
 int num_particles = 300;
+int rgb_framenum = 0;
+int rgb_update_rate = 15;
+int depth_framenum = 0;
+int depth_update_rate = 15;
 
 Mat image_disparity;
 Mat image_depth;
@@ -88,6 +92,43 @@ void do_tracking ( void )
   publish_data();
 }
 
+void data_association ( vector<Rect> &faces )
+{
+  for ( unsigned int i = 0; i < faces.size(); i++ )
+    {
+//       Point3f face_centre = cv_utils.get_rect_centre_3d ( faces[i], image_depth );
+      Point face_centre = cv_utils.get_rect_centre ( faces[i] );
+      bool associated = false;
+      for ( unsigned int j = 0; j < state_datas.size(); j++ )
+        {
+          if ( state_datas[j].is_associated )
+            {
+              continue;
+            }
+//           Point3f track_centre = cv_utils.get_rect_centre_3d ( state_datas[j].get_target_position(), image_depth );
+          Point track_centre = cv_utils.get_rect_centre ( state_datas[j].get_target_position() );
+          double euc_dis = cv_utils.euclidean_distance ( face_centre, track_centre );
+
+//           cout << "Euc " << euc_dis << ", " << j << endl;
+          if ( euc_dis < track_thr )
+            {
+              associated = true;
+              state_datas[j].detection_confidence = 1.0;
+              state_datas[j].is_associated = true;
+//               state_datas[j].update_target_histogram ( image_rgb, image_disparity, faces[i] );
+              break;
+            }
+        }
+      if ( !associated )
+        {
+          StateData state_data;
+          state_data.initialise ( num_particles, image_rgb, faces[i], image_disparity, 0 );
+          state_datas.push_back ( state_data );
+        }
+    }
+  faces.clear();
+}
+
 bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
 {
   ROS_INFO ( "Updating parameter of social_robot" );
@@ -126,7 +167,16 @@ void rgb_cb ( const ImageConstPtr& msg )
 {
   try
     {
+      rgb_framenum++;
       image_rgb = cv_bridge::toCvCopy ( msg, enc::BGR8 )->image;
+      
+      if ( rgb_framenum == rgb_update_rate )
+        {
+          rgb_framenum = 0;
+          vector<Rect> rgb_faces = cv_utils.detect_face_rgb ( image_rgb );
+          data_association ( rgb_faces );
+        }
+      
       do_tracking();
     }
   catch ( cv_bridge::Exception& e )
@@ -140,51 +190,26 @@ void disparity_cb ( const stereo_msgs::DisparityImageConstPtr& msg )
 {
   try
     {
+      depth_framenum++;
       image_disparity = cv_bridge::toCvCopy ( msg->image )->image;
       image_disparity.convertTo ( image_disparity, CV_8UC1 );
+      
+      if ( image_depth.empty() )
+        {
+          return;
+        }
+      if ( depth_framenum == depth_update_rate )
+        {
+          depth_framenum = 0;
+          vector<Rect> depth_faces = cv_utils.detect_face_depth ( image_depth, image_disparity );
+          data_association ( depth_faces );
+        }
     }
   catch ( cv_bridge::Exception& e )
     {
       ROS_ERROR ( "cv_bridge exception: %s", e.what() );
       return;
     }
-}
-
-void data_association ( vector<Rect> &faces )
-{
-  for ( unsigned int i = 0; i < faces.size(); i++ )
-    {
-//       Point3f face_centre = cv_utils.get_rect_centre_3d ( faces[i], image_depth );
-      Point face_centre = cv_utils.get_rect_centre ( faces[i] );
-      bool associated = false;
-      for ( unsigned int j = 0; j < state_datas.size(); j++ )
-        {
-          if ( state_datas[j].is_associated )
-            {
-              continue;
-            }
-//           Point3f track_centre = cv_utils.get_rect_centre_3d ( state_datas[j].get_target_position(), image_depth );
-          Point track_centre = cv_utils.get_rect_centre ( state_datas[j].get_target_position() );
-          double euc_dis = cv_utils.euclidean_distance ( face_centre, track_centre );
-
-//           cout << "Euc " << euc_dis << ", " << j << endl;
-          if ( euc_dis < track_thr )
-            {
-              associated = true;
-              state_datas[j].detection_confidence = 1.0;
-              state_datas[j].is_associated = true;
-//               state_datas[j].update_target_histogram ( image_rgb, image_disparity, faces[i] );
-              break;
-            }
-        }
-      if ( !associated )
-        {
-          StateData state_data;
-          state_data.initialise ( num_particles, image_rgb, faces[i], image_disparity, 0 );
-          state_datas.push_back ( state_data );
-        }
-    }
-  faces.clear();
 }
 
 void rgb_rois_cb ( const social_robot::RegionOfInterests &msg )
@@ -205,6 +230,7 @@ int main ( int argc, char **argv )
 {
   ros::init ( argc, argv, "social_robot_track" );
   ros::NodeHandle nh;
+  ros::MultiThreadedSpinner spinner ( 0 );
 
   // to register the depth
   nh.setParam ( "/camera/driver/depth_registration", true );
@@ -225,7 +251,7 @@ int main ( int argc, char **argv )
   // publications
   depth_pub = nh.advertise<social_robot::RegionOfInterests> ( "/social_robot/track/rois", 1 );
 
-  ros::spin();
+  spinner.spin();
 
   return 0;
 }
