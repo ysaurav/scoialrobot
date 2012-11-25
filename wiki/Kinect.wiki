@@ -44,3 +44,13 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/kinect.jpg
 
 
 = Calibration =
+
+Kinect has its own default calibration for all the devices. Even so your own calibration can be done by following the following links:
+
+*Intrinsic parameters for each camera*
+
+http://www.ros.org/wiki/openni_launch/Tutorials/IntrinsicCalibration?action=show&redirect=openni_camera%2Fcalibration
+
+*Extrinsic parameters*
+
+http://www.ros.org/wiki/openni_launch/Tutorial/ExtrinsicCalibration#Intrinsic_calibration
