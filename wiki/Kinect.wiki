@@ -45,7 +45,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/kinect.jpg
 
 = Calibration =
 
-Kinect has its own default calibration for all the devices. Even so your own calibration can be done by following the following links:
+Kinect has its own default calibration for all the devices. Even so your own calibration can be done by following these links. Notice that everything has been done within ROS package.
 
 *Intrinsic parameters for each camera*
 
@@ -54,3 +54,6 @@ http://www.ros.org/wiki/openni_launch/Tutorials/IntrinsicCalibration?action=show
 *Extrinsic parameters*
 
 http://www.ros.org/wiki/openni_launch/Tutorial/ExtrinsicCalibration#Intrinsic_calibration
+
+
+For our proposes, the important thing is to set */camera/driver/depth_registration* to *TRUE*. We need depth image to be aligned with the RGB image.
