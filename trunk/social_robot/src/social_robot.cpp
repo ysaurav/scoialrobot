@@ -23,8 +23,8 @@ namespace enc = image_encodings;
 
 // for publications
 RosUtils ros_utils;
-social_robot::RegionOfInterests track_pub_rois;
-ros::Publisher track_pub;
+social_robot::RegionOfInterests depth_pub_rois;
+ros::Publisher depth_pub;
 
 // TODO: put value on detetion to kill outliers or keep objects if they have over 90 threshold
 double track_thr = 75;
@@ -48,8 +48,8 @@ void publish_data ( void )
       detected_faces[i] = state_datas[i].get_target_position();
     }
   vector<RegionOfInterest> rosrois = ros_utils.cvrects2rosrois ( detected_faces );
-  track_pub_rois.rois.swap ( rosrois );
-  track_pub.publish ( track_pub_rois );
+  depth_pub_rois.rois.swap ( rosrois );
+  depth_pub.publish ( depth_pub_rois );
 }
 
 void do_tracking ( void )
@@ -63,7 +63,7 @@ void do_tracking ( void )
 
       if ( it->detection_confidence < ( detection_confidence_thr / 2 ) )
         {
-          if ( cv_utils.is_there_face ( image_rgb, it->get_target_position() ) )
+          if ( cv_utils.is_there_face_rgb ( image_rgb, it->get_target_position() ) )
             {
               it->detection_confidence = 1.0;
               it++;
@@ -223,7 +223,7 @@ int main ( int argc, char **argv )
   ros::Subscriber depth_rois_sub = nh.subscribe ( "/social_robot/depth/rois", 1, depth_rois_cb );
 
   // publications
-  track_pub = nh.advertise<social_robot::RegionOfInterests> ( "/social_robot/track/rois", 1 );
+  depth_pub = nh.advertise<social_robot::RegionOfInterests> ( "/social_robot/track/rois", 1 );
 
   ros::spin();
 
