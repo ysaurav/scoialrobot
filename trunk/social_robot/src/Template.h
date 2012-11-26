@@ -20,6 +20,7 @@ class Template
 
     Template( );
     Template ( cv::Mat, cv::Mat );
+    bool operator < ( const Template& ) const;
   };
 
 #endif // TEMPLATE_H

@@ -7,21 +7,6 @@
 using namespace std;
 using namespace cv;
 
-vector<Point3f> head_matched_points;
-vector<PixelSimilarity> head_features;
-
-vector<Point3f> head_matched_points2;
-vector<PixelSimilarity> head_features2;
-
-vector<Template> templates;
-
-Mat *pyramid;
-Mat *chamfer;
-Mat *matching;
-
-Mat canny_im;
-Mat image_depth;
-Mat image_disparity;
 CvUtils cv_utils;
 
 DepthFaceDetector::DepthFaceDetector ( void )
@@ -37,48 +22,93 @@ DepthFaceDetector::DepthFaceDetector ( void )
   scale_factor = 0.75;
   match3D_thr = 0.4;
   scales = 6;
+  scales_default = 6;
   framenum = 0;
   update_rate = 15;
-  pyramid = new Mat[scales];
-  chamfer = new Mat[scales];
-  matching = new Mat[scales];
 }
 
 vector<Rect> DepthFaceDetector::detect_face_depth ( Mat depth_image, Mat disparity_image )
 {
   vector<Rect> roistmp;
-
   Mat element = getStructuringElement ( MORPH_RECT, Size ( 2*5 + 1, 2*5 + 1 ), Point ( 5, 5 ) );
 
-  image_disparity = cv_utils.preprocessing ( image_disparity );
+  disparity_image = cv_utils.preprocessing ( disparity_image );
 
-  image_depth.setTo ( 0, ( image_disparity == 0 ) );
-  dilate ( image_depth, image_depth, element );
+  depth_image.setTo ( 0, ( disparity_image == 0 ) );
+  dilate ( depth_image, depth_image, element );
 
   vector<PixelSimilarity> new_head_features;
-  vector<PixelSimilarity> final_head_features,final_head_features2;
+  vector<PixelSimilarity> final_head_features;
+  vector<PixelSimilarity> all_head_features;
+
+  if ( !checkDimensions ( depth_image ) )
+    {
+      if ( scales < 0 )
+        {
+          scales = 0;
+          return roistmp;
+        }
+    }
+
+  pyramid = new Mat[scales];
+  chamfer = new Mat[scales];
+  matching = new Mat[scales];
 
   for ( unsigned int k = 0; k < templates.size() ; k++ )
     {
-      head_matched_points = chamfer_matching ( image_disparity, templates[k].template2d );
-      head_features = compute_headparameters ( image_depth, head_matched_points );
+      head_matched_points = chamfer_matching ( disparity_image, templates[k].template2d );
+      head_features = compute_headparameters ( depth_image, head_matched_points );
       new_head_features = false_positives ( head_features, arc_thr_low, arc_thr_high );
-      final_head_features = match_template3D ( new_head_features, k );
+      match_template3D ( disparity_image, new_head_features, &all_head_features, k );
     }
 
-  final_head_features2 = merge_rectangles ( final_head_features );
+  final_head_features = merge_rectangles ( all_head_features );
 
   Rect rect;
-  for ( unsigned int i = 0; i < final_head_features2.size(); i++ )
+  for ( unsigned int i = 0; i < final_head_features.size(); i++ )
     {
-      int wh = final_head_features2[i].radius * 2;
-      rect = Rect ( final_head_features2[i].point.x - final_head_features2[i].radius, final_head_features2[i].point.y - final_head_features2[i].radius, wh, wh );
+      int wh = final_head_features[i].radius * 2;
+      rect = Rect ( final_head_features[i].point.x - final_head_features[i].radius, final_head_features[i].point.y - final_head_features[i].radius, wh, wh );
       roistmp.push_back ( rect );
     }
+
+  delete[] pyramid;
+  delete[] chamfer;
+  delete[] matching;
 
   return roistmp;
 }
 
+bool DepthFaceDetector::checkDimensions ( Mat image_depth )
+{
+  double max_scale, scale_rows, scale_cols, log_scale;
+
+  max_scale = pow ( scale_factor, scales_default );
+
+  log_scale = log ( scale_factor );
+
+  if ( image_depth.rows * max_scale < templates[0].template2d.rows || image_depth.cols * max_scale < templates[0].template2d.cols )
+    {
+      scale_rows = ( log ( templates[0].template2d.rows ) - log ( image_depth.rows ) ) / log_scale;
+      scale_cols = ( log ( templates[0].template2d.cols ) - log ( image_depth.cols ) ) / log_scale;
+
+      scales = round ( min ( scale_rows, scale_cols ) );
+      return false;
+    }
+  else if ( image_depth.rows * max_scale < templates[1].template2d.rows || image_depth.cols * max_scale < templates[1].template2d.cols )
+    {
+      scale_rows = ( log ( templates[1].template2d.rows ) - log ( image_depth.rows ) ) / log_scale;
+      scale_cols = ( log ( templates[1].template2d.cols ) - log ( image_depth.cols ) ) / log_scale;
+
+      scales = round ( min ( scale_rows, scale_cols ) );
+      return false;
+    }
+  else
+    {
+      return true;
+    }
+
+}
 vector<Point3f> DepthFaceDetector::chamfer_matching ( Mat image, Mat template_im )
 {
   double minVal, maxVal;
@@ -138,17 +168,15 @@ vector<PixelSimilarity> DepthFaceDetector::compute_headparameters ( Mat image, v
           x = ( float ) xshort;
         }
 
-
       float h = ( p1 * pow ( x, 3 ) + p2 * pow ( x, 2 ) + p3 * x + p4 );
 
       float R = 1.33 * h * 0.5;
 
       float Rp = round ( R / 1.3 );
 
-      parameters_head[i].point = Point ( position_x,position_y );
+      parameters_head[i].point = Point ( position_x, position_y );
       parameters_head[i].radius = 1.3 * Rp;
       parameters_head[i].similarity = chamfer[i].z;
-
     }
 
   return parameters_head;
@@ -187,7 +215,6 @@ vector<PixelSimilarity> DepthFaceDetector::false_positives ( vector<PixelSimilar
                 }
             }
         }
-
     }
 
   vector<PixelSimilarity> output_v;
@@ -196,16 +223,15 @@ vector<PixelSimilarity> DepthFaceDetector::false_positives ( vector<PixelSimilar
   return output_v;
 }
 
-vector<PixelSimilarity> DepthFaceDetector::match_template3D ( vector<PixelSimilarity> potentials, int n )
+void DepthFaceDetector::match_template3D ( Mat image_disparity, vector<PixelSimilarity> potentials, vector<PixelSimilarity> *heads,int n )
 {
-  vector<PixelSimilarity> output;
   Mat match;
   double minVal, maxVal;
   Point minLoc, maxLoc;
 
   if ( potentials.empty() )
     {
-      return output;
+      return;
     }
 
   for ( unsigned int i = 0; i < potentials.size(); i++ )
@@ -223,12 +249,9 @@ vector<PixelSimilarity> DepthFaceDetector::match_template3D ( vector<PixelSimila
 
       if ( minVal >= match3D_thr )
         {
-          output.push_back ( PixelSimilarity ( potentials[i].point, potentials[i].radius, potentials[i].similarity ) );
+          heads->push_back ( PixelSimilarity ( potentials[i].point, potentials[i].radius, potentials[i].similarity ) );
         }
-
     }
-
-  return output;
 }
 
 vector<PixelSimilarity> DepthFaceDetector::merge_rectangles ( vector<PixelSimilarity> tmpcont )
@@ -240,7 +263,6 @@ vector<PixelSimilarity> DepthFaceDetector::merge_rectangles ( vector<PixelSimila
 
   while ( tmpcont.size() > 0 )
     {
-
       tmpcont_mean = PixelSimilarity ( tmpcont[0].point, tmpcont[0].radius, tmpcont[0].similarity );
 
       for ( unsigned int i = 1; i < tmpcont.size(); i++ )
@@ -252,12 +274,10 @@ vector<PixelSimilarity> DepthFaceDetector::merge_rectangles ( vector<PixelSimila
                   tmpcont[i] = PixelSimilarity ( tmpcont[i].point, tmpcont[i].radius, tmpcont[i].similarity );
                 }
             }
-          else
+          else if ( tmpcont[i].similarity < max_suppression )
             {
-              if ( tmpcont[i].similarity < max_suppression )
-                queue.push_back ( tmpcont[i] );
+              queue.push_back ( tmpcont[i] );
             }
-
         }
       output_v.push_back ( tmpcont_mean );
       tmpcont.swap ( queue );
@@ -273,11 +293,11 @@ void DepthFaceDetector::load_templates ( void )
 
   string head_template1;
   head_template1.append ( package_path );
-  head_template1.append ( "/pictures/template.png" );
+  head_template1.append ( "/pictures/template3.png" );
 
   string head_template2;
   head_template2.append ( package_path );
-  head_template2.append ( "/pictures/template3.png" );
+  head_template2.append ( "/pictures/template.png" );
 
   string head_template3D1;
   head_template3D1.append ( package_path );
@@ -309,4 +329,6 @@ void DepthFaceDetector::load_templates ( void )
 
   templates.push_back ( Template ( head_template_im1, head_template3D_im1 ) );
   templates.push_back ( Template ( head_template_im2, head_template3D_im2 ) );
+
+  sort ( templates.begin( ), templates.end( ) );
 }
