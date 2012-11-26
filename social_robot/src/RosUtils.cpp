@@ -14,11 +14,9 @@ RegionOfInterest RosUtils::cvrect2rosroi ( Rect rect )
   return roi;
 }
 /**<
-* This function returns a given rectangle in a regionofinterest used in ROS.
-* @return 
-* @param template2d A Mat containing a binary image.
-* @param template3d A Mat containing a grayscale image.
-* Notice that template3d is a grayscale image, it is used 3d when the matching is done with the depth image.
+* This function returns a given rectangle in a RegionOfInterest used in ROS for published.
+* @return RegionOfInterest
+* @param rect A Rect with location, width and height.
  */
 
 Rect RosUtils::rosroi2cvrect ( RegionOfInterest roi )
@@ -31,10 +29,9 @@ Rect RosUtils::rosroi2cvrect ( RegionOfInterest roi )
   return rect;
 }
 /**<
-* Constructor given 2D and 3D templates.
-* @param template2d A Mat containing a binary image.
-* @param template3d A Mat containing a grayscale image.
-* Notice that template3d is a grayscale image, it is used 3d when the matching is done with the depth image.
+* This function returns a rectangle from a given RegionOfInterest.
+* @return Rect
+* @param roi A RegionOfInterest with location, width and height.
  */
 
 vector<RegionOfInterest> RosUtils::cvrects2rosrois ( vector< Rect > rects )
@@ -48,10 +45,9 @@ vector<RegionOfInterest> RosUtils::cvrects2rosrois ( vector< Rect > rects )
   return rois;
 }
 /**<
-* Constructor given 2D and 3D templates.
-* @param template2d A Mat containing a binary image.
-* @param template3d A Mat containing a grayscale image.
-* Notice that template3d is a grayscale image, it is used 3d when the matching is done with the depth image.
+* This function returns a given array of rectangles in an array of RegionOfInterest used in ROS for published.
+* @return vector of RegionOfInterest
+* @param rects A vector<Rect> with location, width and height.
  */
 
 vector<Rect> RosUtils::rosrois2cvrects ( vector<RegionOfInterest> rois )
@@ -65,8 +61,7 @@ vector<Rect> RosUtils::rosrois2cvrects ( vector<RegionOfInterest> rois )
   return rects;
 }
 /**<
-* Constructor given 2D and 3D templates.
-* @param template2d A Mat containing a binary image.
-* @param template3d A Mat containing a grayscale image.
-* Notice that template3d is a grayscale image, it is used 3d when the matching is done with the depth image.
+* This function returns an array of rectangles given an array of  RegionOfInterest.
+* @return vector<Rect>
+* @param rois A vector<RegionOfInterest> with location, width and height.
  */
