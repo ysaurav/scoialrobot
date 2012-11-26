@@ -116,8 +116,8 @@ Mat& ParticleFilter::update ( Mat& image, Mat& depth_image, const cv::Size& targ
         {
           // TODO: look for smaller scales.
           Rect enlarged_region = cv_utils.enlarge_window_width ( region, image, 2.5 );
-          static const float lower_bound[NUM_STATES] = {enlarged_region.x, enlarged_region.y, -0.5, -0.5, 0.8};
-          static const float upper_bound[NUM_STATES] = {enlarged_region.br().x, enlarged_region.br().y, 0.5, 0.5, 1.2};
+          static const float lower_bound[NUM_STATES] = {enlarged_region.x, enlarged_region.y, -0.5, -0.5, 0.9};
+          static const float upper_bound[NUM_STATES] = {enlarged_region.br().x, enlarged_region.br().y, 0.5, 0.5, 1.1};
 
           cout << "locally: " << m_state << " " << m_mean_confidence << endl;
           redistribute ( lower_bound, upper_bound );

@@ -6,9 +6,7 @@
 
 #include "kinect_proxy.h"
 #include "CvUtils.h"
-#include "PixelSimilarity.h"
 #include "RosUtils.h"
-#include "Template.h"
 #include "social_robot_constants.h"
 
 #include "particle_filter/StateData.h"
@@ -26,7 +24,15 @@ RosUtils ros_utils;
 social_robot::RegionOfInterests depth_pub_rois;
 ros::Publisher depth_pub;
 
-// TODO: put value on detetion to kill outliers or keep objects if they have over 90 threshold
+ros::ServiceClient rgb_update_client;
+ros::ServiceClient depth_update_client;
+
+std_srvs::Empty empty;
+
+// for subscribtions
+ros::Subscriber rgb_rois_sub;
+ros::Subscriber depth_rois_sub;
+
 double track_thr = 75;
 double confidence_level_thr = 0.50;
 double detection_confidence_thr = 0.75;
@@ -35,14 +41,46 @@ int rgb_framenum = 0;
 int rgb_update_rate = 15;
 int depth_framenum = 0;
 int depth_update_rate = 15;
+int high_frequency = 2;
+int low_frequency = 12;
+int external_update_rate = high_frequency;
 
 Mat image_disparity;
 Mat image_depth;
 Mat image_rgb;
 
+bool stand_alone = false;
+bool use_colour = false;
+bool use_depth = false;
+
 vector<StateData> state_datas;
 
 CvUtils cv_utils;
+
+void check_update_rate_frequency ( void )
+{
+  if ( state_datas.empty() )
+    {
+      if ( external_update_rate == low_frequency )
+        {
+          external_update_rate = high_frequency;
+          ros::NodeHandle nh;
+          nh.setParam ( "/social_robot/depth/update_rate", external_update_rate );
+          depth_update_client.call<std_srvs::Empty> ( empty );
+          nh.setParam ( "/social_robot/rgb/update_rate", external_update_rate );
+          rgb_update_client.call<std_srvs::Empty> ( empty );
+        }
+    }
+  else if ( external_update_rate == high_frequency )
+    {
+      external_update_rate = low_frequency;
+      ros::NodeHandle nh;
+      nh.setParam ( "/social_robot/depth/update_rate", external_update_rate );
+      depth_update_client.call<std_srvs::Empty> ( empty );
+      nh.setParam ( "/social_robot/rgb/update_rate", external_update_rate );
+      rgb_update_client.call<std_srvs::Empty> ( empty );
+    }
+}
 
 void publish_data ( void )
 {
@@ -89,6 +127,13 @@ void do_tracking ( void )
         }
       i++;
     }
+
+  // if there was nothing to track we request more detection
+  if ( !stand_alone )
+    {
+      check_update_rate_frequency();
+    }  
+
   publish_data();
 }
 
@@ -167,16 +212,20 @@ void rgb_cb ( const ImageConstPtr& msg )
 {
   try
     {
-      rgb_framenum++;
       image_rgb = cv_bridge::toCvCopy ( msg, enc::BGR8 )->image;
-      
-      if ( rgb_framenum == rgb_update_rate )
+
+      // if we want to perform detection ourselves
+      if ( use_colour )
         {
-          rgb_framenum = 0;
-          vector<Rect> rgb_faces = cv_utils.detect_face_rgb ( image_rgb );
-          data_association ( rgb_faces );
+          rgb_framenum++;
+          if ( rgb_framenum == rgb_update_rate )
+            {
+              rgb_framenum = 0;
+              vector<Rect> rgb_faces = cv_utils.detect_face_rgb ( image_rgb );
+              data_association ( rgb_faces );
+            }
         }
-      
+
       do_tracking();
     }
   catch ( cv_bridge::Exception& e )
@@ -190,20 +239,25 @@ void disparity_cb ( const stereo_msgs::DisparityImageConstPtr& msg )
 {
   try
     {
-      depth_framenum++;
       image_disparity = cv_bridge::toCvCopy ( msg->image )->image;
       image_disparity.convertTo ( image_disparity, CV_8UC1 );
-      
-      if ( image_depth.empty() )
+
+      // if we want to perform detection ourselves
+      if ( use_depth )
         {
-          return;
+          depth_framenum++;
+          if ( image_depth.empty() )
+            {
+              return;
+            }
+          if ( depth_framenum == depth_update_rate )
+            {
+              depth_framenum = 0;
+              vector<Rect> depth_faces = cv_utils.detect_face_depth ( image_depth, image_disparity );
+              data_association ( depth_faces );
+            }
         }
-      if ( depth_framenum == depth_update_rate )
-        {
-          depth_framenum = 0;
-          vector<Rect> depth_faces = cv_utils.detect_face_depth ( image_depth, image_disparity );
-          data_association ( depth_faces );
-        }
+
     }
   catch ( cv_bridge::Exception& e )
     {
@@ -226,8 +280,36 @@ void depth_rois_cb ( const social_robot::RegionOfInterests &msg )
   data_association ( depth_faces );
 }
 
+void parse_command_line ( int argc, char** argv )
+{
+  int c = -1;
+  while ( ( c = getopt ( argc, argv, "cds" ) ) != -1 )
+    {
+      switch ( c )
+        {
+        case 'c':
+          use_colour = true;
+          break;
+        case 'd':
+          use_depth = true;
+          break;
+        case 's':
+          stand_alone = true;
+          break;
+        default:
+          cerr << "Usage: " << argv[0] << " [-c] [-d] [-s] " << endl << endl;
+          cerr << "\t-c uses colour images in detection." << endl;
+          cerr << "\t-d uses depth images in detection." << endl;
+          cerr << "\t-s runs this application as stand alone, detection and tracking together." << endl;
+          exit ( 1 );
+        }
+    }
+}
+
 int main ( int argc, char **argv )
 {
+  parse_command_line ( argc, argv );
+
   ros::init ( argc, argv, "social_robot_track" );
   ros::NodeHandle nh;
 //   ros::MultiThreadedSpinner spinner ( 0 );
@@ -245,8 +327,13 @@ int main ( int argc, char **argv )
   ros::Subscriber depth_sub = nh.subscribe ( "/camera/depth/image_raw", 1, depth_cb );
   ros::Subscriber rgb_sub = nh.subscribe ( "/camera/rgb/image_color", 1, rgb_cb );
 
-  ros::Subscriber rgb_rois_sub = nh.subscribe ( "/social_robot/rgb/rois", 1, rgb_rois_cb );
-  ros::Subscriber depth_rois_sub = nh.subscribe ( "/social_robot/depth/rois", 1, depth_rois_cb );
+  if ( !stand_alone )
+    {
+      rgb_rois_sub = nh.subscribe ( "/social_robot/rgb/rois", 1, rgb_rois_cb );
+      depth_rois_sub = nh.subscribe ( "/social_robot/depth/rois", 1, depth_rois_cb );
+      rgb_update_client = nh.serviceClient<std_srvs::Empty> ( "/social_robot/rgb/update" );
+      depth_update_client = nh.serviceClient<std_srvs::Empty> ( "/social_robot/depth/update" );
+    }
 
   // publications
   depth_pub = nh.advertise<social_robot::RegionOfInterests> ( "/social_robot/track/rois", 1 );

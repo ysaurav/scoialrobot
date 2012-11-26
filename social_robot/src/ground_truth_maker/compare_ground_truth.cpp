@@ -1,8 +1,8 @@
-#include "opencv2/video/tracking.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"
-#include "opencv2/objdetect/objdetect.hpp"
-#include "opencv2/calib3d/calib3d.hpp"
+#include <opencv2/video/tracking.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/objdetect/objdetect.hpp>
+#include <opencv2/calib3d/calib3d.hpp>
 
 #include <iostream>
 #include <ctype.h>
@@ -21,11 +21,10 @@ void read_from_file ( string filename, vector<Point> &rois )
   FileNodeIterator it = features.begin(), it_end = features.end();
   int idx = 0;
 
-
   for ( ; it != it_end; ++it, idx++ )
     {
-     // cout << "frame #" << idx << ": ";
-     // cout << "x=" << ( int ) ( *it ) ["x"] << ", y=" << ( int ) ( *it ) ["y"] << "\n";
+      // cout << "frame #" << idx << ": ";
+      // cout << "x=" << ( int ) ( *it ) ["x"] << ", y=" << ( int ) ( *it ) ["y"] << "\n";
       int x = ( int ) ( *it ) ["x"];
       int y = ( int ) ( *it ) ["y"];
       rois.push_back ( Point ( x,y ) );
@@ -34,11 +33,10 @@ void read_from_file ( string filename, vector<Point> &rois )
 }
 /**<
 * This function reads from a .yaml file the coordinates of the center of ROI
-* @return 
+* @return
 * @param file_name A string file containing the input file
 * @param rois A vector of Points containing the centers of ROI.
  */
-
 
 void write_to_file ( string filename, vector<double> rois, double mse )
 {
@@ -51,16 +49,14 @@ void write_to_file ( string filename, vector<double> rois, double mse )
 
   for ( unsigned int i = 0; i < rois.size(); i++ )
     {
-
       fsr << "{:"<< "d" << rois[i] <<"}";
-
     }
   fsr.release();
 
 }
 /**<
 * This function writes the distance and MSE between ground-truth and tracking results to a .yaml file
-* @return 
+* @return
 * @param file_name A string file containing the output file
 * @param rois A vector of doubles containing the distances.
 * @param mse The Mean Square Error.
@@ -68,19 +64,18 @@ void write_to_file ( string filename, vector<double> rois, double mse )
 
 void help()
 {
-    cout << "\nThis program computes the distance between ground-truth and tracking algorithm and also the Mean Square Error.\n"
-			"The program saves to .yaml file  the results.\n"
-			"Notice: the program has an optional input, an image frame, in order to display the input information.\n"
-			"Usage: \n"
-            "	./compare [ground_truth.yaml file] [tracking_result.yaml file] [optional:image]\n";
-
+  cout << "\nThis program computes the distance between ground-truth and tracking algorithm and also the Mean Square Error.\n"
+       "The program saves to .yaml file  the results.\n"
+       "Notice: the program has an optional input, an image frame, in order to display the input information.\n"
+       "Usage: \n"
+       "  ./compare [ground_truth.yaml file] [tracking_result.yaml file] [optional:image]\n";
 }
 
 int main ( int argc, const char** argv )
 {
 
   help();
-  
+
   vector<Point> gt;
   read_from_file ( argv[1], gt );
 
@@ -88,10 +83,10 @@ int main ( int argc, const char** argv )
   read_from_file ( argv[2],tracking );
   Mat image;
 
-   // If an image is given as input, display tracking adn ground-truth coordinates
+  // If an image is given as input, display tracking adn ground-truth coordinates
   if ( argc == 5 )
     {
-      
+
       image = imread ( argv[4] );
 
       Scalar color = Scalar ( 0,0,255 );

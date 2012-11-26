@@ -24,9 +24,15 @@ CvUtils cv_utils;
 
 bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
 {
-  ROS_INFO ( "Updating parameter of social_robot" );
-  
-  // TODO: add frame number here.
+  ROS_INFO ( "Updating parameter of social_robot_rgb" );
+
+  double update_rate_tmp = update_rate;
+
+  ros::NodeHandle nh;
+
+  nh.param ( "/social_robot/rgb/update_rate", update_rate_tmp, update_rate_tmp );
+
+  update_rate = update_rate_tmp;
 
   return true;
 }
@@ -63,9 +69,11 @@ int main ( int argc, char **argv )
 {
   ros::init ( argc, argv, "social_robot_rgb" );
   ros::NodeHandle nh;
+  
+  nh.setParam ( "/social_robot/rgb/update_rate", update_rate );
 
   // subscribtions
-  ros::ServiceServer update_srv = nh.advertiseService ( "/social_robot/update", update_param_cb );
+  ros::ServiceServer update_srv = nh.advertiseService ( "/social_robot/rgb/update", update_param_cb );
   ros::Subscriber rgb_sub = nh.subscribe ( "/camera/rgb/image_color", 1, rgb_cb );
 
   // publications

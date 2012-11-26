@@ -56,9 +56,13 @@ rosbuild_add_executable(social_robot_depth src/social_robot_depth.cpp)
 #rosbuild_add_openmp_flags(social_robot_depth)
 rosbuild_add_executable(kinect_save_image src/kinect_save_image.cpp)
 rosbuild_add_executable(social_robot_test src/social_robot_test.cpp)
-rosbuild_add_executable(rgbWriter src/ground_truth_maker/rgbWriter.cpp)
-#rosbuild_add_executable(calibration src/calib/calibration.cpp)
 
+# for groound truth
+rosbuild_add_executable(rgbWriter src/ground_truth_maker/rgbWriter.cpp)
+rosbuild_add_executable(compare_ground_truth src/ground_truth_maker/compare_ground_truth.cpp)
+rosbuild_add_executable(create_ground_truth src/ground_truth_maker/create_ground_truth.cpp)
+
+# linking libraries
 target_link_libraries(social_robot utils particle_filters)
 target_link_libraries(social_robot_rgb utils)
 target_link_libraries(social_robot_depth utils)

@@ -41,7 +41,8 @@ CvUtils cv_utils;
 
 bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
 {
-  ROS_INFO ( "Updating parameter of social_robot" );
+  // TODO: update depth face detector from here
+  ROS_INFO ( "Updating parameter of social_robot_depth" );
 
   double chamfer_thr_tmp = chamfer_thr;
   double arc_thr_low_tmp = arc_thr_low;
@@ -49,6 +50,7 @@ bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
   int scales_tmp = scales;
   double max_suppression_tmp = max_suppression;
   double match3D_thr_tmp = match3D_thr;
+  double update_rate_tmp = update_rate;
 
   ros::NodeHandle nh;
 
@@ -58,6 +60,7 @@ bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
   nh.param ( "/social_robot/depth/arc_thr_high", arc_thr_high_tmp, arc_thr_high_tmp );
   nh.param ( "/social_robot/depth/max_suppression", max_suppression_tmp, max_suppression_tmp );
   nh.param ( "/social_robot/depth/match3D_thr", match3D_thr_tmp, match3D_thr_tmp );
+  nh.param ( "/social_robot/depth/update_rate", update_rate_tmp, update_rate_tmp );
 
   chamfer_thr = chamfer_thr_tmp;
   scales = scales_tmp;
@@ -65,6 +68,7 @@ bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
   arc_thr_high = arc_thr_high_tmp;
   max_suppression = max_suppression_tmp;
   match3D_thr = match3D_thr_tmp;
+  update_rate = update_rate_tmp;
 
   return true;
 }
@@ -129,6 +133,7 @@ int main ( int argc, char **argv )
   nh.setParam ( "/social_robot/depth/arc_thr_high", arc_thr_high );
   nh.setParam ( "/social_robot/depth/max_suppression", max_suppression );
   nh.setParam ( "/social_robot/depth/match3D_thr", match3D_thr );
+  nh.setParam ( "/social_robot/depth/update_rate", update_rate );
 
   // subscribtions
   ros::ServiceServer update_srv = nh.advertiseService ( "/social_robot/depth/update", update_param_cb );
