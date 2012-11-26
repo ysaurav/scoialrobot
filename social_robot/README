@@ -1,20 +1,23 @@
-This ros package has number of components for face detection and tracking from 
-Kinect images.
+This ros package has number of components for face detection and tracking from Kinect images.
 
 Instalation
- 1. roscd socia_robot
+ 1. roscd social_robot
  2. rosmake
 
 Usage
- 1. rosrun social_robot social_robot_gui
- 2. rosrun social_robot social_robot_rgb
+ 1. roscore
+ 2. rosrun social_robot social_robot_gui
+ 3. rosrun social_robot social_robot_rgb
     detects the faces in RGB, if you want to test only with depth, don't run
     this step. 
- 3. rosrun social_robot social_robot_depth
+ 4. rosrun social_robot social_robot_depth
     detects the faces in Depth, if you want to test only with RGB, don't run
     this step.
- 4. rosrun social_robot social_robot
+ 5. rosrun social_robot social_robot
     tracks the detected faces from RGB and depth.
+ 6. Choose either 6.1 or 6.2
+  6.1. Start Kinect: roslaunch openni_launch openni.launch
+  6.2. Start *.oni file: roslaunch openni_camera_deprecated openni_node.launch file_path:=/examplefolder/example.oni to_be_repeated:=false    
 
 --------------------------------------------------------------------------------
 
