@@ -1,8 +1,6 @@
 #include <opencv2/video/tracking.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
-#include <opencv2/objdetect/objdetect.hpp>
-#include <opencv2/calib3d/calib3d.hpp>
 
 #include <iostream>
 #include <ctype.h>
@@ -45,14 +43,13 @@ void write_to_file ( string filename, vector<double> rois, double mse )
 
   FileStorage fsr ( distance_file, FileStorage::WRITE );
   fsr << "MSE " << mse;
-  fsr<<"distance"<<"[";
+  fsr << "distance" << "[";
 
   for ( unsigned int i = 0; i < rois.size(); i++ )
     {
       fsr << "{:"<< "d" << rois[i] <<"}";
     }
   fsr.release();
-
 }
 /**<
 * This function writes the distance and MSE between ground-truth and tracking results to a .yaml file
@@ -86,7 +83,6 @@ int main ( int argc, const char** argv )
   // If an image is given as input, display tracking adn ground-truth coordinates
   if ( argc == 5 )
     {
-
       image = imread ( argv[4] );
 
       Scalar color = Scalar ( 0,0,255 );
@@ -94,14 +90,14 @@ int main ( int argc, const char** argv )
 
       // display results
 
-      for ( int i = 0;i<gt.size(); i++ )
+      for ( int i = 0; i < gt.size(); i++ )
         {
-          circle ( image,gt[i],4,color,4 );
+          circle ( image, gt[i], 4, color, 4 );
         }
 
-      for ( int i = 0;i<tracking.size(); i++ )
+      for ( int i = 0; i < tracking.size(); i++ )
         {
-          circle ( image,tracking[i],6,color2,6 );
+          circle ( image, tracking[i], 6, color2, 6 );
         }
 
       namedWindow ( "Reference",0 );
@@ -113,9 +109,9 @@ int main ( int argc, const char** argv )
   vector<double> distance;
   double d;
   double sum;
-  for ( int i = 0;i<tracking.size(); i++ )
+  for ( int i = 0; i < tracking.size(); i++ )
     {
-      d = sqrt ( pow ( ( gt[i].x - tracking[i].x ),2 ) + pow ( ( gt[i].y - tracking[i].y ),2 ) );
+      d = sqrt ( pow ( ( gt[i].x - tracking[i].x ),2 ) + pow ( ( gt[i].y - tracking[i].y ), 2 ) );
       distance.push_back ( d );
       sum += d;
     }
@@ -123,19 +119,24 @@ int main ( int argc, const char** argv )
   // Compute mean of distances
 
   double size_d = tracking.size();
-  double mean_d = sum/size_d;
+  double mean_d = sum / size_d;
 
   // Compute MSE
   double s_mse = 0;
-  for ( int i = 0; i<size_d;i++ )
+  for ( int i = 0; i < size_d; i++ )
     {
-      s_mse += pow ( distance[i],2 );
+      s_mse += pow ( distance[i], 2 );
     }
 
-  double MSE = s_mse/size_d;
-  cout<<"\n \n Mean squar error: "<<MSE<<"\n";
+  double MSE = s_mse / size_d;
+  cout<<"\n \n Mean squar error: " << MSE << "\n";
 
-  write_to_file ( argv[3], distance, MSE );
+  string filename = "default";
+  if ( argc == 4 )
+    {
+      filename = argv[3];
+    }
+  write_to_file ( filename, distance, MSE );
   waitKey ( 0 );
 
   return 1;
