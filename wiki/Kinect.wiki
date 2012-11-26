@@ -56,4 +56,4 @@ http://www.ros.org/wiki/openni_launch/Tutorials/IntrinsicCalibration?action=show
 http://www.ros.org/wiki/openni_launch/Tutorial/ExtrinsicCalibration#Intrinsic_calibration
 
 
-For our proposes, the important thing is to set */camera/driver/depth_registration* to *TRUE*. We need depth image to be aligned with the RGB image.
+For our proposes, the important thing is to set */camera/driver/depth_registration* to *TRUE*. We need depth image to be aligned with the RGB image. We can also select the rectified images from RGB camera and 3D sensor by taking */image_rect*.
