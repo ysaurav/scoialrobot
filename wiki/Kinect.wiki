@@ -49,16 +49,17 @@ Kinect has its own default calibration for all the devices. Even so your own cal
 
 *Intrinsic parameters for each camera*
 
-http://www.ros.org/wiki/openni_launch/Tutorials/IntrinsicCalibration?action=show&redirect=openni_camera%2Fcalibration
+<font color=BLUE>http://www.ros.org/wiki/openni_launch/Tutorials/IntrinsicCalibration?action=show&redirect=openni_camera%2Fcalibration </font>
 
 *Extrinsic parameters*
 
-http://www.ros.org/wiki/openni_launch/Tutorial/ExtrinsicCalibration#Intrinsic_calibration
+<font color=BLUE>http://www.ros.org/wiki/openni_launch/Tutorial/ExtrinsicCalibration#Intrinsic_calibration </font>
 
-----
 
-<font color=RED> *IMPORTANT* </font>
+== <font color=RED> *IMPORTANT* </font> ==
 
 If the default parameters are used, make sure that <font color=PURPLE> */camera/driver/depth_registration* </font> is set to <font color=GREEN> *TRUE* </font>.
 
 We need depth image to be aligned with the RGB image. We can also select the rectified images from RGB camera and 3D sensor by taking <font color=PURPLE> */image_rect*</font> instead of *image_raw*.
+
+<font color=BLUE> http://www.ros.org/wiki/openni_camera </font>
