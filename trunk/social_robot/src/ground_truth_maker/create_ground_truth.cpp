@@ -112,6 +112,7 @@ void help()
        "\tu - increase scale of ROI\n"
        "\tl - decrease scale of ROI\n"
        "\tc - skip ROI\n"
+       "\t0 - goes to the next frame\n"
        "To initialize ground-truth, select the object with mouse\n";
 }
 
@@ -334,6 +335,11 @@ int main ( int argc, const char** argv )
     }
 
   // Write ROI to .yaml file
-  write_results_to_file ( argv[2], to_be_saved );
+  string filename = "default";
+  if ( argc > 2 )
+    {
+      filename = argv[2];
+    }
+  write_results_to_file ( filename, to_be_saved );
 
 }
