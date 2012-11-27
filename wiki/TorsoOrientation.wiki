@@ -62,7 +62,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step10.png
 
 == Limitations ==
 
- # The algorithm can not deal with problems of occlusion. It means, when there are persons on the scene that appears overlapped among each other.
+ # The algorithm can not deal with problems of occlusion. It means, when there are persons on the scene that appears overlapped among each other, there is not enough information to differentiate them.
 
  # When the detected persons appear to be located at a high distance from the kinect, their depth information is very close to background. Hence, the computed angle can be overestimated.
 
@@ -70,4 +70,6 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step10.png
 
 == Improvements ==
 
- # The use of statistical metrics, i.e. first and second order moments, to estimate the points in the torso orientation. However, statistical methods does not consider the shape of the class.
+The use of statistical metrics, i.e. first order moments in X and Y directions, could be an interesting alternative to estimate the points in the torso orientation. This method would demand the use of a segmentation stage.
+
+Experimentally, by using watershed segmentation, it could not provide good results for detected persons located far from the kinect. Additionally, statistical methods does not consider the shape of the class to be evaluated.
