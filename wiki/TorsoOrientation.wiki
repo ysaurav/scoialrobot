@@ -56,7 +56,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step9.png
 
 ===Step 8: ===
 
-Once these points have been evaluated in real world, we proceed to compute the angle of torso orientation by using the following formula.
+Once these points have been transformed in real world, we proceed to compute the angle of torso orientation by using the following formula.
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step10.png
 
