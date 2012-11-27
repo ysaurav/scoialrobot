@@ -49,7 +49,7 @@ Humans use head pose and gaze direction as nonverbal cues to express communicati
 
 A combination of head pose estimation and recognition of gaze directions is needed to exactly determine the visual attention of an interaction partner.  Gaschler et al. show in [References 3] that head pose is an important cue that is used by customers and bartenders in all steps of the ordering sequence. 
 
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/bar_scene.jpg
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/bar_scene.png
 
 Humans can easily estimate the head pose of an interaction partner, but for a computer vision system this ability is rather difficult to achieve. The pose is described by the approximate position of the head in space, and an angle that describes torso orientation.
 
