@@ -1,0 +1,15 @@
+#This page describes the algorithm of Torso Orientation.
+
+= Introduction =
+
+The pose estimation of the head can be estimated from pixel location in the image by using the extrinsic and intrinsic parameters of the camera calibration.
+
+One of the advantages of kinect, is the generation of range images that provides 3D information. In this site, we will explain how to use this information to compute of torso orientation.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
