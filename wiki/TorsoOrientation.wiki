@@ -30,7 +30,8 @@ Once the torso region has been reached, we proceed to find the side boundaries. 
 
 *1* If the person is located to the left-hand side of the middle part of the image, we look for the right side boundary of the person.
 
-*2* Otherwise, we look for the left side boundary of the person.
+*2* Otherwise, we look for the left side boundary.
+
 The idea of this method is to avoid the borders of the image.
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step4.png
