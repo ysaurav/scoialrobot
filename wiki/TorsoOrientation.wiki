@@ -17,11 +17,12 @@ The inputs of this algorithm is the 2D coordinates of the centroid (x,y) generat
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step1.png
 
 ===Step 2:  === 
-Starting from the centroids, we look for the maximum variation of pixel intensity values, which represent the depth of the image. We take the vertical direction in order to reach the superior part of the head. A significant variation is assumed to be located at the border between the human and the background. Hence, we stablish the top boundary.
+Starting from the centroids, we look for the maximum variation of pixel intensity values, which represent the depth of the image. We take the vertical direction in order to reach the superior part of the head. A significant variation is assumed to be located at the border between the human and the background. A x distance from the detected centroid. Hence, we can stablish clearly the top boundary. The following figure illustrates this step for two detected persons.
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step2.png
 
 ===Step 3:  ===
+Based on propotion estimates, we look for a point in the torso region that allows to have a better estimation of the orientation. For that reason, we move a 1.5x distance from the centroid in the opposite direction (see green lines on the below figure)
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step3.png
 ===Step 4:  === 
