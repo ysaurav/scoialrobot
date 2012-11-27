@@ -44,3 +44,11 @@ Since we're interested in the depth registered images we set the depth registrat
 RGB detector subscribes to _camera/rgb/image_color_ which publishes [http://www.ros.org/doc/api/sensor_msgs/html/msg/Image.html sensor_msgs/Image]. We do perform detection every _n_ frame. _n_ can be updated dynamically during the run time, by calling _rosparam set_.
 
 For detection we're using OpenCV [http://docs.opencv.org/doc/tutorials/objdetect/cascade_classifier/cascade_classifier.html#cascade-classifier Cascade Classifier]. We are using [http://scoialrobot.googlecode.com/svn/trunk/social_robot/rsrc/haarcascades/haarcascade_frontalface_alt.xml Front Face Alt] classifier. For a list of other OpenCV already made classifiers please check [http://scoialrobot.googlecode.com/svn/trunk/social_robot/rsrc/haarcascades/ here].
+
+RGB detector publishes its detected faces under _/social_robot/rgb/rois_ ([http://scoialrobot.googlecode.com/svn/trunk/social_robot/msg/RegionOfInterests.msg RegionOfInterests]) which is  basically list of [http://www.ros.org/doc/api/sensor_msgs/html/msg/RegionOfInterest.html sensor_msgs/RegionOfInterest].
+
+== Depth Detector ==
+
+Depth detector subscribes to  _camera/depth_registered/image_raw_ ([http://www.ros.org/doc/api/sensor_msgs/html/msg/Image.html sensor_msgs/Image]) and _camera/depth_registered/disparity_ ([http://www.ros.org/doc/api/stereo_msgs/html/msg/DisparityImage.html stereo_msgs/DisparityImage]). Similar to the RGB detector we perform detection in every _n_ frame. And _n_ can be changed dynamically during runtime.
+
+The algorithm for this detection is basically implemented in [http://scoialrobot.googlecode.com/svn/trunk/social_robot/src/DepthFaceDetector.h DepthFaceDetector.h] and [http://scoialrobot.googlecode.com/svn/trunk/social_robot/src/DepthFaceDetector.c  DepthFaceDetector.c]. The explanation of this algorithm can be found in our [https://code.google.com/p/scoialrobot/wiki/Initialpage#Method wiki pages] as well as [References 3].
