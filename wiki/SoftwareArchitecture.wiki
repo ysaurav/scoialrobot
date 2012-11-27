@@ -2,9 +2,24 @@
 
 = Introduction =
 
-In this page we're going to explain how different ROS topics work with each other
+In this page we're going to explain how different ROS topics work with each other in our application.
 
+= Overview =
 
-= Details =
+The high level component diagram of our application can be observed in figure below. Kinect publishes three different topics, RGB, disparity and depth images. The details of these topics can be read in [http://www.ros.org/wiki/openni_launch OpenNI Lunch Package].
+
+We have used two independent detectors, RGB and depth. Therefore, RGB detector subscribes to the RGB images. And depth detector subscribes to the depth and disparity images. Each of these detector perform their tasks and publish their data.
+
+Tracking component subscribes to both detectors. It performs its tracking assignment and publishes the result of tracking, which is ultimately the result of our application.
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/flowchart_diagram.png
+
+= Low level description =
+
+In this section we are going to explain in detail how each component exactly works.
+
+== Kinect == 
+
+{{{
+roslaunch openni_launch openni.launch
+}}}
