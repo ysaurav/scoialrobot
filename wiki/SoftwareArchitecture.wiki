@@ -62,3 +62,7 @@ The result of detected faces in depth are published in topic _/social_robot/dept
 This module can be run as an standalone application, in which both detection and tracking is performed, however this is not advised because of computational time. That's why this module can also be run only as tracking module in which it subscribes to both the detected faces by RGB and depth.
 
 For tracking we're performing particle filter, explained in [Tracking tracking] page of our wiki. The result of this module is published under _/social_robot/track/rois_ ([http://scoialrobot.googlecode.com/svn/trunk/social_robot/msg/RegionOfInterests.msg RegionOfInterests]) which is  basically list of [http://www.ros.org/doc/api/sensor_msgs/html/msg/RegionOfInterest.html sensor_msgs/RegionOfInterest].
+
+== User interface ==
+
+We have implemented a simple QT application, in which user can select the view change the parameters, etc. The intention is mainly for testing purposes.
