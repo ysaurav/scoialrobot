@@ -16,7 +16,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
   * [Preprocessing]
   * [Matchingdistance 2D Chamfer Matching Distance]
   * [HeadParameters Head Parameters Estimation]
-  * [Torso Orientation]
+  * [TorsoOrientation Torso Orientation]
   * [Tracking]
  # [#Implementation Implementation]
   * [Kinect Getting Started with Kinect]
@@ -56,7 +56,7 @@ Many methods have been used to generate a head pose estimation. Appearance-based
 == Method ==
  * [Preprocessing]
  * [Matchingdistance 2D Chamfer Matching Distance]
- * [HeadParameters Head Parameters Estimation]
+ * [TorsoOrientation Torso Orientation]
  * [Segmentation]
  * [Tracking]
 == Demo ==
