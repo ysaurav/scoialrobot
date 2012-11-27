@@ -1,4 +1,4 @@
-
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
 
 = 2D Chamfer Distance Matching =
 
