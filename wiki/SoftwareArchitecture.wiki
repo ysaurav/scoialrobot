@@ -1,3 +1,5 @@
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
+
 #summary Explaining how ros topics work with each other.
 
 = Introduction =
