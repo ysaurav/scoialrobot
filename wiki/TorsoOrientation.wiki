@@ -38,11 +38,17 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step7.png
 
 ===Step 6:  === 
 
-The width of the rectangle is divided in four parts in order to selec the points corresponding to one fourth and three fourth of the person. These are points which are close enough to the boundaries, and their depth information is less noisy.
+The width of the rectangle is divided in four parts in order to select the points corresponding to one-fourth and three-fourths of the person. These are points which are close enough to the boundaries, and their depth information is less noisy.
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step8.png
+
 ===Step 7:  ===
+Finally, these points are identified in the final image.
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step9.png
+
 ===Step 8: ===
+Once these points have been evaluated in real world, we proceed to compute the angle of torso orientation by using the following formula.
+
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step10.png
+
 == Limitations ==
