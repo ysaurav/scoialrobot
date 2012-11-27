@@ -27,13 +27,14 @@ Based on propotion estimates, we look for a point in the torso region that allow
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step3.png
 ===Step 4:  === 
 Once the torso region has been reached, we proceed to find the side boundaries. Since we know the size of the image, we stablish as reference the middle part of it.
+
 *1* If the person is located to the left-hand side of the middle part of the image, we look for the right side boundary of the person.
+
 *2* Otherwise, we look for the left side boundary of the person.
 The idea of this method is to avoid the borders of the image.
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step4.png
-===Step 5:  === 
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step5.png
+
 ===Step 6:  === 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step6.png
 ===Step 7:  === 
