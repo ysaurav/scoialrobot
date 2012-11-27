@@ -26,17 +26,13 @@ Based on propotion estimates, we look for a point in the torso region that allow
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step3.png
 ===Step 4:  === 
-Once the torso region has been reached, we proceed to find the side boundaries. Since we know the size of the image, we stablish as reference the middle part of it.
-
-*1* If the person is located to the left-hand side of the middle part of the image, we look for the right side boundary of the person.
-
-*2* Otherwise, we look for the left side boundary.
-
-The idea of this method is to avoid the borders of the image.
+Once the torso region has been reached, we proceed to find the side boundaries by moving left and right in a horizontal direction.
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step5.png
 
 ===Step 5:  === 
+A rectangle that encloses the detected person is computed from the top and side boundaries. To determine the width of the rectangle, we consider distances from centroid to left and right side boundaries. We called these distances d1 and d2, respectively. So,the width is computed from the minimum distance between d1 and d2, by applying symmetry with respect to the centroid.
+
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step7.png
 ===Step 6:  === 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step8.png
