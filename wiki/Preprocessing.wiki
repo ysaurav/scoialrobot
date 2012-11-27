@@ -1,3 +1,5 @@
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
+
 =Preprocessing=
 
 = Introduction =
