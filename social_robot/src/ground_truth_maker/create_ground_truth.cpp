@@ -1,6 +1,8 @@
 #include <opencv2/objdetect/objdetect.hpp>
 #include <opencv2/video/background_segm.hpp>
 
+#include "../string_utils.h"
+
 #include <iostream>
 #include <ctype.h>
 #include <stdio.h>
@@ -29,7 +31,6 @@ void onMouse ( int event, int x, int y, int, void* )
       selection.width = std::abs ( x - origin.x );
       selection.height = std::abs ( y - origin.y );
       // selection &= Rect ( 0, 0, image.cols, image.rows );
-
     }
 
   switch ( event )
@@ -67,10 +68,23 @@ void write_results_to_file ( string file_name, vector<Rect> rois )
   fsc<<"center"<<"[";
   for ( unsigned int i = 0; i < rois.size(); i++ )
     {
-
-      fsr << "{:"<< "x" << rois[i].x << "y" << rois[i].y << "w" << rois[i].width << "h" << rois[i].height <<"}";
+      string filename = "frame";
+      if (i < 10)
+      {
+        filename.append("000");
+      } else if ( i < 100 )
+      {
+        filename.append("00");
+      }
+       else if ( i < 1000)
+      {
+        filename.append("0");
+      }
+      filename.append(inttostr(i));
+      filename.append(".png");
+      fsr << filename << "{:"<< "x" << rois[i].x << "y" << rois[i].y << "w" << rois[i].width << "h" << rois[i].height <<"}";
       Point center ( rois[i].x + ( rois[i].width / 2 ), rois[i].y + ( rois[i].height / 2 ) );
-      fsc << "{:"<< "x" << center.x << "y" << center.y <<"}";
+      fsc << filename << "{:"<< "x" << center.x << "y" << center.y <<"}";
     }
   fsr.release();
   fsc.release();

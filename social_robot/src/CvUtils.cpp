@@ -1,6 +1,10 @@
 #include "CvUtils.h"
 #include <ros/package.h>
 
+#define PI 3.14159265
+
+DepthFaceDetector depth_face_detector;
+
 const static Scalar colors[] =
 {
   CV_RGB ( 0, 0, 255 ),
@@ -262,7 +266,7 @@ Rect CvUtils::enlarge_window ( Rect orgrect, Mat image, double scale )
   return window;
 }
 
-cv::Rect CvUtils::enlarge_window_width ( Rect orgrect, Mat image, double scale )
+Rect CvUtils::enlarge_window_width ( Rect orgrect, Mat image, double scale )
 {
   Rect window;
   Point center = get_rect_centre ( orgrect );
@@ -275,7 +279,7 @@ cv::Rect CvUtils::enlarge_window_width ( Rect orgrect, Mat image, double scale )
   return window;
 }
 
-cv::Rect CvUtils::enlarge_window_height ( Rect orgrect, Mat image, double scale )
+Rect CvUtils::enlarge_window_height ( Rect orgrect, Mat image, double scale )
 {
   Rect window;
   Point center = get_rect_centre ( orgrect );
@@ -286,4 +290,226 @@ cv::Rect CvUtils::enlarge_window_height ( Rect orgrect, Mat image, double scale 
   window = window & bounds;
 
   return window;
+}
+
+double CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position )
+{
+  double torso_orientation = 0.0;
+
+  unsigned short thresh = 100;        // Threshold to differentiate person from background
+  unsigned short diff = 0;            // Difference among pixel intensities
+  int margin = 15;                    // extra margin for background
+  int current = head_position.y;      // current pixel location
+  int next = head_position.y - 1;     // next pixel location
+  int ref = depth_image.cols / 2;     // reference variable which divides image in two parts
+
+  unsigned short cur_int = 0;
+  unsigned short nex_int = 0;
+
+  while ( diff < thresh )
+    {
+      cur_int = depth_image.at<unsigned short> ( current, head_position.x );
+      nex_int = depth_image.at<unsigned short> ( next, head_position.x );
+      diff = abs ( nex_int - cur_int );
+      current = next;
+      next--;
+
+      if ( next == 0 )
+        {
+          break;
+        }
+    }
+ 
+  int y_find = 1.5 * ( head_position.y - next ) + head_position.y;
+
+  int next_left = 0;
+  int next_right = 0;
+  
+  if ( head_position.x >  ref )    // center of the head at the right of the middle of the image   
+    {                              // move to left
+      current = head_position.x;
+      next_left = head_position.x - 1;
+      diff = 0.0;
+      while ( diff < thresh )
+        {
+          cur_int = depth_image.at<unsigned short> ( y_find, current );
+          nex_int = depth_image.at<unsigned short> ( y_find, next_left );
+          diff = abs ( nex_int - cur_int );
+          current = next_left;
+          next_left--;
+          if ( next_left == 0 )
+            {
+              break;
+            }
+        }
+    }
+  else        // center of the head at the left of the middle of the image
+    {         // move to right
+      current = head_position.x;
+      next_right = head_position.x + 1;
+      diff = 0.0;
+
+      while ( diff < thresh )
+        {
+          cur_int = depth_image.at<unsigned short> ( y_find, current );
+          nex_int = depth_image.at<unsigned short> ( y_find, next_right );
+          diff = abs ( nex_int - cur_int );
+          current = next_right;
+          next_right++;
+
+          if ( next_right == depth_image.cols )
+            {
+              break;
+            }
+        }
+    }
+ 
+  int x_cor = 0;     // x-coordinate of the center of the image
+  int box_w = 0;     // width of the bounding box
+
+  if ( head_position.x >  ref )    // center of the head at the right of the middle of the image
+    {
+      x_cor = next_left - margin;
+      box_w = 2 * ( head_position.x - next_left ) + 2 * margin;
+
+      if ( ( x_cor + box_w ) > ( depth_image.cols - 1 ) ) // width overpasses the image size
+        {
+          box_w = depth_image.cols - x_cor - 1;
+        }
+    }
+  else        // center of the head at the left of the middle of the image
+    {
+      x_cor = head_position.x - ( next_right - head_position.x ) - margin;
+      box_w = 2 * ( head_position.x - x_cor ) + 2 * margin;
+
+      if ( x_cor < 0 )  // corner results out of the image
+        {
+          x_cor = 0;
+          box_w = next_right + 2 * margin;
+        }
+    }
+
+  //***************************** Torso orientation Angle **************************
+
+  // These x-coordinates replace extreme points
+  int x1 = x_cor + ( 0.25 * double ( box_w ) );    // left point
+  int x2 = x_cor + ( 0.75 * double ( box_w ) );    // right point
+
+  // Reading depth values from Depth image
+  unsigned short d1 = depth_image.at<unsigned short> ( y_find, x1 );
+  unsigned short d2 = depth_image.at<unsigned short> ( y_find, x2 );
+
+  double z1 = double ( d1 );  // depth coordinate of point 1
+  double z2 = double ( d2 );  // depth coordinate of point 2
+
+  double delta_z = abs ( z2 - z1 ); // difference of depths
+
+  x1 = double ( x1 );     // x- coordinate point 1
+  x2 = double ( x2 );     // x- coordinate point 2
+  double y = double ( y_find );
+
+  //****************************** Transformation **********************************
+  // Transformation matrix for camera calibration
+  Mat Tmatrix = ( Mat_<double> ( 4,3 ) << 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0 );
+
+  // Points on camera frame
+
+  Mat p1 = ( Mat_<double> ( 3,1 ) << x1, y, 1 ); // POint 1
+  Mat p2 = ( Mat_<double> ( 3,1 ) << x2, y, 1 );  // Point 2
+
+  Mat pxyz1, pxyz2;
+
+  pxyz1 = Tmatrix * p1 ;
+  pxyz1 = Tmatrix * p2;
+
+  double py1 = pxyz1.at<double> ( 2, 1 );
+  double py2 = pxyz1.at<double> ( 2, 1 );
+
+  //*********************************** end ****************************************
+
+  //double delta_y = abs(py2 - py1);  // person width
+  double delta_y = 500;   // just for testing
+
+  double theta = 0.0;     // Angle of Orientation
+
+  if ( z1 > z2 )
+    {
+      theta = atan ( delta_z / delta_y ) * 180 / PI;
+    }
+  else
+    {
+      theta = -atan ( delta_z / delta_y ) * 180 / PI;
+    }
+ 
+  return torso_orientation;
+}
+
+void CvUtils::write_results_to_file ( string file_name, vector<vector<Rect> > rois )
+{
+  string rect_file = file_name;
+  rect_file.append ( "_rects.yaml" );
+  string centre_file = file_name;
+  centre_file.append ( "_centre.yaml" );
+  FileStorage fsr ( rect_file, FileStorage::WRITE );
+  FileStorage fsc ( centre_file, FileStorage::WRITE );
+  fsr << "roi" << "[";
+  fsc << "center" << "[";
+  for ( unsigned int i = 0; i < rois.size(); i++ )
+    {
+      fsr << "{:" << "length" << ( int ) rois[i].size() << "rects" << "[:";
+      fsc << "{:" << "length" << ( int ) rois[i].size() << "points" << "[:";
+      for ( unsigned int j = 0; j < rois[i].size(); j++ )
+        {
+          fsr << "{:" << "x" << rois[i].at ( j ).x << "y" << rois[i].at ( j ).y << "w" << rois[i].at ( j ).width << "h" << rois[i].at ( j ).height << "}";
+          Point center = get_rect_centre ( rois[i].at ( j ) );
+          fsc << "{:" << "x" << center.x << "y" << center.y << "}";
+        }
+      fsr << "]" << "}";
+      fsc << "]" << "}";
+    }
+  fsr.release();
+  fsc.release();
+}
+
+void CvUtils::read_from_file ( string filename, vector<vector<Point> > *rois )
+{
+  FileStorage fs ( filename, FileStorage::READ );
+  FileNode centers = fs["center"];
+  FileNodeIterator it = centers.begin(), it_end = centers.end();
+
+  for ( ; it != it_end; ++it )
+    {
+      int length = ( int ) ( *it ) ["length"];
+      FileNode points_fn = ( *it ) ["points"];
+      FileNodeIterator itp = points_fn.begin(), itp_end = points_fn.end();
+      vector<Point> points ( length );
+      for ( unsigned i = 0 ; itp != itp_end; ++itp, i++ )
+        {
+          int x = ( int ) ( *itp ) ["x"];
+          int y = ( int ) ( *itp ) ["y"];
+          points[i] = Point ( x, y );
+        }
+      rois->push_back ( points );
+    }
+  fs.release();
+}
+
+void CvUtils::write_results_to_file ( string file_name, vector<Rect> rois )
+{
+  string rect_file = file_name;
+  rect_file.append ( "_rects.yaml" );
+  string centre_file = file_name;
+  centre_file.append ( "_centre.yaml" );
+  FileStorage fsr ( rect_file, FileStorage::WRITE );
+  FileStorage fsc ( centre_file, FileStorage::WRITE );
+  fsr<<"roi"<<"[";
+  fsc<<"center"<<"[";
+  for ( unsigned int i = 0; i < rois.size(); i++ )
+    {
+      fsr << "{:"<< "x" << rois[i].x << "y" << rois[i].y << "w" << rois[i].width << "h" << rois[i].height <<"}";
+      Point center ( rois[i].x + ( rois[i].width / 2 ), rois[i].y + ( rois[i].height / 2 ) );
+      fsc << "{:"<< "x" << center.x << "y" << center.y <<"}";
+    }
+  fsr.release();
+  fsc.release();
 }

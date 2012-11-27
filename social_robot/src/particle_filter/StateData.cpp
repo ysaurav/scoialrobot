@@ -22,8 +22,8 @@ void StateData::tracking ( double cost )
   is_associated = false;
   detection_confidence = detection_confidence - cost;
   // TODO: fix the size
-//   cout << "Scale: " << filter->get_estimated_scale() << " size: " << selection.size().width << "," << selection.size().height << endl;
-  Size target_size ( selection.size().width * filter->get_estimated_scale(), selection.size().height * filter->get_estimated_scale() );
+//   Size target_size ( selection.size().width * filter->get_estimated_scale(), selection.size().height * filter->get_estimated_scale() );
+  Size target_size = selection.size();
   filter->update ( image, image_depth, target_size, target_histogram, hist_type );
 }
 
