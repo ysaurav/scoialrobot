@@ -63,9 +63,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step10.png
 == Limitations ==
 
  # The algorithm can not deal with problems of occlusion. It means, when there are persons on the scene that appears overlapped among each other, there is not enough information to differentiate them.
-
- # When the detected persons appear to be located at a high distance from the kinect, their depth information is very close to background. Hence, the computed angle can be overestimated.
-
+ # When the detected persons appear to be located at a far distance from the kinect, their depth information is very close to background. Hence, the computed angle can be overestimated.
  # If the detected person assumes very particular poses, the angle of orientation could not give an accurate estimate.
 
 == Improvements ==
