@@ -105,7 +105,7 @@ void disparity_cb ( const stereo_msgs::DisparityImageConstPtr& msg )
         {
           return;
         }
-      if ( framenum == update_rate )
+      if ( framenum >= update_rate )
         {
           framenum = 0;
           vector<Rect> depthfaces = cv_utils.detect_face_depth ( image_depth, image_disparity );

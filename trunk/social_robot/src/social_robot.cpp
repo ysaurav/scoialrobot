@@ -35,7 +35,7 @@ ros::Subscriber depth_rois_sub;
 
 double track_thr = 75;
 double confidence_level_thr = 0.50;
-double detection_confidence_thr = 0.75;
+double detection_confidence_thr = 0.80;
 int num_particles = 300;
 int rgb_framenum = 0;
 int rgb_update_rate = 15;
@@ -54,6 +54,7 @@ bool use_colour = false;
 bool use_depth = false;
 
 vector<StateData> state_datas;
+vector<vector <Rect> > results;
 
 CvUtils cv_utils;
 
@@ -83,12 +84,13 @@ void check_update_rate_frequency ( void )
 }
 
 void publish_data ( void )
-{
+{  
   vector<Rect> detected_faces ( state_datas.size() );
   for ( unsigned int i = 0; i < state_datas.size(); i++ )
     {
       detected_faces[i] = state_datas[i].get_target_position();
     }
+  results.push_back(detected_faces);  
   vector<RegionOfInterest> rosrois = ros_utils.cvrects2rosrois ( detected_faces );
   depth_pub_rois.rois.swap ( rosrois );
   depth_pub.publish ( depth_pub_rois );
@@ -103,7 +105,12 @@ void do_tracking ( void )
       it->image = image_rgb;
       it->tracking ( 0.02 );
 
-      if ( it->detection_confidence < ( detection_confidence_thr / 2 ) )
+      if ( it->filter->confidence() == 0.0 )
+        {
+          cout << "TOO BIG\n";
+          it = state_datas.erase ( it );
+        }
+      else if ( it->detection_confidence < ( detection_confidence_thr / 2 ) )
         {
           if ( cv_utils.is_there_face_rgb ( image_rgb, it->get_target_position() ) )
             {
@@ -177,6 +184,7 @@ void data_association ( vector<Rect> &faces )
 bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
 {
   ROS_INFO ( "Updating parameter of social_robot" );
+  cv_utils.write_results_to_file ( "arash", results );
 
   double confidence_level_thr_tmp = confidence_level_thr;
   double detection_confidence_thr_tmp = detection_confidence_thr;
@@ -218,7 +226,7 @@ void rgb_cb ( const ImageConstPtr& msg )
       if ( use_colour )
         {
           rgb_framenum++;
-          if ( rgb_framenum == rgb_update_rate )
+          if ( rgb_framenum >= rgb_update_rate )
             {
               rgb_framenum = 0;
               vector<Rect> rgb_faces = cv_utils.detect_face_rgb ( image_rgb );
@@ -250,7 +258,7 @@ void disparity_cb ( const stereo_msgs::DisparityImageConstPtr& msg )
             {
               return;
             }
-          if ( depth_framenum == depth_update_rate )
+          if ( depth_framenum >= depth_update_rate )
             {
               depth_framenum = 0;
               vector<Rect> depth_faces = cv_utils.detect_face_depth ( image_depth, image_disparity );

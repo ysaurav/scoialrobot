@@ -33,7 +33,7 @@ class DepthFaceDetector
     vector<Point3f> chamfer_matching ( Mat image, Mat template_im );
     vector<PixelSimilarity> compute_headparameters ( Mat image, vector<Point3f> chamfer );
     vector<PixelSimilarity> false_positives ( vector<PixelSimilarity> tmpparams, int thr, int thr2 );
-    void match_template3D ( Mat image_disparity, vector<PixelSimilarity> potentials, vector<PixelSimilarity> *heads,int n );
+    void match_template3D ( Mat image_disparity, vector<PixelSimilarity> potentials, vector<PixelSimilarity> *heads, int n );
     vector<PixelSimilarity> merge_rectangles ( vector<PixelSimilarity> tmpcont );
     bool checkDimensions ( Mat depth );
 

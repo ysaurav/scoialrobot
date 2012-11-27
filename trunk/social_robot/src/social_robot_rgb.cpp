@@ -51,7 +51,7 @@ void rgb_cb ( const ImageConstPtr& msg )
       framenum++;
       Mat image_rgb = cv_bridge::toCvCopy ( msg, enc::BGR8 )->image;
 
-      if ( framenum == update_rate )
+      if ( framenum >= update_rate )
         {
           framenum = 0;
           vector<Rect> rgbfaces = cv_utils.detect_face_rgb ( image_rgb );

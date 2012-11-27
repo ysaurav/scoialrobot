@@ -132,6 +132,12 @@ Mat& ParticleFilter::update ( Mat& image, Mat& depth_image, const cv::Size& targ
         }
     }
 
+  // TODO: put it in a better place, to get rid of big rectangles.
+//   if ( region.width > 150 || region.height > 150 )
+//     {
+//       m_mean_confidence = 0.0;
+//     }
+
   return m_state;
 }
 

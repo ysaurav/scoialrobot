@@ -54,14 +54,20 @@ class CvUtils
     bool is_there_face_depth ( Mat &depth_image, Mat &disparity_image, Rect rect );
     vector<Rect> detect_face_rgb ( Mat image );
     vector<Rect> detect_face_depth ( Mat depth_image, Mat disparity_image );
-    
+
     Rect enlarge_window ( Rect orgrect, Mat image, double scale = 2.0 );
     Rect enlarge_window_width ( Rect orgrect, Mat image, double scale = 2.0 );
     Rect enlarge_window_height ( Rect orgrect, Mat image, double scale = 2.0 );
 
+    double compute_torso_orientation ( Mat depth_image, Point head_position );
+
+    void write_results_to_file ( string file_name, vector<vector<Rect> > rois );
+    void write_results_to_file ( string file_name, vector<Rect> rois );
+    
+    void read_from_file ( string filename, vector<vector<Point> > *rois );
+
   private:
     CascadeClassifier classifier;
-    DepthFaceDetector depth_face_detector;
   };
 
 #endif // CVUTILS_H
