@@ -1,3 +1,5 @@
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
+
 = Getting Started with KINECT =
 
 First of all, let us introduce the device used in this project: _Kinect_ .
