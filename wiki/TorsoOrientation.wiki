@@ -61,3 +61,13 @@ Once these points have been transformed in real world, we proceed to compute the
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step10.png
 
 == Limitations ==
+
+ # The algorithm can not deal with problems of occlusion. It means, when there are persons on the scene that appears overlapped among each other.
+
+ # When the detected persons appear to be located at a high distance from the kinect, their depth information is very close to background. Hence, the computed angle can be overestimated.
+
+ # If the detected person assumes very particular poses, the angle of orientation could not give an accurate estimate.
+
+== Improvements ==
+
+ # The use of statistical metrics, i.e. first and second order moments, to estimate the points in the torso orientation. However, statistical methods does not consider the shape of the class.
