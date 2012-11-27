@@ -5,11 +5,13 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
 
 == Introduction==
 
-The pose estimation of the head can be estimated from pixel location in the image by using the extrinsic and intrinsic parameters of the camera calibration. One of the advantages of kinect, is the generation of range images that provide 3D information. In this site, we will explain how to use this information to compute of torso orientation.
+The pose estimation of the head can be estimated from pixel location in the image by using the extrinsic and intrinsic parameters of the camera calibration. However, the angle that describes torso orientation can be a challenging problem, if a 3D model is not available.
+One of the advantages of kinect, is the generation of range images that provide 3D information. In this site, we will explain how to use this information to compute the angle of torso orientation by using a very straighforward algorithm.
 
 == Algorithm ==
 
 ===Step 1:  ===
+
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step1.png
 ===Step 2:  === 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step2.png
