@@ -26,6 +26,6 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/supervisors.p
 
 *Raquel Gil*
 
-*[eduardo127@gmail.com Eduardo Tusa]*
+*[https://plus.google.com/u/0/109236407936016102107/posts Eduardo Tusa]*
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/members.png
