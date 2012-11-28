@@ -70,3 +70,21 @@ For tracking we're performing particle filter, explained in [Tracking tracking] 
 == User interface ==
 
 We have implemented a simple QT application, in which user can select the view change the parameters, etc. The intention is mainly for testing purposes.
+
+= Rationale =
+
+We have tried to achieve many quality attributes in our software architecture.
+
+== Modularity ==
+
+The architecture of our programme is designed in a manner which makes them as modular as possible. This means each topic has a specific task to do. This makes it very usable for any other usage, e.g. if someone just to use our face detector in RGB or depth independently they can simply do so.
+
+Additionally, new components can be easily added to the system and current components can easily replaced. The architecture is designed in a low-couple manner, this means simply you can plug-in new modules.
+
+== Robustness ==
+
+If one components stops working, let's say the depth detector, other components can continue to perform their tasks. This means crashing in one area doesn't influence the entire system.
+
+== Parallelism ==
+
+Detection and tracking are both very heavy computationally speaking. With our design each of these modules are run in one thread and therefore the speed is much better. This also gives the opportunity to work in a distributed system. Detections can happen from multiple on-line cameras and send the results to tracking.
