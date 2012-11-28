@@ -22,6 +22,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
   * [TorsoOrientation Torso Orientation]
  # [#Implementation Implementation]
   * [Kinect Getting Started with Kinect]
+  * [Installation Installation]
   * [SoftwareArchitecture Software Architecture]
   * [http://scoialrobot.googlecode.com/svn/trunk/social_robot/documentation/html/index.html Documentation]
  # [#Demo Demo]
@@ -69,6 +70,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/scheme.png
 == Demo ==
 == Implementation ==
  * [Kinect Getting Started with Kinect]
+ * [Installation Installation]
  * [SoftwareArchitecture Software Architecture]
  * [http://scoialrobot.googlecode.com/svn/trunk/social_robot/documentation/html/index.html Documentation]
 == Conclusions ==
