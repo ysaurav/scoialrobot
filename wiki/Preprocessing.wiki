@@ -19,20 +19,13 @@ For both images it is applied inpainting to fill the holes. It is the best appro
 
 ==Disparity== 
 
-Before preprocessing
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/disparity_prepro.png
 
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/disparity_before.png
+Before preprocessing & After preprocessing
 
-After preprocessing
-
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/disparity_after.png
 
 ==Depth== 
 
-Before preprocessing
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/depth_prepro.png
 
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/depth_before.png
-
-After preprocessing
-
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/depth_after2.png
+Before preprocessing & After preprocessing
