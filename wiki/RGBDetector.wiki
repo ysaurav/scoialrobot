@@ -1,7 +1,7 @@
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
 
 = Multicascade =
-
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/met7.png
 
 = Introduction =
 
