@@ -1,8 +1,7 @@
 #summary table of contents
 
- * [#Introduction Introduction]
- * [#Problem_Statement Problem Statement]
- * [#Method Method]
+ * [Initialpage Main]
+ * Algorithm
   * [Preprocessing]
   * [Matchingdistance 2D Chamfer Matching Distance]
   * [HeadParameters Head Parameters Estimation]
