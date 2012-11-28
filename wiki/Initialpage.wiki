@@ -57,6 +57,7 @@ Humans can easily estimate the head pose of an interaction partner, but for a co
 Many methods have been used to generate a head pose estimation. Appearance-based methods consider the image region of the face as a whole, while Feature-based methods extract from the actual region and recover low-dimensional features (position of facial features). Both techniques can be combined in order to track facial features.
 
 == Method ==
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/scheme.png
  * [Preprocessing]
  * [Matchingdistance 2D Chamfer Matching Distance]
  * [HeadParameters Head Parameters Estimation]
