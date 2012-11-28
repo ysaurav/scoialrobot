@@ -32,4 +32,4 @@ We discard low matchings based on a threshold.
 
 = Results =
 
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/final.png
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/final_result.png
