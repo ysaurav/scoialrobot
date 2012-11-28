@@ -24,8 +24,8 @@ void read_from_file ( string filename, vector<Point> &rois )
 
   for ( ; it != it_end; ++it, idx++ )
     {
-     // cout << "frame #" << idx << ": ";
-     // cout << "x=" << ( int ) ( *it ) ["x"] << ", y=" << ( int ) ( *it ) ["y"] << "\n";
+      // cout << "frame #" << idx << ": ";
+      // cout << "x=" << ( int ) ( *it ) ["x"] << ", y=" << ( int ) ( *it ) ["y"] << "\n";
       int x = ( int ) ( *it ) ["x"];
       int y = ( int ) ( *it ) ["y"];
       rois.push_back ( Point ( x,y ) );
@@ -34,7 +34,7 @@ void read_from_file ( string filename, vector<Point> &rois )
 }
 /**<
 * This function reads from a .yaml file the coordinates of the center of ROI
-* @return 
+* @return
 * @param file_name A string file containing the input file
 * @param rois A vector of Points containing the centers of ROI.
  */
@@ -60,40 +60,33 @@ void write_to_file ( string filename, vector<double> rois, double mse )
 }
 /**<
 * This function writes the distance and MSE between ground-truth and tracking results to a .yaml file
-* @return 
+* @return
 * @param file_name A string file containing the output file
 * @param rois A vector of doubles containing the distances.
 * @param mse The Mean Square Error.
  */
 
-void create_combine_gt_vector(vector<string> filenames, vector<vector<Point> > &total_gt)
+void create_combine_gt_vector ( vector<string> filenames, vector<vector<Point> > &total_gt )
 {
-  
- 
-  for (int i = 0; i<filenames.size();i++)
-  {   
+  for ( unsigned int i = 0; i < filenames.size(); i++ )
+    {
       vector<Point> gt;
       read_from_file ( filenames[i], gt );
-    
-      for (uint g=0;g<gt.size();g++)
-      {
-	 vector<Point> points;
-	 if (total_gt.size() > g)
-	 {
-	    points.swap(total_gt[g]);
-	 }
-	 points.push_back(gt[g]);
-	total_gt.push_back(points);
-      }
-      cout<<"1\n";
-  }
-  cout<<"2\n";
-  
- 
-  
+
+      for ( uint g=0;g<gt.size();g++ )
+        {
+          vector<Point> points;
+          if ( total_gt.size() > g )
+            {
+              points.swap ( total_gt[g] );
+            }
+          points.push_back ( gt[g] );
+          total_gt.push_back ( points );
+        }
+    }
 }
 
-void gt_tracking_comparison(vector<Point> gt, vector<Point>tracking, string filename)
+void gt_tracking_comparison ( vector<Point> gt, vector<Point>tracking, string filename )
 {
 
   // Compute distance
@@ -123,16 +116,16 @@ void gt_tracking_comparison(vector<Point> gt, vector<Point>tracking, string file
   double MSE = s_mse/size_d;
   cout<<"\n \n Mean squar error: "<<MSE<<"\n";
 
-  write_to_file (filename, distance, MSE );
+  write_to_file ( filename, distance, MSE );
 }
 
 void help()
 {
-    cout << "\nThis program computes the distance between ground-truth and tracking algorithm and also the Mean Square Error.\n"
-			"The program saves to .yaml file  the results.\n"
-			"Notice: the program has an optional input, an image frame, in order to display the input information.\n"
-			"Usage: \n"
-            "	./compare [ground_truth.yaml file] [tracking_result.yaml file] [optional:image]\n";
+  cout << "\nThis program computes the distance between ground-truth and tracking algorithm and also the Mean Square Error.\n"
+       "The program saves to .yaml file  the results.\n"
+       "Notice: the program has an optional input, an image frame, in order to display the input information.\n"
+       "Usage: \n"
+       "  ./compare [ground_truth.yaml file] [tracking_result.yaml file] [optional:image]\n";
 
 }
 
@@ -140,30 +133,30 @@ int main ( int argc, const char** argv )
 {
 
   help();
-  
+
   vector<Point>tracking;
   read_from_file ( argv[1],tracking );
-  
+
   vector<string> filenames;
-    int n;    
+  int n;
   cout<<"Please give the number of ground-truth files: \n";
   cin >> n;
-  
+
   string filename;
-  for (int i=0;i<n;i++)
-  {
-    cout<<"\n Please give the name of the ground-truth file: ";
-    cin>> filename;
-    
-    filenames.push_back(filename);
-    
-  }
-  
+  for ( int i=0;i<n;i++ )
+    {
+      cout<<"\n Please give the name of the ground-truth file: ";
+      cin>> filename;
+
+      filenames.push_back ( filename );
+
+    }
+
   vector<vector<Point> > total_gt;
-  create_combine_gt_vector(filenames, total_gt);
+  create_combine_gt_vector ( filenames, total_gt );
 
 
-  gt_tracking_comparison(total_gt, tracking, argv[2]);
+  gt_tracking_comparison ( total_gt, tracking, argv[2] );
   waitKey ( 0 );
 
   return 1;

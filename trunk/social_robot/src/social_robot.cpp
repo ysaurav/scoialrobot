@@ -45,6 +45,8 @@ int high_frequency = 2;
 int low_frequency = 12;
 int external_update_rate = high_frequency;
 
+string results_filename = "default_results";
+
 Mat image_disparity;
 Mat image_depth;
 Mat image_rgb;
@@ -54,7 +56,7 @@ bool use_colour = false;
 bool use_depth = false;
 
 vector<StateData> state_datas;
-vector<vector <Rect> > results;
+vector<vector<Rect> > results;
 
 CvUtils cv_utils;
 
@@ -183,8 +185,7 @@ void data_association ( vector<Rect> &faces )
 
 bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
 {
-  ROS_INFO ( "Updating parameter of social_robot" );
-  cv_utils.write_results_to_file ( "arash", results );
+  ROS_INFO ( "Updating parameter of social_robot" );  
 
   double confidence_level_thr_tmp = confidence_level_thr;
   double detection_confidence_thr_tmp = detection_confidence_thr;
@@ -348,6 +349,8 @@ int main ( int argc, char **argv )
 
 //   spinner.spin();
   ros::spin();
+  
+  cv_utils.write_results_to_file ( results_filename, results );
 
   return 0;
 }

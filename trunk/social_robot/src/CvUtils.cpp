@@ -1,4 +1,5 @@
 #include "CvUtils.h"
+#include "string_utils.h"
 #include <ros/package.h>
 
 #define PI 3.14159265
@@ -319,13 +320,13 @@ double CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position
           break;
         }
     }
- 
+
   int y_find = 1.5 * ( head_position.y - next ) + head_position.y;
 
   int next_left = 0;
   int next_right = 0;
-  
-  if ( head_position.x >  ref )    // center of the head at the right of the middle of the image   
+
+  if ( head_position.x >  ref )    // center of the head at the right of the middle of the image
     {                              // move to left
       current = head_position.x;
       next_left = head_position.x - 1;
@@ -363,7 +364,7 @@ double CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position
             }
         }
     }
- 
+
   int x_cor = 0;     // x-coordinate of the center of the image
   int box_w = 0;     // width of the bounding box
 
@@ -440,7 +441,7 @@ double CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position
     {
       theta = -atan ( delta_z / delta_y ) * 180 / PI;
     }
- 
+
   return torso_orientation;
 }
 
@@ -471,6 +472,42 @@ void CvUtils::write_results_to_file ( string file_name, vector<vector<Rect> > ro
   fsc.release();
 }
 
+void CvUtils::write_results_to_file ( string file_name, vector<Rect> rois )
+{
+  string rect_file = file_name;
+  rect_file.append ( "_rects.yaml" );
+  string centre_file = file_name;
+  centre_file.append ( "_centre.yaml" );
+  FileStorage fsr ( rect_file, FileStorage::WRITE );
+  FileStorage fsc ( centre_file, FileStorage::WRITE );
+  fsr<<"roi"<<"[";
+  fsc<<"center"<<"[";
+  for ( unsigned int i = 0; i < rois.size(); i++ )
+    {
+      fsr << "{:"<< "x" << rois[i].x << "y" << rois[i].y << "w" << rois[i].width << "h" << rois[i].height <<"}";
+      Point center ( rois[i].x + ( rois[i].width / 2 ), rois[i].y + ( rois[i].height / 2 ) );
+      fsc << "{:"<< "x" << center.x << "y" << center.y <<"}";
+    }
+  fsr.release();
+  fsc.release();
+}
+
+void CvUtils::write_to_file ( string filename, vector<double> rois, double mse )
+{
+  string distance_file = filename;
+  distance_file.append ( "_dist.yaml" );
+
+  FileStorage fsr ( distance_file, FileStorage::WRITE );
+  fsr << "MSE " << mse;
+  fsr << "distance" << "[";
+
+  for ( unsigned int i = 0; i < rois.size(); i++ )
+    {
+      fsr << "{:" << "d" << rois[i] << "}";
+    }
+  fsr.release();
+}
+
 void CvUtils::read_from_file ( string filename, vector<vector<Point> > *rois )
 {
   FileStorage fs ( filename, FileStorage::READ );
@@ -494,22 +531,156 @@ void CvUtils::read_from_file ( string filename, vector<vector<Point> > *rois )
   fs.release();
 }
 
-void CvUtils::write_results_to_file ( string file_name, vector<Rect> rois )
+void CvUtils::read_from_file ( string filename, vector<Point> &rois )
 {
-  string rect_file = file_name;
-  rect_file.append ( "_rects.yaml" );
-  string centre_file = file_name;
-  centre_file.append ( "_centre.yaml" );
-  FileStorage fsr ( rect_file, FileStorage::WRITE );
-  FileStorage fsc ( centre_file, FileStorage::WRITE );
-  fsr<<"roi"<<"[";
-  fsc<<"center"<<"[";
-  for ( unsigned int i = 0; i < rois.size(); i++ )
+  FileStorage fs ( filename, FileStorage::READ );
+  FileNode features = fs["center"];
+  FileNodeIterator it = features.begin(), it_end = features.end();
+
+  for ( ; it != it_end; ++it )
     {
-      fsr << "{:"<< "x" << rois[i].x << "y" << rois[i].y << "w" << rois[i].width << "h" << rois[i].height <<"}";
-      Point center ( rois[i].x + ( rois[i].width / 2 ), rois[i].y + ( rois[i].height / 2 ) );
-      fsc << "{:"<< "x" << center.x << "y" << center.y <<"}";
+      int x = ( int ) ( *it ) ["x"];
+      int y = ( int ) ( *it ) ["y"];
+      rois.push_back ( Point ( x,y ) );
     }
-  fsr.release();
-  fsc.release();
+  fs.release();
+}
+
+void CvUtils::compare_gt_results ( vector< vector< Point > > gt, vector< vector< Point > > results )
+{
+  unsigned int nframes = results.size();
+  if ( nframes == 0 )
+    {
+      // nothing to be compares
+      return;
+    }
+  unsigned int npeople = gt[0].size();
+
+  vector< vector< Point > > gt_per_person ( npeople );
+  vector< vector< Point > > results_per_person ( npeople );
+  vector< vector< Point > > outliers_per_frame ( nframes );
+
+  for ( unsigned int i = 0; i < nframes; i++ )
+    {
+      vector<Point> outliers;
+      vector<Point> matching;
+      data_association ( gt[i], results[i], &matching, &outliers );
+      for ( unsigned int j = 0; j < npeople; j++ )
+        {
+          gt_per_person[j].push_back ( gt[i].at ( j ) );
+          results_per_person[j].push_back ( matching[j] );
+        }
+      outliers_per_frame.push_back ( outliers );
+    }
+  for ( unsigned int j = 0; j < npeople; j++ )
+    {
+      string file_name = "results";
+      file_name.append ( inttostr ( j ) );
+      compare_gt_results ( gt_per_person[j], results_per_person[j], file_name );
+    }
+}
+
+void CvUtils::compare_gt_results ( vector<Point> gt, vector<Point>results, string filename )
+{
+  // Compute distance
+
+  vector<double> distance;
+  double d;
+  double sum;
+  for ( unsigned int i = 0; i < results.size(); i++ )
+    {
+      d = euclidean_distance ( gt[i], results[i] );
+      distance.push_back ( d );
+      sum += d;
+    }
+
+  // Compute mean of distances
+
+  double size_d = results.size();
+  double mean_d = sum/size_d;
+
+  // Compute MSE
+  double s_mse = 0;
+  for ( int i = 0; i<size_d;i++ )
+    {
+      s_mse += pow ( distance[i],2 );
+    }
+
+  double MSE = s_mse/size_d;
+  cout<<"\n \n Mean squar error: " << MSE << "\n";
+
+  write_to_file ( filename, distance, MSE );
+}
+
+void CvUtils::data_association ( vector<Point> a, vector<Point> b, vector<Point> *matching, vector<Point> *outliers )
+{
+  Mat mat_compare ( a.size(), b.size(), CV_32F );
+  float result;
+  double minVal, maxVal;
+  Point minLoc, maxLoc;
+
+  if ( b.empty() )
+    {
+      for ( unsigned int i = 0; i < a.size(); i++ )
+        {
+          matching->push_back ( Point ( 0, 0 ) );
+        }
+      return;
+    }
+
+  for ( unsigned int i = 0; i < a.size(); i++ )
+    {
+      for ( unsigned int j = 0; j < b.size(); j++ )
+        {
+          result = euclidean_distance ( a[i], b[j] );
+          mat_compare.at<float> ( i, j ) = result;
+        }
+    }
+
+  vector<unsigned int> min_locations ( b.size() );
+  for ( int k = 0; k < mat_compare.rows; k++ )
+    {
+      minMaxLoc ( mat_compare.row ( k ), &minVal, &maxVal, &minLoc, &maxLoc );
+      if ( minVal < 75 )
+        {
+          matching->push_back ( b[minLoc.x] );
+          min_locations[minLoc.x] = 1;
+        }
+      else
+        {
+          matching->push_back ( Point ( 0, 0 ) );
+        }
+    }
+
+  for ( unsigned int k = 0; k < min_locations.size(); k++ )
+    {
+      if ( min_locations[k] == 0 )
+        {
+          outliers->push_back ( b[k] );
+        }
+    }
+
+}
+
+void CvUtils::create_combine_gt_vector ( vector<string> filenames, vector<vector<Point> > &total_gt )
+{
+  for ( unsigned int i = 0; i < filenames.size(); i++ )
+    {
+      vector<Point> gt;
+      read_from_file ( filenames[i], gt );
+
+      for ( unsigned int g = 0; g < gt.size(); g++ )
+        {
+          if ( total_gt.size() > g )
+            {
+              total_gt[g].push_back ( gt[g] );
+            }
+          else
+            {
+              vector<Point> points;
+              points.push_back ( gt[g] );
+              total_gt.push_back ( points );
+            }
+        }
+    }
 }

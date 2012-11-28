@@ -63,8 +63,16 @@ class CvUtils
 
     void write_results_to_file ( string file_name, vector<vector<Rect> > rois );
     void write_results_to_file ( string file_name, vector<Rect> rois );
+    void write_to_file ( string filename, vector<double> rois, double mse );
     
     void read_from_file ( string filename, vector<vector<Point> > *rois );
+    void read_from_file ( string filename, vector<Point> &rois );
+    
+    void compare_gt_results ( vector<vector<Point> > gt, vector<vector<Point> > results );
+    void compare_gt_results ( vector<Point> gt, vector<Point> results, string filename );
+    void data_association ( vector<Point> a, vector<Point> b, vector<Point> *matching, vector<Point> *outliers );
+    
+    void create_combine_gt_vector ( vector<string> filenames, vector<vector<Point> > &total_gt );
 
   private:
     CascadeClassifier classifier;
