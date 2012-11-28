@@ -3,7 +3,7 @@
  * [Initialpage Main]
  * Algorithm
   * [Preprocessing]
-  * [Matchingdistance 2D Chamfer Matching Distance]
+  * [Matchingdistance 2D Chamfer Distance Matching]
   * [HeadParameters Head Parameters Estimation]
   * [FalsePositivesRemoval False Positives Removal]
   * [RGBDetector Detection in the RGB Image]
