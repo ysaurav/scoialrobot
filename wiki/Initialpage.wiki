@@ -16,6 +16,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
   * [Preprocessing]
   * [Matchingdistance 2D Chamfer Matching Distance]
   * [HeadParameters Head Parameters Estimation]
+  * [FalsePositivesRemoval False Positive Removal]
   * [TorsoOrientation Torso Orientation]
   * [Tracking]
  # [#Implementation Implementation]
@@ -59,6 +60,7 @@ Many methods have been used to generate a head pose estimation. Appearance-based
  * [Preprocessing]
  * [Matchingdistance 2D Chamfer Matching Distance]
  * [HeadParameters Head Parameters Estimation]
+ * [FalsePositivesRemoval False Positive Removal]
  * [TorsoOrientation Torso Orientation]
  * [Tracking]
 == Demo ==
