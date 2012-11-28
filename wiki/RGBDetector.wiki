@@ -25,7 +25,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/adding_3.png
 
 Haar features are based on Haar basis functions. Within any image subwindow the total number of Harr-like features is very large, far larger than the number of pixels. The resolution of the detector is 24x24, the exhaustive set of rectangle features is quite large, over 180,000. Using integral images makes faster the computational time.
 
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/haarcascade.png
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/haarcascade_f.png
 
 == Cascade of classifiers ==
 
