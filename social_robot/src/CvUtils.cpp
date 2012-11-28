@@ -469,6 +469,25 @@ void CvUtils::write_results_to_file ( string file_name, vector<vector<Rect> > ro
   fsc.release();
 }
 
+void CvUtils::write_results_to_file ( string file_name, vector< vector< Point > > points, double outliers_ratio )
+{
+  string centre_file = file_name;
+  centre_file.append ( "_centre.yaml" );  
+  FileStorage fsc ( centre_file, FileStorage::WRITE );
+  fsc << "Outliers" << outliers_ratio << "center" << "[";
+  for ( unsigned int i = 0; i < points.size(); i++ )
+    {
+      fsc << "{:" << "length" << ( int ) points[i].size() << "points" << "[:";
+      for ( unsigned int j = 0; j < points[i].size(); j++ )
+        {
+          Point center = points[i].at ( j );
+          fsc << "{:" << "x" << center.x << "y" << center.y << "}";
+        }
+      fsc << "]" << "}";
+    }
+  fsc.release();
+}
+
 void CvUtils::write_results_to_file ( string file_name, vector<Rect> rois )
 {
   string rect_file = file_name;
@@ -555,6 +574,7 @@ void CvUtils::compare_gt_results ( vector< vector< Point > > gt, vector< vector<
   vector< vector< Point > > gt_per_person ( npeople );
   vector< vector< Point > > results_per_person ( npeople );
   vector< vector< Point > > outliers_per_frame ( nframes );
+  double outliers_ratio = 0;
 
   for ( unsigned int i = 0; i < nframes; i++ )
     {
@@ -566,7 +586,8 @@ void CvUtils::compare_gt_results ( vector< vector< Point > > gt, vector< vector<
           gt_per_person[j].push_back ( gt[i].at ( j ) );
           results_per_person[j].push_back ( matching[j] );
         }
-      outliers_per_frame.push_back ( outliers );
+      outliers_per_frame[i] = outliers;
+      outliers_ratio += outliers.size();
     }
   for ( unsigned int j = 0; j < npeople; j++ )
     {
@@ -574,6 +595,10 @@ void CvUtils::compare_gt_results ( vector< vector< Point > > gt, vector< vector<
       file_name.append ( inttostr ( j ) );
       compare_gt_results ( gt_per_person[j], results_per_person[j], file_name );
     }
+    
+  outliers_ratio /= nframes;
+    
+  write_results_to_file ( "outliers", outliers_per_frame, outliers_ratio );
 }
 
 void CvUtils::compare_gt_results ( vector<Point> gt, vector<Point>results, string filename )
@@ -581,7 +606,7 @@ void CvUtils::compare_gt_results ( vector<Point> gt, vector<Point>results, strin
   // Compute distance
   vector<double> distance;
   double d;
-  double sum;
+  double sum = 0;
   for ( unsigned int i = 0; i < results.size(); i++ )
     {
       d = euclidean_distance ( gt[i], results[i] );
