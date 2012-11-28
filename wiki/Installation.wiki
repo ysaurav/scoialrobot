@@ -111,12 +111,36 @@ Now you can run this topic as follow:
 
 where _/examplefolder/example.oni_ is the path to your _.oni_ file. And _to_be_repeated:=false_ specifies whether you want to start over the video when it finishes.
 
-=== User Interface ===
+=== Social Robot GUI ===
 
-== Social Robot GUI ==
+We implemented a simple user interface for our application, which shows the results of detection and/or tracking.
+
+Run the following command to start the QT application:
+
+{{{
+  rosrun social_robot social_robot_gui
+}}}
 
 == Ground Truth Utils ==
 
+One of the challenges of tracking algorithms is their evaluation. We implemented two utilities to facilitate ground truth making and ground truth comparison with obtained results.
+
 === Ground Truth Maker ===
 
+In order to create ground truth run:
+
+{{{
+  rosrun social_robot create_ground_truth [input_video/.txt] [output file] [input_video/.txt] [output file]
+}}}
+
+This application works both with mouse and keyboard. The results are written in _.yaml_ file.
+
 === Ground Truth Comparator ===
+
+In order to compare the ground truth with our results you can pass two _.yaml_ files to our ground truth comparator:
+
+{{{
+  rosrun social_robot compare_ground_truth [ground_truth.yaml file] [tracking_result.yaml file] [optional:image]
+}}}
+
+The result of this comparison is written in a file and optionally the tracking and ground truth is displayed on an image.
