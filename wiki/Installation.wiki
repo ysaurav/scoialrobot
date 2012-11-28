@@ -1,5 +1,3 @@
-#sidebar TableOfContents
-
 #summary how to install and use our programme
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
