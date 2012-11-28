@@ -13,4 +13,4 @@
   * [Kinect Getting Started with Kinect]
   * [Installation Installation]
   * [SoftwareArchitecture Software Architecture]
-  * [Documentation Documentation]
+  * [Documentation http://scoialrobot.googlecode.com/svn/trunk/social_robot/documentation/html/index.html]
