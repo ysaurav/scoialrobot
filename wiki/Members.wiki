@@ -6,6 +6,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
 
 *[http://home.eps.hw.ac.uk/~ceeamw/andy.html Prof. Andrew Wallace]*
 
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/directrs.png
 
 == Supervisors ==
 
@@ -15,6 +16,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
 
 *[http://www.macs.hw.ac.uk/staff-directory/simon-keizer.htm Simon Keizer]*
 
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/supervisors.png
 
 === Group Members ===
 
@@ -25,3 +27,5 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
 *Raquel Gil*
 
 *Eduardo Tusa*
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/members.png
