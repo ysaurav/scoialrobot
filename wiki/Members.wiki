@@ -6,7 +6,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
 
 *[http://home.eps.hw.ac.uk/~ceeamw/andy.html Prof. Andrew Wallace]*
 
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/directrs.png
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/directors.png
 
 == Supervisors ==
 
