@@ -21,7 +21,7 @@ DepthFaceDetector::DepthFaceDetector ( void )
   max_suppression = 0.1;
   scale_factor = 0.75;
   match3D_thr = 0.4;
-  scales = 7;
+  scales = 6;
   scales_default = 6;
   framenum = 0;
   update_rate = 15;
@@ -308,7 +308,7 @@ void DepthFaceDetector::load_templates ( void )
 
   string head_template3D2;
   head_template3D2.append ( package_path );
-  head_template3D1.append ( "/pictures/template3D.png" );
+  head_template3D2.append ( "/pictures/template3D.png" );
 //   head_template3D2.append ( "/pictures/only_head_template_3d_small.png" );
 
   Mat head_template_im1 = imread ( head_template1, CV_LOAD_IMAGE_ANYDEPTH );
