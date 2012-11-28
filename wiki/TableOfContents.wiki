@@ -9,6 +9,6 @@
   * [RGBDetector Detection in the RGB Image]
   * [Tracking]
   * [TorsoOrientation Torso Orientation]
- * [#Implementation Implementation]
+ * Implementation
   * [Kinect Getting Started with Kinect]
   * [SoftwareArchitecture Software Architecture]
