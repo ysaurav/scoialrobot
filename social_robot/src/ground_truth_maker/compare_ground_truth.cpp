@@ -65,12 +65,11 @@ void help()
        "The program saves to .yaml file  the results.\n"
        "Notice: the program has an optional input, an image frame, in order to display the input information.\n"
        "Usage: \n"
-       "  ./compare [ground_truth.yaml file] [tracking_result.yaml file] [optional:image]\n";
+       "  ./compare_ground_truth [ground_truth.yaml file] [tracking_result.yaml file] [optional:image]\n";
 }
 
 int main ( int argc, const char** argv )
 {
-
   help();
 
   vector<Point> gt;

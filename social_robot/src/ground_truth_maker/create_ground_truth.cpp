@@ -100,7 +100,7 @@ void help()
        "This reads from a video or text file containing the names of the frames.\n"
        "The program saves to .yaml file  the ground-truth.\n"
        "Usage: \n"
-       "  ./createGTarrows [input_video/.txt] [output file]\n";
+       "  ./create_ground_truth [input_video/.txt] [output file]\n";
 
   cout << "\n\nHot keys: \n"
        "\tw - move up ROI\n"
