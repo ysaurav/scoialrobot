@@ -39,14 +39,11 @@ It will be matched with all the scale images and a threshold will be used in ord
 
 = Results =
 
-Edge image
+Edge image & Distance image
 
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/canny.png
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/chamfer2d.png
 
-Distance image
-
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/chamfer.png
 
 Location of potential heads
 
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/heads.png
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/potential_heads.png
