@@ -17,6 +17,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
   * [Matchingdistance 2D Chamfer Matching Distance]
   * [HeadParameters Head Parameters Estimation]
   * [FalsePositivesRemoval False Positives Removal]
+  * [RGBDetector Detection in the RGB Image]
   * [Tracking]
   * [TorsoOrientation Torso Orientation]
  # [#Implementation Implementation]
@@ -62,6 +63,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/scheme.png
  * [Matchingdistance 2D Chamfer Matching Distance]
  * [HeadParameters Head Parameters Estimation]
  * [FalsePositivesRemoval False Positives Removal]
+ * [RGBDetector Detection in the RGB Image]
  * [Tracking]
  * [TorsoOrientation Torso Orientation]
 == Demo ==
