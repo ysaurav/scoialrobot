@@ -89,7 +89,27 @@ The region of interests are published, you can subscribe to them and do as you w
 
 === Virtual Kinect ===
 
+The [http://www.ros.org/wiki/openni_launch OpenNI Launch] package currently does not support to run _.oni_ files as virtual Kinect. Therefore we created a package _openni_ros_ which is basically same as OpenNI Launch, which this difference that you can run _.oni_ files as virtual Kinect.
 
+First you need to install this package if you want to use it
+
+{{{
+  roscd openni_ros
+}}}
+
+And then compile it
+
+{{{
+  rosdep install openni_camera_deprecated
+}}}
+
+Now you can run this topic as follow:
+
+{{{
+  roslaunch openni_camera_deprecated openni_node.launch file_path:=/examplefolder/example.oni to_be_repeated:=false
+}}}
+
+where _/examplefolder/example.oni_ is the path to your _.oni_ file. And _to_be_repeated:=false_ specifies whether you want to start over the video when it finishes.
 
 === User Interface ===
 
