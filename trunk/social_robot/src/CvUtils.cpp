@@ -21,6 +21,7 @@ const static Scalar colors[] =
 CvUtils::CvUtils ( void )
 {
   string package_path = ros::package::getPath ( "social_robot" );
+  transformation_matrix = ( Mat_<double> ( 4,3 ) << 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0 );
 
   string cascade_name;
   cascade_name.append ( package_path );
@@ -295,8 +296,6 @@ Rect CvUtils::enlarge_window_height ( Rect orgrect, Mat image, double scale )
 
 double CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position )
 {
-  double torso_orientation = 0.0;
-
   unsigned short thresh = 100;        // Threshold to differentiate person from background
   unsigned short diff = 0;            // Difference among pixel intensities
   int margin = 15;                    // extra margin for background
@@ -357,7 +356,6 @@ double CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position
           diff = abs ( nex_int - cur_int );
           current = next_right;
           next_right++;
-
           if ( next_right == depth_image.cols )
             {
               break;
@@ -390,8 +388,6 @@ double CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position
         }
     }
 
-  //***************************** Torso orientation Angle **************************
-
   // These x-coordinates replace extreme points
   int x1 = x_cor + ( 0.25 * double ( box_w ) );    // left point
   int x2 = x_cor + ( 0.75 * double ( box_w ) );    // right point
@@ -408,28 +404,16 @@ double CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position
   x1 = double ( x1 );     // x- coordinate point 1
   x2 = double ( x2 );     // x- coordinate point 2
   double y = double ( y_find );
-
-  //****************************** Transformation **********************************
-  // Transformation matrix for camera calibration
-  Mat Tmatrix = ( Mat_<double> ( 4,3 ) << 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0 );
-
+  
   // Points on camera frame
+  Mat pxyz1 = transform_point ( Point ( x1, y ) );
+  Mat pxyz2 = transform_point ( Point ( x2, y ) );
 
-  Mat p1 = ( Mat_<double> ( 3,1 ) << x1, y, 1 ); // POint 1
-  Mat p2 = ( Mat_<double> ( 3,1 ) << x2, y, 1 );  // Point 2
+  double py1 = pxyz1.at<double> ( 1, 0 );
+  double py2 = pxyz1.at<double> ( 1, 0 );
 
-  Mat pxyz1, pxyz2;
-
-  pxyz1 = Tmatrix * p1 ;
-  pxyz1 = Tmatrix * p2;
-
-  double py1 = pxyz1.at<double> ( 2, 1 );
-  double py2 = pxyz1.at<double> ( 2, 1 );
-
-  //*********************************** end ****************************************
-
-  //double delta_y = abs(py2 - py1);  // person width
-  double delta_y = 500;   // just for testing
+  // calculating the torso orientation
+  double delta_y = abs ( py2 - py1 );  // person width
 
   double theta = 0.0;     // Angle of Orientation
 
@@ -442,7 +426,20 @@ double CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position
       theta = -atan ( delta_z / delta_y ) * 180 / PI;
     }
 
-  return torso_orientation;
+  return theta;
+}
+
+Mat CvUtils::get_transformation_matrix ( void )
+{
+  return transformation_matrix;
+}
+
+Mat CvUtils::transform_point ( Point point )
+{
+  Mat mat_point = ( Mat_<double> ( 3, 1 ) << point.x, point.y, 1 );
+  Mat tranformation_matrix = get_transformation_matrix();
+  Mat transformed_point = tranformation_matrix * mat_point;
+  return transformed_point;
 }
 
 void CvUtils::write_results_to_file ( string file_name, vector<vector<Rect> > rois )
@@ -492,15 +489,14 @@ void CvUtils::write_results_to_file ( string file_name, vector<Rect> rois )
   fsc.release();
 }
 
-void CvUtils::write_to_file ( string filename, vector<double> rois, double mse )
+void CvUtils::write_to_file ( string filename, std::vector< double > rois, double mse, double mean )
 {
   string distance_file = filename;
   distance_file.append ( "_dist.yaml" );
-
   FileStorage fsr ( distance_file, FileStorage::WRITE );
-  fsr << "MSE " << mse;
+  fsr << "stdv " << sqrt ( mse );
+  fsr << "mean " << mean;
   fsr << "distance" << "[";
-
   for ( unsigned int i = 0; i < rois.size(); i++ )
     {
       fsr << "{:" << "d" << rois[i] << "}";
@@ -548,7 +544,7 @@ void CvUtils::read_from_file ( string filename, vector<Point> &rois )
 
 void CvUtils::compare_gt_results ( vector< vector< Point > > gt, vector< vector< Point > > results )
 {
-  unsigned int nframes = results.size();
+  unsigned int nframes = gt.size();
   if ( nframes == 0 )
     {
       // nothing to be compares
@@ -583,7 +579,6 @@ void CvUtils::compare_gt_results ( vector< vector< Point > > gt, vector< vector<
 void CvUtils::compare_gt_results ( vector<Point> gt, vector<Point>results, string filename )
 {
   // Compute distance
-
   vector<double> distance;
   double d;
   double sum;
@@ -597,19 +592,18 @@ void CvUtils::compare_gt_results ( vector<Point> gt, vector<Point>results, strin
   // Compute mean of distances
 
   double size_d = results.size();
-  double mean_d = sum/size_d;
+  double mean_d = sum / size_d;
 
   // Compute MSE
   double s_mse = 0;
-  for ( int i = 0; i<size_d;i++ )
+  for ( int i = 0; i < size_d; i++ )
     {
-      s_mse += pow ( distance[i],2 );
+      s_mse += pow ( distance[i], 2 );
     }
 
-  double MSE = s_mse/size_d;
-  cout<<"\n \n Mean squar error: " << MSE << "\n";
+  double MSE = s_mse / size_d;
 
-  write_to_file ( filename, distance, MSE );
+  write_to_file ( filename, distance, MSE, mean_d );
 }
 
 void CvUtils::data_association ( vector<Point> a, vector<Point> b, vector<Point> *matching, vector<Point> *outliers )

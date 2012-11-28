@@ -60,10 +60,13 @@ class CvUtils
     Rect enlarge_window_height ( Rect orgrect, Mat image, double scale = 2.0 );
 
     double compute_torso_orientation ( Mat depth_image, Point head_position );
+    
+    Mat get_transformation_matrix ( void );
+    Mat transform_point ( Point point );
 
     void write_results_to_file ( string file_name, vector<vector<Rect> > rois );
     void write_results_to_file ( string file_name, vector<Rect> rois );
-    void write_to_file ( string filename, vector<double> rois, double mse );
+    void write_to_file ( string filename, vector<double> rois, double mse, double mean );
     
     void read_from_file ( string filename, vector<vector<Point> > *rois );
     void read_from_file ( string filename, vector<Point> &rois );
@@ -76,6 +79,7 @@ class CvUtils
 
   private:
     CascadeClassifier classifier;
+    Mat transformation_matrix;
   };
 
 #endif // CVUTILS_H
