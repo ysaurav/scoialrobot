@@ -74,4 +74,4 @@ For the initialization of the particle filter we use the information of the dete
 
 
 === Results ===
-The results of the particle filter tracking can be seen at the following  [http://www.youtube.com/embed/Dmqbr8_lrBk link]
+The results of the particle filter tracking can be seen at the following  [http://www.youtube.com/watch?v=2vcpExT5k6M&feature=youtu.be]
