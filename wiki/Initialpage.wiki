@@ -14,7 +14,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
  # [#Problem_Statement Problem Statement]
  # [#Method Method]
   * [Preprocessing]
-  * [Matchingdistance 2D Chamfer Matching Distance]
+  * [Matchingdistance 2D Chamfer Distance Matching]
   * [HeadParameters Head Parameters Estimation]
   * [FalsePositivesRemoval False Positives Removal]
   * [RGBDetector Detection in the RGB Image]
@@ -61,7 +61,7 @@ Many methods have been used to generate a head pose estimation. Appearance-based
 == Method ==
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/scheme.png
  * [Preprocessing]
- * [Matchingdistance 2D Chamfer Matching Distance]
+  * [Matchingdistance 2D Chamfer Distance Matching]
  * [HeadParameters Head Parameters Estimation]
  * [FalsePositivesRemoval False Positives Removal]
  * [RGBDetector Detection in the RGB Image]
