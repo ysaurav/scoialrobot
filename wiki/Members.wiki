@@ -1,0 +1,27 @@
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
+
+= Course Directors =
+
+*[http://www.ece.eps.hw.ac.uk/~ceeyrp/ Prof. Yvan Petillot]*
+
+*[http://home.eps.hw.ac.uk/~ceeamw/andy.html Prof. Andrew Wallace]*
+
+
+== Supervisors ==
+
+*[http://www.macs.hw.ac.uk/staff-directory/oliver-lemon.htm Oliver Lemon]*
+
+*[http://www.macs.hw.ac.uk/~mef3/ Mary Ellen Foster]*
+
+*[http://www.macs.hw.ac.uk/staff-directory/simon-keizer.htm Simon Keizer]*
+
+
+=== Group Members ===
+
+*Arash Akbarinia*
+
+*Corina Barbalata*
+
+*Raquel Gil*
+
+*Eduardo Tusa*
