@@ -11,4 +11,5 @@
   * [TorsoOrientation Torso Orientation]
  * Implementation
   * [Kinect Getting Started with Kinect]
-  * [SoftwareArchitecture Software Architecture]
+  * [Installation Installation]
+  * [SoftwareArchitecture Software Architecture
