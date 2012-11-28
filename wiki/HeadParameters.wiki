@@ -34,4 +34,4 @@ Once we get the height, the next step is to compute the estimate radius in pixel
 
 = Results =
 
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/radius.png
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/radius_f.png
