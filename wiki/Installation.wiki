@@ -77,9 +77,19 @@ This module can be run either as stand alone application, it performs detection 
 
 For further understanding of the passed arguments please refer to our [http://scoialrobot.googlecode.com/svn/trunk/social_robot/documentation/html/index.html documentation].
 
-If you want to run this module 
+If you want to run this module merely as tracking just run:
+
+{{{
+  rosrun social_robot social_robot
+}}}
+
+Please note this module is listening to the detected faces by other topics. Therefore, you have to run _social_robot social_robot_rgb_ or/and _social_robot social_robot_depth_ in parallel to this topics, so they can perform the face detections.
+
+The region of interests are published, you can subscribe to them and do as you wish them.
 
 === Virtual Kinect ===
+
+
 
 === User Interface ===
 
