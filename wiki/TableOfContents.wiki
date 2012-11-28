@@ -1,8 +1,8 @@
 #summary table of contents
 
- # [#Introduction Introduction]
- # [#Problem_Statement Problem Statement]
- # [#Method Method]
+ * [#Introduction Introduction]
+ * [#Problem_Statement Problem Statement]
+ * [#Method Method]
   * [Preprocessing]
   * [Matchingdistance 2D Chamfer Matching Distance]
   * [HeadParameters Head Parameters Estimation]
@@ -10,6 +10,6 @@
   * [RGBDetector Detection in the RGB Image]
   * [Tracking]
   * [TorsoOrientation Torso Orientation]
- # [#Implementation Implementation]
+ * [#Implementation Implementation]
   * [Kinect Getting Started with Kinect]
   * [SoftwareArchitecture Software Architecture]
