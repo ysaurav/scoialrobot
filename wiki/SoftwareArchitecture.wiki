@@ -16,6 +16,10 @@ Tracking component subscribes to both detectors. It performs its tracking assign
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/flowchart_diagram.png
 
+The ROS topic communication can be observed in figure below:
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/rostopics.png
+
 = Low level description =
 
 In this section we are going to explain in detail how each component exactly works.
