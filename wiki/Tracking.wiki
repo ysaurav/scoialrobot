@@ -53,7 +53,7 @@ similar to the target model, the Bhattacharyya distance is used to weight the sa
 
 For the initialization of the particle filter we use the information of the detection part. In the update of the filter we update the confidence of each particle as mentioned previously, project the state forward in time and update the confidence at the mean state. If the target has been lost due to a mismatch between the modelled motion and actual motion than a redistribution of the particles is done.
 
-== Summary ==
+=== Summary ===
 
 1. Specify the person to be tracked.
 
