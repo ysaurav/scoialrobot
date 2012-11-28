@@ -1,0 +1,15 @@
+#summary how to install and use our programme
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
+
+= Introduction =
+
+In this page we give a step by step how to install and use our programmes.
+
+= Social Robot =
+
+Download the source code from our SVN:
+
+{{{
+  svn checkout http://scoialrobot.googlecode.com/svn/trunk/ scoialrobot-read-only
+}}}
