@@ -67,6 +67,7 @@ class CvUtils
     void write_results_to_file ( string file_name, vector<vector<Rect> > rois );
     void write_results_to_file ( string file_name, vector<vector<Point> > points, double outliers_ratio );
     void write_results_to_file ( string file_name, vector<Rect> rois );
+    void write_results_to_file ( string file_name, vector<Point> points );
     void write_to_file ( string filename, vector<double> rois, double mse, double mean );
     
     void read_from_file ( string filename, vector<vector<Point> > *rois );

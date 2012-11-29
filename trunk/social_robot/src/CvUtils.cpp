@@ -208,6 +208,10 @@ double CvUtils::euclidean_distance ( Point a, Point b )
  * @param b A Point containing x and y coordinates.
  * */
 
+/** @name Detect faces
+*
+*/
+//@{
 bool CvUtils::is_there_face_rgb ( Mat &image, Rect rect )
 {
   rect = enlarge_window ( rect, image, 1.1 );
@@ -216,6 +220,12 @@ bool CvUtils::is_there_face_rgb ( Mat &image, Rect rect )
 
   return !detected_faces.empty();
 }
+/**<
+ * This function checks if there is a face in the RGB image.
+ * @return A bool variable that says if a face exists.
+ * @param image A Mat containing the RGB image.
+ * @param rect A Rect containing the ROI.
+ * */
 
 bool CvUtils::is_there_face_depth ( Mat &depth_image, Mat &disparity_image, Rect rect )
 {
@@ -225,6 +235,14 @@ bool CvUtils::is_there_face_depth ( Mat &depth_image, Mat &disparity_image, Rect
 
   return !detected_faces.empty();
 }
+/**<
+ * This function checks if there is a face in the depth image.
+ * @return A bool variable that says if a face exists.
+ * @param depth_image A Mat containing the depth image.
+ * @param disparity_image A Mat containing the disparity image.
+ * @param rect A Rect containing the ROI.
+ * */
+
 
 vector<Rect> CvUtils::detect_face_rgb ( Mat image )
 {
@@ -247,6 +265,12 @@ vector<Rect> CvUtils::detect_face_rgb ( Mat image )
 
   return detected_faces;
 }
+/**<
+ * This function detects faces in the RGB image.
+ * @return A vector of Rect containing all the bounding-boxes of the detected faces.
+ * @param image Mat containing the RGB image.
+ * */
+
 
 vector<Rect> CvUtils::detect_face_depth ( Mat depth_image, Mat disparity_image )
 {
@@ -254,7 +278,18 @@ vector<Rect> CvUtils::detect_face_depth ( Mat depth_image, Mat disparity_image )
 
   return detected_faces;
 }
+/**<
+ * This function detects faces in the depth image.
+ * @return A vector of Rect containing all the bounding-boxes of the detected faces.
+ * @param image Mat containing the  image.
+ * */
 
+//@}
+
+/** @name Enlarge window
+*
+*/
+//@{
 Rect CvUtils::enlarge_window ( Rect orgrect, Mat image, double scale )
 {
   Rect window;
@@ -267,6 +302,14 @@ Rect CvUtils::enlarge_window ( Rect orgrect, Mat image, double scale )
 
   return window;
 }
+/**<
+ * This function increases the size of the ROI.
+ * @return A Rect containing enlarged ROI.
+ * @param orgrect A Rect containing the original ROI.
+ * @param image A Mat containing the original image.
+ * @param scale A double  value containing the scale for increasing the size of the ROI.
+ * */
+
 
 Rect CvUtils::enlarge_window_width ( Rect orgrect, Mat image, double scale )
 {
@@ -280,6 +323,13 @@ Rect CvUtils::enlarge_window_width ( Rect orgrect, Mat image, double scale )
 
   return window;
 }
+/**<
+ * This function increases the width of a ROI.
+ * @return A Rect containing enlarged ROI.
+ * @param orgrect A Rect containing the original ROI.
+ * @param image A Mat containing the original image.
+ * @param scale A double  value containing the scale for increasing the width of the ROI.
+ * */
 
 Rect CvUtils::enlarge_window_height ( Rect orgrect, Mat image, double scale )
 {
@@ -293,7 +343,19 @@ Rect CvUtils::enlarge_window_height ( Rect orgrect, Mat image, double scale )
 
   return window;
 }
+/**<
+ * This function increases the height of a ROI.
+ * @return A Rect containing enlarged ROI.
+ * @param orgrect A Rect containing the original ROI.
+ * @param image A Mat containing the original image.
+ * @param scale A double  value containing the scale for increasing the h of the ROI.
+ * */
+//@}
 
+/** @name Torso orientation
+*
+*/
+//@{
 double CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position )
 {
   unsigned short thresh = 100;        // Threshold to differentiate person from background
@@ -429,10 +491,22 @@ double CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position
   return theta;
 }
 
+/**<
+ * This function computes the torso orientation.
+ * @return A double value containing the torso orientation in degrees.
+ * @param depth_image A Mat containing the original depth image.
+ * @param head_position A Point containing the coordinates of the head.
+ * */
+
 Mat CvUtils::get_transformation_matrix ( void )
 {
   return transformation_matrix;
 }
+
+/**<
+ * This function computes projection matrix based on intrinsec and extrinsec parameters.
+ * @return A Mat containing the projection matrix.
+ * */
 
 Mat CvUtils::transform_point ( Point point )
 {
@@ -441,7 +515,18 @@ Mat CvUtils::transform_point ( Point point )
   Mat transformed_point = tranformation_matrix * mat_point;
   return transformed_point;
 }
+/**<
+ * This function transforms the point with the projection matrix.
+ * @return A Mat containing the transformed point.
+ * @param point A Point containing the original point.
+ * */
+//@}
 
+
+/** @name Write to file
+*
+*/
+//@{
 void CvUtils::write_results_to_file ( string file_name, vector<vector<Rect> > rois )
 {
   string rect_file = file_name;
@@ -469,6 +554,13 @@ void CvUtils::write_results_to_file ( string file_name, vector<vector<Rect> > ro
   fsc.release();
 }
 
+/**<
+ * This function writes the results to a .yaml file.
+ * @return 
+ * @param file_name A String containing the name where the results will be saved.
+ * @param rois A vector of vector of rectangles containing the ROI that will be saved.
+ * */
+
 void CvUtils::write_results_to_file ( string file_name, vector< vector< Point > > points, double outliers_ratio )
 {
   string centre_file = file_name;
@@ -487,6 +579,13 @@ void CvUtils::write_results_to_file ( string file_name, vector< vector< Point > 
     }
   fsc.release();
 }
+/**<
+ * This function writes the results to a .yaml file.
+ * @return 
+ * @param file_name A String containing the name where the results will be saved.
+ * @param points A vector of vector of Points containing the interest points that will be saved.
+ * @param outliers_ratio A double variable containing the outliers ratio that will be saced.
+ * */
 
 void CvUtils::write_results_to_file ( string file_name, vector<Rect> rois )
 {
@@ -507,6 +606,32 @@ void CvUtils::write_results_to_file ( string file_name, vector<Rect> rois )
   fsr.release();
   fsc.release();
 }
+/**<
+ * This function writes the results to a .yaml file.
+ * @return 
+ * @param file_name A String containing the name where the results will be saved.
+ * @param rois A vector of Rect containing the ROI that will be saved.
+ * */
+
+void CvUtils::write_results_to_file ( string file_name, vector<Point> points )
+{
+  string centre_file = file_name;
+  centre_file.append ( "_centre.yaml" );
+  FileStorage fsc ( centre_file, FileStorage::WRITE );
+  fsc<<"center"<<"[";
+  for ( unsigned int i = 0; i < points.size(); i++ )
+    {
+      Point center = points[i];
+      fsc << "{:"<< "x" << center.x << "y" << center.y <<"}";
+    }
+  fsc.release();
+}
+/**<
+ * This function writes the results to a .yaml file.
+ * @return 
+ * @param file_name A String containing the name where the results will be saved.
+ * @param points A vector of Points containing the interest points that will be saved.
+ * */
 
 void CvUtils::write_to_file ( string filename, std::vector< double > rois, double mse, double mean )
 {
@@ -522,7 +647,21 @@ void CvUtils::write_to_file ( string filename, std::vector< double > rois, doubl
     }
   fsr.release();
 }
+/**<
+ * This function writes the results to a .yaml file.
+ * @return 
+ * @param file_name A String containing the name where the results will be saved.
+ * @param rois A vector of doubles containing the interest points that will be saved to the file.
+ * @param mse A double variable containing the mean square error that will be saved to the file.
+ * @param mean A double variable containing the mean that will be saved to the file.
+ * */
+//@}
 
+
+/** @name Read from file
+*
+*/
+//@{
 void CvUtils::read_from_file ( string filename, vector<vector<Point> > *rois )
 {
   FileStorage fs ( filename, FileStorage::READ );
@@ -545,6 +684,12 @@ void CvUtils::read_from_file ( string filename, vector<vector<Point> > *rois )
     }
   fs.release();
 }
+/**<
+ * This function reads the results to from a .yaml file.
+ * @return 
+ * @param file_name A String containing the name where the results will be saved.
+ * @param rois A vector of vector of points containing the interest points that will be read from file.
+ * */
 
 void CvUtils::read_from_file ( string filename, vector<Point> &rois )
 {
@@ -561,6 +706,18 @@ void CvUtils::read_from_file ( string filename, vector<Point> &rois )
   fs.release();
 }
 
+/**<
+ * This function reads the results to from a .yaml file.
+ * @return 
+ * @param file_name A String containing the name where the results will be saved.
+ * @param rois A vector of points containing the interest points that will be read from file.
+ * */
+//@}
+
+/** @name Compare results
+*
+*/
+//@{
 void CvUtils::compare_gt_results ( vector< vector< Point > > gt, vector< vector< Point > > results )
 {
   unsigned int nframes = gt.size();
@@ -585,6 +742,7 @@ void CvUtils::compare_gt_results ( vector< vector< Point > > gt, vector< vector<
         {
           gt_per_person[j].push_back ( gt[i].at ( j ) );
           results_per_person[j].push_back ( matching[j] );
+	  cout << matching.size() << " " << outliers.size() << endl;
         }
       outliers_per_frame[i] = outliers;
       outliers_ratio += outliers.size();
@@ -600,6 +758,12 @@ void CvUtils::compare_gt_results ( vector< vector< Point > > gt, vector< vector<
     
   write_results_to_file ( "outliers", outliers_per_frame, outliers_ratio );
 }
+/**<
+ * This function compare the ground-truth results to the detection and tracking algorithm
+ * @return 
+ * @param gt A vector of vector of points containing the ground-truth
+ * @param results A vector of vector of points containing the results of the implemented algorithm
+ * */
 
 void CvUtils::compare_gt_results ( vector<Point> gt, vector<Point>results, string filename )
 {
@@ -614,6 +778,10 @@ void CvUtils::compare_gt_results ( vector<Point> gt, vector<Point>results, strin
       sum += d;
     }
 
+  write_results_to_file("gt_resu.yaml", results);
+  write_results_to_file("gt_test.yaml", gt);
+  cout<<"Size gt: "<<gt.size()<<"\n";
+  cout<<"Size tracking: "<<results.size()<<"\n";
   // Compute mean of distances
 
   double size_d = results.size();
@@ -627,9 +795,37 @@ void CvUtils::compare_gt_results ( vector<Point> gt, vector<Point>results, strin
     }
 
   double MSE = s_mse / size_d;
+  
+  Scalar color = Scalar ( 0,0,255 );
+  Scalar color2 = Scalar ( 0,255,0 );
+
+  // display results
+
+  Mat image = imread("/home/corina/Desktop/videos/track_s6.png", 1);
+  for ( int i = 0; i < gt.size(); i++ )
+    {
+      circle ( image, gt[i], 4, color, 4 );
+    }
+
+  for ( int i = 0; i < results.size(); i++ )
+    {
+      circle ( image, results[i], 6, color2, 6 );
+    }
+
+  namedWindow ( "Reference",0 );
+  //imshow("Reference",image);
+  imwrite ( "Reference.png", image );
+  waitKey(0);
 
   write_to_file ( filename, distance, MSE, mean_d );
 }
+/**<
+ * This function compare the ground-truth results to the detection and tracking algorithm
+ * @return 
+ * @param gt A vector of points containing the ground-truth
+ * @param results A vector of points containing the results of the implemented algorithm
+ * */
+//@}
 
 void CvUtils::data_association ( vector<Point> a, vector<Point> b, vector<Point> *matching, vector<Point> *outliers )
 {
@@ -680,6 +876,14 @@ void CvUtils::data_association ( vector<Point> a, vector<Point> b, vector<Point>
     }
 
 }
+/**<
+ * This function associates the ground-truth results to the detection and tracking algorithm.
+ * @return 
+ * @param a A vector of points containing the ground-truth.
+ * @param b A vector of points containing the results of the implemented algorithm.
+ * @param matching A vector containing the mathing between the ground-truth and the results.
+ * */
+
 
 void CvUtils::create_combine_gt_vector ( vector<string> filenames, vector<vector<Point> > &total_gt )
 {
@@ -703,3 +907,9 @@ void CvUtils::create_combine_gt_vector ( vector<string> filenames, vector<vector
         }
     }
 }
+/**<
+ * This function combines all together the results of the ground-truth
+ * @return 
+ * @param filenames A vector of string containing the names of the ground-truth files
+ * @param total_gt A vector of vector of points containing the combined ground-truth.
+ * */
