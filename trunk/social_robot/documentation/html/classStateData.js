@@ -1,8 +1,10 @@
 var classStateData =
 [
     [ "StateData", "classStateData.html#a3bbfa4301403ebf5d24d5d16cf246b88", null ],
+    [ "draw_estimated_state", "classStateData.html#a32b8091aff312aff401b1de0e4685535", null ],
     [ "get_target_position", "classStateData.html#aa2c20a09eecd353d4454e707ac17f143", null ],
     [ "initialise", "classStateData.html#a3fe497a97247af50f8eb876d6284da69", null ],
+    [ "set_image_depth", "classStateData.html#a6246f2159937b45b86b85ba0cddbd9c7", null ],
     [ "tracking", "classStateData.html#af4bbe24b619137cba16b7b85970e1bd7", null ],
     [ "update_target_histogram", "classStateData.html#a2b26ea86bd2d1d3d37debec000fefa01", null ],
     [ "detection_confidence", "classStateData.html#abe87d63070a9fc98cd9f1475495725e6", null ],

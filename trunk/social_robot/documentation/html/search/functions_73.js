@@ -11,6 +11,7 @@ var searchData=
   ['scaleview',['scaleView',['../classViewPort.html#af68a292bada1aadd5b3cbcd5cd86620c',1,'ViewPort']]],
   ['serialize',['serialize',['../classsocial__robot_1_1msg_1_1__RegionOfInterests_1_1RegionOfInterests.html#a923aa697f103be1faf6e6b3333a68480',1,'social_robot::msg::_RegionOfInterests::RegionOfInterests']]],
   ['serialize_5fnumpy',['serialize_numpy',['../classsocial__robot_1_1msg_1_1__RegionOfInterests_1_1RegionOfInterests.html#a1a21ae43fa428c9c69ee1694c3feb6f0',1,'social_robot::msg::_RegionOfInterests::RegionOfInterests']]],
+  ['set_5fimage_5fdepth',['set_image_depth',['../classStateData.html#a6246f2159937b45b86b85ba0cddbd9c7',1,'StateData']]],
   ['setmousecallback',['setMouseCallBack',['../classCvWindow.html#a8fa9463b57ffb2f049703a6f14e586fb',1,'CvWindow::setMouseCallBack()'],['../classViewPort.html#a725688baa203c6247e9a147acaa7597a',1,'ViewPort::setMouseCallBack()']]],
   ['setpropwindow',['setPropWindow',['../classGuiReceiver.html#a2f7df93bb22ec310b8f9b44844662b85',1,'GuiReceiver']]],
   ['setratio',['setRatio',['../classViewPort.html#ad250b6cf4dd6d571128a7ad0d4d98175',1,'ViewPort']]],

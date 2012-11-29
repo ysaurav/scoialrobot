@@ -40,8 +40,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "CvUtils_8cpp.html",
-"classStateData.html#a3fe497a97247af50f8eb876d6284da69",
-"social__robot__depth_8cpp.html#ad86e0198948733670a7f245973ef7679"
+"classSettings.html#a94551b7ffe8ac60311b035b2905e9498",
+"social__robot_8cpp.html#a24924661353a04a9c51bb4a6adcd3d8d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

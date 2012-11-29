@@ -13,18 +13,22 @@ This class contains useful functions for the image processing part.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classCvUtils_ad292f6ff1df46556644e3161d048b3aa}{Cv\-Utils} (void)
+\item 
 Mat \hyperlink{classCvUtils_aa5bded11699d39af25c420aed2ade0ba}{rgb2bw} (Mat im\-\_\-rgb)
 \item 
-Mat \hyperlink{classCvUtils_a47189479acb67a1918f35557fc5906a6}{preprocessing} (Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image})
+Mat \hyperlink{classCvUtils_a47189479acb67a1918f35557fc5906a6}{preprocessing} (Mat \hyperlink{create__ground__truth_8cpp_aabb27b8973575043030df51be47cd24a}{image})
 \item 
 void \hyperlink{classCvUtils_a426439fc003e5557644932eee66c48b6}{get\-\_\-non\-\_\-zeros} (Mat img, Mat prob, vector$<$ Point3f $>$ $\ast$points, Point pdiff=Point(0, 0), double scale=1)
+\item 
+void \hyperlink{classCvUtils_af0184944140cd71ef9ad9c6d3a89ca48}{data\-\_\-association} (vector$<$ Point $>$ a, vector$<$ Point $>$ b, vector$<$ Point $>$ $\ast$\hyperlink{social__robot__onethread_8cpp_a1ad5e89ff23cfb6db193cfd737de72f1}{matching}, vector$<$ Point $>$ $\ast$outliers)
+\item 
+void \hyperlink{classCvUtils_aaea7203de435f3395fb4842c5230ecc7}{create\-\_\-combine\-\_\-gt\-\_\-vector} (vector$<$ string $>$ filenames, vector$<$ vector$<$ Point $>$ $>$ \&total\-\_\-gt)
 \end{DoxyCompactItemize}
 \begin{Indent}{\bf Drawing functions}\par
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{classCvUtils_a74249b2e9b76b2a8ae2c01c4ff496663}{draw\-\_\-rgb\-\_\-faces} (Mat \&img, vector$<$ Rect $>$ faces)
-\item 
-void \hyperlink{classCvUtils_ac86c2ad8adca706655831938b63ebaa2}{draw\-\_\-tracking\-\_\-faces} (Mat \&img, vector$<$ \hyperlink{classStateData}{State\-Data} $>$ \hyperlink{social__robot_8cpp_a63ba5e41659a1483954bc6564bca605a}{state\-\_\-datas})
 \item 
 void \hyperlink{classCvUtils_a6e1f3369c2b553c06f2692c75e20667d}{draw\-\_\-depth\-\_\-faces} (Mat \&img, vector$<$ Rect $>$ faces)
 \end{DoxyCompactItemize}
@@ -43,8 +47,70 @@ Point3f \hyperlink{classCvUtils_a9a91a1dbd7a74ef15257510129308277}{get\-\_\-rect
 double \hyperlink{classCvUtils_a20d53b92663d548bebf90da242d984f3}{euclidean\-\_\-distance} (Point3f a, Point3f b)
 \item 
 double \hyperlink{classCvUtils_a74b4a32b47136f704db2729b39095c02}{euclidean\-\_\-distance} (Point a, Point b)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Detect faces}\par
+\begin{DoxyCompactItemize}
 \item 
-Rect \hyperlink{classCvUtils_a349894b926e2d252d0ce224abcba698a}{enlarge\-\_\-window} (Rect orgrect, Mat \hyperlink{createGT_8cpp_aabb27b8973575043030df51be47cd24a}{image}, double scale=2.\-0)
+bool \hyperlink{classCvUtils_a3ffc274ba9c2db3a33e4cd0aca1b4570}{is\-\_\-there\-\_\-face\-\_\-rgb} (Mat \&\hyperlink{create__ground__truth_8cpp_aabb27b8973575043030df51be47cd24a}{image}, Rect rect)
+\item 
+bool \hyperlink{classCvUtils_ab1e74b543130e0ffcefb7e1a9c95354d}{is\-\_\-there\-\_\-face\-\_\-depth} (Mat \&\hyperlink{social__robot__onethread_8cpp_a5b613972ff73fd7b34e0ee18acc5c1a6}{depth\-\_\-image}, Mat \&\hyperlink{social__robot__onethread_8cpp_a485c05800d39168b94f859fac62aa6a7}{disparity\-\_\-image}, Rect rect)
+\item 
+vector$<$ Rect $>$ \hyperlink{classCvUtils_ac09b2e17fa71221b79c2a87732814482}{detect\-\_\-face\-\_\-rgb} (Mat \hyperlink{create__ground__truth_8cpp_aabb27b8973575043030df51be47cd24a}{image})
+\item 
+vector$<$ Rect $>$ \hyperlink{classCvUtils_a24520cd4e52e1c47a42a0b57c31b1a5d}{detect\-\_\-face\-\_\-rgb} (Mat \hyperlink{create__ground__truth_8cpp_aabb27b8973575043030df51be47cd24a}{image}, Cascade\-Classifier cascade\-\_\-classifier)
+\item 
+vector$<$ Rect $>$ \hyperlink{classCvUtils_a4a7f10293376335faeb2ba4e8abc685a}{detect\-\_\-face\-\_\-depth} (Mat \hyperlink{social__robot__onethread_8cpp_a5b613972ff73fd7b34e0ee18acc5c1a6}{depth\-\_\-image}, Mat \hyperlink{social__robot__onethread_8cpp_a485c05800d39168b94f859fac62aa6a7}{disparity\-\_\-image})
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Enlarge window}\par
+\begin{DoxyCompactItemize}
+\item 
+Rect \hyperlink{classCvUtils_a349894b926e2d252d0ce224abcba698a}{enlarge\-\_\-window} (Rect orgrect, Mat \hyperlink{create__ground__truth_8cpp_aabb27b8973575043030df51be47cd24a}{image}, double scale=2.\-0)
+\item 
+Rect \hyperlink{classCvUtils_afa759cc435e69dabe1b498215a9d9967}{enlarge\-\_\-window\-\_\-width} (Rect orgrect, Mat \hyperlink{create__ground__truth_8cpp_aabb27b8973575043030df51be47cd24a}{image}, double scale=2.\-0)
+\item 
+Rect \hyperlink{classCvUtils_ae3f32bfe57a7fea941e61f8beb146637}{enlarge\-\_\-window\-\_\-height} (Rect orgrect, Mat \hyperlink{create__ground__truth_8cpp_aabb27b8973575043030df51be47cd24a}{image}, double scale=2.\-0)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Torso orientation}\par
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classCvUtils_a90574948cfab1863cad26a2b8a43c37f}{compute\-\_\-torso\-\_\-orientation} (Mat \hyperlink{social__robot__onethread_8cpp_a5b613972ff73fd7b34e0ee18acc5c1a6}{depth\-\_\-image}, Point head\-\_\-position)
+\item 
+Mat \hyperlink{classCvUtils_a3e96de4f2f4e2c74eb18e9ad658d1575}{get\-\_\-transformation\-\_\-matrix} (void)
+\item 
+Mat \hyperlink{classCvUtils_ad8b10d8ef42dc7437bcb40c13dd23d33}{transform\-\_\-point} (Point point)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Write to file}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classCvUtils_a78b9e8fc4f7ea2b713ab0bcca586600e}{write\-\_\-results\-\_\-to\-\_\-file} (string \hyperlink{rgbWriter_8cpp_a755d42f2e9c635ce2213e0efad62b796}{file\-\_\-name}, vector$<$ vector$<$ Rect $>$ $>$ \hyperlink{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{rois})
+\item 
+void \hyperlink{classCvUtils_a61698b2aa9a5d770b7d4a6c77738bb2d}{write\-\_\-results\-\_\-to\-\_\-file} (string \hyperlink{rgbWriter_8cpp_a755d42f2e9c635ce2213e0efad62b796}{file\-\_\-name}, vector$<$ vector$<$ Point $>$ $>$ points, double outliers\-\_\-ratio)
+\item 
+void \hyperlink{classCvUtils_a0f3f68175623e99bc1669f3cd06fd301}{write\-\_\-results\-\_\-to\-\_\-file} (string \hyperlink{rgbWriter_8cpp_a755d42f2e9c635ce2213e0efad62b796}{file\-\_\-name}, vector$<$ Rect $>$ \hyperlink{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{rois})
+\item 
+void \hyperlink{classCvUtils_a27e76804ac414cc7cdf2e34851dec86a}{write\-\_\-results\-\_\-to\-\_\-file} (string \hyperlink{rgbWriter_8cpp_a755d42f2e9c635ce2213e0efad62b796}{file\-\_\-name}, vector$<$ Point $>$ points)
+\item 
+void \hyperlink{classCvUtils_a417431598ac332bcce7a2d66add3662f}{write\-\_\-to\-\_\-file} (string filename, vector$<$ double $>$ \hyperlink{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{rois}, double mse, double mean)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Read from file}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classCvUtils_a9828a72b15006923f35d4da51359af2e}{read\-\_\-from\-\_\-file} (string filename, vector$<$ vector$<$ Point $>$ $>$ $\ast$\hyperlink{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{rois})
+\item 
+void \hyperlink{classCvUtils_a5e7d37fa49e663f642718a1d6631ef41}{read\-\_\-from\-\_\-file} (string filename, vector$<$ Point $>$ \&\hyperlink{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{rois})
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Compare results}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classCvUtils_a4343095a146def99839decf98366c8a9}{compare\-\_\-gt\-\_\-results} (vector$<$ vector$<$ Point $>$ $>$ gt, vector$<$ vector$<$ Point $>$ $>$ \hyperlink{social__robot_8cpp_a246570e7b14b6616ada8593b04836e1d}{results})
+\item 
+void \hyperlink{classCvUtils_a4444a7e6a5eedb9633057c9283cae113}{compare\-\_\-gt\-\_\-results} (vector$<$ Point $>$ gt, vector$<$ Point $>$ \hyperlink{social__robot_8cpp_a246570e7b14b6616ada8593b04836e1d}{results}, string filename)
 \end{DoxyCompactItemize}
 \end{Indent}
 
@@ -57,7 +123,151 @@ Social Robot
 \end{DoxyAuthor}
 
 
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classCvUtils_ad292f6ff1df46556644e3161d048b3aa}{\index{Cv\-Utils@{Cv\-Utils}!Cv\-Utils@{Cv\-Utils}}
+\index{Cv\-Utils@{Cv\-Utils}!CvUtils@{Cv\-Utils}}
+\subsubsection[{Cv\-Utils}]{\setlength{\rightskip}{0pt plus 5cm}Cv\-Utils\-::\-Cv\-Utils (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_ad292f6ff1df46556644e3161d048b3aa}
+
+
 \subsection{Member Function Documentation}
+\hypertarget{classCvUtils_a4343095a146def99839decf98366c8a9}{\index{Cv\-Utils@{Cv\-Utils}!compare\-\_\-gt\-\_\-results@{compare\-\_\-gt\-\_\-results}}
+\index{compare\-\_\-gt\-\_\-results@{compare\-\_\-gt\-\_\-results}!CvUtils@{Cv\-Utils}}
+\subsubsection[{compare\-\_\-gt\-\_\-results}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::compare\-\_\-gt\-\_\-results (
+\begin{DoxyParamCaption}
+\item[{vector$<$ vector$<$ Point $>$ $>$}]{gt, }
+\item[{vector$<$ vector$<$ Point $>$ $>$}]{results}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a4343095a146def99839decf98366c8a9}
+This function compare the ground-\/truth results to the detection and tracking algorithm \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em gt} & A vector of vector of points containing the ground-\/truth \\
+\hline
+{\em results} & A vector of vector of points containing the results of the implemented algorithm \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a4444a7e6a5eedb9633057c9283cae113}{\index{Cv\-Utils@{Cv\-Utils}!compare\-\_\-gt\-\_\-results@{compare\-\_\-gt\-\_\-results}}
+\index{compare\-\_\-gt\-\_\-results@{compare\-\_\-gt\-\_\-results}!CvUtils@{Cv\-Utils}}
+\subsubsection[{compare\-\_\-gt\-\_\-results}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::compare\-\_\-gt\-\_\-results (
+\begin{DoxyParamCaption}
+\item[{vector$<$ Point $>$}]{gt, }
+\item[{vector$<$ Point $>$}]{results, }
+\item[{string}]{filename}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a4444a7e6a5eedb9633057c9283cae113}
+This function compare the ground-\/truth results to the detection and tracking algorithm \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em gt} & A vector of points containing the ground-\/truth \\
+\hline
+{\em results} & A vector of points containing the results of the implemented algorithm \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a90574948cfab1863cad26a2b8a43c37f}{\index{Cv\-Utils@{Cv\-Utils}!compute\-\_\-torso\-\_\-orientation@{compute\-\_\-torso\-\_\-orientation}}
+\index{compute\-\_\-torso\-\_\-orientation@{compute\-\_\-torso\-\_\-orientation}!CvUtils@{Cv\-Utils}}
+\subsubsection[{compute\-\_\-torso\-\_\-orientation}]{\setlength{\rightskip}{0pt plus 5cm}double Cv\-Utils\-::compute\-\_\-torso\-\_\-orientation (
+\begin{DoxyParamCaption}
+\item[{Mat}]{depth\-\_\-image, }
+\item[{Point}]{head\-\_\-position}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a90574948cfab1863cad26a2b8a43c37f}
+This function computes the torso orientation. \begin{DoxyReturn}{Returns}
+A double value containing the torso orientation in degrees. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em depth\-\_\-image} & A Mat containing the original depth image. \\
+\hline
+{\em head\-\_\-position} & A Point containing the coordinates of the head. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_aaea7203de435f3395fb4842c5230ecc7}{\index{Cv\-Utils@{Cv\-Utils}!create\-\_\-combine\-\_\-gt\-\_\-vector@{create\-\_\-combine\-\_\-gt\-\_\-vector}}
+\index{create\-\_\-combine\-\_\-gt\-\_\-vector@{create\-\_\-combine\-\_\-gt\-\_\-vector}!CvUtils@{Cv\-Utils}}
+\subsubsection[{create\-\_\-combine\-\_\-gt\-\_\-vector}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::create\-\_\-combine\-\_\-gt\-\_\-vector (
+\begin{DoxyParamCaption}
+\item[{vector$<$ string $>$}]{filenames, }
+\item[{vector$<$ vector$<$ Point $>$ $>$ \&}]{total\-\_\-gt}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_aaea7203de435f3395fb4842c5230ecc7}
+This function combines all together the results of the ground-\/truth \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em filenames} & A vector of string containing the names of the ground-\/truth files \\
+\hline
+{\em total\-\_\-gt} & A vector of vector of points containing the combined ground-\/truth. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_af0184944140cd71ef9ad9c6d3a89ca48}{\index{Cv\-Utils@{Cv\-Utils}!data\-\_\-association@{data\-\_\-association}}
+\index{data\-\_\-association@{data\-\_\-association}!CvUtils@{Cv\-Utils}}
+\subsubsection[{data\-\_\-association}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::data\-\_\-association (
+\begin{DoxyParamCaption}
+\item[{vector$<$ Point $>$}]{a, }
+\item[{vector$<$ Point $>$}]{b, }
+\item[{vector$<$ Point $>$ $\ast$}]{matching, }
+\item[{vector$<$ Point $>$ $\ast$}]{outliers}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_af0184944140cd71ef9ad9c6d3a89ca48}
+This function associates the ground-\/truth results to the detection and tracking algorithm. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em a} & A vector of points containing the ground-\/truth. \\
+\hline
+{\em b} & A vector of points containing the results of the implemented algorithm. \\
+\hline
+{\em matching} & A vector containing the mathing between the ground-\/truth and the results. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a4a7f10293376335faeb2ba4e8abc685a}{\index{Cv\-Utils@{Cv\-Utils}!detect\-\_\-face\-\_\-depth@{detect\-\_\-face\-\_\-depth}}
+\index{detect\-\_\-face\-\_\-depth@{detect\-\_\-face\-\_\-depth}!CvUtils@{Cv\-Utils}}
+\subsubsection[{detect\-\_\-face\-\_\-depth}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Rect $>$ Cv\-Utils\-::detect\-\_\-face\-\_\-depth (
+\begin{DoxyParamCaption}
+\item[{Mat}]{depth\-\_\-image, }
+\item[{Mat}]{disparity\-\_\-image}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a4a7f10293376335faeb2ba4e8abc685a}
+This function detects faces in the depth image. \begin{DoxyReturn}{Returns}
+A vector of Rect containing all the bounding-\/boxes of the detected faces. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Mat containing the image. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_ac09b2e17fa71221b79c2a87732814482}{\index{Cv\-Utils@{Cv\-Utils}!detect\-\_\-face\-\_\-rgb@{detect\-\_\-face\-\_\-rgb}}
+\index{detect\-\_\-face\-\_\-rgb@{detect\-\_\-face\-\_\-rgb}!CvUtils@{Cv\-Utils}}
+\subsubsection[{detect\-\_\-face\-\_\-rgb}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Rect $>$ Cv\-Utils\-::detect\-\_\-face\-\_\-rgb (
+\begin{DoxyParamCaption}
+\item[{Mat}]{image}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_ac09b2e17fa71221b79c2a87732814482}
+This function detects faces in the R\-G\-B image. \begin{DoxyReturn}{Returns}
+A vector of Rect containing all the bounding-\/boxes of the detected faces. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Mat containing the R\-G\-B image. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a24520cd4e52e1c47a42a0b57c31b1a5d}{\index{Cv\-Utils@{Cv\-Utils}!detect\-\_\-face\-\_\-rgb@{detect\-\_\-face\-\_\-rgb}}
+\index{detect\-\_\-face\-\_\-rgb@{detect\-\_\-face\-\_\-rgb}!CvUtils@{Cv\-Utils}}
+\subsubsection[{detect\-\_\-face\-\_\-rgb}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Rect $>$ Cv\-Utils\-::detect\-\_\-face\-\_\-rgb (
+\begin{DoxyParamCaption}
+\item[{Mat}]{image, }
+\item[{Cascade\-Classifier}]{cascade\-\_\-classifier}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a24520cd4e52e1c47a42a0b57c31b1a5d}
 \hypertarget{classCvUtils_a6e1f3369c2b553c06f2692c75e20667d}{\index{Cv\-Utils@{Cv\-Utils}!draw\-\_\-depth\-\_\-faces@{draw\-\_\-depth\-\_\-faces}}
 \index{draw\-\_\-depth\-\_\-faces@{draw\-\_\-depth\-\_\-faces}!CvUtils@{Cv\-Utils}}
 \subsubsection[{draw\-\_\-depth\-\_\-faces}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::draw\-\_\-depth\-\_\-faces (
@@ -94,24 +304,6 @@ void
 {\em faces} & A vector$<$\-Rect$>$ that contains the rectangles bounding the faces. \\
 \hline
 \end{DoxyParams}
-\hypertarget{classCvUtils_ac86c2ad8adca706655831938b63ebaa2}{\index{Cv\-Utils@{Cv\-Utils}!draw\-\_\-tracking\-\_\-faces@{draw\-\_\-tracking\-\_\-faces}}
-\index{draw\-\_\-tracking\-\_\-faces@{draw\-\_\-tracking\-\_\-faces}!CvUtils@{Cv\-Utils}}
-\subsubsection[{draw\-\_\-tracking\-\_\-faces}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::draw\-\_\-tracking\-\_\-faces (
-\begin{DoxyParamCaption}
-\item[{Mat \&}]{img, }
-\item[{vector$<$ {\bf State\-Data} $>$}]{state\-\_\-datas}
-\end{DoxyParamCaption}
-)}}\label{classCvUtils_ac86c2ad8adca706655831938b63ebaa2}
-This function draws in the input colour image all the rectangles given in a vector of state data that verify a certain confidence value. \begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-\begin{DoxyParams}{Parameters}
-{\em \&img} & A Mat containing an image. \\
-\hline
-{\em state\-\_\-datas} & A vector$<$\-State\-Data$>$ containing the states of the different tracking faces. \\
-\hline
-\end{DoxyParams}
 \hypertarget{classCvUtils_a349894b926e2d252d0ce224abcba698a}{\index{Cv\-Utils@{Cv\-Utils}!enlarge\-\_\-window@{enlarge\-\_\-window}}
 \index{enlarge\-\_\-window@{enlarge\-\_\-window}!CvUtils@{Cv\-Utils}}
 \subsubsection[{enlarge\-\_\-window}]{\setlength{\rightskip}{0pt plus 5cm}Rect Cv\-Utils\-::enlarge\-\_\-window (
@@ -121,6 +313,60 @@ void
 \item[{double}]{scale = {\ttfamily 2.0}}
 \end{DoxyParamCaption}
 )}}\label{classCvUtils_a349894b926e2d252d0ce224abcba698a}
+This function increases the size of the R\-O\-I. \begin{DoxyReturn}{Returns}
+A Rect containing enlarged R\-O\-I. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em orgrect} & A Rect containing the original R\-O\-I. \\
+\hline
+{\em image} & A Mat containing the original image. \\
+\hline
+{\em scale} & A double value containing the scale for increasing the size of the R\-O\-I. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_ae3f32bfe57a7fea941e61f8beb146637}{\index{Cv\-Utils@{Cv\-Utils}!enlarge\-\_\-window\-\_\-height@{enlarge\-\_\-window\-\_\-height}}
+\index{enlarge\-\_\-window\-\_\-height@{enlarge\-\_\-window\-\_\-height}!CvUtils@{Cv\-Utils}}
+\subsubsection[{enlarge\-\_\-window\-\_\-height}]{\setlength{\rightskip}{0pt plus 5cm}Rect Cv\-Utils\-::enlarge\-\_\-window\-\_\-height (
+\begin{DoxyParamCaption}
+\item[{Rect}]{orgrect, }
+\item[{Mat}]{image, }
+\item[{double}]{scale = {\ttfamily 2.0}}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_ae3f32bfe57a7fea941e61f8beb146637}
+This function increases the height of a R\-O\-I. \begin{DoxyReturn}{Returns}
+A Rect containing enlarged R\-O\-I. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em orgrect} & A Rect containing the original R\-O\-I. \\
+\hline
+{\em image} & A Mat containing the original image. \\
+\hline
+{\em scale} & A double value containing the scale for increasing the h of the R\-O\-I. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_afa759cc435e69dabe1b498215a9d9967}{\index{Cv\-Utils@{Cv\-Utils}!enlarge\-\_\-window\-\_\-width@{enlarge\-\_\-window\-\_\-width}}
+\index{enlarge\-\_\-window\-\_\-width@{enlarge\-\_\-window\-\_\-width}!CvUtils@{Cv\-Utils}}
+\subsubsection[{enlarge\-\_\-window\-\_\-width}]{\setlength{\rightskip}{0pt plus 5cm}Rect Cv\-Utils\-::enlarge\-\_\-window\-\_\-width (
+\begin{DoxyParamCaption}
+\item[{Rect}]{orgrect, }
+\item[{Mat}]{image, }
+\item[{double}]{scale = {\ttfamily 2.0}}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_afa759cc435e69dabe1b498215a9d9967}
+This function increases the width of a R\-O\-I. \begin{DoxyReturn}{Returns}
+A Rect containing enlarged R\-O\-I. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em orgrect} & A Rect containing the original R\-O\-I. \\
+\hline
+{\em image} & A Mat containing the original image. \\
+\hline
+{\em scale} & A double value containing the scale for increasing the width of the R\-O\-I. \\
+\hline
+\end{DoxyParams}
 \hypertarget{classCvUtils_a20d53b92663d548bebf90da242d984f3}{\index{Cv\-Utils@{Cv\-Utils}!euclidean\-\_\-distance@{euclidean\-\_\-distance}}
 \index{euclidean\-\_\-distance@{euclidean\-\_\-distance}!CvUtils@{Cv\-Utils}}
 \subsubsection[{euclidean\-\_\-distance}]{\setlength{\rightskip}{0pt plus 5cm}double Cv\-Utils\-::euclidean\-\_\-distance (
@@ -220,6 +466,55 @@ A Point3f with x, y and z coordinates of the center.
 {\em depth\-\_\-image} & A Mat where each pixel gives us depth information. \\
 \hline
 \end{DoxyParams}
+\hypertarget{classCvUtils_a3e96de4f2f4e2c74eb18e9ad658d1575}{\index{Cv\-Utils@{Cv\-Utils}!get\-\_\-transformation\-\_\-matrix@{get\-\_\-transformation\-\_\-matrix}}
+\index{get\-\_\-transformation\-\_\-matrix@{get\-\_\-transformation\-\_\-matrix}!CvUtils@{Cv\-Utils}}
+\subsubsection[{get\-\_\-transformation\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}Mat Cv\-Utils\-::get\-\_\-transformation\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a3e96de4f2f4e2c74eb18e9ad658d1575}
+This function computes projection matrix based on intrinsec and extrinsec parameters. \begin{DoxyReturn}{Returns}
+A Mat containing the projection matrix. 
+\end{DoxyReturn}
+\hypertarget{classCvUtils_ab1e74b543130e0ffcefb7e1a9c95354d}{\index{Cv\-Utils@{Cv\-Utils}!is\-\_\-there\-\_\-face\-\_\-depth@{is\-\_\-there\-\_\-face\-\_\-depth}}
+\index{is\-\_\-there\-\_\-face\-\_\-depth@{is\-\_\-there\-\_\-face\-\_\-depth}!CvUtils@{Cv\-Utils}}
+\subsubsection[{is\-\_\-there\-\_\-face\-\_\-depth}]{\setlength{\rightskip}{0pt plus 5cm}bool Cv\-Utils\-::is\-\_\-there\-\_\-face\-\_\-depth (
+\begin{DoxyParamCaption}
+\item[{Mat \&}]{depth\-\_\-image, }
+\item[{Mat \&}]{disparity\-\_\-image, }
+\item[{Rect}]{rect}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_ab1e74b543130e0ffcefb7e1a9c95354d}
+This function checks if there is a face in the depth image. \begin{DoxyReturn}{Returns}
+A bool variable that says if a face exists. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em depth\-\_\-image} & A Mat containing the depth image. \\
+\hline
+{\em disparity\-\_\-image} & A Mat containing the disparity image. \\
+\hline
+{\em rect} & A Rect containing the R\-O\-I. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a3ffc274ba9c2db3a33e4cd0aca1b4570}{\index{Cv\-Utils@{Cv\-Utils}!is\-\_\-there\-\_\-face\-\_\-rgb@{is\-\_\-there\-\_\-face\-\_\-rgb}}
+\index{is\-\_\-there\-\_\-face\-\_\-rgb@{is\-\_\-there\-\_\-face\-\_\-rgb}!CvUtils@{Cv\-Utils}}
+\subsubsection[{is\-\_\-there\-\_\-face\-\_\-rgb}]{\setlength{\rightskip}{0pt plus 5cm}bool Cv\-Utils\-::is\-\_\-there\-\_\-face\-\_\-rgb (
+\begin{DoxyParamCaption}
+\item[{Mat \&}]{image, }
+\item[{Rect}]{rect}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a3ffc274ba9c2db3a33e4cd0aca1b4570}
+This function checks if there is a face in the R\-G\-B image. \begin{DoxyReturn}{Returns}
+A bool variable that says if a face exists. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em image} & A Mat containing the R\-G\-B image. \\
+\hline
+{\em rect} & A Rect containing the R\-O\-I. \\
+\hline
+\end{DoxyParams}
 \hypertarget{classCvUtils_a47189479acb67a1918f35557fc5906a6}{\index{Cv\-Utils@{Cv\-Utils}!preprocessing@{preprocessing}}
 \index{preprocessing@{preprocessing}!CvUtils@{Cv\-Utils}}
 \subsubsection[{preprocessing}]{\setlength{\rightskip}{0pt plus 5cm}Mat Cv\-Utils\-::preprocessing (
@@ -233,6 +528,42 @@ An image without zero values.
 
 \begin{DoxyParams}{Parameters}
 {\em image} & A Mat containing an image. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a9828a72b15006923f35d4da51359af2e}{\index{Cv\-Utils@{Cv\-Utils}!read\-\_\-from\-\_\-file@{read\-\_\-from\-\_\-file}}
+\index{read\-\_\-from\-\_\-file@{read\-\_\-from\-\_\-file}!CvUtils@{Cv\-Utils}}
+\subsubsection[{read\-\_\-from\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::read\-\_\-from\-\_\-file (
+\begin{DoxyParamCaption}
+\item[{string}]{filename, }
+\item[{vector$<$ vector$<$ Point $>$ $>$ $\ast$}]{rois}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a9828a72b15006923f35d4da51359af2e}
+This function reads the results to from a .yaml file. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em file\-\_\-name} & A String containing the name where the results will be saved. \\
+\hline
+{\em rois} & A vector of vector of points containing the interest points that will be read from file. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a5e7d37fa49e663f642718a1d6631ef41}{\index{Cv\-Utils@{Cv\-Utils}!read\-\_\-from\-\_\-file@{read\-\_\-from\-\_\-file}}
+\index{read\-\_\-from\-\_\-file@{read\-\_\-from\-\_\-file}!CvUtils@{Cv\-Utils}}
+\subsubsection[{read\-\_\-from\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::read\-\_\-from\-\_\-file (
+\begin{DoxyParamCaption}
+\item[{string}]{filename, }
+\item[{vector$<$ Point $>$ \&}]{rois}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a5e7d37fa49e663f642718a1d6631ef41}
+This function reads the results to from a .yaml file. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em file\-\_\-name} & A String containing the name where the results will be saved. \\
+\hline
+{\em rois} & A vector of points containing the interest points that will be read from file. \\
 \hline
 \end{DoxyParams}
 \hypertarget{classCvUtils_aa5bded11699d39af25c420aed2ade0ba}{\index{Cv\-Utils@{Cv\-Utils}!rgb2bw@{rgb2bw}}
@@ -253,6 +584,120 @@ The binary image in im\-\_\-bw.
 \begin{DoxyPrecond}{Precondition}
 The input can be a colour or gray image. 
 \end{DoxyPrecond}
+\hypertarget{classCvUtils_ad8b10d8ef42dc7437bcb40c13dd23d33}{\index{Cv\-Utils@{Cv\-Utils}!transform\-\_\-point@{transform\-\_\-point}}
+\index{transform\-\_\-point@{transform\-\_\-point}!CvUtils@{Cv\-Utils}}
+\subsubsection[{transform\-\_\-point}]{\setlength{\rightskip}{0pt plus 5cm}Mat Cv\-Utils\-::transform\-\_\-point (
+\begin{DoxyParamCaption}
+\item[{Point}]{point}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_ad8b10d8ef42dc7437bcb40c13dd23d33}
+This function transforms the point with the projection matrix. \begin{DoxyReturn}{Returns}
+A Mat containing the transformed point. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em point} & A Point containing the original point. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a78b9e8fc4f7ea2b713ab0bcca586600e}{\index{Cv\-Utils@{Cv\-Utils}!write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}}
+\index{write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}!CvUtils@{Cv\-Utils}}
+\subsubsection[{write\-\_\-results\-\_\-to\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::write\-\_\-results\-\_\-to\-\_\-file (
+\begin{DoxyParamCaption}
+\item[{string}]{file\-\_\-name, }
+\item[{vector$<$ vector$<$ Rect $>$ $>$}]{rois}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a78b9e8fc4f7ea2b713ab0bcca586600e}
+This function writes the results to a .yaml file. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em file\-\_\-name} & A String containing the name where the results will be saved. \\
+\hline
+{\em rois} & A vector of vector of rectangles containing the R\-O\-I that will be saved. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a61698b2aa9a5d770b7d4a6c77738bb2d}{\index{Cv\-Utils@{Cv\-Utils}!write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}}
+\index{write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}!CvUtils@{Cv\-Utils}}
+\subsubsection[{write\-\_\-results\-\_\-to\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::write\-\_\-results\-\_\-to\-\_\-file (
+\begin{DoxyParamCaption}
+\item[{string}]{file\-\_\-name, }
+\item[{vector$<$ vector$<$ Point $>$ $>$}]{points, }
+\item[{double}]{outliers\-\_\-ratio}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a61698b2aa9a5d770b7d4a6c77738bb2d}
+This function writes the results to a .yaml file. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em file\-\_\-name} & A String containing the name where the results will be saved. \\
+\hline
+{\em points} & A vector of vector of Points containing the interest points that will be saved. \\
+\hline
+{\em outliers\-\_\-ratio} & A double variable containing the outliers ratio that will be saced. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a0f3f68175623e99bc1669f3cd06fd301}{\index{Cv\-Utils@{Cv\-Utils}!write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}}
+\index{write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}!CvUtils@{Cv\-Utils}}
+\subsubsection[{write\-\_\-results\-\_\-to\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::write\-\_\-results\-\_\-to\-\_\-file (
+\begin{DoxyParamCaption}
+\item[{string}]{file\-\_\-name, }
+\item[{vector$<$ Rect $>$}]{rois}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a0f3f68175623e99bc1669f3cd06fd301}
+This function writes the results to a .yaml file. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em file\-\_\-name} & A String containing the name where the results will be saved. \\
+\hline
+{\em rois} & A vector of Rect containing the R\-O\-I that will be saved. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a27e76804ac414cc7cdf2e34851dec86a}{\index{Cv\-Utils@{Cv\-Utils}!write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}}
+\index{write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}!CvUtils@{Cv\-Utils}}
+\subsubsection[{write\-\_\-results\-\_\-to\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::write\-\_\-results\-\_\-to\-\_\-file (
+\begin{DoxyParamCaption}
+\item[{string}]{file\-\_\-name, }
+\item[{vector$<$ Point $>$}]{points}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a27e76804ac414cc7cdf2e34851dec86a}
+This function writes the results to a .yaml file. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em file\-\_\-name} & A String containing the name where the results will be saved. \\
+\hline
+{\em points} & A vector of Points containing the interest points that will be saved. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCvUtils_a417431598ac332bcce7a2d66add3662f}{\index{Cv\-Utils@{Cv\-Utils}!write\-\_\-to\-\_\-file@{write\-\_\-to\-\_\-file}}
+\index{write\-\_\-to\-\_\-file@{write\-\_\-to\-\_\-file}!CvUtils@{Cv\-Utils}}
+\subsubsection[{write\-\_\-to\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::write\-\_\-to\-\_\-file (
+\begin{DoxyParamCaption}
+\item[{string}]{filename, }
+\item[{std\-::vector$<$ double $>$}]{rois, }
+\item[{double}]{mse, }
+\item[{double}]{mean}
+\end{DoxyParamCaption}
+)}}\label{classCvUtils_a417431598ac332bcce7a2d66add3662f}
+This function writes the results to a .yaml file. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em file\-\_\-name} & A String containing the name where the results will be saved. \\
+\hline
+{\em rois} & A vector of doubles containing the interest points that will be saved to the file. \\
+\hline
+{\em mse} & A double variable containing the mean square error that will be saved to the file. \\
+\hline
+{\em mean} & A double variable containing the mean that will be saved to the file. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}

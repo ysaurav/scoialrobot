@@ -14,5 +14,6 @@ var searchData=
   ['timer_5fcb',['timer_cb',['../social__robot__onethread_8cpp.html#a52c7f71eb2e6164fc2b70972894bc1ee',1,'social_robot_onethread.cpp']]],
   ['togglefullscreen',['toggleFullScreen',['../classGuiReceiver.html#a50571c44603479d7d96426b1de23b010',1,'GuiReceiver']]],
   ['track_5frois_5fcb',['track_rois_cb',['../classSocialRobotGui.html#a3333bd4377889eb97216ebfbb10f8104',1,'SocialRobotGui']]],
-  ['tracking',['tracking',['../classStateData.html#af4bbe24b619137cba16b7b85970e1bd7',1,'StateData']]]
+  ['tracking',['tracking',['../classStateData.html#af4bbe24b619137cba16b7b85970e1bd7',1,'StateData']]],
+  ['transform_5fpoint',['transform_point',['../classCvUtils.html#ad8b10d8ef42dc7437bcb40c13dd23d33',1,'CvUtils']]]
 ];

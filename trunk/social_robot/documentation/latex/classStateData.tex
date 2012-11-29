@@ -7,8 +7,7 @@
 
 
 
-Collaboration diagram for State\-Data\-:
-\nopagebreak
+Collaboration diagram for State\-Data\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -20,6 +19,8 @@ Collaboration diagram for State\-Data\-:
 \item 
 \hyperlink{classStateData_a3bbfa4301403ebf5d24d5d16cf246b88}{State\-Data} (void)
 \item 
+void \hyperlink{classStateData_a6246f2159937b45b86b85ba0cddbd9c7}{set\-\_\-image\-\_\-depth} (Mat \hyperlink{classStateData_a662c82a423f855845f2be8700af72817}{image\-\_\-depth})
+\item 
 void \hyperlink{classStateData_af4bbe24b619137cba16b7b85970e1bd7}{tracking} (double cost=0.\-01)
 \item 
 void \hyperlink{classStateData_a3fe497a97247af50f8eb876d6284da69}{initialise} (int \hyperlink{social__robot_8cpp_acf574bc864f7f0fc111320f1d6c449d5}{num\-\_\-particles}, Mat image\-\_\-, Rect selection\-\_\-, Mat image\-\_\-depth\-\_\-, int hist\-\_\-type\-\_\-)
@@ -27,6 +28,8 @@ void \hyperlink{classStateData_a3fe497a97247af50f8eb876d6284da69}{initialise} (i
 Rect \hyperlink{classStateData_aa2c20a09eecd353d4454e707ac17f143}{get\-\_\-target\-\_\-position} (void)
 \item 
 void \hyperlink{classStateData_a2b26ea86bd2d1d3d37debec000fefa01}{update\-\_\-target\-\_\-histogram} (Mat \&newimage, Mat \&newdepth, Rect new\-\_\-selection)
+\item 
+void \hyperlink{classStateData_a32b8091aff312aff401b1de0e4685535}{draw\-\_\-estimated\-\_\-state} (Mat \&img)
 \end{DoxyCompactItemize}
 \subsection*{Data Fields}
 \begin{DoxyCompactItemize}
@@ -62,6 +65,13 @@ bool \hyperlink{classStateData_ad5f3d2a522bfdcff47e7d028bf19f012}{is\-\_\-associ
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classStateData_a32b8091aff312aff401b1de0e4685535}{\index{State\-Data@{State\-Data}!draw\-\_\-estimated\-\_\-state@{draw\-\_\-estimated\-\_\-state}}
+\index{draw\-\_\-estimated\-\_\-state@{draw\-\_\-estimated\-\_\-state}!StateData@{State\-Data}}
+\subsubsection[{draw\-\_\-estimated\-\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}void State\-Data\-::draw\-\_\-estimated\-\_\-state (
+\begin{DoxyParamCaption}
+\item[{Mat \&}]{img}
+\end{DoxyParamCaption}
+)}}\label{classStateData_a32b8091aff312aff401b1de0e4685535}
 \hypertarget{classStateData_aa2c20a09eecd353d4454e707ac17f143}{\index{State\-Data@{State\-Data}!get\-\_\-target\-\_\-position@{get\-\_\-target\-\_\-position}}
 \index{get\-\_\-target\-\_\-position@{get\-\_\-target\-\_\-position}!StateData@{State\-Data}}
 \subsubsection[{get\-\_\-target\-\_\-position}]{\setlength{\rightskip}{0pt plus 5cm}Rect State\-Data\-::get\-\_\-target\-\_\-position (
@@ -80,6 +90,13 @@ bool \hyperlink{classStateData_ad5f3d2a522bfdcff47e7d028bf19f012}{is\-\_\-associ
 \item[{int}]{hist\-\_\-type\-\_\-}
 \end{DoxyParamCaption}
 )}}\label{classStateData_a3fe497a97247af50f8eb876d6284da69}
+\hypertarget{classStateData_a6246f2159937b45b86b85ba0cddbd9c7}{\index{State\-Data@{State\-Data}!set\-\_\-image\-\_\-depth@{set\-\_\-image\-\_\-depth}}
+\index{set\-\_\-image\-\_\-depth@{set\-\_\-image\-\_\-depth}!StateData@{State\-Data}}
+\subsubsection[{set\-\_\-image\-\_\-depth}]{\setlength{\rightskip}{0pt plus 5cm}void State\-Data\-::set\-\_\-image\-\_\-depth (
+\begin{DoxyParamCaption}
+\item[{Mat}]{image\-\_\-depth}
+\end{DoxyParamCaption}
+)}}\label{classStateData_a6246f2159937b45b86b85ba0cddbd9c7}
 \hypertarget{classStateData_af4bbe24b619137cba16b7b85970e1bd7}{\index{State\-Data@{State\-Data}!tracking@{tracking}}
 \index{tracking@{tracking}!StateData@{State\-Data}}
 \subsubsection[{tracking}]{\setlength{\rightskip}{0pt plus 5cm}void State\-Data\-::tracking (

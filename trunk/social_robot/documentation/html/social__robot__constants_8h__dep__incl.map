@@ -1,4 +1,5 @@
 <map id="social_robot_constants.h" name="social_robot_constants.h">
-<area shape="rect" id="node3" href="$social__robot_8cpp.html" title="social_robot.cpp" alt="" coords="5,83,123,112"/>
-<area shape="rect" id="node5" href="$social__robot__depth_8cpp.html" title="social_robot_depth.cpp" alt="" coords="147,83,301,112"/>
+<area shape="rect" id="node3" href="$hist_8cpp.html" title="hist.cpp" alt="" coords="5,83,72,112"/>
+<area shape="rect" id="node5" href="$social__robot_8cpp.html" title="social_robot.cpp" alt="" coords="96,83,213,112"/>
+<area shape="rect" id="node7" href="$social__robot__depth_8cpp.html" title="social_robot_depth.cpp" alt="" coords="237,83,392,112"/>
 </map>

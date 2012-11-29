@@ -1,0 +1,112 @@
+\hypertarget{classDepthFaceDetector}{\section{Depth\-Face\-Detector Class Reference}
+\label{classDepthFaceDetector}\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}}
+}
+
+
+{\ttfamily \#include $<$Depth\-Face\-Detector.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDepthFaceDetector_a1efe4e883faaad6a33acd0909e1ec282}{Depth\-Face\-Detector} (void)
+\item 
+vector$<$ Rect $>$ \hyperlink{classDepthFaceDetector_ace3a3506a58be0d500d866d1574a35be}{detect\-\_\-face\-\_\-depth} (Mat \hyperlink{social__robot__onethread_8cpp_a5b613972ff73fd7b34e0ee18acc5c1a6}{depth\-\_\-image}, Mat \hyperlink{social__robot__onethread_8cpp_a485c05800d39168b94f859fac62aa6a7}{disparity\-\_\-image})
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classDepthFaceDetector_a284b331a23267ac39e84059541df3351}{canny\-\_\-thr1}
+\item 
+double \hyperlink{classDepthFaceDetector_acb512932956d9d2e366ed0dbea349a77}{canny\-\_\-thr2}
+\item 
+double \hyperlink{classDepthFaceDetector_a000af3e2a38d75b54e4e7f9a2f372844}{chamfer\-\_\-thr}
+\item 
+double \hyperlink{classDepthFaceDetector_a95b723b80aaf14713aae8a5d763d3202}{arc\-\_\-thr\-\_\-low}
+\item 
+double \hyperlink{classDepthFaceDetector_a494d138048f11fa59da7cdd864c3b7fa}{arc\-\_\-thr\-\_\-high}
+\item 
+double \hyperlink{classDepthFaceDetector_ae3413e4a8064c92a69300c5adbd8e3ed}{approx\-\_\-poly\-\_\-thr}
+\item 
+double \hyperlink{classDepthFaceDetector_a6d26a22f8f85dc4e70ba368b52241882}{max\-\_\-suppression}
+\item 
+double \hyperlink{classDepthFaceDetector_a4dbe7bcae76b86b9dce3383e8da0fb87}{scale\-\_\-factor}
+\item 
+double \hyperlink{classDepthFaceDetector_ad2d08e90624566d7bd6e51e141edb1a6}{match3\-D\-\_\-thr}
+\item 
+int \hyperlink{classDepthFaceDetector_ab2a61535fe93d7df87e6a37c584f9819}{scales}
+\item 
+int \hyperlink{classDepthFaceDetector_a1bf21c5a6c326bba9f5710c207d1555f}{scales\-\_\-default}
+\item 
+int \hyperlink{classDepthFaceDetector_a48a0fc86ac4fcbf0347a0247557b5f29}{framenum}
+\item 
+int \hyperlink{classDepthFaceDetector_ace0000695ed60a214c65e82793f53c7c}{update\-\_\-rate}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classDepthFaceDetector_a1efe4e883faaad6a33acd0909e1ec282}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!Depth\-Face\-Detector@{Depth\-Face\-Detector}}
+\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{Depth\-Face\-Detector}]{\setlength{\rightskip}{0pt plus 5cm}Depth\-Face\-Detector\-::\-Depth\-Face\-Detector (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classDepthFaceDetector_a1efe4e883faaad6a33acd0909e1ec282}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classDepthFaceDetector_ace3a3506a58be0d500d866d1574a35be}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!detect\-\_\-face\-\_\-depth@{detect\-\_\-face\-\_\-depth}}
+\index{detect\-\_\-face\-\_\-depth@{detect\-\_\-face\-\_\-depth}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{detect\-\_\-face\-\_\-depth}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Rect $>$ Depth\-Face\-Detector\-::detect\-\_\-face\-\_\-depth (
+\begin{DoxyParamCaption}
+\item[{Mat}]{depth\-\_\-image, }
+\item[{Mat}]{disparity\-\_\-image}
+\end{DoxyParamCaption}
+)}}\label{classDepthFaceDetector_ace3a3506a58be0d500d866d1574a35be}
+
+
+\subsection{Field Documentation}
+\hypertarget{classDepthFaceDetector_ae3413e4a8064c92a69300c5adbd8e3ed}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!approx\-\_\-poly\-\_\-thr@{approx\-\_\-poly\-\_\-thr}}
+\index{approx\-\_\-poly\-\_\-thr@{approx\-\_\-poly\-\_\-thr}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{approx\-\_\-poly\-\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double Depth\-Face\-Detector\-::approx\-\_\-poly\-\_\-thr}}\label{classDepthFaceDetector_ae3413e4a8064c92a69300c5adbd8e3ed}
+\hypertarget{classDepthFaceDetector_a494d138048f11fa59da7cdd864c3b7fa}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!arc\-\_\-thr\-\_\-high@{arc\-\_\-thr\-\_\-high}}
+\index{arc\-\_\-thr\-\_\-high@{arc\-\_\-thr\-\_\-high}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{arc\-\_\-thr\-\_\-high}]{\setlength{\rightskip}{0pt plus 5cm}double Depth\-Face\-Detector\-::arc\-\_\-thr\-\_\-high}}\label{classDepthFaceDetector_a494d138048f11fa59da7cdd864c3b7fa}
+\hypertarget{classDepthFaceDetector_a95b723b80aaf14713aae8a5d763d3202}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!arc\-\_\-thr\-\_\-low@{arc\-\_\-thr\-\_\-low}}
+\index{arc\-\_\-thr\-\_\-low@{arc\-\_\-thr\-\_\-low}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{arc\-\_\-thr\-\_\-low}]{\setlength{\rightskip}{0pt plus 5cm}double Depth\-Face\-Detector\-::arc\-\_\-thr\-\_\-low}}\label{classDepthFaceDetector_a95b723b80aaf14713aae8a5d763d3202}
+\hypertarget{classDepthFaceDetector_a284b331a23267ac39e84059541df3351}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!canny\-\_\-thr1@{canny\-\_\-thr1}}
+\index{canny\-\_\-thr1@{canny\-\_\-thr1}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{canny\-\_\-thr1}]{\setlength{\rightskip}{0pt plus 5cm}double Depth\-Face\-Detector\-::canny\-\_\-thr1}}\label{classDepthFaceDetector_a284b331a23267ac39e84059541df3351}
+\hypertarget{classDepthFaceDetector_acb512932956d9d2e366ed0dbea349a77}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!canny\-\_\-thr2@{canny\-\_\-thr2}}
+\index{canny\-\_\-thr2@{canny\-\_\-thr2}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{canny\-\_\-thr2}]{\setlength{\rightskip}{0pt plus 5cm}double Depth\-Face\-Detector\-::canny\-\_\-thr2}}\label{classDepthFaceDetector_acb512932956d9d2e366ed0dbea349a77}
+\hypertarget{classDepthFaceDetector_a000af3e2a38d75b54e4e7f9a2f372844}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!chamfer\-\_\-thr@{chamfer\-\_\-thr}}
+\index{chamfer\-\_\-thr@{chamfer\-\_\-thr}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{chamfer\-\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double Depth\-Face\-Detector\-::chamfer\-\_\-thr}}\label{classDepthFaceDetector_a000af3e2a38d75b54e4e7f9a2f372844}
+\hypertarget{classDepthFaceDetector_a48a0fc86ac4fcbf0347a0247557b5f29}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!framenum@{framenum}}
+\index{framenum@{framenum}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{framenum}]{\setlength{\rightskip}{0pt plus 5cm}int Depth\-Face\-Detector\-::framenum}}\label{classDepthFaceDetector_a48a0fc86ac4fcbf0347a0247557b5f29}
+\hypertarget{classDepthFaceDetector_ad2d08e90624566d7bd6e51e141edb1a6}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!match3\-D\-\_\-thr@{match3\-D\-\_\-thr}}
+\index{match3\-D\-\_\-thr@{match3\-D\-\_\-thr}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{match3\-D\-\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double Depth\-Face\-Detector\-::match3\-D\-\_\-thr}}\label{classDepthFaceDetector_ad2d08e90624566d7bd6e51e141edb1a6}
+\hypertarget{classDepthFaceDetector_a6d26a22f8f85dc4e70ba368b52241882}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!max\-\_\-suppression@{max\-\_\-suppression}}
+\index{max\-\_\-suppression@{max\-\_\-suppression}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{max\-\_\-suppression}]{\setlength{\rightskip}{0pt plus 5cm}double Depth\-Face\-Detector\-::max\-\_\-suppression}}\label{classDepthFaceDetector_a6d26a22f8f85dc4e70ba368b52241882}
+\hypertarget{classDepthFaceDetector_a4dbe7bcae76b86b9dce3383e8da0fb87}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!scale\-\_\-factor@{scale\-\_\-factor}}
+\index{scale\-\_\-factor@{scale\-\_\-factor}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{scale\-\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}double Depth\-Face\-Detector\-::scale\-\_\-factor}}\label{classDepthFaceDetector_a4dbe7bcae76b86b9dce3383e8da0fb87}
+\hypertarget{classDepthFaceDetector_ab2a61535fe93d7df87e6a37c584f9819}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!scales@{scales}}
+\index{scales@{scales}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{scales}]{\setlength{\rightskip}{0pt plus 5cm}int Depth\-Face\-Detector\-::scales}}\label{classDepthFaceDetector_ab2a61535fe93d7df87e6a37c584f9819}
+\hypertarget{classDepthFaceDetector_a1bf21c5a6c326bba9f5710c207d1555f}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!scales\-\_\-default@{scales\-\_\-default}}
+\index{scales\-\_\-default@{scales\-\_\-default}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{scales\-\_\-default}]{\setlength{\rightskip}{0pt plus 5cm}int Depth\-Face\-Detector\-::scales\-\_\-default}}\label{classDepthFaceDetector_a1bf21c5a6c326bba9f5710c207d1555f}
+\hypertarget{classDepthFaceDetector_ace0000695ed60a214c65e82793f53c7c}{\index{Depth\-Face\-Detector@{Depth\-Face\-Detector}!update\-\_\-rate@{update\-\_\-rate}}
+\index{update\-\_\-rate@{update\-\_\-rate}!DepthFaceDetector@{Depth\-Face\-Detector}}
+\subsubsection[{update\-\_\-rate}]{\setlength{\rightskip}{0pt plus 5cm}int Depth\-Face\-Detector\-::update\-\_\-rate}}\label{classDepthFaceDetector_ace0000695ed60a214c65e82793f53c7c}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{DepthFaceDetector_8h}{Depth\-Face\-Detector.\-h}\item 
+\hyperlink{DepthFaceDetector_8cpp}{Depth\-Face\-Detector.\-cpp}\end{DoxyCompactItemize}

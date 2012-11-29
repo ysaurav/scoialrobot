@@ -1,6 +1,5 @@
 <map id="CvUtils.h" name="CvUtils.h">
-<area shape="rect" id="node15" href="$StateData_8h.html" title="particle_filter/StateData.h" alt="" coords="1027,83,1197,112"/>
-<area shape="rect" id="node17" href="$hist_8h.html" title="hist.h" alt="" coords="1052,237,1105,267"/>
-<area shape="rect" id="node21" href="$filter_8h.html" title="filter.h" alt="" coords="1116,160,1175,189"/>
-<area shape="rect" id="node24" href="$condens_8h.html" title="condens.h" alt="" coords="1180,237,1263,267"/>
+<area shape="rect" id="node15" href="$DepthFaceDetector_8h.html" title="DepthFaceDetector.h" alt="" coords="866,83,1013,112"/>
+<area shape="rect" id="node17" href="$PixelSimilarity_8h.html" title="PixelSimilarity.h" alt="" coords="758,160,873,189"/>
+<area shape="rect" id="node20" href="$Template_8h.html" title="Template.h" alt="" coords="897,160,982,189"/>
 </map>

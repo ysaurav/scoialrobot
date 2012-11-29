@@ -117,17 +117,21 @@ $(document).ready(function(){initNavTree('classCvUtils.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ad292f6ff1df46556644e3161d048b3aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#ad292f6ff1df46556644e3161d048b3aa">CvUtils</a> (void)</td></tr>
+<tr class="separator:ad292f6ff1df46556644e3161d048b3aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5bded11699d39af25c420aed2ade0ba"><td class="memItemLeft" align="right" valign="top">Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#aa5bded11699d39af25c420aed2ade0ba">rgb2bw</a> (Mat im_rgb)</td></tr>
 <tr class="separator:aa5bded11699d39af25c420aed2ade0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47189479acb67a1918f35557fc5906a6"><td class="memItemLeft" align="right" valign="top">Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a47189479acb67a1918f35557fc5906a6">preprocessing</a> (Mat <a class="el" href="createGT_8cpp.html#aabb27b8973575043030df51be47cd24a">image</a>)</td></tr>
+<tr class="memitem:a47189479acb67a1918f35557fc5906a6"><td class="memItemLeft" align="right" valign="top">Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a47189479acb67a1918f35557fc5906a6">preprocessing</a> (Mat <a class="el" href="create__ground__truth_8cpp.html#aabb27b8973575043030df51be47cd24a">image</a>)</td></tr>
 <tr class="separator:a47189479acb67a1918f35557fc5906a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a426439fc003e5557644932eee66c48b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a426439fc003e5557644932eee66c48b6">get_non_zeros</a> (Mat img, Mat prob, vector&lt; Point3f &gt; *points, Point pdiff=Point(0, 0), double scale=1)</td></tr>
 <tr class="separator:a426439fc003e5557644932eee66c48b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0184944140cd71ef9ad9c6d3a89ca48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#af0184944140cd71ef9ad9c6d3a89ca48">data_association</a> (vector&lt; Point &gt; a, vector&lt; Point &gt; b, vector&lt; Point &gt; *<a class="el" href="social__robot__onethread_8cpp.html#a1ad5e89ff23cfb6db193cfd737de72f1">matching</a>, vector&lt; Point &gt; *outliers)</td></tr>
+<tr class="separator:af0184944140cd71ef9ad9c6d3a89ca48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaea7203de435f3395fb4842c5230ecc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#aaea7203de435f3395fb4842c5230ecc7">create_combine_gt_vector</a> (vector&lt; string &gt; filenames, vector&lt; vector&lt; Point &gt; &gt; &amp;total_gt)</td></tr>
+<tr class="separator:aaea7203de435f3395fb4842c5230ecc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Drawing functions</div></td></tr>
 <tr class="memitem:a74249b2e9b76b2a8ae2c01c4ff496663"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a74249b2e9b76b2a8ae2c01c4ff496663">draw_rgb_faces</a> (Mat &amp;img, vector&lt; Rect &gt; faces)</td></tr>
 <tr class="separator:a74249b2e9b76b2a8ae2c01c4ff496663"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac86c2ad8adca706655831938b63ebaa2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#ac86c2ad8adca706655831938b63ebaa2">draw_tracking_faces</a> (Mat &amp;img, vector&lt; <a class="el" href="classStateData.html">StateData</a> &gt; <a class="el" href="social__robot_8cpp.html#a63ba5e41659a1483954bc6564bca605a">state_datas</a>)</td></tr>
-<tr class="separator:ac86c2ad8adca706655831938b63ebaa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e1f3369c2b553c06f2692c75e20667d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a6e1f3369c2b553c06f2692c75e20667d">draw_depth_faces</a> (Mat &amp;img, vector&lt; Rect &gt; faces)</td></tr>
 <tr class="separator:a6e1f3369c2b553c06f2692c75e20667d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Get the center of a rectangle</div></td></tr>
@@ -140,13 +144,352 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a20d53b92663d548bebf90da242d984f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74b4a32b47136f704db2729b39095c02"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a74b4a32b47136f704db2729b39095c02">euclidean_distance</a> (Point a, Point b)</td></tr>
 <tr class="separator:a74b4a32b47136f704db2729b39095c02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a349894b926e2d252d0ce224abcba698a"><td class="memItemLeft" align="right" valign="top">Rect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a349894b926e2d252d0ce224abcba698a">enlarge_window</a> (Rect orgrect, Mat <a class="el" href="createGT_8cpp.html#aabb27b8973575043030df51be47cd24a">image</a>, double scale=2.0)</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Detect faces</div></td></tr>
+<tr class="memitem:a3ffc274ba9c2db3a33e4cd0aca1b4570"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a3ffc274ba9c2db3a33e4cd0aca1b4570">is_there_face_rgb</a> (Mat &amp;<a class="el" href="create__ground__truth_8cpp.html#aabb27b8973575043030df51be47cd24a">image</a>, Rect rect)</td></tr>
+<tr class="separator:a3ffc274ba9c2db3a33e4cd0aca1b4570"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1e74b543130e0ffcefb7e1a9c95354d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#ab1e74b543130e0ffcefb7e1a9c95354d">is_there_face_depth</a> (Mat &amp;<a class="el" href="social__robot__onethread_8cpp.html#a5b613972ff73fd7b34e0ee18acc5c1a6">depth_image</a>, Mat &amp;<a class="el" href="social__robot__onethread_8cpp.html#a485c05800d39168b94f859fac62aa6a7">disparity_image</a>, Rect rect)</td></tr>
+<tr class="separator:ab1e74b543130e0ffcefb7e1a9c95354d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac09b2e17fa71221b79c2a87732814482"><td class="memItemLeft" align="right" valign="top">vector&lt; Rect &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#ac09b2e17fa71221b79c2a87732814482">detect_face_rgb</a> (Mat <a class="el" href="create__ground__truth_8cpp.html#aabb27b8973575043030df51be47cd24a">image</a>)</td></tr>
+<tr class="separator:ac09b2e17fa71221b79c2a87732814482"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24520cd4e52e1c47a42a0b57c31b1a5d"><td class="memItemLeft" align="right" valign="top">vector&lt; Rect &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a24520cd4e52e1c47a42a0b57c31b1a5d">detect_face_rgb</a> (Mat <a class="el" href="create__ground__truth_8cpp.html#aabb27b8973575043030df51be47cd24a">image</a>, CascadeClassifier cascade_classifier)</td></tr>
+<tr class="separator:a24520cd4e52e1c47a42a0b57c31b1a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a7f10293376335faeb2ba4e8abc685a"><td class="memItemLeft" align="right" valign="top">vector&lt; Rect &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a4a7f10293376335faeb2ba4e8abc685a">detect_face_depth</a> (Mat <a class="el" href="social__robot__onethread_8cpp.html#a5b613972ff73fd7b34e0ee18acc5c1a6">depth_image</a>, Mat <a class="el" href="social__robot__onethread_8cpp.html#a485c05800d39168b94f859fac62aa6a7">disparity_image</a>)</td></tr>
+<tr class="separator:a4a7f10293376335faeb2ba4e8abc685a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Enlarge window</div></td></tr>
+<tr class="memitem:a349894b926e2d252d0ce224abcba698a"><td class="memItemLeft" align="right" valign="top">Rect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a349894b926e2d252d0ce224abcba698a">enlarge_window</a> (Rect orgrect, Mat <a class="el" href="create__ground__truth_8cpp.html#aabb27b8973575043030df51be47cd24a">image</a>, double scale=2.0)</td></tr>
 <tr class="separator:a349894b926e2d252d0ce224abcba698a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa759cc435e69dabe1b498215a9d9967"><td class="memItemLeft" align="right" valign="top">Rect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#afa759cc435e69dabe1b498215a9d9967">enlarge_window_width</a> (Rect orgrect, Mat <a class="el" href="create__ground__truth_8cpp.html#aabb27b8973575043030df51be47cd24a">image</a>, double scale=2.0)</td></tr>
+<tr class="separator:afa759cc435e69dabe1b498215a9d9967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3f32bfe57a7fea941e61f8beb146637"><td class="memItemLeft" align="right" valign="top">Rect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#ae3f32bfe57a7fea941e61f8beb146637">enlarge_window_height</a> (Rect orgrect, Mat <a class="el" href="create__ground__truth_8cpp.html#aabb27b8973575043030df51be47cd24a">image</a>, double scale=2.0)</td></tr>
+<tr class="separator:ae3f32bfe57a7fea941e61f8beb146637"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Torso orientation</div></td></tr>
+<tr class="memitem:a90574948cfab1863cad26a2b8a43c37f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a90574948cfab1863cad26a2b8a43c37f">compute_torso_orientation</a> (Mat <a class="el" href="social__robot__onethread_8cpp.html#a5b613972ff73fd7b34e0ee18acc5c1a6">depth_image</a>, Point head_position)</td></tr>
+<tr class="separator:a90574948cfab1863cad26a2b8a43c37f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e96de4f2f4e2c74eb18e9ad658d1575"><td class="memItemLeft" align="right" valign="top">Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a3e96de4f2f4e2c74eb18e9ad658d1575">get_transformation_matrix</a> (void)</td></tr>
+<tr class="separator:a3e96de4f2f4e2c74eb18e9ad658d1575"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8b10d8ef42dc7437bcb40c13dd23d33"><td class="memItemLeft" align="right" valign="top">Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#ad8b10d8ef42dc7437bcb40c13dd23d33">transform_point</a> (Point point)</td></tr>
+<tr class="separator:ad8b10d8ef42dc7437bcb40c13dd23d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Write to file</div></td></tr>
+<tr class="memitem:a78b9e8fc4f7ea2b713ab0bcca586600e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a78b9e8fc4f7ea2b713ab0bcca586600e">write_results_to_file</a> (string <a class="el" href="rgbWriter_8cpp.html#a755d42f2e9c635ce2213e0efad62b796">file_name</a>, vector&lt; vector&lt; Rect &gt; &gt; <a class="el" href="social__robot__onethread_8cpp.html#acb84e343c5602756e13a851a44128639">rois</a>)</td></tr>
+<tr class="separator:a78b9e8fc4f7ea2b713ab0bcca586600e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61698b2aa9a5d770b7d4a6c77738bb2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a61698b2aa9a5d770b7d4a6c77738bb2d">write_results_to_file</a> (string <a class="el" href="rgbWriter_8cpp.html#a755d42f2e9c635ce2213e0efad62b796">file_name</a>, vector&lt; vector&lt; Point &gt; &gt; points, double outliers_ratio)</td></tr>
+<tr class="separator:a61698b2aa9a5d770b7d4a6c77738bb2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f3f68175623e99bc1669f3cd06fd301"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a0f3f68175623e99bc1669f3cd06fd301">write_results_to_file</a> (string <a class="el" href="rgbWriter_8cpp.html#a755d42f2e9c635ce2213e0efad62b796">file_name</a>, vector&lt; Rect &gt; <a class="el" href="social__robot__onethread_8cpp.html#acb84e343c5602756e13a851a44128639">rois</a>)</td></tr>
+<tr class="separator:a0f3f68175623e99bc1669f3cd06fd301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27e76804ac414cc7cdf2e34851dec86a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a27e76804ac414cc7cdf2e34851dec86a">write_results_to_file</a> (string <a class="el" href="rgbWriter_8cpp.html#a755d42f2e9c635ce2213e0efad62b796">file_name</a>, vector&lt; Point &gt; points)</td></tr>
+<tr class="separator:a27e76804ac414cc7cdf2e34851dec86a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a417431598ac332bcce7a2d66add3662f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a417431598ac332bcce7a2d66add3662f">write_to_file</a> (string filename, vector&lt; double &gt; <a class="el" href="social__robot__onethread_8cpp.html#acb84e343c5602756e13a851a44128639">rois</a>, double mse, double mean)</td></tr>
+<tr class="separator:a417431598ac332bcce7a2d66add3662f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Read from file</div></td></tr>
+<tr class="memitem:a9828a72b15006923f35d4da51359af2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a9828a72b15006923f35d4da51359af2e">read_from_file</a> (string filename, vector&lt; vector&lt; Point &gt; &gt; *<a class="el" href="social__robot__onethread_8cpp.html#acb84e343c5602756e13a851a44128639">rois</a>)</td></tr>
+<tr class="separator:a9828a72b15006923f35d4da51359af2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e7d37fa49e663f642718a1d6631ef41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a5e7d37fa49e663f642718a1d6631ef41">read_from_file</a> (string filename, vector&lt; Point &gt; &amp;<a class="el" href="social__robot__onethread_8cpp.html#acb84e343c5602756e13a851a44128639">rois</a>)</td></tr>
+<tr class="separator:a5e7d37fa49e663f642718a1d6631ef41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Compare results</div></td></tr>
+<tr class="memitem:a4343095a146def99839decf98366c8a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a4343095a146def99839decf98366c8a9">compare_gt_results</a> (vector&lt; vector&lt; Point &gt; &gt; gt, vector&lt; vector&lt; Point &gt; &gt; <a class="el" href="social__robot_8cpp.html#a246570e7b14b6616ada8593b04836e1d">results</a>)</td></tr>
+<tr class="separator:a4343095a146def99839decf98366c8a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4444a7e6a5eedb9633057c9283cae113"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCvUtils.html#a4444a7e6a5eedb9633057c9283cae113">compare_gt_results</a> (vector&lt; Point &gt; gt, vector&lt; Point &gt; <a class="el" href="social__robot_8cpp.html#a246570e7b14b6616ada8593b04836e1d">results</a>, string filename)</td></tr>
+<tr class="separator:a4444a7e6a5eedb9633057c9283cae113"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class contains useful functions for the image processing part. </p>
 <dl class="section author"><dt>Author</dt><dd>Social Robot </dd></dl>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ad292f6ff1df46556644e3161d048b3aa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CvUtils::CvUtils </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a4343095a146def99839decf98366c8a9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CvUtils::compare_gt_results </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; vector&lt; Point &gt; &gt;&#160;</td>
+          <td class="paramname"><em>gt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; vector&lt; Point &gt; &gt;&#160;</td>
+          <td class="paramname"><em>results</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function compare the ground-truth results to the detection and tracking algorithm </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gt</td><td>A vector of vector of points containing the ground-truth </td></tr>
+    <tr><td class="paramname">results</td><td>A vector of vector of points containing the results of the implemented algorithm </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4444a7e6a5eedb9633057c9283cae113"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CvUtils::compare_gt_results </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; Point &gt;&#160;</td>
+          <td class="paramname"><em>gt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; Point &gt;&#160;</td>
+          <td class="paramname"><em>results</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function compare the ground-truth results to the detection and tracking algorithm </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gt</td><td>A vector of points containing the ground-truth </td></tr>
+    <tr><td class="paramname">results</td><td>A vector of points containing the results of the implemented algorithm </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a90574948cfab1863cad26a2b8a43c37f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double CvUtils::compute_torso_orientation </td>
+          <td>(</td>
+          <td class="paramtype">Mat&#160;</td>
+          <td class="paramname"><em>depth_image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Point&#160;</td>
+          <td class="paramname"><em>head_position</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function computes the torso orientation. </p>
+<dl class="section return"><dt>Returns</dt><dd>A double value containing the torso orientation in degrees. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">depth_image</td><td>A Mat containing the original depth image. </td></tr>
+    <tr><td class="paramname">head_position</td><td>A Point containing the coordinates of the head. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aaea7203de435f3395fb4842c5230ecc7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CvUtils::create_combine_gt_vector </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>filenames</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; vector&lt; Point &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>total_gt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function combines all together the results of the ground-truth </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filenames</td><td>A vector of string containing the names of the ground-truth files </td></tr>
+    <tr><td class="paramname">total_gt</td><td>A vector of vector of points containing the combined ground-truth. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af0184944140cd71ef9ad9c6d3a89ca48"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CvUtils::data_association </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; Point &gt;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; Point &gt;&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; Point &gt; *&#160;</td>
+          <td class="paramname"><em>matching</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; Point &gt; *&#160;</td>
+          <td class="paramname"><em>outliers</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function associates the ground-truth results to the detection and tracking algorithm. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>A vector of points containing the ground-truth. </td></tr>
+    <tr><td class="paramname">b</td><td>A vector of points containing the results of the implemented algorithm. </td></tr>
+    <tr><td class="paramname">matching</td><td>A vector containing the mathing between the ground-truth and the results. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4a7f10293376335faeb2ba4e8abc685a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; Rect &gt; CvUtils::detect_face_depth </td>
+          <td>(</td>
+          <td class="paramtype">Mat&#160;</td>
+          <td class="paramname"><em>depth_image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Mat&#160;</td>
+          <td class="paramname"><em>disparity_image</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function detects faces in the depth image. </p>
+<dl class="section return"><dt>Returns</dt><dd>A vector of Rect containing all the bounding-boxes of the detected faces. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>Mat containing the image. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac09b2e17fa71221b79c2a87732814482"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; Rect &gt; CvUtils::detect_face_rgb </td>
+          <td>(</td>
+          <td class="paramtype">Mat&#160;</td>
+          <td class="paramname"><em>image</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function detects faces in the RGB image. </p>
+<dl class="section return"><dt>Returns</dt><dd>A vector of Rect containing all the bounding-boxes of the detected faces. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>Mat containing the RGB image. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a24520cd4e52e1c47a42a0b57c31b1a5d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; Rect &gt; CvUtils::detect_face_rgb </td>
+          <td>(</td>
+          <td class="paramtype">Mat&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CascadeClassifier&#160;</td>
+          <td class="paramname"><em>cascade_classifier</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a6e1f3369c2b553c06f2692c75e20667d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -217,41 +560,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac86c2ad8adca706655831938b63ebaa2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CvUtils::draw_tracking_faces </td>
-          <td>(</td>
-          <td class="paramtype">Mat &amp;&#160;</td>
-          <td class="paramname"><em>img</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">vector&lt; <a class="el" href="classStateData.html">StateData</a> &gt;&#160;</td>
-          <td class="paramname"><em>state_datas</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>This function draws in the input colour image all the rectangles given in a vector of state data that verify a certain confidence value. </p>
-<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">&amp;img</td><td>A Mat containing an image. </td></tr>
-    <tr><td class="paramname">state_datas</td><td>A vector&lt;StateData&gt; containing the states of the different tracking faces. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="a349894b926e2d252d0ce224abcba698a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -281,6 +589,100 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function increases the size of the ROI. </p>
+<dl class="section return"><dt>Returns</dt><dd>A Rect containing enlarged ROI. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">orgrect</td><td>A Rect containing the original ROI. </td></tr>
+    <tr><td class="paramname">image</td><td>A Mat containing the original image. </td></tr>
+    <tr><td class="paramname">scale</td><td>A double value containing the scale for increasing the size of the ROI. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae3f32bfe57a7fea941e61f8beb146637"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Rect CvUtils::enlarge_window_height </td>
+          <td>(</td>
+          <td class="paramtype">Rect&#160;</td>
+          <td class="paramname"><em>orgrect</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Mat&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>scale</em> = <code>2.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function increases the height of a ROI. </p>
+<dl class="section return"><dt>Returns</dt><dd>A Rect containing enlarged ROI. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">orgrect</td><td>A Rect containing the original ROI. </td></tr>
+    <tr><td class="paramname">image</td><td>A Mat containing the original image. </td></tr>
+    <tr><td class="paramname">scale</td><td>A double value containing the scale for increasing the h of the ROI. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="afa759cc435e69dabe1b498215a9d9967"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Rect CvUtils::enlarge_window_width </td>
+          <td>(</td>
+          <td class="paramtype">Rect&#160;</td>
+          <td class="paramname"><em>orgrect</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Mat&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>scale</em> = <code>2.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function increases the width of a ROI. </p>
+<dl class="section return"><dt>Returns</dt><dd>A Rect containing enlarged ROI. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">orgrect</td><td>A Rect containing the original ROI. </td></tr>
+    <tr><td class="paramname">image</td><td>A Mat containing the original image. </td></tr>
+    <tr><td class="paramname">scale</td><td>A double value containing the scale for increasing the width of the ROI. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -470,6 +872,101 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a3e96de4f2f4e2c74eb18e9ad658d1575"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mat CvUtils::get_transformation_matrix </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function computes projection matrix based on intrinsec and extrinsec parameters. </p>
+<dl class="section return"><dt>Returns</dt><dd>A Mat containing the projection matrix. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab1e74b543130e0ffcefb7e1a9c95354d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CvUtils::is_there_face_depth </td>
+          <td>(</td>
+          <td class="paramtype">Mat &amp;&#160;</td>
+          <td class="paramname"><em>depth_image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Mat &amp;&#160;</td>
+          <td class="paramname"><em>disparity_image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Rect&#160;</td>
+          <td class="paramname"><em>rect</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function checks if there is a face in the depth image. </p>
+<dl class="section return"><dt>Returns</dt><dd>A bool variable that says if a face exists. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">depth_image</td><td>A Mat containing the depth image. </td></tr>
+    <tr><td class="paramname">disparity_image</td><td>A Mat containing the disparity image. </td></tr>
+    <tr><td class="paramname">rect</td><td>A Rect containing the ROI. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a3ffc274ba9c2db3a33e4cd0aca1b4570"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CvUtils::is_there_face_rgb </td>
+          <td>(</td>
+          <td class="paramtype">Mat &amp;&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Rect&#160;</td>
+          <td class="paramname"><em>rect</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function checks if there is a face in the RGB image. </p>
+<dl class="section return"><dt>Returns</dt><dd>A bool variable that says if a face exists. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>A Mat containing the RGB image. </td></tr>
+    <tr><td class="paramname">rect</td><td>A Rect containing the ROI. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a47189479acb67a1918f35557fc5906a6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -488,6 +985,76 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">image</td><td>A Mat containing an image. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9828a72b15006923f35d4da51359af2e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CvUtils::read_from_file </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; vector&lt; Point &gt; &gt; *&#160;</td>
+          <td class="paramname"><em>rois</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function reads the results to from a .yaml file. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file_name</td><td>A String containing the name where the results will be saved. </td></tr>
+    <tr><td class="paramname">rois</td><td>A vector of vector of points containing the interest points that will be read from file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a5e7d37fa49e663f642718a1d6631ef41"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CvUtils::read_from_file </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; Point &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rois</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function reads the results to from a .yaml file. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file_name</td><td>A String containing the name where the results will be saved. </td></tr>
+    <tr><td class="paramname">rois</td><td>A vector of points containing the interest points that will be read from file. </td></tr>
   </table>
   </dd>
 </dl>
@@ -519,6 +1086,226 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ad8b10d8ef42dc7437bcb40c13dd23d33"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mat CvUtils::transform_point </td>
+          <td>(</td>
+          <td class="paramtype">Point&#160;</td>
+          <td class="paramname"><em>point</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function transforms the point with the projection matrix. </p>
+<dl class="section return"><dt>Returns</dt><dd>A Mat containing the transformed point. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">point</td><td>A Point containing the original point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a78b9e8fc4f7ea2b713ab0bcca586600e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CvUtils::write_results_to_file </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; vector&lt; Rect &gt; &gt;&#160;</td>
+          <td class="paramname"><em>rois</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function writes the results to a .yaml file. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file_name</td><td>A String containing the name where the results will be saved. </td></tr>
+    <tr><td class="paramname">rois</td><td>A vector of vector of rectangles containing the ROI that will be saved. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a61698b2aa9a5d770b7d4a6c77738bb2d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CvUtils::write_results_to_file </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; vector&lt; Point &gt; &gt;&#160;</td>
+          <td class="paramname"><em>points</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>outliers_ratio</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function writes the results to a .yaml file. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file_name</td><td>A String containing the name where the results will be saved. </td></tr>
+    <tr><td class="paramname">points</td><td>A vector of vector of Points containing the interest points that will be saved. </td></tr>
+    <tr><td class="paramname">outliers_ratio</td><td>A double variable containing the outliers ratio that will be saced. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0f3f68175623e99bc1669f3cd06fd301"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CvUtils::write_results_to_file </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; Rect &gt;&#160;</td>
+          <td class="paramname"><em>rois</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function writes the results to a .yaml file. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file_name</td><td>A String containing the name where the results will be saved. </td></tr>
+    <tr><td class="paramname">rois</td><td>A vector of Rect containing the ROI that will be saved. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a27e76804ac414cc7cdf2e34851dec86a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CvUtils::write_results_to_file </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; Point &gt;&#160;</td>
+          <td class="paramname"><em>points</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function writes the results to a .yaml file. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file_name</td><td>A String containing the name where the results will be saved. </td></tr>
+    <tr><td class="paramname">points</td><td>A vector of Points containing the interest points that will be saved. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a417431598ac332bcce7a2d66add3662f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CvUtils::write_to_file </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>rois</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>mse</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>mean</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function writes the results to a .yaml file. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file_name</td><td>A String containing the name where the results will be saved. </td></tr>
+    <tr><td class="paramname">rois</td><td>A vector of doubles containing the interest points that will be saved to the file. </td></tr>
+    <tr><td class="paramname">mse</td><td>A double variable containing the mean square error that will be saved to the file. </td></tr>
+    <tr><td class="paramname">mean</td><td>A double variable containing the mean that will be saved to the file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="CvUtils_8h.html">CvUtils.h</a></li>
 <li><a class="el" href="CvUtils_8cpp.html">CvUtils.cpp</a></li>
@@ -529,7 +1316,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classCvUtils.html">CvUtils</a></li>
-    <li class="footer">Generated on Sat Nov 24 2012 14:53:15 for Social Robot by
+    <li class="footer">Generated on Thu Nov 29 2012 01:08:08 for Social Robot by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

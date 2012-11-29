@@ -95,6 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_l"><span>l</span></a></li>
       <li><a href="#index_m"><span>m</span></a></li>
       <li><a href="#index_n"><span>n</span></a></li>
+      <li><a href="#index_o"><span>o</span></a></li>
       <li><a href="#index_p"><span>p</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
@@ -162,6 +163,12 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>compare_gt_results()
+: <a class="el" href="classCvUtils.html#a4343095a146def99839decf98366c8a9">CvUtils</a>
+</li>
+<li>compute_torso_orientation()
+: <a class="el" href="classCvUtils.html#a90574948cfab1863cad26a2b8a43c37f">CvUtils</a>
+</li>
 <li>ConDensation()
 : <a class="el" href="classConDensation.html#a3c7e76ac520287c7eb12bf3b05ad5fa0">ConDensation</a>
 </li>
@@ -170,6 +177,9 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 </li>
 <li>contextMenuEvent()
 : <a class="el" href="classViewPort.html#af3c98b34c5ff602bd74c5b95425de4a9">ViewPort</a>
+</li>
+<li>create_combine_gt_vector()
+: <a class="el" href="classCvUtils.html#aaea7203de435f3395fb4842c5230ecc7">CvUtils</a>
 </li>
 <li>createButtonbar()
 : <a class="el" href="classCvWindow.html#a219c9032d1611f4e394eae3dea4011ab">CvWindow</a>
@@ -196,7 +206,10 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="classRosUtils.html#a10a6552d95ab7a6ee4122af4c4137523">RosUtils</a>
 </li>
 <li>CvTrackbar()
-: <a class="el" href="classCvTrackbar.html#a36624a0a15c46a3320ce29f20eda8db8">CvTrackbar</a>
+: <a class="el" href="classCvTrackbar.html#a5666e87ce86ec7ad97d62b89d148e9bb">CvTrackbar</a>
+</li>
+<li>CvUtils()
+: <a class="el" href="classCvUtils.html#ad292f6ff1df46556644e3161d048b3aa">CvUtils</a>
 </li>
 <li>CvWindow()
 : <a class="el" href="classCvWindow.html#a2d516104e7e29c293d53a3797f29fff6">CvWindow</a>
@@ -208,11 +221,17 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 
 
 <h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
+<li>data_association()
+: <a class="el" href="classCvUtils.html#af0184944140cd71ef9ad9c6d3a89ca48">CvUtils</a>
+</li>
 <li>depth_cb()
 : <a class="el" href="classSocialRobotGui.html#a20bf403e17980a1c2d9f3efaf99a0ddd">SocialRobotGui</a>
 </li>
 <li>depth_rois_cb()
 : <a class="el" href="classSocialRobotGui.html#a0c36cf4cb20fec7ec4d79abeb04b140d">SocialRobotGui</a>
+</li>
+<li>DepthFaceDetector()
+: <a class="el" href="classDepthFaceDetector.html#a1efe4e883faaad6a33acd0909e1ec282">DepthFaceDetector</a>
 </li>
 <li>deserialize()
 : <a class="el" href="classsocial__robot_1_1msg_1_1__RegionOfInterests_1_1RegionOfInterests.html#adf54f7bf90d2beaf41efe747f59e6cef">social_robot.msg._RegionOfInterests.RegionOfInterests</a>
@@ -226,9 +245,16 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>destroyWindow()
 : <a class="el" href="classGuiReceiver.html#a86942e372e278c27c98af1930d9b9e97">GuiReceiver</a>
 </li>
+<li>detect_face_depth()
+: <a class="el" href="classCvUtils.html#a4a7f10293376335faeb2ba4e8abc685a">CvUtils</a>
+, <a class="el" href="classDepthFaceDetector.html#ace3a3506a58be0d500d866d1574a35be">DepthFaceDetector</a>
+</li>
+<li>detect_face_rgb()
+: <a class="el" href="classCvUtils.html#ac09b2e17fa71221b79c2a87732814482">CvUtils</a>
+</li>
 <li>displayInfo()
-: <a class="el" href="classCvWindow.html#a577841174681451e47735cc125de0af9">CvWindow</a>
-, <a class="el" href="classGuiReceiver.html#a1e010c3db9ebaaf1efddb8c03f558e88">GuiReceiver</a>
+: <a class="el" href="classGuiReceiver.html#a1e010c3db9ebaaf1efddb8c03f558e88">GuiReceiver</a>
+, <a class="el" href="classCvWindow.html#a577841174681451e47735cc125de0af9">CvWindow</a>
 </li>
 <li>displayStatusBar()
 : <a class="el" href="classGuiReceiver.html#abfc7c7fb831a8c423a7a15e2b0ec994b">GuiReceiver</a>
@@ -238,16 +264,14 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="classCvUtils.html#a6e1f3369c2b553c06f2692c75e20667d">CvUtils</a>
 </li>
 <li>draw_estimated_state()
-: <a class="el" href="classParticleFilter.html#a93b28af3da883f2b1a8d662fe72ddb2b">ParticleFilter</a>
+: <a class="el" href="classStateData.html#a32b8091aff312aff401b1de0e4685535">StateData</a>
+, <a class="el" href="classParticleFilter.html#a93b28af3da883f2b1a8d662fe72ddb2b">ParticleFilter</a>
 </li>
 <li>draw_particles()
 : <a class="el" href="classParticleFilter.html#aff7ddfc78e3b1e46e344603cfc4b0632">ParticleFilter</a>
 </li>
 <li>draw_rgb_faces()
 : <a class="el" href="classCvUtils.html#a74249b2e9b76b2a8ae2c01c4ff496663">CvUtils</a>
-</li>
-<li>draw_tracking_faces()
-: <a class="el" href="classCvUtils.html#ac86c2ad8adca706655831938b63ebaa2">CvUtils</a>
 </li>
 </ul>
 
@@ -258,6 +282,12 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 </li>
 <li>enlarge_window()
 : <a class="el" href="classCvUtils.html#a349894b926e2d252d0ce224abcba698a">CvUtils</a>
+</li>
+<li>enlarge_window_height()
+: <a class="el" href="classCvUtils.html#ae3f32bfe57a7fea941e61f8beb146637">CvUtils</a>
+</li>
+<li>enlarge_window_width()
+: <a class="el" href="classCvUtils.html#afa759cc435e69dabe1b498215a9d9967">CvUtils</a>
 </li>
 <li>euclidean_distance()
 : <a class="el" href="classCvUtils.html#a20d53b92663d548bebf90da242d984f3">CvUtils</a>
@@ -283,6 +313,9 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 </li>
 <li>get_target_position()
 : <a class="el" href="classStateData.html#aa2c20a09eecd353d4454e707ac17f143">StateData</a>
+</li>
+<li>get_transformation_matrix()
+: <a class="el" href="classCvUtils.html#a3e96de4f2f4e2c74eb18e9ad658d1575">CvUtils</a>
 </li>
 <li>getAvailableSize()
 : <a class="el" href="classCvWindow.html#a323bcaa31cfe862e2b13a110248293cc">CvWindow</a>
@@ -335,6 +368,12 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>interprate()
 : <a class="el" href="classSettings.html#ac01c17bf3536e296f1076e50cdcb00cd">Settings</a>
 </li>
+<li>is_there_face_depth()
+: <a class="el" href="classCvUtils.html#ab1e74b543130e0ffcefb7e1a9c95354d">CvUtils</a>
+</li>
+<li>is_there_face_rgb()
+: <a class="el" href="classCvUtils.html#a3ffc274ba9c2db3a33e4cd0aca1b4570">CvUtils</a>
+</li>
 <li>isFullScreen()
 : <a class="el" href="classGuiReceiver.html#a6dd924ef78d8e7ec9e008f9007dbd032">GuiReceiver</a>
 </li>
@@ -368,6 +407,13 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 </ul>
 
 
+<h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
+<li>operator&lt;()
+: <a class="el" href="classTemplate.html#ad8d32fca5fa3372a2e67fdc456440e6c">Template</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
 <li>ParticleFilter()
 : <a class="el" href="classParticleFilter.html#a76dd2772cb2d4a3eece16415691bc39c">ParticleFilter</a>
@@ -387,6 +433,9 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
 <li>read()
 : <a class="el" href="classSettings.html#a2d7841f8441095032e0f3b7d20adfd3f">Settings</a>
+</li>
+<li>read_from_file()
+: <a class="el" href="classCvUtils.html#a9828a72b15006923f35d4da51359af2e">CvUtils</a>
 </li>
 <li>readSettings()
 : <a class="el" href="classCvWindow.html#a7f8fdaeec81ca1900a8878bdfc779f13">CvWindow</a>
@@ -447,9 +496,12 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>serialize_numpy()
 : <a class="el" href="classsocial__robot_1_1msg_1_1__RegionOfInterests_1_1RegionOfInterests.html#a1a21ae43fa428c9c69ee1694c3feb6f0">social_robot.msg._RegionOfInterests.RegionOfInterests</a>
 </li>
+<li>set_image_depth()
+: <a class="el" href="classStateData.html#a6246f2159937b45b86b85ba0cddbd9c7">StateData</a>
+</li>
 <li>setMouseCallBack()
-: <a class="el" href="classCvWindow.html#a8fa9463b57ffb2f049703a6f14e586fb">CvWindow</a>
-, <a class="el" href="classViewPort.html#a725688baa203c6247e9a147acaa7597a">ViewPort</a>
+: <a class="el" href="classViewPort.html#a725688baa203c6247e9a147acaa7597a">ViewPort</a>
+, <a class="el" href="classCvWindow.html#a8fa9463b57ffb2f049703a6f14e586fb">CvWindow</a>
 </li>
 <li>setPropWindow()
 : <a class="el" href="classGuiReceiver.html#a2f7df93bb22ec310b8f9b44844662b85">GuiReceiver</a>
@@ -542,6 +594,9 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>tracking()
 : <a class="el" href="classStateData.html#af4bbe24b619137cba16b7b85970e1bd7">StateData</a>
 </li>
+<li>transform_point()
+: <a class="el" href="classCvUtils.html#ad8b10d8ef42dc7437bcb40c13dd23d33">CvUtils</a>
+</li>
 </ul>
 
 
@@ -572,6 +627,12 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
 <li>write()
 : <a class="el" href="classSettings.html#ae320e2f94798ba2de400f73a8110d412">Settings</a>
+</li>
+<li>write_results_to_file()
+: <a class="el" href="classCvUtils.html#a78b9e8fc4f7ea2b713ab0bcca586600e">CvUtils</a>
+</li>
+<li>write_to_file()
+: <a class="el" href="classCvUtils.html#a417431598ac332bcce7a2d66add3662f">CvUtils</a>
 </li>
 <li>writeSettings()
 : <a class="el" href="classCvWindow.html#a30c9687c99f22a7f7d9a61c00bf42a57">CvWindow</a>
@@ -626,7 +687,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Nov 24 2012 14:53:15 for Social Robot by
+    <li class="footer">Generated on Thu Nov 29 2012 01:08:08 for Social Robot by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>
