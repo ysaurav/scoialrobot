@@ -22,5 +22,6 @@
 #define HIST_D      1
 #define HIST_BGRD   2
 #define HIST_HS     3
+#define HIST_HSD    4
 
 #endif
