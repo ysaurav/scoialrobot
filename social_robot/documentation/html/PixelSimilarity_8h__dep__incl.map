@@ -1,6 +1,19 @@
 <map id="PixelSimilarity.h" name="PixelSimilarity.h">
-<area shape="rect" id="node3" href="$PixelSimilarity_8cpp.html" title="PixelSimilarity.cpp" alt="" coords="5,83,136,112"/>
-<area shape="rect" id="node5" href="$social__robot_8cpp.html" title="social_robot.cpp" alt="" coords="160,83,277,112"/>
-<area shape="rect" id="node7" href="$social__robot__depth_8cpp.html" title="social_robot_depth.cpp" alt="" coords="301,83,456,112"/>
-<area shape="rect" id="node9" href="$social__robot__test_8cpp.html" title="social_robot_test.cpp" alt="" coords="480,83,627,112"/>
+<area shape="rect" id="node3" href="$DepthFaceDetector_8h.html" title="DepthFaceDetector.h" alt="" coords="571,83,717,112"/>
+<area shape="rect" id="node23" href="$social__robot__test_8cpp.html" title="social_robot_test.cpp" alt="" coords="1285,237,1432,267"/>
+<area shape="rect" id="node36" href="$PixelSimilarity_8cpp.html" title="PixelSimilarity.cpp" alt="" coords="1093,83,1224,112"/>
+<area shape="rect" id="node5" href="$CvUtils_8h.html" title="CvUtils.h" alt="" coords="605,160,683,189"/>
+<area shape="rect" id="node9" href="$DepthFaceDetector_8cpp.html" title="DepthFaceDetector.cpp" alt="" coords="5,237,165,267"/>
+<area shape="rect" id="node7" href="$CvUtils_8cpp.html" title="CvUtils.cpp" alt="" coords="189,237,280,267"/>
+<area shape="rect" id="node11" href="$rgbWriter_8cpp.html" title="rgbWriter.cpp" alt="" coords="304,237,403,267"/>
+<area shape="rect" id="node13" href="$filter_8cpp.html" title="filter.cpp" alt="" coords="427,237,499,267"/>
+<area shape="rect" id="node15" href="$StateData_8cpp.html" title="StateData.cpp" alt="" coords="523,237,629,267"/>
+<area shape="rect" id="node17" href="$social__robot_8cpp.html" title="social_robot.cpp" alt="" coords="653,237,771,267"/>
+<area shape="rect" id="node19" href="$social__robot__depth_8cpp.html" title="social_robot_depth.cpp" alt="" coords="795,237,949,267"/>
+<area shape="rect" id="node21" href="$social__robot__rgb_8cpp.html" title="social_robot_rgb.cpp" alt="" coords="973,237,1115,267"/>
+<area shape="rect" id="node25" href="$SocialRobotGui_8h.html" title="SocialRobotGui.h" alt="" coords="1139,237,1261,267"/>
+<area shape="rect" id="node27" href="$SocialRobotGui_8cpp.html" title="SocialRobotGui.cpp" alt="" coords="1071,315,1209,344"/>
+<area shape="rect" id="node29" href="$gui_8h.html" title="gui.h" alt="" coords="1233,315,1284,344"/>
+<area shape="rect" id="node31" href="$gui_8cpp.html" title="gui.cpp" alt="" coords="1180,392,1244,421"/>
+<area shape="rect" id="node33" href="$main_8cpp.html" title="main.cpp" alt="" coords="1268,392,1343,421"/>
 </map>

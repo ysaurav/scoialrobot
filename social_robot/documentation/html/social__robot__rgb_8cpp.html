@@ -114,36 +114,27 @@ $(document).ready(function(){initNavTree('social__robot__rgb_8cpp.html','');});
 <code>#include &quot;<a class="el" href="kinect__proxy_8h.html">kinect_proxy.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="CvUtils_8h.html">CvUtils.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="RosUtils_8h.html">RosUtils.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="StateData_8h.html">particle_filter/StateData.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="hist_8h.html">particle_filter/hist.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="filter_8h.html">particle_filter/filter.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for social_robot_rgb.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="social__robot__rgb_8cpp__incl.png" border="0" usemap="#social__robot__rgb_8cpp" alt=""/></div>
 <map name="social__robot__rgb_8cpp" id="social__robot__rgb_8cpp">
-<area shape="rect" id="node9" href="kinect__proxy_8h.html" title="kinect_proxy.h" alt="" coords="711,83,817,112"/><area shape="rect" id="node32" href="CvUtils_8h.html" title="CvUtils.h" alt="" coords="1596,83,1673,112"/><area shape="rect" id="node42" href="StateData_8h.html" title="particle_filter/StateData.h" alt="" coords="1917,169,2088,199"/><area shape="rect" id="node44" href="hist_8h.html" title="hist.h" alt="" coords="2128,256,2181,285"/><area shape="rect" id="node48" href="filter_8h.html" title="filter.h" alt="" coords="2231,256,2289,285"/><area shape="rect" id="node54" href="RosUtils_8h.html" title="RosUtils.h" alt="" coords="2143,83,2225,112"/><area shape="rect" id="node26" href="string__utils_8h.html" title="string_utils.h" alt="" coords="515,169,611,199"/><area shape="rect" id="node51" href="condens_8h.html" title="condens.h" alt="" coords="2243,333,2325,363"/></map>
+<area shape="rect" id="node9" href="kinect__proxy_8h.html" title="kinect_proxy.h" alt="" coords="708,83,815,112"/><area shape="rect" id="node32" href="CvUtils_8h.html" title="CvUtils.h" alt="" coords="1421,83,1499,112"/><area shape="rect" id="node50" href="RosUtils_8h.html" title="RosUtils.h" alt="" coords="1983,83,2065,112"/><area shape="rect" id="node26" href="string__utils_8h.html" title="string_utils.h" alt="" coords="872,169,968,199"/><area shape="rect" id="node42" href="DepthFaceDetector_8h.html" title="DepthFaceDetector.h" alt="" coords="1840,169,1987,199"/><area shape="rect" id="node44" href="PixelSimilarity_8h.html" title="PixelSimilarity.h" alt="" coords="1732,256,1847,285"/><area shape="rect" id="node47" href="Template_8h.html" title="Template.h" alt="" coords="1871,256,1956,285"/></map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac6852b105a276962381d5d624de969ef"><td class="memItemLeft" align="right" valign="top">vector&lt; Rect &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="social__robot__rgb_8cpp.html#ac6852b105a276962381d5d624de969ef">detect_face_rgb</a> (Mat img)</td></tr>
-<tr class="separator:ac6852b105a276962381d5d624de969ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd0c09aff72c2db54711877905bc09a8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="social__robot__rgb_8cpp.html#afd0c09aff72c2db54711877905bc09a8">update_param_cb</a> (std_srvs::Empty::Request &amp;, std_srvs::Empty::Response &amp;)</td></tr>
 <tr class="separator:afd0c09aff72c2db54711877905bc09a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab94482aff4236702db66ce45c57dd4ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="social__robot__rgb_8cpp.html#ab94482aff4236702db66ce45c57dd4ae">publish_data</a> (vector&lt; Rect &gt; rgbfaces)</td></tr>
 <tr class="separator:ab94482aff4236702db66ce45c57dd4ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a470b337493deec335e4849fd2458dff5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="social__robot__rgb_8cpp.html#a470b337493deec335e4849fd2458dff5">rgb_cb</a> (const ImageConstPtr &amp;msg)</td></tr>
 <tr class="separator:a470b337493deec335e4849fd2458dff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43e03fa22d78ac4c16ae278025561a95"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="social__robot__rgb_8cpp.html#a43e03fa22d78ac4c16ae278025561a95">load_classifiers</a> ()</td></tr>
-<tr class="separator:a43e03fa22d78ac4c16ae278025561a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="social__robot__rgb_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
 <tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a07ace2605bf523778b02dc621edac5d0"><td class="memItemLeft" align="right" valign="top">CascadeClassifier&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="social__robot__rgb_8cpp.html#a07ace2605bf523778b02dc621edac5d0">classifier</a></td></tr>
-<tr class="separator:a07ace2605bf523778b02dc621edac5d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd0f83a9c271173baf120f2aed877bd4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRosUtils.html">RosUtils</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="social__robot__rgb_8cpp.html#abd0f83a9c271173baf120f2aed877bd4">ros_utils</a></td></tr>
 <tr class="separator:abd0f83a9c271173baf120f2aed877bd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af423222e5e307bc785d52368351dc258"><td class="memItemLeft" align="right" valign="top">social_robot::RegionOfInterests&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="social__robot__rgb_8cpp.html#af423222e5e307bc785d52368351dc258">rgb_pub_rois</a></td></tr>
@@ -158,37 +149,6 @@ Variables</h2></td></tr>
 <tr class="separator:a199b98558819a161d93892eb6d1f766d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ac6852b105a276962381d5d624de969ef"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">vector&lt;Rect&gt; detect_face_rgb </td>
-          <td>(</td>
-          <td class="paramtype">Mat&#160;</td>
-          <td class="paramname"><em>img</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a43e03fa22d78ac4c16ae278025561a95"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool load_classifiers </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a3c04138a5bfe5d72780bb7e82a18e627"></a>
 <div class="memitem">
 <div class="memproto">
@@ -274,18 +234,6 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a07ace2605bf523778b02dc621edac5d0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">CascadeClassifier classifier</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a199b98558819a161d93892eb6d1f766d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -364,7 +312,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="social__robot__rgb_8cpp.html">social_robot_rgb.cpp</a></li>
-    <li class="footer">Generated on Sat Nov 24 2012 14:53:15 for Social Robot by
+    <li class="footer">Generated on Thu Nov 29 2012 01:08:08 for Social Robot by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

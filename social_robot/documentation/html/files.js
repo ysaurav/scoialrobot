@@ -4,13 +4,19 @@ var files =
     [ "msg/__init__.py", "msg_2____init_____8py.html", null ],
     [ "_RegionOfInterests.py", "__RegionOfInterests_8py.html", "__RegionOfInterests_8py" ],
     [ "calibration.cpp", "calibration_8cpp.html", "calibration_8cpp" ],
+    [ "compare.cpp", "compare_8cpp.html", "compare_8cpp" ],
+    [ "compare_ground_truth.cpp", "compare__ground__truth_8cpp.html", "compare__ground__truth_8cpp" ],
     [ "condens.cpp", "condens_8cpp.html", "condens_8cpp" ],
     [ "condens.h", "condens_8h.html", [
       [ "ConDensation", "classConDensation.html", "classConDensation" ]
     ] ],
-    [ "createGT.cpp", "createGT_8cpp.html", "createGT_8cpp" ],
+    [ "create_ground_truth.cpp", "create__ground__truth_8cpp.html", "create__ground__truth_8cpp" ],
     [ "CvUtils.cpp", "CvUtils_8cpp.html", "CvUtils_8cpp" ],
     [ "CvUtils.h", "CvUtils_8h.html", "CvUtils_8h" ],
+    [ "DepthFaceDetector.cpp", "DepthFaceDetector_8cpp.html", "DepthFaceDetector_8cpp" ],
+    [ "DepthFaceDetector.h", "DepthFaceDetector_8h.html", [
+      [ "DepthFaceDetector", "classDepthFaceDetector.html", "classDepthFaceDetector" ]
+    ] ],
     [ "filter.cpp", "filter_8cpp.html", "filter_8cpp" ],
     [ "filter.h", "filter_8h.html", [
       [ "ParticleFilter", "classParticleFilter.html", "classParticleFilter" ]

@@ -12,6 +12,7 @@ var annotated =
     [ "CvWindow", "classCvWindow.html", "classCvWindow" ],
     [ "CvWinModel", "classCvWinModel.html", "classCvWinModel" ],
     [ "CvWinProperties", "classCvWinProperties.html", "classCvWinProperties" ],
+    [ "DepthFaceDetector", "classDepthFaceDetector.html", "classDepthFaceDetector" ],
     [ "Gui", "classGui.html", "classGui" ],
     [ "GuiReceiver", "classGuiReceiver.html", "classGuiReceiver" ],
     [ "ImageFrame", "classImageFrame.html", "classImageFrame" ],

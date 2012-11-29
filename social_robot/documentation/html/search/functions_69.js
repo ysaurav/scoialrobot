@@ -14,6 +14,8 @@ var searchData=
   ['interprate',['interprate',['../classSettings.html#ac01c17bf3536e296f1076e50cdcb00cd',1,'Settings']]],
   ['inttostr',['inttostr',['../string__utils_8cpp.html#a903efbe12f64e52159c7c7933770eba6',1,'inttostr(int x):&#160;string_utils.cpp'],['../string__utils_8h.html#a903efbe12f64e52159c7c7933770eba6',1,'inttostr(int x):&#160;string_utils.cpp']]],
   ['ir_5fcb',['ir_cb',['../kinect__proxy_8cpp.html#a10eead4448e002f15c22164d23e2744c',1,'kinect_proxy.cpp']]],
+  ['is_5fthere_5fface_5fdepth',['is_there_face_depth',['../classCvUtils.html#ab1e74b543130e0ffcefb7e1a9c95354d',1,'CvUtils']]],
+  ['is_5fthere_5fface_5frgb',['is_there_face_rgb',['../classCvUtils.html#a3ffc274ba9c2db3a33e4cd0aca1b4570',1,'CvUtils']]],
   ['isfullscreen',['isFullScreen',['../classGuiReceiver.html#a6dd924ef78d8e7ec9e008f9007dbd032',1,'GuiReceiver']]],
   ['islastwindow',['isLastWindow',['../classGuiReceiver.html#a9f788023836b17e8aed97b3770386ea9',1,'GuiReceiver']]]
 ];

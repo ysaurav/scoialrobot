@@ -4,6 +4,7 @@ var hierarchy =
       [ "ParticleFilter", "classParticleFilter.html", null ]
     ] ],
     [ "CvUtils", "classCvUtils.html", null ],
+    [ "DepthFaceDetector", "classDepthFaceDetector.html", null ],
     [ "Message", null, [
       [ "social_robot.msg._RegionOfInterests.RegionOfInterests", "classsocial__robot_1_1msg_1_1__RegionOfInterests_1_1RegionOfInterests.html", null ]
     ] ],

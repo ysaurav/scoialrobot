@@ -1,0 +1,136 @@
+\hypertarget{create__ground__truth_8cpp}{\section{create\-\_\-ground\-\_\-truth.\-cpp File Reference}
+\label{create__ground__truth_8cpp}\index{create\-\_\-ground\-\_\-truth.\-cpp@{create\-\_\-ground\-\_\-truth.\-cpp}}
+}
+{\ttfamily \#include $<$opencv2/highgui/highgui.\-hpp$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$ctype.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+Include dependency graph for create\-\_\-ground\-\_\-truth.\-cpp\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{create__ground__truth_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{create__ground__truth_8cpp_a6c81aa00b4dcf0cbae98a14c37683ed9}{on\-Mouse} (int event, int x, int y, int, void $\ast$)
+\item 
+void \hyperlink{create__ground__truth_8cpp_aebb0550776d5f429fb7a03f7574545ec}{write\-\_\-results\-\_\-to\-\_\-file} (string \hyperlink{rgbWriter_8cpp_a755d42f2e9c635ce2213e0efad62b796}{file\-\_\-name}, vector$<$ Rect $>$ \hyperlink{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{rois})
+\item 
+Rect \hyperlink{create__ground__truth_8cpp_aaa36eba0517e48e70129a66bea3b50b5}{check\-\_\-boundaries} (Rect window)
+\item 
+void \hyperlink{create__ground__truth_8cpp_a97ee70a8770dc30d06c744b24eb2fcfc}{help} ()
+\item 
+int \hyperlink{create__ground__truth_8cpp_a217dbf8b442f20279ea00b898af96f52}{main} (int argc, const char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Mat \hyperlink{create__ground__truth_8cpp_aabb27b8973575043030df51be47cd24a}{image}
+\item 
+int \hyperlink{create__ground__truth_8cpp_a88f176e4e65e22a17093a8cd24003a66}{track\-Object} = 0
+\item 
+int \hyperlink{create__ground__truth_8cpp_a13f77b252237844d7b8b6e3c3047fe50}{skip} = 0
+\item 
+bool \hyperlink{create__ground__truth_8cpp_a71a276a0dc4ef6aa35740b58f10bcb39}{select\-Object} = false
+\item 
+bool \hyperlink{create__ground__truth_8cpp_a1692a08e70fa31c61e66b87cdb53dbd5}{is\-\_\-first\-\_\-frame} = true
+\item 
+Point \hyperlink{create__ground__truth_8cpp_a903d0d8820c696aaa1170c50deb3633f}{origin}
+\item 
+Rect \hyperlink{create__ground__truth_8cpp_a15633c47538e3790df1e008a7f6dbfea}{selection}
+\item 
+vector$<$ Rect $>$ \hyperlink{create__ground__truth_8cpp_acee6f4679f3fb598d19b3dcdd30c04a3}{to\-\_\-be\-\_\-saved}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{create__ground__truth_8cpp_aaa36eba0517e48e70129a66bea3b50b5}{\index{create\-\_\-ground\-\_\-truth.\-cpp@{create\-\_\-ground\-\_\-truth.\-cpp}!check\-\_\-boundaries@{check\-\_\-boundaries}}
+\index{check\-\_\-boundaries@{check\-\_\-boundaries}!create_ground_truth.cpp@{create\-\_\-ground\-\_\-truth.\-cpp}}
+\subsubsection[{check\-\_\-boundaries}]{\setlength{\rightskip}{0pt plus 5cm}Rect check\-\_\-boundaries (
+\begin{DoxyParamCaption}
+\item[{Rect}]{window}
+\end{DoxyParamCaption}
+)}}\label{create__ground__truth_8cpp_aaa36eba0517e48e70129a66bea3b50b5}
+This function checks if the R\-O\-I has excedded the dimensions of the image \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em window} & A Rect containing the R\-O\-I. \\
+\hline
+\end{DoxyParams}
+\hypertarget{create__ground__truth_8cpp_a97ee70a8770dc30d06c744b24eb2fcfc}{\index{create\-\_\-ground\-\_\-truth.\-cpp@{create\-\_\-ground\-\_\-truth.\-cpp}!help@{help}}
+\index{help@{help}!create_ground_truth.cpp@{create\-\_\-ground\-\_\-truth.\-cpp}}
+\subsubsection[{help}]{\setlength{\rightskip}{0pt plus 5cm}void help (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{create__ground__truth_8cpp_a97ee70a8770dc30d06c744b24eb2fcfc}
+\hypertarget{create__ground__truth_8cpp_a217dbf8b442f20279ea00b898af96f52}{\index{create\-\_\-ground\-\_\-truth.\-cpp@{create\-\_\-ground\-\_\-truth.\-cpp}!main@{main}}
+\index{main@{main}!create_ground_truth.cpp@{create\-\_\-ground\-\_\-truth.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{const char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{create__ground__truth_8cpp_a217dbf8b442f20279ea00b898af96f52}
+\hypertarget{create__ground__truth_8cpp_a6c81aa00b4dcf0cbae98a14c37683ed9}{\index{create\-\_\-ground\-\_\-truth.\-cpp@{create\-\_\-ground\-\_\-truth.\-cpp}!on\-Mouse@{on\-Mouse}}
+\index{on\-Mouse@{on\-Mouse}!create_ground_truth.cpp@{create\-\_\-ground\-\_\-truth.\-cpp}}
+\subsubsection[{on\-Mouse}]{\setlength{\rightskip}{0pt plus 5cm}void on\-Mouse (
+\begin{DoxyParamCaption}
+\item[{int}]{event, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{, }
+\item[{void $\ast$}]{}
+\end{DoxyParamCaption}
+)}}\label{create__ground__truth_8cpp_a6c81aa00b4dcf0cbae98a14c37683ed9}
+\hypertarget{create__ground__truth_8cpp_aebb0550776d5f429fb7a03f7574545ec}{\index{create\-\_\-ground\-\_\-truth.\-cpp@{create\-\_\-ground\-\_\-truth.\-cpp}!write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}}
+\index{write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}!create_ground_truth.cpp@{create\-\_\-ground\-\_\-truth.\-cpp}}
+\subsubsection[{write\-\_\-results\-\_\-to\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void write\-\_\-results\-\_\-to\-\_\-file (
+\begin{DoxyParamCaption}
+\item[{string}]{file\-\_\-name, }
+\item[{vector$<$ Rect $>$}]{rois}
+\end{DoxyParamCaption}
+)}}\label{create__ground__truth_8cpp_aebb0550776d5f429fb7a03f7574545ec}
+This function writes the coordinates of a rectangle to a .yaml file \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em file\-\_\-name} & A string file containing the output file \\
+\hline
+{\em roi} & A vector of rectangles containing the R\-O\-I. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\hypertarget{create__ground__truth_8cpp_aabb27b8973575043030df51be47cd24a}{\index{create\-\_\-ground\-\_\-truth.\-cpp@{create\-\_\-ground\-\_\-truth.\-cpp}!image@{image}}
+\index{image@{image}!create_ground_truth.cpp@{create\-\_\-ground\-\_\-truth.\-cpp}}
+\subsubsection[{image}]{\setlength{\rightskip}{0pt plus 5cm}Mat image}}\label{create__ground__truth_8cpp_aabb27b8973575043030df51be47cd24a}
+\hypertarget{create__ground__truth_8cpp_a1692a08e70fa31c61e66b87cdb53dbd5}{\index{create\-\_\-ground\-\_\-truth.\-cpp@{create\-\_\-ground\-\_\-truth.\-cpp}!is\-\_\-first\-\_\-frame@{is\-\_\-first\-\_\-frame}}
+\index{is\-\_\-first\-\_\-frame@{is\-\_\-first\-\_\-frame}!create_ground_truth.cpp@{create\-\_\-ground\-\_\-truth.\-cpp}}
+\subsubsection[{is\-\_\-first\-\_\-frame}]{\setlength{\rightskip}{0pt plus 5cm}bool is\-\_\-first\-\_\-frame = true}}\label{create__ground__truth_8cpp_a1692a08e70fa31c61e66b87cdb53dbd5}
+\hypertarget{create__ground__truth_8cpp_a903d0d8820c696aaa1170c50deb3633f}{\index{create\-\_\-ground\-\_\-truth.\-cpp@{create\-\_\-ground\-\_\-truth.\-cpp}!origin@{origin}}
+\index{origin@{origin}!create_ground_truth.cpp@{create\-\_\-ground\-\_\-truth.\-cpp}}
+\subsubsection[{origin}]{\setlength{\rightskip}{0pt plus 5cm}Point origin}}\label{create__ground__truth_8cpp_a903d0d8820c696aaa1170c50deb3633f}
+\hypertarget{create__ground__truth_8cpp_a15633c47538e3790df1e008a7f6dbfea}{\index{create\-\_\-ground\-\_\-truth.\-cpp@{create\-\_\-ground\-\_\-truth.\-cpp}!selection@{selection}}
+\index{selection@{selection}!create_ground_truth.cpp@{create\-\_\-ground\-\_\-truth.\-cpp}}
+\subsubsection[{selection}]{\setlength{\rightskip}{0pt plus 5cm}Rect selection}}\label{create__ground__truth_8cpp_a15633c47538e3790df1e008a7f6dbfea}
+\hypertarget{create__ground__truth_8cpp_a71a276a0dc4ef6aa35740b58f10bcb39}{\index{create\-\_\-ground\-\_\-truth.\-cpp@{create\-\_\-ground\-\_\-truth.\-cpp}!select\-Object@{select\-Object}}
+\index{select\-Object@{select\-Object}!create_ground_truth.cpp@{create\-\_\-ground\-\_\-truth.\-cpp}}
+\subsubsection[{select\-Object}]{\setlength{\rightskip}{0pt plus 5cm}bool select\-Object = false}}\label{create__ground__truth_8cpp_a71a276a0dc4ef6aa35740b58f10bcb39}
+\hypertarget{create__ground__truth_8cpp_a13f77b252237844d7b8b6e3c3047fe50}{\index{create\-\_\-ground\-\_\-truth.\-cpp@{create\-\_\-ground\-\_\-truth.\-cpp}!skip@{skip}}
+\index{skip@{skip}!create_ground_truth.cpp@{create\-\_\-ground\-\_\-truth.\-cpp}}
+\subsubsection[{skip}]{\setlength{\rightskip}{0pt plus 5cm}int skip = 0}}\label{create__ground__truth_8cpp_a13f77b252237844d7b8b6e3c3047fe50}
+\hypertarget{create__ground__truth_8cpp_acee6f4679f3fb598d19b3dcdd30c04a3}{\index{create\-\_\-ground\-\_\-truth.\-cpp@{create\-\_\-ground\-\_\-truth.\-cpp}!to\-\_\-be\-\_\-saved@{to\-\_\-be\-\_\-saved}}
+\index{to\-\_\-be\-\_\-saved@{to\-\_\-be\-\_\-saved}!create_ground_truth.cpp@{create\-\_\-ground\-\_\-truth.\-cpp}}
+\subsubsection[{to\-\_\-be\-\_\-saved}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Rect$>$ to\-\_\-be\-\_\-saved}}\label{create__ground__truth_8cpp_acee6f4679f3fb598d19b3dcdd30c04a3}
+\hypertarget{create__ground__truth_8cpp_a88f176e4e65e22a17093a8cd24003a66}{\index{create\-\_\-ground\-\_\-truth.\-cpp@{create\-\_\-ground\-\_\-truth.\-cpp}!track\-Object@{track\-Object}}
+\index{track\-Object@{track\-Object}!create_ground_truth.cpp@{create\-\_\-ground\-\_\-truth.\-cpp}}
+\subsubsection[{track\-Object}]{\setlength{\rightskip}{0pt plus 5cm}int track\-Object = 0}}\label{create__ground__truth_8cpp_a88f176e4e65e22a17093a8cd24003a66}

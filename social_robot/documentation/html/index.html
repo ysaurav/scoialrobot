@@ -102,63 +102,37 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="textblock"><dl class="section author"><dt>Authors</dt><dd>Chicken Group</dd></dl>
 <h1><a class="anchor" id="intro"></a>
 Introduction</h1>
-<p>This package provides code templates for use by GLAST developers. All header files for external access are located in the templates directory, as it is customary to put external public header files in the packageName directory. Header files that are not meant for external access reside in the src directory. Source files are located in the src directory. Files related to loading sharable libraries are located in the src/Dll directory. There are 3 examples:</p>
+<p>This project contains the necessary tools to understand and run a face detection and tracking algorithm using ROS and OpenCV.</p>
 <ul>
-<li>User-Defined generic C++ class</li>
+<li>Folders</li>
 </ul>
 <ol type="1">
-<li>templates/ClassTemplate.h</li>
-<li>src/ClassTemplate.cxx</li>
+<li>ground_truth_maker for creating and evaluating the results with the ground truth.</li>
+<li>particle_filter is used for the tracking.</li>
+<li>srgui contains the user interface for depth detection and tracking.</li>
 </ol>
-<ul>
-<li>User-Defined Gaudi Algorithm</li>
-</ul>
-<ol type="1">
-<li>src/ExampleAlg.cxx</li>
-<li>src/Dll/templates_dll.cxx</li>
-<li>src/Dll/templates_load.cxx</li>
-</ol>
-<ul>
-<li>User-Defined Gaudi Service</li>
-</ul>
-<ol type="1">
-<li>templates/IExampleSvc.h</li>
-<li>templates/ExampleSvc.h</li>
-<li>src/ExampleSvc.cxx</li>
-<li>src/Dll/templates_dll.cxx</li>
-<li>src/Dll/templates_load.cxx</li>
-</ol>
-<p>Also note the existence of the following directories:</p>
-<ul>
-<li>cmt</li>
-</ul>
-<ol type="1">
-<li>Contains the requirements file</li>
-</ol>
-<ul>
-<li>doc</li>
-</ul>
-<ol type="1">
-<li>Contains the release.notes file</li>
-</ol>
-<p>As you prepare to develop code for GLAST SAS, please be sure you are aware of our current <a href="http://code.google.com/p/scoialrobot/">Wiki Project </a></p>
-<p>If using the code in this package as an example - please modify the comments as appropriate for your own specific code.</p>
+<p>This is the link to the <a href="http://code.google.com/p/scoialrobot/">Wiki Project </a></p>
 <hr/>
  <h1><a class="anchor" id="notes"></a>
 Release Notes</h1>
-<hr/>
+<p>Implemented and tested with ROS Electric and OpenCV 2.3 <hr/>
  <h1><a class="anchor" id="requirements"></a>
 Requirements</h1>
-<pre class="fragment"></pre> <hr/>
- <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd><p class="startdd">[optionally include text about more work to be done] </p>
-<p class="enddd">Give each todo item its own line</p>
+<ul>
+<li>OpenCV</li>
+<li>ROS</li>
+<li>Qt <hr/>
+ <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd><p class="startdd">Creating a depth classifier. </p>
+<p class="enddd">Speed up some of the rutines.</p>
 </dd></dl>
+</li>
+</ul>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Nov 24 2012 14:53:15 for Social Robot by
+    <li class="footer">Generated on Thu Nov 29 2012 01:08:08 for Social Robot by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['read',['read',['../classSettings.html#a2d7841f8441095032e0f3b7d20adfd3f',1,'Settings::read()'],['../calibration_8cpp.html#a65ae1a5d1f33d123d2df3d98c712dbfe',1,'read():&#160;calibration.cpp']]],
+  ['read_5ffrom_5ffile',['read_from_file',['../classCvUtils.html#a9828a72b15006923f35d4da51359af2e',1,'CvUtils::read_from_file(string filename, vector&lt; vector&lt; Point &gt; &gt; *rois)'],['../classCvUtils.html#a5e7d37fa49e663f642718a1d6631ef41',1,'CvUtils::read_from_file(string filename, vector&lt; Point &gt; &amp;rois)'],['../compare_8cpp.html#a9c549df82d21fa50db5e67bb16aad89d',1,'read_from_file(string filename, vector&lt; Point &gt; &amp;rois):&#160;compare.cpp'],['../compare__ground__truth_8cpp.html#a9c549df82d21fa50db5e67bb16aad89d',1,'read_from_file(string filename, vector&lt; Point &gt; &amp;rois):&#160;compare_ground_truth.cpp']]],
   ['readsettings',['readSettings',['../classCvWindow.html#a7f8fdaeec81ca1900a8878bdfc779f13',1,'CvWindow']]],
   ['readstringlist',['readStringList',['../classSettings.html#ae57696cead99c4f0c528e33793866457',1,'Settings']]],
   ['redistribute',['redistribute',['../classParticleFilter.html#a7054878a2bed0544f0915b4eecc2ffca',1,'ParticleFilter']]],
