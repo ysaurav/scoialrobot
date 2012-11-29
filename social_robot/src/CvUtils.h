@@ -53,6 +53,7 @@ class CvUtils
     bool is_there_face_rgb ( Mat &image, Rect rect );
     bool is_there_face_depth ( Mat &depth_image, Mat &disparity_image, Rect rect );
     vector<Rect> detect_face_rgb ( Mat image );
+    vector<Rect> detect_face_rgb ( Mat image, CascadeClassifier cascade_classifier );
     vector<Rect> detect_face_depth ( Mat depth_image, Mat disparity_image );
 
     Rect enlarge_window ( Rect orgrect, Mat image, double scale = 2.0 );
@@ -81,6 +82,7 @@ class CvUtils
 
   private:
     CascadeClassifier classifier;
+    CascadeClassifier face_classifier;
     Mat transformation_matrix;
   };
 

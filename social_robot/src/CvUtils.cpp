@@ -30,6 +30,13 @@ CvUtils::CvUtils ( void )
     {
       cerr << "ERROR: Could not load cascade classifier \"" << cascade_name << "\"" << endl;
     }
+  string face_cascade_name;
+  face_cascade_name.append ( package_path );
+  face_cascade_name.append ( "/rsrc/haarcascades/haarcascade_frontalface_alt.xml" );
+  if ( !face_classifier.load ( face_cascade_name ) )
+    {
+      cerr << "ERROR: Could not load cascade classifier \"" << face_cascade_name << "\"" << endl;
+    }
 }
 
 Mat CvUtils::rgb2bw ( Mat im_rgb )
@@ -216,7 +223,7 @@ bool CvUtils::is_there_face_rgb ( Mat &image, Rect rect )
 {
   rect = enlarge_window ( rect, image, 1.1 );
   Mat roi ( image, rect );
-  vector<Rect> detected_faces = detect_face_rgb ( roi );
+  vector<Rect> detected_faces = detect_face_rgb ( roi, face_classifier );
 
   return !detected_faces.empty();
 }
@@ -271,6 +278,27 @@ vector<Rect> CvUtils::detect_face_rgb ( Mat image )
  * @param image Mat containing the RGB image.
  * */
 
+vector<Rect> CvUtils::detect_face_rgb ( Mat image, CascadeClassifier cascade_classifier )
+{
+  vector<Rect> detected_faces;
+
+  Mat gray;
+  Mat frame ( cvRound ( image.rows ), cvRound ( image.cols ), CV_8UC1 );
+
+  cvtColor ( image, gray, CV_BGR2GRAY );
+  resize ( gray, frame, frame.size(), 0, 0, INTER_LINEAR );
+  equalizeHist ( frame, frame );
+
+  cascade_classifier.detectMultiScale ( frame, detected_faces,
+                                1.1, 2, 0
+                                //|CV_HAAR_FIND_BIGGEST_OBJECT
+                                //|CV_HAAR_DO_ROUGH_SEARCH
+                                |CV_HAAR_SCALE_IMAGE
+                                ,
+                                Size ( 30, 30 ) );
+
+  return detected_faces;
+}
 
 vector<Rect> CvUtils::detect_face_depth ( Mat depth_image, Mat disparity_image )
 {
@@ -778,10 +806,6 @@ void CvUtils::compare_gt_results ( vector<Point> gt, vector<Point>results, strin
       sum += d;
     }
 
-  write_results_to_file("gt_resu.yaml", results);
-  write_results_to_file("gt_test.yaml", gt);
-  cout<<"Size gt: "<<gt.size()<<"\n";
-  cout<<"Size tracking: "<<results.size()<<"\n";
   // Compute mean of distances
 
   double size_d = results.size();
@@ -798,24 +822,6 @@ void CvUtils::compare_gt_results ( vector<Point> gt, vector<Point>results, strin
   
   Scalar color = Scalar ( 0,0,255 );
   Scalar color2 = Scalar ( 0,255,0 );
-
-  // display results
-
-  Mat image = imread("/home/corina/Desktop/videos/track_s6.png", 1);
-  for ( int i = 0; i < gt.size(); i++ )
-    {
-      circle ( image, gt[i], 4, color, 4 );
-    }
-
-  for ( int i = 0; i < results.size(); i++ )
-    {
-      circle ( image, results[i], 6, color2, 6 );
-    }
-
-  namedWindow ( "Reference",0 );
-  //imshow("Reference",image);
-  imwrite ( "Reference.png", image );
-  waitKey(0);
 
   write_to_file ( filename, distance, MSE, mean_d );
 }
