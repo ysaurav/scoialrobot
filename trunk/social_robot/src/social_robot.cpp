@@ -33,16 +33,16 @@ std_srvs::Empty empty;
 ros::Subscriber rgb_rois_sub;
 ros::Subscriber depth_rois_sub;
 
-double track_thr = 75;
-double confidence_level_thr = 0.50;
-double detection_confidence_thr = 0.80;
-int num_particles = 300;
+double track_thr = 100;
+double confidence_level_thr = 0.90;
+double detection_confidence_thr = 0.90;
+int num_particles = 200;
 int rgb_framenum = 0;
-int rgb_update_rate = 15;
+int rgb_update_rate = 1;
 int depth_framenum = 0;
-int depth_update_rate = 15;
-int high_frequency = 2;
-int low_frequency = 12;
+int depth_update_rate = 1;
+int high_frequency = 1;
+int low_frequency = 1;
 int external_update_rate = high_frequency;
 
 string results_filename = "default_results";
@@ -57,6 +57,11 @@ bool use_depth = false;
 
 vector<StateData> state_datas;
 vector<vector<Rect> > results;
+
+VideoWriter rgbwriter;
+
+bool isfirstframe = true;
+string file_name = "default.avi";
 
 CvUtils cv_utils;
 
@@ -93,9 +98,10 @@ void publish_data ( void )
       detected_faces[i] = state_datas[i].get_target_position();
     }
   results.push_back(detected_faces);  
-  vector<RegionOfInterest> rosrois = ros_utils.cvrects2rosrois ( detected_faces );
-  depth_pub_rois.rois.swap ( rosrois );
-  depth_pub.publish ( depth_pub_rois );
+  cv_utils.draw_depth_faces ( image_rgb, detected_faces );
+//   vector<RegionOfInterest> rosrois = ros_utils.cvrects2rosrois ( detected_faces );
+//   depth_pub_rois.rois.swap ( rosrois );
+//   depth_pub.publish ( depth_pub_rois );
 }
 
 void do_tracking ( void )
@@ -109,7 +115,7 @@ void do_tracking ( void )
 
       if ( it->filter->confidence() == 0.0 )
         {
-          cout << "TOO BIG\n";
+//           cout << "TOO BIG\n";
           it = state_datas.erase ( it );
         }
       else if ( it->detection_confidence < ( detection_confidence_thr / 2 ) )
@@ -121,7 +127,7 @@ void do_tracking ( void )
             }
           else
             {
-              cout << i << " ### conf " << it->filter->confidence() << " detec: " << it->detection_confidence << endl;
+//               cout << i << " ### conf " << it->filter->confidence() << " detec: " << it->detection_confidence << endl;
               it = state_datas.erase ( it );
             }
         }
@@ -131,17 +137,17 @@ void do_tracking ( void )
         }
       else
         {
-          cout << i << " *** conf " << it->filter->confidence() << " detec: " << it->detection_confidence << endl;
+//           cout << i << " *** conf " << it->filter->confidence() << " detec: " << it->detection_confidence << endl;
           it = state_datas.erase ( it );
         }
       i++;
     }
 
   // if there was nothing to track we request more detection
-  if ( !stand_alone )
-    {
-      check_update_rate_frequency();
-    }  
+//   if ( !stand_alone )
+//     {
+//       check_update_rate_frequency();
+//     }  
 
   publish_data();
 }
@@ -167,7 +173,11 @@ void data_association ( vector<Rect> &faces )
           if ( euc_dis < track_thr )
             {
               associated = true;
-              state_datas[j].detection_confidence = 1.0;
+              StateData state_data;
+              state_data.initialise ( num_particles, image_rgb, faces[i], image_disparity, HIST_D );
+//               state_datas[j].detection_confidence = 1.0;
+//               state_datas.insert ( state_datas.begin() + j, state_data );
+              state_datas[j] = state_data;
               state_datas[j].is_associated = true;
 //               state_datas[j].update_target_histogram ( image_rgb, image_disparity, faces[i] );
               break;
@@ -176,7 +186,7 @@ void data_association ( vector<Rect> &faces )
       if ( !associated )
         {
           StateData state_data;
-          state_data.initialise ( num_particles, image_rgb, faces[i], image_disparity, HIST_HS );
+          state_data.initialise ( num_particles, image_rgb, faces[i], image_disparity, HIST_D );
           state_datas.push_back ( state_data );
         }
     }
@@ -222,6 +232,18 @@ void rgb_cb ( const ImageConstPtr& msg )
   try
     {
       image_rgb = cv_bridge::toCvCopy ( msg, enc::BGR8 )->image;
+      
+      if ( isfirstframe )
+        {
+          int width = image_rgb.cols;
+          int height = image_rgb.rows;
+          rgbwriter.open ( file_name, CV_FOURCC ( 'D', 'I', 'V', 'X' ), 30, Size ( width, height ) );
+          if ( !rgbwriter.isOpened() )
+            {
+              cerr << "Could not open '" << "'" << endl;
+            }
+          isfirstframe = false;
+        }
 
       // if we want to perform detection ourselves
       if ( use_colour )
@@ -236,6 +258,7 @@ void rgb_cb ( const ImageConstPtr& msg )
         }
 
       do_tracking();
+      rgbwriter << image_rgb;
     }
   catch ( cv_bridge::Exception& e )
     {

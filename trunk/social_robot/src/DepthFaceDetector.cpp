@@ -14,17 +14,13 @@ DepthFaceDetector::DepthFaceDetector ( void )
   load_templates();
   canny_thr1 = 5;
   canny_thr2 = 7;
-  chamfer_thr = 16;
-  arc_thr_low = 7;
-  arc_thr_high = 20;
-  approx_poly_thr = 1;
-  max_suppression = 0.1;
+  chamfer_thr = 50;
+  arc_thr_low = 9;
+  arc_thr_high = 16;
   scale_factor = 0.75;
   match3D_thr = 0.4;
   scales = 6;
   scales_default = 6;
-  framenum = 0;
-  update_rate = 15;
 }
 
 vector<Rect> DepthFaceDetector::detect_face_depth ( Mat depth_image, Mat disparity_image )
@@ -175,7 +171,7 @@ vector<PixelSimilarity> DepthFaceDetector::compute_headparameters ( Mat image, v
       float Rp = round ( R / 1.3 );
 
       parameters_head[i].point = Point ( position_x, position_y );
-      parameters_head[i].radius = 1.1 * Rp;
+      parameters_head[i].radius = Rp;
       parameters_head[i].similarity = chamfer[i].z;
     }
 
@@ -269,12 +265,12 @@ vector<PixelSimilarity> DepthFaceDetector::merge_rectangles ( vector<PixelSimila
         {
           if ( cv_utils.euclidean_distance ( mean_rect.point, rectangles[i].point ) < tol )
             {
-              if ( rectangles[i].similarity < mean_rect.similarity ) //  && rectangles[i].similarity < max_suppression
+              if ( rectangles[i].similarity < mean_rect.similarity )
                 {
                   mean_rect = rectangles[i];
                 }
             }
-          else //if ( rectangles[i].similarity < max_suppression )
+          else
             {
               queue.push_back ( rectangles[i] );
             }
@@ -294,33 +290,53 @@ void DepthFaceDetector::load_templates ( void )
   string head_template1;
   head_template1.append ( package_path );
   head_template1.append ( "/pictures/template3.png" );
-//   head_template1.append ( "/pictures/only_head_template.png" );
 
   string head_template2;
   head_template2.append ( package_path );
   head_template2.append ( "/pictures/template.png" );
-//   head_template2.append ( "/pictures/only_head_template_small.png" );
+  
+  string head_template3;
+  head_template3.append ( package_path );
+  head_template3.append ( "/pictures/only_head_template.png" );
+
+  string head_template4;
+  head_template4.append ( package_path );
+  head_template4.append ( "/pictures/only_head_template_small.png" );
 
   string head_template3D1;
   head_template3D1.append ( package_path );
   head_template3D1.append ( "/pictures/template3D.png" );
-//   head_template3D1.append ( "/pictures/only_head_template_3d.png" );
 
   string head_template3D2;
   head_template3D2.append ( package_path );
   head_template3D2.append ( "/pictures/template3D.png" );
-//   head_template3D2.append ( "/pictures/only_head_template_3d_small.png" );
+  
+  string head_template3D3;
+  head_template3D3.append ( package_path );
+  head_template3D3.append ( "/pictures/only_head_template_3d.png" );
+  
+  string head_template3D4;
+  head_template3D4.append ( package_path );
+  head_template3D4.append ( "/pictures/only_head_template_3d_small.png" );
 
   Mat head_template_im1 = imread ( head_template1, CV_LOAD_IMAGE_ANYDEPTH );
   Mat head_template_im2 = imread ( head_template2, CV_LOAD_IMAGE_ANYDEPTH );
+  Mat head_template_im3 = imread ( head_template3, CV_LOAD_IMAGE_ANYDEPTH );
+  Mat head_template_im4 = imread ( head_template4, CV_LOAD_IMAGE_ANYDEPTH );
   Mat head_template3D_im1 = imread ( head_template3D1, CV_LOAD_IMAGE_ANYDEPTH );
   Mat head_template3D_im2 = imread ( head_template3D2, CV_LOAD_IMAGE_ANYDEPTH );
-
+  Mat head_template3D_im3 = imread ( head_template3D3, CV_LOAD_IMAGE_ANYDEPTH );
+  Mat head_template3D_im4 = imread ( head_template3D4, CV_LOAD_IMAGE_ANYDEPTH );
+  
   head_template_im1 = cv_utils.rgb2bw ( head_template_im1 );
   head_template_im1.convertTo ( head_template_im1, CV_32F );
   head_template_im2 = cv_utils.rgb2bw ( head_template_im2 );
   head_template_im2.convertTo ( head_template_im2, CV_32F );
-
+  head_template_im3 = cv_utils.rgb2bw ( head_template_im3 );
+  head_template_im3.convertTo ( head_template_im3, CV_32F );
+  head_template_im4 = cv_utils.rgb2bw ( head_template_im4 );
+  head_template_im4.convertTo ( head_template_im4, CV_32F );
+  
   if ( head_template3D_im1.depth() == 3 )
     {
       cvtColor ( head_template3D_im1, head_template3D_im1, CV_RGB2GRAY );
@@ -330,9 +346,21 @@ void DepthFaceDetector::load_templates ( void )
     {
       cvtColor ( head_template3D_im2, head_template3D_im2, CV_RGB2GRAY );
     }
+    
+  if ( head_template3D_im3.depth() == 3 )
+    {
+      cvtColor ( head_template3D_im3, head_template3D_im3, CV_RGB2GRAY );
+    }
+    
+  if ( head_template3D_im4.depth() == 3 )
+    {
+      cvtColor ( head_template3D_im4, head_template3D_im4, CV_RGB2GRAY );
+    }
 
   templates.push_back ( Template ( head_template_im1, head_template3D_im1 ) );
   templates.push_back ( Template ( head_template_im2, head_template3D_im2 ) );
+  templates.push_back ( Template ( head_template_im3, head_template3D_im3 ) );
+  templates.push_back ( Template ( head_template_im4, head_template3D_im4 ) );
 
   sort ( templates.begin( ), templates.end( ) );
 }
