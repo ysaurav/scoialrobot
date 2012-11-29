@@ -67,7 +67,11 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/scheme.png
  * [RGBDetector Detection in the RGB Image]
  * [Tracking]
  * [TorsoOrientation Torso Orientation]
+
 == Demo ==
+
+A demos of this project can be played by using this link [http://www.youtube.com/watch?v=qnr3Msk-Vwk&feature=youtu.be link]
+
 == Implementation ==
  * [Kinect Getting Started with Kinect]
  * [Installation Installation]
