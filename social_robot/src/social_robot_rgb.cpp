@@ -18,7 +18,7 @@ social_robot::RegionOfInterests rgb_pub_rois;
 ros::Publisher rgb_pub;
 
 int framenum = 0;
-int update_rate = 15;
+int update_rate = 1;
 
 CvUtils cv_utils;
 

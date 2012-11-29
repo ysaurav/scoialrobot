@@ -14,6 +14,7 @@ void StateData::set_image_depth ( Mat image_depth )
   if ( !image_depth.empty() )
     {
       image_depth.copyTo ( this->image_depth );
+      return;
     }
 }
 

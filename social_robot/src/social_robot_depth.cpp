@@ -32,7 +32,7 @@ double scale_factor = 0.75;
 double match3D_thr = 0.4;
 int scales = 6;
 int framenum = 0;
-int update_rate = 15;
+int update_rate = 1;
 
 Mat image_depth;
 Mat image_disparity;
@@ -77,7 +77,7 @@ void publish_data ( vector<Rect> depthfaces )
 {
   vector<RegionOfInterest> rosrois = ros_utils.cvrects2rosrois ( depthfaces );
   depth_pub_rois.rois.swap ( rosrois );
-  depth_pub.publish ( depth_pub_rois );;
+  depth_pub.publish ( depth_pub_rois );
 }
 
 void depth_cb ( const ImageConstPtr& msg )
