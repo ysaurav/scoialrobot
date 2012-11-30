@@ -12,6 +12,13 @@ string inttostr ( int x )
   return ss.str();
 }
 
+string floattostr ( double x )
+{
+    ostringstream ss;
+    ss << x;
+    return ss.str();
+}
+
 string current_log_time ( void )
 {
   time_t now;

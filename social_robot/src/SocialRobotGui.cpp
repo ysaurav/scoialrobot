@@ -5,6 +5,7 @@
 #include <string>
 #include <std_msgs/String.h>
 #include <sstream>
+#include "string_utils.h"
 
 using namespace std;
 using namespace cv;

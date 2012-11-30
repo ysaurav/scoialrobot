@@ -56,15 +56,6 @@ void ParticleFilter::init ( const Rect& selection )
   const float initial[NUM_STATES] = {selection.x + selection.width / 2, selection.y + selection.height / 2, 0, 0, 1.0};
   static const float std_dev[NUM_STATES] = { 2,  2,  0.5,  0.5,  0.1};
 
-  /*
-  cout << "Init with state: [ ";
-  for ( uint j = 0; j < NUM_STATES; j++ )
-    {
-      cout << initial[j] << " ";
-    }
-  cout << "]" << endl;
-  */
-
   init_sample_set ( initial, std_dev );
 }
 
@@ -133,10 +124,10 @@ Mat& ParticleFilter::update ( Mat& image, Mat& depth_image, const cv::Size& targ
     }
 
   // TODO: put it in a better place, to get rid of big rectangles.
-//   if ( region.width > 150 || region.height > 150 )
-//     {
-//       m_mean_confidence = 0.0;
-//     }
+  if ( region.width > 200 || region.height > 200 )
+    {
+      m_mean_confidence = 0.0;
+    }
 
   return m_state;
 }
