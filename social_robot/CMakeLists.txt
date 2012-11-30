@@ -43,7 +43,7 @@ rosbuild_genmsg()
 
 #common commands for building c++ executables and libraries
 #rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
-rosbuild_add_library(utils src/string_utils.cpp src/CvUtils.cpp src/kinect_proxy.cpp src/PixelSimilarity.cpp src/Template.cpp src/RosUtils.cpp src/DepthFaceDetector.cpp)
+rosbuild_add_library(utils src/string_utils.cpp src/CvUtils.cpp src/kinect_proxy.cpp src/PixelSimilarity.cpp src/Template.cpp src/RosUtils.cpp src/DepthFaceDetector.cpp src/ConfusionMatrix.cpp)
 rosbuild_add_library(particle_filters src/particle_filter/condens.cpp src/particle_filter/filter.cpp src/particle_filter/hist.cpp src/particle_filter/StateData.cpp)
 #target_link_libraries(${PROJECT_NAME} another_library)
 #rosbuild_add_boost_directories()
