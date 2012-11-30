@@ -33,7 +33,7 @@ std_srvs::Empty empty;
 ros::Subscriber rgb_rois_sub;
 ros::Subscriber depth_rois_sub;
 
-double track_thr = 100;
+double track_thr = 90;
 double confidence_level_thr = 0.90;
 double detection_confidence_thr = 0.90;
 int num_particles = 200;
@@ -45,8 +45,6 @@ int high_frequency = 1;
 int low_frequency = 1;
 int external_update_rate = high_frequency;
 
-string results_filename = "default_results";
-
 Mat image_disparity;
 Mat image_depth;
 Mat image_rgb;
@@ -56,12 +54,14 @@ bool use_colour = false;
 bool use_depth = false;
 
 vector<StateData> state_datas;
-vector<vector<Rect> > results;
 
-VideoWriter rgbwriter;
-
+// for saving the results
 bool isfirstframe = true;
-string file_name = "default.avi";
+string video_file_name = "default.avi";
+string results_filename = "default_results";
+vector<vector<Rect> > results;
+VideoWriter rgbwriter;
+bool save_results = false;
 
 CvUtils cv_utils;
 
@@ -97,11 +97,15 @@ void publish_data ( void )
     {
       detected_faces[i] = state_datas[i].get_target_position();
     }
-  results.push_back(detected_faces);  
-  cv_utils.draw_depth_faces ( image_rgb, detected_faces );
-//   vector<RegionOfInterest> rosrois = ros_utils.cvrects2rosrois ( detected_faces );
-//   depth_pub_rois.rois.swap ( rosrois );
-//   depth_pub.publish ( depth_pub_rois );
+  // if we want to save the results
+  if ( save_results )
+    {
+      results.push_back ( detected_faces );
+      cv_utils.draw_depth_faces ( image_rgb, detected_faces );
+    }
+  vector<RegionOfInterest> rosrois = ros_utils.cvrects2rosrois ( detected_faces );
+  depth_pub_rois.rois.swap ( rosrois );
+  depth_pub.publish ( depth_pub_rois );
 }
 
 void do_tracking ( void )
@@ -115,21 +119,21 @@ void do_tracking ( void )
 
       if ( it->filter->confidence() == 0.0 )
         {
-//           cout << "TOO BIG\n";
+          cout << "TOO BIG\n";
           it = state_datas.erase ( it );
         }
       else if ( it->detection_confidence < ( detection_confidence_thr / 2 ) )
         {
-          if ( cv_utils.is_there_face_rgb ( image_rgb, it->get_target_position() ) )
-            {
-              it->detection_confidence = 1.0;
-              it++;
-            }
-          else
-            {
-//               cout << i << " ### conf " << it->filter->confidence() << " detec: " << it->detection_confidence << endl;
+//           if ( cv_utils.is_there_face_rgb ( image_rgb, it->get_target_position() ) )
+//             {
+//               it->detection_confidence = 1.0;
+//               it++;
+//             }
+//           else
+//             {
+              cout << i << " ### conf " << it->filter->confidence() << " detec: " << it->detection_confidence << endl;
               it = state_datas.erase ( it );
-            }
+//             }
         }
       else if ( it->filter->confidence() > confidence_level_thr )
         {
@@ -137,7 +141,7 @@ void do_tracking ( void )
         }
       else
         {
-//           cout << i << " *** conf " << it->filter->confidence() << " detec: " << it->detection_confidence << endl;
+          cout << i << " *** conf " << it->filter->confidence() << " detec: " << it->detection_confidence << endl;
           it = state_datas.erase ( it );
         }
       i++;
@@ -174,7 +178,7 @@ void data_association ( vector<Rect> &faces )
             {
               associated = true;
               StateData state_data;
-              state_data.initialise ( num_particles, image_rgb, faces[i], image_disparity, HIST_D );
+              state_data.initialise ( num_particles, image_rgb, faces[i], image_disparity, HIST_HS );
 //               state_datas[j].detection_confidence = 1.0;
 //               state_datas.insert ( state_datas.begin() + j, state_data );
               state_datas[j] = state_data;
@@ -186,7 +190,7 @@ void data_association ( vector<Rect> &faces )
       if ( !associated )
         {
           StateData state_data;
-          state_data.initialise ( num_particles, image_rgb, faces[i], image_disparity, HIST_D );
+          state_data.initialise ( num_particles, image_rgb, faces[i], image_disparity, HIST_HS );
           state_datas.push_back ( state_data );
         }
     }
@@ -214,6 +218,10 @@ bool update_param_cb ( std_srvs::Empty::Request&, std_srvs::Empty::Response& )
   return true;
 }
 
+/** @name Kinect callbacks.
+*
+*/
+//@{
 void depth_cb ( const ImageConstPtr& msg )
 {
   try
@@ -226,6 +234,11 @@ void depth_cb ( const ImageConstPtr& msg )
       return;
     }
 }
+/**<
+ * This function is a call back to the depth image from Kinect.
+ * @return void
+ * @param &msg A ImageConstPtr which contains the depth image.
+ * */
 
 void rgb_cb ( const ImageConstPtr& msg )
 {
@@ -233,14 +246,15 @@ void rgb_cb ( const ImageConstPtr& msg )
     {
       image_rgb = cv_bridge::toCvCopy ( msg, enc::BGR8 )->image;
       
-      if ( isfirstframe )
+      // to record the video.
+      if ( save_results && isfirstframe )
         {
           int width = image_rgb.cols;
           int height = image_rgb.rows;
-          rgbwriter.open ( file_name, CV_FOURCC ( 'D', 'I', 'V', 'X' ), 30, Size ( width, height ) );
+          rgbwriter.open ( video_file_name, CV_FOURCC ( 'D', 'I', 'V', 'X' ), 30, Size ( width, height ) );
           if ( !rgbwriter.isOpened() )
             {
-              cerr << "Could not open '" << "'" << endl;
+              cerr << "Could not open '" << video_file_name << "'" << endl;
             }
           isfirstframe = false;
         }
@@ -258,7 +272,12 @@ void rgb_cb ( const ImageConstPtr& msg )
         }
 
       do_tracking();
-      rgbwriter << image_rgb;
+      
+      // if we want to save the results
+      if (save_results)
+        {
+          rgbwriter << image_rgb;
+        }
     }
   catch ( cv_bridge::Exception& e )
     {
@@ -266,6 +285,11 @@ void rgb_cb ( const ImageConstPtr& msg )
       return;
     }
 }
+/**<
+ * This function is a call back to the RGB image from Kinect.
+ * @return void
+ * @param &msg A ImageConstPtr which contains the rgb image.
+ * */
 
 void disparity_cb ( const stereo_msgs::DisparityImageConstPtr& msg )
 {
@@ -297,13 +321,28 @@ void disparity_cb ( const stereo_msgs::DisparityImageConstPtr& msg )
       return;
     }
 }
+/**<
+ * This function is a call back to the disparity image from Kinect.
+ * @return void
+ * @param &msg A DisparityImageConstPtr which contains the disparity image.
+ * */
+//@}
 
+/** @name ROI callbacks.
+*
+*/
+//@{
 void rgb_rois_cb ( const social_robot::RegionOfInterests &msg )
 {
   vector<RegionOfInterest> rois = msg.rois;
   vector<Rect> rgb_faces = ros_utils.rosrois2cvrects ( rois );
   data_association ( rgb_faces );
 }
+/**<
+ * This function is a call back to the detected faces in RGB.
+ * @return void
+ * @param &msg A RegionOfInterests which contains a list of ROIS.
+ * */
 
 void depth_rois_cb ( const social_robot::RegionOfInterests &msg )
 {
@@ -311,11 +350,17 @@ void depth_rois_cb ( const social_robot::RegionOfInterests &msg )
   vector<Rect> depth_faces = ros_utils.rosrois2cvrects ( rois );
   data_association ( depth_faces );
 }
+/**<
+ * This function is a call back to the detected faces in depth.
+ * @return void
+ * @param &msg A RegionOfInterests which contains a list of ROIS.
+ * */
+//@}
 
 void parse_command_line ( int argc, char** argv )
 {
   int c = -1;
-  while ( ( c = getopt ( argc, argv, "cds" ) ) != -1 )
+  while ( ( c = getopt ( argc, argv, "cdso:" ) ) != -1 )
     {
       switch ( c )
         {
@@ -328,11 +373,18 @@ void parse_command_line ( int argc, char** argv )
         case 's':
           stand_alone = true;
           break;
+        case 'o':
+          save_results = true;
+          video_file_name = optarg;
+          video_file_name.append(".avi");
+          results_filename = optarg;
+          break;
         default:
-          cerr << "Usage: " << argv[0] << " [-c] [-d] [-s] " << endl << endl;
+          cerr << "Usage: " << argv[0] << " [-c] [-d] [-s] [-o output_file] " << endl << endl;
           cerr << "\t-c uses colour images in detection." << endl;
           cerr << "\t-d uses depth images in detection." << endl;
           cerr << "\t-s runs this application as stand alone, detection and tracking together." << endl;
+          cerr << "\t-o output_file : Optional output file for ROIs in .yaml format and video in .avi format." << endl;
           exit ( 1 );
         }
     }
@@ -344,7 +396,6 @@ int main ( int argc, char **argv )
 
   ros::init ( argc, argv, "social_robot_track" );
   ros::NodeHandle nh;
-//   ros::MultiThreadedSpinner spinner ( 0 );
 
   // to register the depth
   nh.setParam ( "/camera/driver/depth_registration", true );
@@ -355,10 +406,11 @@ int main ( int argc, char **argv )
 
   // subscribtions
   ros::ServiceServer update_srv = nh.advertiseService ( "/social_robot/track/update", update_param_cb );
-  ros::Subscriber disparity_sub = nh.subscribe ( "/camera/depth/disparity", 1, disparity_cb );
-  ros::Subscriber depth_sub = nh.subscribe ( "/camera/depth/image_raw", 1, depth_cb );
+  ros::Subscriber disparity_sub = nh.subscribe ( "/camera/depth_registered/disparity", 1, disparity_cb );
+  ros::Subscriber depth_sub = nh.subscribe ( "/camera/depth_registered/image_raw", 1, depth_cb );
   ros::Subscriber rgb_sub = nh.subscribe ( "/camera/rgb/image_color", 1, rgb_cb );
 
+  // if we're not running as stand alone
   if ( !stand_alone )
     {
       rgb_rois_sub = nh.subscribe ( "/social_robot/rgb/rois", 1, rgb_rois_cb );
@@ -370,10 +422,12 @@ int main ( int argc, char **argv )
   // publications
   depth_pub = nh.advertise<social_robot::RegionOfInterests> ( "/social_robot/track/rois", 1 );
 
-//   spinner.spin();
   ros::spin();
   
-  cv_utils.write_results_to_file ( results_filename, results );
+  if ( save_results )
+    {
+      cv_utils.write_results_to_file ( results_filename, results );
+    }
 
   return 0;
 }

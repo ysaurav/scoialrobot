@@ -7,6 +7,7 @@
 using namespace std;
 
 string inttostr ( int x );
+string floattostr ( double x );
 string current_log_time ( void );
 
 #endif
