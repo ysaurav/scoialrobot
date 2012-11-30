@@ -13,4 +13,4 @@ The methods we have used to evaluate are based on Euclidean distance. We have us
 
 2. Confusion matrix results
 
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/tracking_sub.png
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/table.png
