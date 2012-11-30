@@ -71,6 +71,10 @@ The angle computed for the left person is -21.04 degrees and the right person is
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/torso2.png
 
+Here there is a video showing torso orientation:
+
+http://www.youtube.com/watch?v=VG3M6QSxng0&feature=youtu.be
+
 == Limitations ==
 
  # The algorithm can not deal with problems of occlusion. It means, when there are persons on the scene that appears overlapped among each other, there is not enough information to differentiate them.
