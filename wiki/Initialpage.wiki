@@ -27,7 +27,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
   * [http://scoialrobot.googlecode.com/svn/trunk/social_robot/documentation/html/index.html Documentation]
  # [#Demo Demo]
  # [#Conclusions Conclusions]
- # [#Future Work Future Work]
+ # [#Future_Work Future Work]
  # [References References]
  # [#Links_of_Interest Links of Interest]
 
@@ -97,7 +97,6 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/light.png
 == Future Work ==
 
  # Hola
-
  # HOla
 
 
