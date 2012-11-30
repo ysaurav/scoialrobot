@@ -34,7 +34,7 @@ void SocialRobotGui::init()
   ros::start(); // our node handles go out of scope, so we want to control shutdown explicitly.
   ros::NodeHandle nh;
   rgb_subscriber = nh.subscribe ( "/camera/rgb/image_color", 1, &SocialRobotGui::rgb_cb, this );
-  depth_subscriber = nh.subscribe ( "/camera/depth/image_raw", 1, &SocialRobotGui::depth_cb, this );
+  depth_subscriber = nh.subscribe ( "/camera/depth_registered/image_raw", 1, &SocialRobotGui::depth_cb, this );
   rgb_rois_subs = nh.subscribe ( "/social_robot/rgb/rois", 1, &SocialRobotGui::rgb_rois_cb, this );
   depth_rois_subs = nh.subscribe ( "/social_robot/depth/rois", 1, &SocialRobotGui::depth_rois_cb, this );
   track_rois_subs = nh.subscribe ( "/social_robot/track/rois", 1, &SocialRobotGui::track_rois_cb, this );

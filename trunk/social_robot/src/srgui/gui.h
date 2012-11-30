@@ -32,6 +32,7 @@ class Gui : public QMainWindow
     // display
     void rgb_check_box_handler ( void );
     void depth_check_box_handler ( void );
+    void track_check_box_handler ( void );
     void handle_display ( void );
 
     // thresholds

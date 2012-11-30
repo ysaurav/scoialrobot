@@ -61,7 +61,7 @@ class CvUtils
     Rect enlarge_window_width ( Rect orgrect, Mat image, double scale = 2.0 );
     Rect enlarge_window_height ( Rect orgrect, Mat image, double scale = 2.0 );
 
-    double compute_torso_orientation ( Mat depth_image, Point head_position );
+    float compute_torso_orientation ( Mat depth_image, Point head_position );
     
     Mat get_transformation_matrix ( void );
     Mat transform_point ( Point point );
@@ -77,9 +77,12 @@ class CvUtils
     
     void compare_gt_results ( vector<vector<Point> > gt, vector<vector<Point> > results );
     void compare_gt_results ( vector<Point> gt, vector<Point> results, string filename );
-    ConfusionMatrix data_association ( vector<Point> a, vector<Point> b, vector<Point> *matching, vector<Point> *outliers );
+    ConfusionMatrix data_association ( vector<Point> gt, vector<Point> results, vector<Point> *matching, vector<Point> *outliers );
     
     void create_combine_gt_vector ( vector<string> filenames, vector<vector<Point> > &total_gt );
+    
+    void update_depth_face_detector ( DepthFaceDetector depthfacedetector );
+    DepthFaceDetector get_depth_face_detector ( void );
 
   private:
     CascadeClassifier classifier;

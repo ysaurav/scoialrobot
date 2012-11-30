@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>671</width>
-    <height>758</height>
+    <height>676</height>
    </rect>
   </property>
   <property name="contextMenuPolicy">
@@ -68,7 +68,7 @@
             <string>RGB Faces</string>
            </property>
            <property name="checked">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -76,6 +76,16 @@
           <widget class="QCheckBox" name="depth_check_box">
            <property name="text">
             <string>Depth Faces</string>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="track_check_box">
+           <property name="text">
+            <string>Track Faces</string>
            </property>
            <property name="checked">
             <bool>true</bool>
@@ -171,13 +181,13 @@
               <double>1.000000000000000</double>
              </property>
              <property name="maximum">
-              <double>20.000000000000000</double>
+              <double>100.000000000000000</double>
              </property>
              <property name="singleStep">
-              <double>0.500000000000000</double>
+              <double>1.000000000000000</double>
              </property>
              <property name="value">
-              <double>10.000000000000000</double>
+              <double>60.000000000000000</double>
              </property>
             </widget>
            </item>
@@ -198,10 +208,10 @@
               <number>5</number>
              </property>
              <property name="maximum">
-              <number>9</number>
+              <number>11</number>
              </property>
              <property name="value">
-              <number>7</number>
+              <number>9</number>
              </property>
             </widget>
            </item>
@@ -222,10 +232,10 @@
               <number>15</number>
              </property>
              <property name="maximum">
-              <number>25</number>
+              <number>22</number>
              </property>
              <property name="value">
-              <number>20</number>
+              <number>16</number>
              </property>
             </widget>
            </item>
@@ -252,7 +262,7 @@
            <item>
             <widget class="QDoubleSpinBox" name="distanceSpinBox">
              <property name="value">
-              <double>70.000000000000000</double>
+              <double>90.000000000000000</double>
              </property>
             </widget>
            </item>
@@ -276,10 +286,10 @@
               <double>1.000000000000000</double>
              </property>
              <property name="singleStep">
-              <double>0.050000000000000</double>
+              <double>0.100000000000000</double>
              </property>
              <property name="value">
-              <double>0.750000000000000</double>
+              <double>0.900000000000000</double>
              </property>
             </widget>
            </item>
@@ -306,10 +316,10 @@
               <double>1.000000000000000</double>
              </property>
              <property name="singleStep">
-              <double>0.050000000000000</double>
+              <double>0.100000000000000</double>
              </property>
              <property name="value">
-              <double>0.750000000000000</double>
+              <double>0.900000000000000</double>
              </property>
             </widget>
            </item>
@@ -379,12 +389,12 @@
    <slot>rgb_check_box_handler()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>88</x>
-     <y>579</y>
+     <x>115</x>
+     <y>471</y>
     </hint>
     <hint type="destinationlabel">
      <x>45</x>
-     <y>524</y>
+     <y>484</y>
     </hint>
    </hints>
   </connection>
@@ -396,11 +406,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>209</x>
-     <y>619</y>
+     <y>504</y>
     </hint>
     <hint type="destinationlabel">
      <x>394</x>
-     <y>533</y>
+     <y>484</y>
     </hint>
    </hints>
   </connection>
@@ -412,11 +422,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>110</x>
-     <y>659</y>
+     <y>570</y>
     </hint>
     <hint type="destinationlabel">
-     <x>-12</x>
-     <y>566</y>
+     <x>0</x>
+     <y>484</y>
     </hint>
    </hints>
   </connection>
@@ -428,11 +438,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>136</x>
-     <y>699</y>
+     <y>603</y>
     </hint>
     <hint type="destinationlabel">
      <x>109</x>
-     <y>618</y>
+     <y>484</y>
     </hint>
    </hints>
   </connection>
@@ -444,11 +454,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>435</x>
-     <y>573</y>
+     <y>472</y>
     </hint>
     <hint type="destinationlabel">
      <x>457</x>
-     <y>654</y>
+     <y>484</y>
     </hint>
    </hints>
   </connection>
@@ -460,11 +470,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>435</x>
-     <y>608</y>
+     <y>507</y>
     </hint>
     <hint type="destinationlabel">
      <x>416</x>
-     <y>617</y>
+     <y>484</y>
     </hint>
    </hints>
   </connection>
@@ -476,11 +486,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>435</x>
-     <y>643</y>
+     <y>542</y>
     </hint>
     <hint type="destinationlabel">
      <x>445</x>
-     <y>621</y>
+     <y>484</y>
     </hint>
    </hints>
   </connection>
@@ -492,11 +502,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>435</x>
-     <y>678</y>
+     <y>577</y>
     </hint>
     <hint type="destinationlabel">
      <x>473</x>
-     <y>624</y>
+     <y>484</y>
     </hint>
    </hints>
   </connection>
@@ -508,11 +518,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>435</x>
-     <y>713</y>
+     <y>612</y>
     </hint>
     <hint type="destinationlabel">
      <x>555</x>
-     <y>659</y>
+     <y>484</y>
     </hint>
    </hints>
   </connection>
@@ -524,11 +534,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>650</x>
-     <y>701</y>
+     <y>600</y>
     </hint>
     <hint type="destinationlabel">
      <x>655</x>
-     <y>770</y>
+     <y>484</y>
     </hint>
    </hints>
   </connection>
@@ -540,11 +550,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>595</x>
-     <y>577</y>
+     <y>483</y>
     </hint>
     <hint type="destinationlabel">
      <x>615</x>
-     <y>782</y>
+     <y>484</y>
     </hint>
    </hints>
   </connection>
@@ -556,11 +566,27 @@
    <hints>
     <hint type="sourcelabel">
      <x>621</x>
-     <y>628</y>
+     <y>542</y>
     </hint>
     <hint type="destinationlabel">
      <x>624</x>
-     <y>766</y>
+     <y>484</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>track_check_box</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>Gui</receiver>
+   <slot>track_check_box_handler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>73</x>
+     <y>539</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>70</x>
+     <y>676</y>
     </hint>
    </hints>
   </connection>
@@ -577,5 +603,6 @@
   <slot>threshold_confidence()</slot>
   <slot>threshold_eucdis()</slot>
   <slot>threshold_detection_confidence()</slot>
+  <slot>track_check_box_handler()</slot>
  </slots>
 </ui>

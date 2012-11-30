@@ -67,6 +67,18 @@ void Gui::depth_check_box_handler ( void )
   }
 }
 
+void Gui::track_check_box_handler ( void )
+{
+  if ( ui->track_check_box->checkState() == Qt::Checked)
+  {
+    social_robot_gui->display_track_faces = true;
+  }
+  else
+  {
+    social_robot_gui->display_track_faces = false;
+  }
+}
+
 void Gui::handle_display ( void )
 {
   if (ui->rgbRadioButton->isChecked())

@@ -21,7 +21,12 @@ const static Scalar colors[] =
 CvUtils::CvUtils ( void )
 {
   string package_path = ros::package::getPath ( "social_robot" );
-  transformation_matrix = ( Mat_<double> ( 4,3 ) << 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0 );
+  transformation_matrix = ( Mat_<float> ( 4,3 ) <<
+                            0.00189980382723900, 0, -0.595945338814418,
+                            0, 0.00189980382723900, -0.492084050717330,
+                            0, 0, 1,
+                            0, 0, 0
+                          );
 
   string cascade_name;
   cascade_name.append ( package_path );
@@ -32,7 +37,7 @@ CvUtils::CvUtils ( void )
     }
   string face_cascade_name;
   face_cascade_name.append ( package_path );
-  face_cascade_name.append ( "/rsrc/haarcascades/lbpcascade_frontalface.xml" );
+  face_cascade_name.append ( "/rsrc/haarcascades/haarcascade_frontalface_alt.xml" ); // lbpcascade_frontalface
   if ( !face_classifier.load ( face_cascade_name ) )
     {
       cerr << "ERROR: Could not load cascade classifier \"" << face_cascade_name << "\"" << endl;
@@ -384,14 +389,13 @@ Rect CvUtils::enlarge_window_height ( Rect orgrect, Mat image, double scale )
 *
 */
 //@{
-double CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position )
+float CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position )
 {
   unsigned short thresh = 100;        // Threshold to differentiate person from background
   unsigned short diff = 0;            // Difference among pixel intensities
   int margin = 15;                    // extra margin for background
   int current = head_position.y;      // current pixel location
   int next = head_position.y - 1;     // next pixel location
-  int ref = depth_image.cols / 2;     // reference variable which divides image in two parts
 
   unsigned short cur_int = 0;
   unsigned short nex_int = 0;
@@ -410,74 +414,69 @@ double CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position
         }
     }
 
+  int y_cor = next - margin;
   int y_find = 1.5 * ( head_position.y - next ) + head_position.y;
+  if ( y_find > depth_image.rows )
+    {
+      y_find = y_cor + ( depth_image.rows - y_cor ) * 0.7;
+    }
 
   int next_left = 0;
   int next_right = 0;
 
-  if ( head_position.x >  ref )    // center of the head at the right of the middle of the image
-    {                              // move to left
-      current = head_position.x;
-      next_left = head_position.x - 1;
-      diff = 0.0;
-      while ( diff < thresh )
-        {
-          cur_int = depth_image.at<unsigned short> ( y_find, current );
-          nex_int = depth_image.at<unsigned short> ( y_find, next_left );
-          diff = abs ( nex_int - cur_int );
-          current = next_left;
-          next_left--;
-          if ( next_left == 0 )
-            {
-              break;
-            }
-        }
-    }
-  else        // center of the head at the left of the middle of the image
-    {         // move to right
-      current = head_position.x;
-      next_right = head_position.x + 1;
-      diff = 0.0;
+  current = head_position.x;
+  next_left = head_position.x - 1;
+  diff = 0.0;
+  while ( diff < thresh )
+    {
+      cur_int = depth_image.at<unsigned short> ( y_find, current );
+      nex_int = depth_image.at<unsigned short> ( y_find, next_left );
+      diff = abs ( nex_int - cur_int );
+      current = next_left;
+      next_left--;
 
-      while ( diff < thresh )
+      //cout<<"Next Left: "<< next_left<<endl;
+
+      if ( next_left == 0 )
         {
-          cur_int = depth_image.at<unsigned short> ( y_find, current );
-          nex_int = depth_image.at<unsigned short> ( y_find, next_right );
-          diff = abs ( nex_int - cur_int );
-          current = next_right;
-          next_right++;
-          if ( next_right == depth_image.cols )
-            {
-              break;
-            }
+          break;
         }
     }
 
+  current = head_position.x;
+  next_right = head_position.x + 1;
+  diff = 0.0;
+
+  while ( diff < thresh )
+    {
+      cur_int = depth_image.at<unsigned short> ( y_find, current );
+      nex_int = depth_image.at<unsigned short> ( y_find, next_right );
+      diff = abs ( nex_int - cur_int );
+      current = next_right;
+      next_right++;
+
+      if ( next_right == depth_image.cols )
+        {
+          break;
+        }
+    }
+    
   int x_cor = 0;     // x-coordinate of the center of the image
-  int box_w = 0;     // width of the bounding box
+  int box_w = 0;      // width of the bounding box
 
-  if ( head_position.x >  ref )    // center of the head at the right of the middle of the image
+  box_w = next_right - next_left + ( 2*margin );
+  x_cor = head_position.x - ( box_w/2 );
+
+  if ( x_cor < 0 )
     {
-      x_cor = next_left - margin;
-      box_w = 2 * ( head_position.x - next_left ) + 2 * margin;
-
-      if ( ( x_cor + box_w ) > ( depth_image.cols - 1 ) ) // width overpasses the image size
-        {
-          box_w = depth_image.cols - x_cor - 1;
-        }
-    }
-  else        // center of the head at the left of the middle of the image
-    {
-      x_cor = head_position.x - ( next_right - head_position.x ) - margin;
-      box_w = 2 * ( head_position.x - x_cor ) + 2 * margin;
-
-      if ( x_cor < 0 )  // corner results out of the image
-        {
-          x_cor = 0;
-          box_w = next_right + 2 * margin;
-        }
+      x_cor = 0;
     }
 
+  if ( ( x_cor + box_w ) > depth_image.cols )
+    {
+      box_w = depth_image.cols - x_cor -1;
+    }
+            
   // These x-coordinates replace extreme points
   int x1 = x_cor + ( 0.25 * double ( box_w ) );    // left point
   int x2 = x_cor + ( 0.75 * double ( box_w ) );    // right point
@@ -486,34 +485,36 @@ double CvUtils::compute_torso_orientation ( Mat depth_image, Point head_position
   unsigned short d1 = depth_image.at<unsigned short> ( y_find, x1 );
   unsigned short d2 = depth_image.at<unsigned short> ( y_find, x2 );
 
-  double z1 = double ( d1 );  // depth coordinate of point 1
-  double z2 = double ( d2 );  // depth coordinate of point 2
+  float z1 = float ( d1 );  // depth coordinate of point 1
+  float z2 = float ( d2 );  // depth coordinate of point 2
 
-  double delta_z = abs ( z2 - z1 ); // difference of depths
+  float delta_z = abs ( z2 - z1 ); // difference of depths
 
-  x1 = double ( x1 );     // x- coordinate point 1
-  x2 = double ( x2 );     // x- coordinate point 2
-  double y = double ( y_find );
+  int y = y_find;
   
   // Points on camera frame
   Mat pxyz1 = transform_point ( Point ( x1, y ) );
   Mat pxyz2 = transform_point ( Point ( x2, y ) );
 
-  double py1 = pxyz1.at<double> ( 1, 0 );
-  double py2 = pxyz1.at<double> ( 1, 0 );
+  float px1 = pxyz1.at<float> ( 0, 0 ) * 1000.0;
+  float px2 = pxyz2.at<float> ( 0, 0 ) * 1000.0;
 
   // calculating the torso orientation
-  double delta_y = abs ( py2 - py1 );  // person width
+  float delta_x = abs ( px2 - px1 );  // person width
 
-  double theta = 0.0;     // Angle of Orientation
+  float theta = 0.0;     // Angle of Orientation
 
-  if ( z1 > z2 )
+  if ( abs ( delta_x ) < 100 ) // side view of the person
     {
-      theta = atan ( delta_z / delta_y ) * 180 / PI;
+      theta = 90.0;
+    }
+  else if ( z1 > z2 )
+    {
+      theta = atan ( delta_z / delta_x ) * 180 / PI;
     }
   else
     {
-      theta = -atan ( delta_z / delta_y ) * 180 / PI;
+      theta = -atan ( delta_z / delta_x ) * 180 / PI;
     }
 
   return theta;
@@ -538,7 +539,7 @@ Mat CvUtils::get_transformation_matrix ( void )
 
 Mat CvUtils::transform_point ( Point point )
 {
-  Mat mat_point = ( Mat_<double> ( 3, 1 ) << point.x, point.y, 1 );
+  Mat mat_point = ( Mat_<float> ( 3, 1 ) << point.x, point.y, 1 );
   Mat tranformation_matrix = get_transformation_matrix();
   Mat transformed_point = tranformation_matrix * mat_point;
   return transformed_point;
@@ -843,60 +844,61 @@ void CvUtils::compare_gt_results ( vector<Point> gt, vector<Point>results, strin
  * */
 //@}
 
-ConfusionMatrix CvUtils::data_association ( vector<Point> a, vector<Point> b, vector<Point> *matching, vector<Point> *outliers )
+ConfusionMatrix CvUtils::data_association ( vector<Point> gt, vector<Point> results, vector<Point> *matching, vector<Point> *outliers )
 {
   ConfusionMatrix conf_mat;
-  Mat mat_compare ( a.size(), b.size(), CV_32F );
+  Mat mat_compare ( gt.size(), results.size(), CV_32F );
   float result;
   double minVal, maxVal;
   Point minLoc, maxLoc;
 
-  if ( b.empty() )
+  if ( results.empty() )
     {
-      for ( unsigned int i = 0; i < a.size(); i++ )
+      for ( unsigned int i = 0; i < gt.size(); i++ )
         {
           matching->push_back ( Point ( 0, 0 ) );
-	  if ( a[i].x == 0 && a[i].y == 0)
-	  {
-	    conf_mat.tn++;
-	  }
-	  else{
-	    conf_mat.fn++;
-	  }
+          if ( gt[i].x == 0 && gt[i].y == 0 )
+            {
+              conf_mat.tn++;
+            }
+          else
+            {
+              conf_mat.fn++;
+            }
         }
       return conf_mat;
     }
 
-  for ( unsigned int i = 0; i < a.size(); i++ )
+  for ( unsigned int i = 0; i < gt.size(); i++ )
     {
-      for ( unsigned int j = 0; j < b.size(); j++ )
+      for ( unsigned int j = 0; j < results.size(); j++ )
         {
-          result = euclidean_distance ( a[i], b[j] );
+          result = euclidean_distance ( gt[i], results[j] );
           mat_compare.at<float> ( i, j ) = result;
         }
     }
 
-  vector<unsigned int> min_locations ( b.size() );
+  vector<unsigned int> min_locations ( results.size() );
   for ( int k = 0; k < mat_compare.rows; k++ )
     {
       minMaxLoc ( mat_compare.row ( k ), &minVal, &maxVal, &minLoc, &maxLoc );
       if ( minVal < 100 )
         {
-          matching->push_back ( b[minLoc.x] );
+          matching->push_back ( results[minLoc.x] );
           min_locations[minLoc.x] = 1;
-	  conf_mat.tp++;
+          conf_mat.tp++;
         }
       else
         {
           matching->push_back ( Point ( 0, 0 ) );
-	  if ( a[k].x == 0 && a[k].y == 0 )
-	  {
-	    conf_mat.tn++;
-	  }
-	  else{
-	    conf_mat.fn++;
-	  }
-	  
+          if ( gt[k].x == 0 && gt[k].y == 0 )
+            {
+              conf_mat.tn++;
+            }
+          else
+            {
+              conf_mat.fn++;
+            }
         }
     }
 
@@ -904,11 +906,11 @@ ConfusionMatrix CvUtils::data_association ( vector<Point> a, vector<Point> b, ve
     {
       if ( min_locations[k] == 0 )
         {
-          outliers->push_back ( b[k] );
-	  conf_mat.fp++;
+          outliers->push_back ( results[k] );
+          conf_mat.fp++;
         }
     }
-  
+
   return conf_mat;
 }
 /**<
@@ -949,3 +951,13 @@ void CvUtils::create_combine_gt_vector ( vector<string> filenames, vector<vector
  * @param filenames A vector of string containing the names of the ground-truth files
  * @param total_gt A vector of vector of points containing the combined ground-truth.
  * */
+
+void CvUtils::update_depth_face_detector ( DepthFaceDetector depthfacedetector )
+{
+  depth_face_detector = depthfacedetector;
+}
+
+DepthFaceDetector CvUtils::get_depth_face_detector ( void )
+{
+  return depth_face_detector;
+}
