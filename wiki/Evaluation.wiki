@@ -15,9 +15,10 @@ The methods we have used to evaluate are based on Euclidean distance. We have us
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/table.png
 
-In the previous table 
-RGB-HS
+In the previous table:
+ 
+RGB+HS - represents the results for detection using RGB detector and tracking using Hue and Saturation.
 
-RGBD - HS
+RGBD+HS - represents the results for detection using combined RGB detector with depth detector and tracking using Hue and Saturation.
 
-RGBD _HSD
+RGBD+HSD - represents the results for detection using RGB detector with depth detector and tracking using Hue, Saturation and Depth tracking.
