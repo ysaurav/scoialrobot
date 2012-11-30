@@ -2,6 +2,7 @@ var annotated =
 [
     [ "social_robot", "namespacesocial__robot.html", "namespacesocial__robot" ],
     [ "ConDensation", "classConDensation.html", "classConDensation" ],
+    [ "ConfusionMatrix", "classConfusionMatrix.html", "classConfusionMatrix" ],
     [ "CvBar", "classCvBar.html", "classCvBar" ],
     [ "CvButtonbar", "classCvButtonbar.html", "classCvButtonbar" ],
     [ "CvCheckBox", "classCvCheckBox.html", "classCvCheckBox" ],

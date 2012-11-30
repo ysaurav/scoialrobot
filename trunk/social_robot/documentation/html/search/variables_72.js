@@ -10,7 +10,7 @@ var searchData=
   ['rgb_5frois_5fsub',['rgb_rois_sub',['../social__robot_8cpp.html#a0afbd8e1c5321450b872238d81694a60',1,'social_robot.cpp']]],
   ['rgb_5fupdate_5fclient',['rgb_update_client',['../social__robot_8cpp.html#ab5f4789bf41f6c6a4c30a5b86239e4a0',1,'social_robot.cpp']]],
   ['rgb_5fupdate_5frate',['rgb_update_rate',['../social__robot_8cpp.html#acd9505e1fd3d333543dcc08504ad53f0',1,'social_robot.cpp']]],
-  ['rgbwriter',['rgbwriter',['../rgbWriter_8cpp.html#a4cc622abec13285a568b13b7b1002d69',1,'rgbWriter.cpp']]],
+  ['rgbwriter',['rgbwriter',['../rgbWriter_8cpp.html#a4cc622abec13285a568b13b7b1002d69',1,'rgbwriter():&#160;rgbWriter.cpp'],['../social__robot_8cpp.html#a4cc622abec13285a568b13b7b1002d69',1,'rgbwriter():&#160;social_robot.cpp']]],
   ['roi_5fheight',['roi_height',['../social__robot__onethread_8cpp.html#a3b762528047eabfcdb66d724ce2612ca',1,'social_robot_onethread.cpp']]],
   ['roi_5fwidth',['roi_width',['../social__robot__onethread_8cpp.html#adab7f7eefeddcacabc0f3f394180dd0f',1,'social_robot_onethread.cpp']]],
   ['roi_5fx_5foffset',['roi_x_offset',['../social__robot__onethread_8cpp.html#aba5f7816901cdf972b792e70e1f11296',1,'social_robot_onethread.cpp']]],

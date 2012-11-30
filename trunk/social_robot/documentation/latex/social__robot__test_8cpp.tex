@@ -6,7 +6,8 @@
 {\ttfamily \#include \char`\"{}Pixel\-Similarity.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}Template.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}Cv\-Utils.\-h\char`\"{}}\\*
-Include dependency graph for social\-\_\-robot\-\_\-test.\-cpp\-:\nopagebreak
+Include dependency graph for social\-\_\-robot\-\_\-test.\-cpp\-:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -38,20 +39,6 @@ Include dependency graph for social\-\_\-robot\-\_\-test.\-cpp\-:\nopagebreak
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
-\item 
-void \hyperlink{social__robot__test_8cpp_a6c81aa00b4dcf0cbae98a14c37683ed9}{on\-Mouse} (int event, int x, int y, int, void $\ast$)
-\item 
-vector$<$ Point3f $>$ \hyperlink{social__robot__test_8cpp_ab1b039a15129c07f54976faa90cf07da}{chamfer\-\_\-matching} (Mat \hyperlink{create__ground__truth_8cpp_aabb27b8973575043030df51be47cd24a}{image}, Mat template\-\_\-im)
-\item 
-vector$<$ Point3f $>$ \hyperlink{social__robot__test_8cpp_a0847a8b0c5e4f5f08cb3901a7c409f98}{chamfer\-\_\-matching\-\_\-fusion} (Mat \hyperlink{create__ground__truth_8cpp_aabb27b8973575043030df51be47cd24a}{image}, vector$<$ Mat $>$ template\-\_\-im)
-\item 
-vector$<$ \hyperlink{classPixelSimilarity}{Pixel\-Similarity} $>$ \hyperlink{social__robot__test_8cpp_a9f1b03628622d7a6ad356f419f035780}{compute\-\_\-headparameters} (Mat \hyperlink{create__ground__truth_8cpp_aabb27b8973575043030df51be47cd24a}{image}, vector$<$ Point3f $>$ \hyperlink{social__robot__onethread_8cpp_ae49e0fd65160c33b3bd285afab7ffc7c}{chamfer})
-\item 
-void \hyperlink{social__robot__test_8cpp_a72436f5f6d6ac15dc02f0419fabccc56}{detect\-\_\-face} (Mat \&img, Cascade\-Classifier \&cascade)
-\item 
-vector$<$ \hyperlink{classPixelSimilarity}{Pixel\-Similarity} $>$ \hyperlink{social__robot__test_8cpp_ad9dc6b51184affc24a5328c0aae03173}{false\-\_\-positives} (vector$<$ \hyperlink{classPixelSimilarity}{Pixel\-Similarity} $>$ tmpparams, int thr, int thr2)
-\item 
-void \hyperlink{social__robot__test_8cpp_a8e4f9bac5e6b07b0a1b9810d8d06f482}{data\-\_\-association} (vector$<$ Point $>$ a, vector$<$ Point $>$ b, vector$<$ Point $>$ $\ast$\hyperlink{social__robot__onethread_8cpp_a1ad5e89ff23cfb6db193cfd737de72f1}{matching}, vector$<$ Point $>$ $\ast$outliers)
 \item 
 int \hyperlink{social__robot__test_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
 \end{DoxyCompactItemize}
@@ -110,57 +97,6 @@ Mat \hyperlink{social__robot__test_8cpp_aea3f7c95f70e07adffaf65b6bdfd2e25}{image
 
 
 \subsection{Function Documentation}
-\hypertarget{social__robot__test_8cpp_ab1b039a15129c07f54976faa90cf07da}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!chamfer\-\_\-matching@{chamfer\-\_\-matching}}
-\index{chamfer\-\_\-matching@{chamfer\-\_\-matching}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
-\subsubsection[{chamfer\-\_\-matching}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Point3f$>$ chamfer\-\_\-matching (
-\begin{DoxyParamCaption}
-\item[{Mat}]{image, }
-\item[{Mat}]{template\-\_\-im}
-\end{DoxyParamCaption}
-)}}\label{social__robot__test_8cpp_ab1b039a15129c07f54976faa90cf07da}
-\hypertarget{social__robot__test_8cpp_a0847a8b0c5e4f5f08cb3901a7c409f98}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!chamfer\-\_\-matching\-\_\-fusion@{chamfer\-\_\-matching\-\_\-fusion}}
-\index{chamfer\-\_\-matching\-\_\-fusion@{chamfer\-\_\-matching\-\_\-fusion}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
-\subsubsection[{chamfer\-\_\-matching\-\_\-fusion}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Point3f$>$ chamfer\-\_\-matching\-\_\-fusion (
-\begin{DoxyParamCaption}
-\item[{Mat}]{image, }
-\item[{vector$<$ Mat $>$}]{template\-\_\-im}
-\end{DoxyParamCaption}
-)}}\label{social__robot__test_8cpp_a0847a8b0c5e4f5f08cb3901a7c409f98}
-\hypertarget{social__robot__test_8cpp_a9f1b03628622d7a6ad356f419f035780}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!compute\-\_\-headparameters@{compute\-\_\-headparameters}}
-\index{compute\-\_\-headparameters@{compute\-\_\-headparameters}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
-\subsubsection[{compute\-\_\-headparameters}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Pixel\-Similarity}$>$ compute\-\_\-headparameters (
-\begin{DoxyParamCaption}
-\item[{Mat}]{image, }
-\item[{vector$<$ Point3f $>$}]{chamfer}
-\end{DoxyParamCaption}
-)}}\label{social__robot__test_8cpp_a9f1b03628622d7a6ad356f419f035780}
-\hypertarget{social__robot__test_8cpp_a8e4f9bac5e6b07b0a1b9810d8d06f482}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!data\-\_\-association@{data\-\_\-association}}
-\index{data\-\_\-association@{data\-\_\-association}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
-\subsubsection[{data\-\_\-association}]{\setlength{\rightskip}{0pt plus 5cm}void data\-\_\-association (
-\begin{DoxyParamCaption}
-\item[{vector$<$ Point $>$}]{a, }
-\item[{vector$<$ Point $>$}]{b, }
-\item[{vector$<$ Point $>$ $\ast$}]{matching, }
-\item[{vector$<$ Point $>$ $\ast$}]{outliers}
-\end{DoxyParamCaption}
-)}}\label{social__robot__test_8cpp_a8e4f9bac5e6b07b0a1b9810d8d06f482}
-\hypertarget{social__robot__test_8cpp_a72436f5f6d6ac15dc02f0419fabccc56}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!detect\-\_\-face@{detect\-\_\-face}}
-\index{detect\-\_\-face@{detect\-\_\-face}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
-\subsubsection[{detect\-\_\-face}]{\setlength{\rightskip}{0pt plus 5cm}void detect\-\_\-face (
-\begin{DoxyParamCaption}
-\item[{Mat \&}]{img, }
-\item[{Cascade\-Classifier \&}]{cascade}
-\end{DoxyParamCaption}
-)}}\label{social__robot__test_8cpp_a72436f5f6d6ac15dc02f0419fabccc56}
-\hypertarget{social__robot__test_8cpp_ad9dc6b51184affc24a5328c0aae03173}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!false\-\_\-positives@{false\-\_\-positives}}
-\index{false\-\_\-positives@{false\-\_\-positives}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
-\subsubsection[{false\-\_\-positives}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Pixel\-Similarity}$>$ false\-\_\-positives (
-\begin{DoxyParamCaption}
-\item[{vector$<$ {\bf Pixel\-Similarity} $>$}]{tmpparams, }
-\item[{int}]{thr, }
-\item[{int}]{thr2}
-\end{DoxyParamCaption}
-)}}\label{social__robot__test_8cpp_ad9dc6b51184affc24a5328c0aae03173}
 \hypertarget{social__robot__test_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!main@{main}}
 \index{main@{main}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
 \subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
@@ -169,17 +105,6 @@ Mat \hyperlink{social__robot__test_8cpp_aea3f7c95f70e07adffaf65b6bdfd2e25}{image
 \item[{char $\ast$$\ast$}]{argv}
 \end{DoxyParamCaption}
 )}}\label{social__robot__test_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
-\hypertarget{social__robot__test_8cpp_a6c81aa00b4dcf0cbae98a14c37683ed9}{\index{social\-\_\-robot\-\_\-test.\-cpp@{social\-\_\-robot\-\_\-test.\-cpp}!on\-Mouse@{on\-Mouse}}
-\index{on\-Mouse@{on\-Mouse}!social_robot_test.cpp@{social\-\_\-robot\-\_\-test.\-cpp}}
-\subsubsection[{on\-Mouse}]{\setlength{\rightskip}{0pt plus 5cm}void on\-Mouse (
-\begin{DoxyParamCaption}
-\item[{int}]{event, }
-\item[{int}]{x, }
-\item[{int}]{y, }
-\item[{int}]{, }
-\item[{void $\ast$}]{}
-\end{DoxyParamCaption}
-)}}\label{social__robot__test_8cpp_a6c81aa00b4dcf0cbae98a14c37683ed9}
 
 
 \subsection{Variable Documentation}

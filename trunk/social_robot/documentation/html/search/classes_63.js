@@ -1,6 +1,7 @@
 var searchData=
 [
   ['condensation',['ConDensation',['../classConDensation.html',1,'']]],
+  ['confusionmatrix',['ConfusionMatrix',['../classConfusionMatrix.html',1,'']]],
   ['cvbar',['CvBar',['../classCvBar.html',1,'']]],
   ['cvbuttonbar',['CvButtonbar',['../classCvButtonbar.html',1,'']]],
   ['cvcheckbox',['CvCheckBox',['../classCvCheckBox.html',1,'']]],

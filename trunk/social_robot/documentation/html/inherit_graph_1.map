@@ -1,5 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node3" href="$classCvBar.html" title="CvBar" alt="" coords="157,32,216,61"/>
-<area shape="rect" id="node5" href="$classCvButtonbar.html" title="CvButtonbar" alt="" coords="265,5,359,35"/>
-<area shape="rect" id="node7" href="$classCvTrackbar.html" title="CvTrackbar" alt="" coords="267,59,357,88"/>
+<area shape="rect" id="node1" href="$classConfusionMatrix.html" title="This class provides confusion matrix (true positves, true negatives, false positves, false negatives) for the evaluation between ground&#45;truth and results." alt="" coords="5,5,123,35"/>
 </map>

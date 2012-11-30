@@ -10,6 +10,10 @@ var files =
     [ "condens.h", "condens_8h.html", [
       [ "ConDensation", "classConDensation.html", "classConDensation" ]
     ] ],
+    [ "ConfusionMatrix.cpp", "ConfusionMatrix_8cpp.html", null ],
+    [ "ConfusionMatrix.h", "ConfusionMatrix_8h.html", [
+      [ "ConfusionMatrix", "classConfusionMatrix.html", "classConfusionMatrix" ]
+    ] ],
     [ "create_ground_truth.cpp", "create__ground__truth_8cpp.html", "create__ground__truth_8cpp" ],
     [ "CvUtils.cpp", "CvUtils_8cpp.html", "CvUtils_8cpp" ],
     [ "CvUtils.h", "CvUtils_8h.html", "CvUtils_8h" ],

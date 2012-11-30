@@ -1,8 +1,9 @@
 <map id="social_robot_test.cpp" name="social_robot_test.cpp">
-<area shape="rect" id="node5" href="$kinect__proxy_8h.html" title="kinect_proxy.h" alt="" coords="711,83,817,112"/>
-<area shape="rect" id="node28" href="$PixelSimilarity_8h.html" title="PixelSimilarity.h" alt="" coords="1789,256,1904,285"/>
-<area shape="rect" id="node31" href="$Template_8h.html" title="Template.h" alt="" coords="1928,256,2013,285"/>
-<area shape="rect" id="node34" href="$CvUtils_8h.html" title="CvUtils.h" alt="" coords="1447,83,1524,112"/>
-<area shape="rect" id="node22" href="$string__utils_8h.html" title="string_utils.h" alt="" coords="275,169,371,199"/>
-<area shape="rect" id="node44" href="$DepthFaceDetector_8h.html" title="DepthFaceDetector.h" alt="" coords="1891,169,2037,199"/>
+<area shape="rect" id="node5" href="$kinect__proxy_8h.html" title="kinect_proxy.h" alt="" coords="512,83,619,112"/>
+<area shape="rect" id="node28" href="$PixelSimilarity_8h.html" title="PixelSimilarity.h" alt="" coords="1573,256,1688,285"/>
+<area shape="rect" id="node31" href="$Template_8h.html" title="Template.h" alt="" coords="1712,256,1797,285"/>
+<area shape="rect" id="node34" href="$CvUtils_8h.html" title="CvUtils.h" alt="" coords="1497,83,1575,112"/>
+<area shape="rect" id="node22" href="$string__utils_8h.html" title="string_utils.h" alt="" coords="152,169,248,199"/>
+<area shape="rect" id="node44" href="$DepthFaceDetector_8h.html" title="DepthFaceDetector.h" alt="" coords="1573,169,1720,199"/>
+<area shape="rect" id="node48" href="$ConfusionMatrix_8h.html" title="ConfusionMatrix.h" alt="" coords="1744,169,1872,199"/>
 </map>
