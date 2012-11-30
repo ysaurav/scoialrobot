@@ -63,8 +63,11 @@ Once these points have been transformed in real world, we proceed to compute the
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step10.png
 
 == Results ==
+The angle computed for this person is equal to -4.69 degrees. 
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/torso1.png
+
+The angle computed for the left person is -11 degreess and the right person is 8 degrees.
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/torso2.png
 
@@ -73,9 +76,3 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/torso2.png
  # The algorithm can not deal with problems of occlusion. It means, when there are persons on the scene that appears overlapped among each other, there is not enough information to differentiate them.
  # When the detected persons appear to be located at a far distance from the kinect, their depth information is very close to background. Hence, the computed angle can be overestimated.
  # If the detected person assumes very particular poses, the angle of orientation could not give an accurate estimate.
-
-== Improvements ==
-
-The use of statistical metrics, i.e. first order moments in X and Y directions, could be an interesting alternative to estimate the points in the torso region. This method would demand the use of a segmentation stage that can generate a better separation of the person from background.
-
-Experimentally, by using watershed segmentation, it could not provide good results for detected persons located far from the kinect. Additionally, statistical methods does not consider the shape of the class to be evaluated.
