@@ -15,7 +15,7 @@ VideoWriter rgbwriter;
 
 CvUtils cv_utils;
 bool isfirstframe = true;
-string file_name = "default.avi";
+string video_file_name = "default.avi";
 
 void rgb_cb ( const ImageConstPtr& msg )
 {
@@ -27,7 +27,7 @@ void rgb_cb ( const ImageConstPtr& msg )
         {
           int width = image_rgb.cols;
           int height = image_rgb.rows;
-          rgbwriter.open ( file_name, CV_FOURCC ( 'D', 'I', 'V', 'X' ), 30, Size ( width, height ) );
+          rgbwriter.open ( video_file_name, CV_FOURCC ( 'D', 'I', 'V', 'X' ), 30, Size ( width, height ) );
           if ( !rgbwriter.isOpened() )
             {
               cerr << "Could not open '" << "'" << endl;
@@ -54,7 +54,7 @@ int main ( int argc, char **argv )
   ros::NodeHandle nh;
   if ( argc > 1 )
     {
-      file_name = argv[1];
+      video_file_name = argv[1];
     }
 
   // subscribtions

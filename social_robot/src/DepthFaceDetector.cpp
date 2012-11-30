@@ -24,7 +24,7 @@ DepthFaceDetector::DepthFaceDetector ( void )
 }
 
 vector<Rect> DepthFaceDetector::detect_face_depth ( Mat depth_image, Mat disparity_image )
-{
+{  
   vector<Rect> detected_faces;
   Mat element = getStructuringElement ( MORPH_RECT, MORPH_SIZE, Point ( 5, 5 ) );
 
