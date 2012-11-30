@@ -1,6 +1,6 @@
 #summary Explaining how ros topics work with each other.
 
-https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/ros.png
 
 = Software Architecture =
 
