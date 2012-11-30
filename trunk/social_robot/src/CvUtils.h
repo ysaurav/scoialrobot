@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include "DepthFaceDetector.h"
+#include "ConfusionMatrix.h"
 
 /**
 * @class CvUtils
@@ -66,7 +67,7 @@ class CvUtils
     Mat transform_point ( Point point );
 
     void write_results_to_file ( string file_name, vector<vector<Rect> > rois );
-    void write_results_to_file ( string file_name, vector<vector<Point> > points, double outliers_ratio );
+    void write_results_to_file ( string file_name, vector<vector<Point> > points, double outliers_ratio, ConfusionMatrix eval );
     void write_results_to_file ( string file_name, vector<Rect> rois );
     void write_results_to_file ( string file_name, vector<Point> points );
     void write_to_file ( string filename, vector<double> rois, double mse, double mean );
@@ -76,7 +77,7 @@ class CvUtils
     
     void compare_gt_results ( vector<vector<Point> > gt, vector<vector<Point> > results );
     void compare_gt_results ( vector<Point> gt, vector<Point> results, string filename );
-    void data_association ( vector<Point> a, vector<Point> b, vector<Point> *matching, vector<Point> *outliers );
+    ConfusionMatrix data_association ( vector<Point> a, vector<Point> b, vector<Point> *matching, vector<Point> *outliers );
     
     void create_combine_gt_vector ( vector<string> filenames, vector<vector<Point> > &total_gt );
 

@@ -589,11 +589,17 @@ void CvUtils::write_results_to_file ( string file_name, vector<vector<Rect> > ro
  * @param rois A vector of vector of rectangles containing the ROI that will be saved.
  * */
 
-void CvUtils::write_results_to_file ( string file_name, vector< vector< Point > > points, double outliers_ratio )
+void CvUtils::write_results_to_file ( string file_name, vector< vector< Point > > points, double outliers_ratio, ConfusionMatrix eval )
 {
   string centre_file = file_name;
   centre_file.append ( "_centre.yaml" );  
   FileStorage fsc ( centre_file, FileStorage::WRITE );
+  double accuracy, error_rate;
+  accuracy = (double)  (eval.tp + eval.tn)/ (double) (eval.tp + eval.tn + eval.fp + eval.fn);
+  error_rate = (double)  (eval.fp + eval.fn)/ (double) (eval.tp + eval.tn + eval.fp + eval.fn);
+  cout << accuracy << endl;
+  fsc << "True positives" << eval.tp << "True negatives" << eval.tn << "False positives" << eval.fp << "False negatives" << eval.fn;
+  fsc << "Precision accuracy" << accuracy << "Error rate" << error_rate; 
   fsc << "Outliers" << outliers_ratio << "center" << "[";
   for ( unsigned int i = 0; i < points.size(); i++ )
     {
@@ -733,7 +739,6 @@ void CvUtils::read_from_file ( string filename, vector<Point> &rois )
     }
   fs.release();
 }
-
 /**<
  * This function reads the results to from a .yaml file.
  * @return 
@@ -748,6 +753,7 @@ void CvUtils::read_from_file ( string filename, vector<Point> &rois )
 //@{
 void CvUtils::compare_gt_results ( vector< vector< Point > > gt, vector< vector< Point > > results )
 {
+  ConfusionMatrix eval;
   unsigned int nframes = gt.size();
   if ( nframes == 0 )
     {
@@ -760,12 +766,16 @@ void CvUtils::compare_gt_results ( vector< vector< Point > > gt, vector< vector<
   vector< vector< Point > > results_per_person ( npeople );
   vector< vector< Point > > outliers_per_frame ( nframes );
   double outliers_ratio = 0;
-
+  
   for ( unsigned int i = 0; i < nframes; i++ )
     {
       vector<Point> outliers;
       vector<Point> matching;
-      data_association ( gt[i], results[i], &matching, &outliers );
+      ConfusionMatrix eval_temp = data_association ( gt[i], results[i], &matching, &outliers );
+      eval.tp += eval_temp.tp;
+      eval.tn += eval_temp.tn;
+      eval.fp += eval_temp.fp;
+      eval.fn += eval_temp.fn;
       for ( unsigned int j = 0; j < npeople; j++ )
         {
           gt_per_person[j].push_back ( gt[i].at ( j ) );
@@ -773,6 +783,7 @@ void CvUtils::compare_gt_results ( vector< vector< Point > > gt, vector< vector<
         }
       outliers_per_frame[i] = outliers;
       outliers_ratio += outliers.size();
+      
     }
   for ( unsigned int j = 0; j < npeople; j++ )
     {
@@ -783,7 +794,7 @@ void CvUtils::compare_gt_results ( vector< vector< Point > > gt, vector< vector<
     
   outliers_ratio /= nframes;
     
-  write_results_to_file ( "outliers", outliers_per_frame, outliers_ratio );
+  write_results_to_file ( "evaluation", outliers_per_frame, outliers_ratio, eval );
 }
 /**<
  * This function compare the ground-truth results to the detection and tracking algorithm
@@ -832,8 +843,9 @@ void CvUtils::compare_gt_results ( vector<Point> gt, vector<Point>results, strin
  * */
 //@}
 
-void CvUtils::data_association ( vector<Point> a, vector<Point> b, vector<Point> *matching, vector<Point> *outliers )
+ConfusionMatrix CvUtils::data_association ( vector<Point> a, vector<Point> b, vector<Point> *matching, vector<Point> *outliers )
 {
+  ConfusionMatrix conf_mat;
   Mat mat_compare ( a.size(), b.size(), CV_32F );
   float result;
   double minVal, maxVal;
@@ -844,8 +856,15 @@ void CvUtils::data_association ( vector<Point> a, vector<Point> b, vector<Point>
       for ( unsigned int i = 0; i < a.size(); i++ )
         {
           matching->push_back ( Point ( 0, 0 ) );
+	  if ( a[i].x == 0 && a[i].y == 0)
+	  {
+	    conf_mat.tn++;
+	  }
+	  else{
+	    conf_mat.fn++;
+	  }
         }
-      return;
+      return conf_mat;
     }
 
   for ( unsigned int i = 0; i < a.size(); i++ )
@@ -861,14 +880,23 @@ void CvUtils::data_association ( vector<Point> a, vector<Point> b, vector<Point>
   for ( int k = 0; k < mat_compare.rows; k++ )
     {
       minMaxLoc ( mat_compare.row ( k ), &minVal, &maxVal, &minLoc, &maxLoc );
-      if ( minVal < 75 )
+      if ( minVal < 100 )
         {
           matching->push_back ( b[minLoc.x] );
           min_locations[minLoc.x] = 1;
+	  conf_mat.tp++;
         }
       else
         {
           matching->push_back ( Point ( 0, 0 ) );
+	  if ( a[k].x == 0 && a[k].y == 0 )
+	  {
+	    conf_mat.tn++;
+	  }
+	  else{
+	    conf_mat.fn++;
+	  }
+	  
         }
     }
 
@@ -877,13 +905,16 @@ void CvUtils::data_association ( vector<Point> a, vector<Point> b, vector<Point>
       if ( min_locations[k] == 0 )
         {
           outliers->push_back ( b[k] );
+	  conf_mat.fp++;
         }
     }
-
+  
+  return conf_mat;
 }
 /**<
- * This function associates the ground-truth results to the detection and tracking algorithm.
- * @return 
+ * This function associates the ground-truth results to the detection and tracking algorithm
+ * and it stores the information in a ConfusionMatrix.
+ * @return ConfusionMatrix
  * @param a A vector of points containing the ground-truth.
  * @param b A vector of points containing the results of the implemented algorithm.
  * @param matching A vector containing the mathing between the ground-truth and the results.
