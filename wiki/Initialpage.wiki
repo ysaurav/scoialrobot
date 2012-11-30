@@ -79,6 +79,14 @@ A demo of this project can be played by using this [http://www.youtube.com/watch
  * [http://scoialrobot.googlecode.com/svn/trunk/social_robot/documentation/html/index.html Documentation]
 == Conclusions ==
 
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/realtime.png
+
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/light.png
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/limits.png
+
+
 
 == Links of Interest == 
 *Presentations*
