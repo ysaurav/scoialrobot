@@ -2,6 +2,10 @@
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
 
+= Software Architecture =
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
+
 = Introduction =
 
 In this page we're going to explain how different ROS topics work with each other in our application. In addition to this page we have created Doxygen documentation for our source code, which is available [http://scoialrobot.googlecode.com/svn/trunk/social_robot/documentation/html/index.html here].
