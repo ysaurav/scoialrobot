@@ -63,11 +63,11 @@ Once these points have been transformed in real world, we proceed to compute the
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step10.png
 
 == Results ==
-The angle computed for this person is equal to -4.69 degrees. 
+The angle computed for this person is equal to -7.03 degrees. 
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/torso1.png
 
-The angle computed for the left person is -11 degreess and the right person is 8 degrees.
+The angle computed for the left person is -21.04 degrees and the right person is 17.85 degrees.
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/torso2.png
 
