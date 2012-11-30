@@ -62,6 +62,12 @@ Once these points have been transformed in real world, we proceed to compute the
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/step10.png
 
+== Results ==
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/torso1.png
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/torso2.png
+
 == Limitations ==
 
  # The algorithm can not deal with problems of occlusion. It means, when there are persons on the scene that appears overlapped among each other, there is not enough information to differentiate them.
