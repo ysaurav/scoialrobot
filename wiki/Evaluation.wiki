@@ -11,6 +11,13 @@ The methods we have used to evaluate are based on Euclidean distance. We have us
 
 = Results =
 
-2. Confusion matrix results
+ Confusion matrix results
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/table.png
+
+In the previous table 
+RGB-HS
+
+RGBD - HS
+
+RGBD _HSD
