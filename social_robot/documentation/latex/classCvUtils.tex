@@ -21,7 +21,7 @@ Mat \hyperlink{classCvUtils_a47189479acb67a1918f35557fc5906a6}{preprocessing} (M
 \item 
 void \hyperlink{classCvUtils_a426439fc003e5557644932eee66c48b6}{get\-\_\-non\-\_\-zeros} (Mat img, Mat prob, vector$<$ Point3f $>$ $\ast$points, Point pdiff=Point(0, 0), double scale=1)
 \item 
-void \hyperlink{classCvUtils_af0184944140cd71ef9ad9c6d3a89ca48}{data\-\_\-association} (vector$<$ Point $>$ a, vector$<$ Point $>$ b, vector$<$ Point $>$ $\ast$\hyperlink{social__robot__onethread_8cpp_a1ad5e89ff23cfb6db193cfd737de72f1}{matching}, vector$<$ Point $>$ $\ast$outliers)
+\hyperlink{classConfusionMatrix}{Confusion\-Matrix} \hyperlink{classCvUtils_a9c29ba0ac7ad60b0f823c06f515163b4}{data\-\_\-association} (vector$<$ Point $>$ a, vector$<$ Point $>$ b, vector$<$ Point $>$ $\ast$\hyperlink{social__robot__onethread_8cpp_a1ad5e89ff23cfb6db193cfd737de72f1}{matching}, vector$<$ Point $>$ $\ast$outliers)
 \item 
 void \hyperlink{classCvUtils_aaea7203de435f3395fb4842c5230ecc7}{create\-\_\-combine\-\_\-gt\-\_\-vector} (vector$<$ string $>$ filenames, vector$<$ vector$<$ Point $>$ $>$ \&total\-\_\-gt)
 \end{DoxyCompactItemize}
@@ -86,13 +86,13 @@ Mat \hyperlink{classCvUtils_ad8b10d8ef42dc7437bcb40c13dd23d33}{transform\-\_\-po
 \begin{Indent}{\bf Write to file}\par
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{classCvUtils_a78b9e8fc4f7ea2b713ab0bcca586600e}{write\-\_\-results\-\_\-to\-\_\-file} (string \hyperlink{rgbWriter_8cpp_a755d42f2e9c635ce2213e0efad62b796}{file\-\_\-name}, vector$<$ vector$<$ Rect $>$ $>$ \hyperlink{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{rois})
+void \hyperlink{classCvUtils_a78b9e8fc4f7ea2b713ab0bcca586600e}{write\-\_\-results\-\_\-to\-\_\-file} (string \hyperlink{social__robot_8cpp_a755d42f2e9c635ce2213e0efad62b796}{file\-\_\-name}, vector$<$ vector$<$ Rect $>$ $>$ \hyperlink{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{rois})
 \item 
-void \hyperlink{classCvUtils_a61698b2aa9a5d770b7d4a6c77738bb2d}{write\-\_\-results\-\_\-to\-\_\-file} (string \hyperlink{rgbWriter_8cpp_a755d42f2e9c635ce2213e0efad62b796}{file\-\_\-name}, vector$<$ vector$<$ Point $>$ $>$ points, double outliers\-\_\-ratio)
+void \hyperlink{classCvUtils_ad0851f0eee232adf64bd324fc3f92cf4}{write\-\_\-results\-\_\-to\-\_\-file} (string \hyperlink{social__robot_8cpp_a755d42f2e9c635ce2213e0efad62b796}{file\-\_\-name}, vector$<$ vector$<$ Point $>$ $>$ points, double outliers\-\_\-ratio, \hyperlink{classConfusionMatrix}{Confusion\-Matrix} eval)
 \item 
-void \hyperlink{classCvUtils_a0f3f68175623e99bc1669f3cd06fd301}{write\-\_\-results\-\_\-to\-\_\-file} (string \hyperlink{rgbWriter_8cpp_a755d42f2e9c635ce2213e0efad62b796}{file\-\_\-name}, vector$<$ Rect $>$ \hyperlink{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{rois})
+void \hyperlink{classCvUtils_a0f3f68175623e99bc1669f3cd06fd301}{write\-\_\-results\-\_\-to\-\_\-file} (string \hyperlink{social__robot_8cpp_a755d42f2e9c635ce2213e0efad62b796}{file\-\_\-name}, vector$<$ Rect $>$ \hyperlink{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{rois})
 \item 
-void \hyperlink{classCvUtils_a27e76804ac414cc7cdf2e34851dec86a}{write\-\_\-results\-\_\-to\-\_\-file} (string \hyperlink{rgbWriter_8cpp_a755d42f2e9c635ce2213e0efad62b796}{file\-\_\-name}, vector$<$ Point $>$ points)
+void \hyperlink{classCvUtils_a27e76804ac414cc7cdf2e34851dec86a}{write\-\_\-results\-\_\-to\-\_\-file} (string \hyperlink{social__robot_8cpp_a755d42f2e9c635ce2213e0efad62b796}{file\-\_\-name}, vector$<$ Point $>$ points)
 \item 
 void \hyperlink{classCvUtils_a417431598ac332bcce7a2d66add3662f}{write\-\_\-to\-\_\-file} (string filename, vector$<$ double $>$ \hyperlink{social__robot__onethread_8cpp_acb84e343c5602756e13a851a44128639}{rois}, double mse, double mean)
 \end{DoxyCompactItemize}
@@ -207,18 +207,18 @@ This function combines all together the results of the ground-\/truth \begin{Dox
 {\em total\-\_\-gt} & A vector of vector of points containing the combined ground-\/truth. \\
 \hline
 \end{DoxyParams}
-\hypertarget{classCvUtils_af0184944140cd71ef9ad9c6d3a89ca48}{\index{Cv\-Utils@{Cv\-Utils}!data\-\_\-association@{data\-\_\-association}}
+\hypertarget{classCvUtils_a9c29ba0ac7ad60b0f823c06f515163b4}{\index{Cv\-Utils@{Cv\-Utils}!data\-\_\-association@{data\-\_\-association}}
 \index{data\-\_\-association@{data\-\_\-association}!CvUtils@{Cv\-Utils}}
-\subsubsection[{data\-\_\-association}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::data\-\_\-association (
+\subsubsection[{data\-\_\-association}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Confusion\-Matrix} Cv\-Utils\-::data\-\_\-association (
 \begin{DoxyParamCaption}
 \item[{vector$<$ Point $>$}]{a, }
 \item[{vector$<$ Point $>$}]{b, }
 \item[{vector$<$ Point $>$ $\ast$}]{matching, }
 \item[{vector$<$ Point $>$ $\ast$}]{outliers}
 \end{DoxyParamCaption}
-)}}\label{classCvUtils_af0184944140cd71ef9ad9c6d3a89ca48}
-This function associates the ground-\/truth results to the detection and tracking algorithm. \begin{DoxyReturn}{Returns}
-
+)}}\label{classCvUtils_a9c29ba0ac7ad60b0f823c06f515163b4}
+This function associates the ground-\/truth results to the detection and tracking algorithm and it stores the information in a \hyperlink{classConfusionMatrix}{Confusion\-Matrix}. \begin{DoxyReturn}{Returns}
+\hyperlink{classConfusionMatrix}{Confusion\-Matrix} 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
@@ -617,15 +617,16 @@ This function writes the results to a .yaml file. \begin{DoxyReturn}{Returns}
 {\em rois} & A vector of vector of rectangles containing the R\-O\-I that will be saved. \\
 \hline
 \end{DoxyParams}
-\hypertarget{classCvUtils_a61698b2aa9a5d770b7d4a6c77738bb2d}{\index{Cv\-Utils@{Cv\-Utils}!write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}}
+\hypertarget{classCvUtils_ad0851f0eee232adf64bd324fc3f92cf4}{\index{Cv\-Utils@{Cv\-Utils}!write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}}
 \index{write\-\_\-results\-\_\-to\-\_\-file@{write\-\_\-results\-\_\-to\-\_\-file}!CvUtils@{Cv\-Utils}}
 \subsubsection[{write\-\_\-results\-\_\-to\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void Cv\-Utils\-::write\-\_\-results\-\_\-to\-\_\-file (
 \begin{DoxyParamCaption}
 \item[{string}]{file\-\_\-name, }
 \item[{vector$<$ vector$<$ Point $>$ $>$}]{points, }
-\item[{double}]{outliers\-\_\-ratio}
+\item[{double}]{outliers\-\_\-ratio, }
+\item[{{\bf Confusion\-Matrix}}]{eval}
 \end{DoxyParamCaption}
-)}}\label{classCvUtils_a61698b2aa9a5d770b7d4a6c77738bb2d}
+)}}\label{classCvUtils_ad0851f0eee232adf64bd324fc3f92cf4}
 This function writes the results to a .yaml file. \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}

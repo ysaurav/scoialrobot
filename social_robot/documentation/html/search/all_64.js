@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['data_5fassociation',['data_association',['../classCvUtils.html#af0184944140cd71ef9ad9c6d3a89ca48',1,'CvUtils::data_association()'],['../social__robot_8cpp.html#ae6e6caa2237ca4d4e003c1976e6ccf75',1,'data_association(vector&lt; Rect &gt; &amp;faces):&#160;social_robot.cpp'],['../social__robot__test_8cpp.html#a8e4f9bac5e6b07b0a1b9810d8d06f482',1,'data_association(vector&lt; Point &gt; a, vector&lt; Point &gt; b, vector&lt; Point &gt; *matching, vector&lt; Point &gt; *outliers):&#160;social_robot_test.cpp']]],
+  ['data_5fassociation',['data_association',['../classCvUtils.html#a9c29ba0ac7ad60b0f823c06f515163b4',1,'CvUtils::data_association()'],['../social__robot_8cpp.html#ae6e6caa2237ca4d4e003c1976e6ccf75',1,'data_association():&#160;social_robot.cpp']]],
   ['delay',['delay',['../classSettings.html#a5fe947366441009187d633f9e4663256',1,'Settings']]],
   ['depth_5fcb',['depth_cb',['../classSocialRobotGui.html#a20bf403e17980a1c2d9f3efaf99a0ddd',1,'SocialRobotGui::depth_cb()'],['../social__robot__onethread_8cpp.html#aa59cb262fc28be47854d4ce4314ccbe1',1,'depth_cb(const sensor_msgs::ImageConstPtr &amp;msg):&#160;social_robot_onethread.cpp'],['../kinect__proxy_8cpp.html#aa59cb262fc28be47854d4ce4314ccbe1',1,'depth_cb(const sensor_msgs::ImageConstPtr &amp;msg):&#160;kinect_proxy.cpp'],['../social__robot_8cpp.html#a555c9c1104d52ad9cf90f36548ecf4c8',1,'depth_cb(const ImageConstPtr &amp;msg):&#160;social_robot.cpp'],['../social__robot__depth_8cpp.html#a555c9c1104d52ad9cf90f36548ecf4c8',1,'depth_cb(const ImageConstPtr &amp;msg):&#160;social_robot_depth.cpp']]],
   ['depth_5fface_5fdetector',['depth_face_detector',['../CvUtils_8cpp.html#af556824129b93e2cb0af39d9ad81049c',1,'CvUtils.cpp']]],
@@ -20,7 +20,6 @@ var searchData=
   ['deserialize_5fnumpy',['deserialize_numpy',['../classsocial__robot_1_1msg_1_1__RegionOfInterests_1_1RegionOfInterests.html#a6c0e8bbb66120a0c4283bf2a2c0233ce',1,'social_robot::msg::_RegionOfInterests::RegionOfInterests']]],
   ['destroyallwindow',['destroyAllWindow',['../classGuiReceiver.html#a748313239bdf5a50cc877dd91b3c1950',1,'GuiReceiver']]],
   ['destroywindow',['destroyWindow',['../classGuiReceiver.html#a86942e372e278c27c98af1930d9b9e97',1,'GuiReceiver']]],
-  ['detect_5fface',['detect_face',['../social__robot__test_8cpp.html#a72436f5f6d6ac15dc02f0419fabccc56',1,'social_robot_test.cpp']]],
   ['detect_5fface_5fdepth',['detect_face_depth',['../classCvUtils.html#a4a7f10293376335faeb2ba4e8abc685a',1,'CvUtils::detect_face_depth()'],['../classDepthFaceDetector.html#ace3a3506a58be0d500d866d1574a35be',1,'DepthFaceDetector::detect_face_depth()']]],
   ['detect_5fface_5frgb',['detect_face_rgb',['../classCvUtils.html#ac09b2e17fa71221b79c2a87732814482',1,'CvUtils::detect_face_rgb(Mat image)'],['../classCvUtils.html#a24520cd4e52e1c47a42a0b57c31b1a5d',1,'CvUtils::detect_face_rgb(Mat image, CascadeClassifier cascade_classifier)']]],
   ['detection',['DETECTION',['../calibration_8cpp.html#a06fc87d81c62e9abb8790b6e5713c55ba167a7ee1aabe9f27e010fff93c0ba971',1,'calibration.cpp']]],

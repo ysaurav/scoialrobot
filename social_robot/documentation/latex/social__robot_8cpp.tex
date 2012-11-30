@@ -13,7 +13,8 @@
 {\ttfamily \#include \char`\"{}particle\-\_\-filter/\-State\-Data.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}particle\-\_\-filter/hist.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}particle\-\_\-filter/filter.\-h\char`\"{}}\\*
-Include dependency graph for social\-\_\-robot.\-cpp\-:\nopagebreak
+Include dependency graph for social\-\_\-robot.\-cpp\-:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -66,25 +67,25 @@ ros\-::\-Subscriber \hyperlink{social__robot_8cpp_a0afbd8e1c5321450b872238d81694
 \item 
 ros\-::\-Subscriber \hyperlink{social__robot_8cpp_a3c30dbde0fb6ec35cb3606bb3bfa2b5a}{depth\-\_\-rois\-\_\-sub}
 \item 
-double \hyperlink{social__robot_8cpp_a0414cc80d7dc66451dc24ec3418596ee}{track\-\_\-thr} = 75
+double \hyperlink{social__robot_8cpp_a0414cc80d7dc66451dc24ec3418596ee}{track\-\_\-thr} = 100
 \item 
-double \hyperlink{social__robot_8cpp_aff5593806965b8ace6df9bb9eb072d18}{confidence\-\_\-level\-\_\-thr} = 0.\-50
+double \hyperlink{social__robot_8cpp_aff5593806965b8ace6df9bb9eb072d18}{confidence\-\_\-level\-\_\-thr} = 0.\-90
 \item 
-double \hyperlink{social__robot_8cpp_ad07b4dff43b9b0209ff0191c9ab669dd}{detection\-\_\-confidence\-\_\-thr} = 0.\-80
+double \hyperlink{social__robot_8cpp_ad07b4dff43b9b0209ff0191c9ab669dd}{detection\-\_\-confidence\-\_\-thr} = 0.\-90
 \item 
-int \hyperlink{social__robot_8cpp_acf574bc864f7f0fc111320f1d6c449d5}{num\-\_\-particles} = 300
+int \hyperlink{social__robot_8cpp_acf574bc864f7f0fc111320f1d6c449d5}{num\-\_\-particles} = 200
 \item 
 int \hyperlink{social__robot_8cpp_ae605fe87b56cf56cad5443641c5a4534}{rgb\-\_\-framenum} = 0
 \item 
-int \hyperlink{social__robot_8cpp_acd9505e1fd3d333543dcc08504ad53f0}{rgb\-\_\-update\-\_\-rate} = 15
+int \hyperlink{social__robot_8cpp_acd9505e1fd3d333543dcc08504ad53f0}{rgb\-\_\-update\-\_\-rate} = 1
 \item 
 int \hyperlink{social__robot_8cpp_afde364f1ed23a565df9eb1bd93ea79b1}{depth\-\_\-framenum} = 0
 \item 
-int \hyperlink{social__robot_8cpp_a9b7268cc06ede6c34111444cdb0a6dd4}{depth\-\_\-update\-\_\-rate} = 15
+int \hyperlink{social__robot_8cpp_a9b7268cc06ede6c34111444cdb0a6dd4}{depth\-\_\-update\-\_\-rate} = 1
 \item 
-int \hyperlink{social__robot_8cpp_ad0d1c24a698f533bb3bebb6237f85381}{high\-\_\-frequency} = 2
+int \hyperlink{social__robot_8cpp_ad0d1c24a698f533bb3bebb6237f85381}{high\-\_\-frequency} = 1
 \item 
-int \hyperlink{social__robot_8cpp_a748eb5a006a4f3525450c58e5d9721df}{low\-\_\-frequency} = 12
+int \hyperlink{social__robot_8cpp_a748eb5a006a4f3525450c58e5d9721df}{low\-\_\-frequency} = 1
 \item 
 int \hyperlink{social__robot_8cpp_a5654aa26e4467b244f4098f5e110c92f}{external\-\_\-update\-\_\-rate} = \hyperlink{social__robot_8cpp_ad0d1c24a698f533bb3bebb6237f85381}{high\-\_\-frequency}
 \item 
@@ -105,6 +106,12 @@ bool \hyperlink{social__robot_8cpp_a8295331a5e3348fc6de66ee0205adafd}{use\-\_\-d
 vector$<$ \hyperlink{classStateData}{State\-Data} $>$ \hyperlink{social__robot_8cpp_a63ba5e41659a1483954bc6564bca605a}{state\-\_\-datas}
 \item 
 vector$<$ vector$<$ Rect $>$ $>$ \hyperlink{social__robot_8cpp_a246570e7b14b6616ada8593b04836e1d}{results}
+\item 
+Video\-Writer \hyperlink{social__robot_8cpp_a4cc622abec13285a568b13b7b1002d69}{rgbwriter}
+\item 
+bool \hyperlink{social__robot_8cpp_a3485ecdd943396c8ba78cc89ef1a4067}{isfirstframe} = true
+\item 
+string \hyperlink{social__robot_8cpp_a755d42f2e9c635ce2213e0efad62b796}{file\-\_\-name} = \char`\"{}default.\-avi\char`\"{}
 \item 
 \hyperlink{classCvUtils}{Cv\-Utils} \hyperlink{social__robot_8cpp_a199b98558819a161d93892eb6d1f766d}{cv\-\_\-utils}
 \end{DoxyCompactItemize}
@@ -203,7 +210,7 @@ vector$<$ vector$<$ Rect $>$ $>$ \hyperlink{social__robot_8cpp_a246570e7b14b6616
 \subsection{Variable Documentation}
 \hypertarget{social__robot_8cpp_aff5593806965b8ace6df9bb9eb072d18}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!confidence\-\_\-level\-\_\-thr@{confidence\-\_\-level\-\_\-thr}}
 \index{confidence\-\_\-level\-\_\-thr@{confidence\-\_\-level\-\_\-thr}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
-\subsubsection[{confidence\-\_\-level\-\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double confidence\-\_\-level\-\_\-thr = 0.\-50}}\label{social__robot_8cpp_aff5593806965b8ace6df9bb9eb072d18}
+\subsubsection[{confidence\-\_\-level\-\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double confidence\-\_\-level\-\_\-thr = 0.\-90}}\label{social__robot_8cpp_aff5593806965b8ace6df9bb9eb072d18}
 \hypertarget{social__robot_8cpp_a199b98558819a161d93892eb6d1f766d}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!cv\-\_\-utils@{cv\-\_\-utils}}
 \index{cv\-\_\-utils@{cv\-\_\-utils}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
 \subsubsection[{cv\-\_\-utils}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cv\-Utils} cv\-\_\-utils}}\label{social__robot_8cpp_a199b98558819a161d93892eb6d1f766d}
@@ -224,19 +231,22 @@ vector$<$ vector$<$ Rect $>$ $>$ \hyperlink{social__robot_8cpp_a246570e7b14b6616
 \subsubsection[{depth\-\_\-update\-\_\-client}]{\setlength{\rightskip}{0pt plus 5cm}ros\-::\-Service\-Client depth\-\_\-update\-\_\-client}}\label{social__robot_8cpp_aca0cddd05d8abaf3c896cd0d3b19e717}
 \hypertarget{social__robot_8cpp_a9b7268cc06ede6c34111444cdb0a6dd4}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!depth\-\_\-update\-\_\-rate@{depth\-\_\-update\-\_\-rate}}
 \index{depth\-\_\-update\-\_\-rate@{depth\-\_\-update\-\_\-rate}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
-\subsubsection[{depth\-\_\-update\-\_\-rate}]{\setlength{\rightskip}{0pt plus 5cm}int depth\-\_\-update\-\_\-rate = 15}}\label{social__robot_8cpp_a9b7268cc06ede6c34111444cdb0a6dd4}
+\subsubsection[{depth\-\_\-update\-\_\-rate}]{\setlength{\rightskip}{0pt plus 5cm}int depth\-\_\-update\-\_\-rate = 1}}\label{social__robot_8cpp_a9b7268cc06ede6c34111444cdb0a6dd4}
 \hypertarget{social__robot_8cpp_ad07b4dff43b9b0209ff0191c9ab669dd}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!detection\-\_\-confidence\-\_\-thr@{detection\-\_\-confidence\-\_\-thr}}
 \index{detection\-\_\-confidence\-\_\-thr@{detection\-\_\-confidence\-\_\-thr}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
-\subsubsection[{detection\-\_\-confidence\-\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double detection\-\_\-confidence\-\_\-thr = 0.\-80}}\label{social__robot_8cpp_ad07b4dff43b9b0209ff0191c9ab669dd}
+\subsubsection[{detection\-\_\-confidence\-\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double detection\-\_\-confidence\-\_\-thr = 0.\-90}}\label{social__robot_8cpp_ad07b4dff43b9b0209ff0191c9ab669dd}
 \hypertarget{social__robot_8cpp_a5d74a9f34aa4fc850b562dc32bff70ec}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!empty@{empty}}
 \index{empty@{empty}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
 \subsubsection[{empty}]{\setlength{\rightskip}{0pt plus 5cm}std\-\_\-srvs\-::\-Empty empty}}\label{social__robot_8cpp_a5d74a9f34aa4fc850b562dc32bff70ec}
 \hypertarget{social__robot_8cpp_a5654aa26e4467b244f4098f5e110c92f}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!external\-\_\-update\-\_\-rate@{external\-\_\-update\-\_\-rate}}
 \index{external\-\_\-update\-\_\-rate@{external\-\_\-update\-\_\-rate}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
 \subsubsection[{external\-\_\-update\-\_\-rate}]{\setlength{\rightskip}{0pt plus 5cm}int external\-\_\-update\-\_\-rate = {\bf high\-\_\-frequency}}}\label{social__robot_8cpp_a5654aa26e4467b244f4098f5e110c92f}
+\hypertarget{social__robot_8cpp_a755d42f2e9c635ce2213e0efad62b796}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!file\-\_\-name@{file\-\_\-name}}
+\index{file\-\_\-name@{file\-\_\-name}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
+\subsubsection[{file\-\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}string file\-\_\-name = \char`\"{}default.\-avi\char`\"{}}}\label{social__robot_8cpp_a755d42f2e9c635ce2213e0efad62b796}
 \hypertarget{social__robot_8cpp_ad0d1c24a698f533bb3bebb6237f85381}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!high\-\_\-frequency@{high\-\_\-frequency}}
 \index{high\-\_\-frequency@{high\-\_\-frequency}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
-\subsubsection[{high\-\_\-frequency}]{\setlength{\rightskip}{0pt plus 5cm}int high\-\_\-frequency = 2}}\label{social__robot_8cpp_ad0d1c24a698f533bb3bebb6237f85381}
+\subsubsection[{high\-\_\-frequency}]{\setlength{\rightskip}{0pt plus 5cm}int high\-\_\-frequency = 1}}\label{social__robot_8cpp_ad0d1c24a698f533bb3bebb6237f85381}
 \hypertarget{social__robot_8cpp_a80005e5815baea49c1aed806e8e5c3ee}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!image\-\_\-depth@{image\-\_\-depth}}
 \index{image\-\_\-depth@{image\-\_\-depth}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
 \subsubsection[{image\-\_\-depth}]{\setlength{\rightskip}{0pt plus 5cm}Mat image\-\_\-depth}}\label{social__robot_8cpp_a80005e5815baea49c1aed806e8e5c3ee}
@@ -246,12 +256,15 @@ vector$<$ vector$<$ Rect $>$ $>$ \hyperlink{social__robot_8cpp_a246570e7b14b6616
 \hypertarget{social__robot_8cpp_aea3f7c95f70e07adffaf65b6bdfd2e25}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!image\-\_\-rgb@{image\-\_\-rgb}}
 \index{image\-\_\-rgb@{image\-\_\-rgb}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
 \subsubsection[{image\-\_\-rgb}]{\setlength{\rightskip}{0pt plus 5cm}Mat image\-\_\-rgb}}\label{social__robot_8cpp_aea3f7c95f70e07adffaf65b6bdfd2e25}
+\hypertarget{social__robot_8cpp_a3485ecdd943396c8ba78cc89ef1a4067}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!isfirstframe@{isfirstframe}}
+\index{isfirstframe@{isfirstframe}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
+\subsubsection[{isfirstframe}]{\setlength{\rightskip}{0pt plus 5cm}bool isfirstframe = true}}\label{social__robot_8cpp_a3485ecdd943396c8ba78cc89ef1a4067}
 \hypertarget{social__robot_8cpp_a748eb5a006a4f3525450c58e5d9721df}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!low\-\_\-frequency@{low\-\_\-frequency}}
 \index{low\-\_\-frequency@{low\-\_\-frequency}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
-\subsubsection[{low\-\_\-frequency}]{\setlength{\rightskip}{0pt plus 5cm}int low\-\_\-frequency = 12}}\label{social__robot_8cpp_a748eb5a006a4f3525450c58e5d9721df}
+\subsubsection[{low\-\_\-frequency}]{\setlength{\rightskip}{0pt plus 5cm}int low\-\_\-frequency = 1}}\label{social__robot_8cpp_a748eb5a006a4f3525450c58e5d9721df}
 \hypertarget{social__robot_8cpp_acf574bc864f7f0fc111320f1d6c449d5}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!num\-\_\-particles@{num\-\_\-particles}}
 \index{num\-\_\-particles@{num\-\_\-particles}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
-\subsubsection[{num\-\_\-particles}]{\setlength{\rightskip}{0pt plus 5cm}int num\-\_\-particles = 300}}\label{social__robot_8cpp_acf574bc864f7f0fc111320f1d6c449d5}
+\subsubsection[{num\-\_\-particles}]{\setlength{\rightskip}{0pt plus 5cm}int num\-\_\-particles = 200}}\label{social__robot_8cpp_acf574bc864f7f0fc111320f1d6c449d5}
 \hypertarget{social__robot_8cpp_a246570e7b14b6616ada8593b04836e1d}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!results@{results}}
 \index{results@{results}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
 \subsubsection[{results}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$vector$<$Rect$>$ $>$ results}}\label{social__robot_8cpp_a246570e7b14b6616ada8593b04836e1d}
@@ -269,7 +282,10 @@ vector$<$ vector$<$ Rect $>$ $>$ \hyperlink{social__robot_8cpp_a246570e7b14b6616
 \subsubsection[{rgb\-\_\-update\-\_\-client}]{\setlength{\rightskip}{0pt plus 5cm}ros\-::\-Service\-Client rgb\-\_\-update\-\_\-client}}\label{social__robot_8cpp_ab5f4789bf41f6c6a4c30a5b86239e4a0}
 \hypertarget{social__robot_8cpp_acd9505e1fd3d333543dcc08504ad53f0}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!rgb\-\_\-update\-\_\-rate@{rgb\-\_\-update\-\_\-rate}}
 \index{rgb\-\_\-update\-\_\-rate@{rgb\-\_\-update\-\_\-rate}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
-\subsubsection[{rgb\-\_\-update\-\_\-rate}]{\setlength{\rightskip}{0pt plus 5cm}int rgb\-\_\-update\-\_\-rate = 15}}\label{social__robot_8cpp_acd9505e1fd3d333543dcc08504ad53f0}
+\subsubsection[{rgb\-\_\-update\-\_\-rate}]{\setlength{\rightskip}{0pt plus 5cm}int rgb\-\_\-update\-\_\-rate = 1}}\label{social__robot_8cpp_acd9505e1fd3d333543dcc08504ad53f0}
+\hypertarget{social__robot_8cpp_a4cc622abec13285a568b13b7b1002d69}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!rgbwriter@{rgbwriter}}
+\index{rgbwriter@{rgbwriter}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
+\subsubsection[{rgbwriter}]{\setlength{\rightskip}{0pt plus 5cm}Video\-Writer rgbwriter}}\label{social__robot_8cpp_a4cc622abec13285a568b13b7b1002d69}
 \hypertarget{social__robot_8cpp_abd0f83a9c271173baf120f2aed877bd4}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!ros\-\_\-utils@{ros\-\_\-utils}}
 \index{ros\-\_\-utils@{ros\-\_\-utils}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
 \subsubsection[{ros\-\_\-utils}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ros\-Utils} ros\-\_\-utils}}\label{social__robot_8cpp_abd0f83a9c271173baf120f2aed877bd4}
@@ -281,7 +297,7 @@ vector$<$ vector$<$ Rect $>$ $>$ \hyperlink{social__robot_8cpp_a246570e7b14b6616
 \subsubsection[{state\-\_\-datas}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf State\-Data}$>$ state\-\_\-datas}}\label{social__robot_8cpp_a63ba5e41659a1483954bc6564bca605a}
 \hypertarget{social__robot_8cpp_a0414cc80d7dc66451dc24ec3418596ee}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!track\-\_\-thr@{track\-\_\-thr}}
 \index{track\-\_\-thr@{track\-\_\-thr}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
-\subsubsection[{track\-\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double track\-\_\-thr = 75}}\label{social__robot_8cpp_a0414cc80d7dc66451dc24ec3418596ee}
+\subsubsection[{track\-\_\-thr}]{\setlength{\rightskip}{0pt plus 5cm}double track\-\_\-thr = 100}}\label{social__robot_8cpp_a0414cc80d7dc66451dc24ec3418596ee}
 \hypertarget{social__robot_8cpp_ad25bb9dd6e0d75433969a6a0fa569b01}{\index{social\-\_\-robot.\-cpp@{social\-\_\-robot.\-cpp}!use\-\_\-colour@{use\-\_\-colour}}
 \index{use\-\_\-colour@{use\-\_\-colour}!social_robot.cpp@{social\-\_\-robot.\-cpp}}
 \subsubsection[{use\-\_\-colour}]{\setlength{\rightskip}{0pt plus 5cm}bool use\-\_\-colour = false}}\label{social__robot_8cpp_ad25bb9dd6e0d75433969a6a0fa569b01}

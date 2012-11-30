@@ -24,7 +24,7 @@ var searchData=
   ['rgb_5fupdate',['RGB_UPDATE',['../social__robot__constants_8h.html#a71e730f4ed8a460266234445f3d4db68',1,'social_robot_constants.h']]],
   ['rgb_5fupdate_5fclient',['rgb_update_client',['../social__robot_8cpp.html#ab5f4789bf41f6c6a4c30a5b86239e4a0',1,'social_robot.cpp']]],
   ['rgb_5fupdate_5frate',['rgb_update_rate',['../social__robot_8cpp.html#acd9505e1fd3d333543dcc08504ad53f0',1,'social_robot.cpp']]],
-  ['rgbwriter',['rgbwriter',['../rgbWriter_8cpp.html#a4cc622abec13285a568b13b7b1002d69',1,'rgbWriter.cpp']]],
+  ['rgbwriter',['rgbwriter',['../rgbWriter_8cpp.html#a4cc622abec13285a568b13b7b1002d69',1,'rgbwriter():&#160;rgbWriter.cpp'],['../social__robot_8cpp.html#a4cc622abec13285a568b13b7b1002d69',1,'rgbwriter():&#160;social_robot.cpp']]],
   ['rgbwriter_2ecpp',['rgbWriter.cpp',['../rgbWriter_8cpp.html',1,'']]],
   ['roi_5fcb',['roi_cb',['../social__robot__onethread_8cpp.html#a292253e127630032ab283cb012c3fde1',1,'social_robot_onethread.cpp']]],
   ['roi_5fheight',['roi_height',['../social__robot__onethread_8cpp.html#a3b762528047eabfcdb66d724ce2612ca',1,'social_robot_onethread.cpp']]],

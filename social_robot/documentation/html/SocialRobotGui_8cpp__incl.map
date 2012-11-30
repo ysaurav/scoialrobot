@@ -2,7 +2,8 @@
 <area shape="rect" id="node3" href="$SocialRobotGui_8h.html" title="SocialRobotGui.h" alt="" coords="571,83,693,112"/>
 <area shape="rect" id="node15" href="$RosUtils_8h.html" title="RosUtils.h" alt="" coords="835,160,917,189"/>
 <area shape="rect" id="node21" href="$CvUtils_8h.html" title="CvUtils.h" alt="" coords="941,160,1019,189"/>
-<area shape="rect" id="node34" href="$DepthFaceDetector_8h.html" title="DepthFaceDetector.h" alt="" coords="1511,237,1657,267"/>
-<area shape="rect" id="node36" href="$PixelSimilarity_8h.html" title="PixelSimilarity.h" alt="" coords="1035,315,1149,344"/>
-<area shape="rect" id="node39" href="$Template_8h.html" title="Template.h" alt="" coords="1357,315,1443,344"/>
+<area shape="rect" id="node34" href="$DepthFaceDetector_8h.html" title="DepthFaceDetector.h" alt="" coords="1399,237,1545,267"/>
+<area shape="rect" id="node42" href="$ConfusionMatrix_8h.html" title="ConfusionMatrix.h" alt="" coords="1569,237,1697,267"/>
+<area shape="rect" id="node36" href="$PixelSimilarity_8h.html" title="PixelSimilarity.h" alt="" coords="923,315,1037,344"/>
+<area shape="rect" id="node39" href="$Template_8h.html" title="Template.h" alt="" coords="1245,315,1331,344"/>
 </map>

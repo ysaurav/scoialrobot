@@ -5,7 +5,7 @@ var classCvUtils =
     [ "compare_gt_results", "classCvUtils.html#a4444a7e6a5eedb9633057c9283cae113", null ],
     [ "compute_torso_orientation", "classCvUtils.html#a90574948cfab1863cad26a2b8a43c37f", null ],
     [ "create_combine_gt_vector", "classCvUtils.html#aaea7203de435f3395fb4842c5230ecc7", null ],
-    [ "data_association", "classCvUtils.html#af0184944140cd71ef9ad9c6d3a89ca48", null ],
+    [ "data_association", "classCvUtils.html#a9c29ba0ac7ad60b0f823c06f515163b4", null ],
     [ "detect_face_depth", "classCvUtils.html#a4a7f10293376335faeb2ba4e8abc685a", null ],
     [ "detect_face_rgb", "classCvUtils.html#ac09b2e17fa71221b79c2a87732814482", null ],
     [ "detect_face_rgb", "classCvUtils.html#a24520cd4e52e1c47a42a0b57c31b1a5d", null ],
@@ -28,7 +28,7 @@ var classCvUtils =
     [ "rgb2bw", "classCvUtils.html#aa5bded11699d39af25c420aed2ade0ba", null ],
     [ "transform_point", "classCvUtils.html#ad8b10d8ef42dc7437bcb40c13dd23d33", null ],
     [ "write_results_to_file", "classCvUtils.html#a78b9e8fc4f7ea2b713ab0bcca586600e", null ],
-    [ "write_results_to_file", "classCvUtils.html#a61698b2aa9a5d770b7d4a6c77738bb2d", null ],
+    [ "write_results_to_file", "classCvUtils.html#ad0851f0eee232adf64bd324fc3f92cf4", null ],
     [ "write_results_to_file", "classCvUtils.html#a0f3f68175623e99bc1669f3cd06fd301", null ],
     [ "write_results_to_file", "classCvUtils.html#a27e76804ac414cc7cdf2e34851dec86a", null ],
     [ "write_to_file", "classCvUtils.html#a417431598ac332bcce7a2d66add3662f", null ]

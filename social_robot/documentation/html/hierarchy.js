@@ -3,6 +3,7 @@ var hierarchy =
     [ "ConDensation", "classConDensation.html", [
       [ "ParticleFilter", "classParticleFilter.html", null ]
     ] ],
+    [ "ConfusionMatrix", "classConfusionMatrix.html", null ],
     [ "CvUtils", "classCvUtils.html", null ],
     [ "DepthFaceDetector", "classDepthFaceDetector.html", null ],
     [ "Message", null, [
