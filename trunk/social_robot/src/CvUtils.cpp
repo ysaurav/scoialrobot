@@ -32,7 +32,7 @@ CvUtils::CvUtils ( void )
     }
   string face_cascade_name;
   face_cascade_name.append ( package_path );
-  face_cascade_name.append ( "/rsrc/haarcascades/haarcascade_frontalface_alt.xml" );
+  face_cascade_name.append ( "/rsrc/haarcascades/lbpcascade_frontalface.xml" );
   if ( !face_classifier.load ( face_cascade_name ) )
     {
       cerr << "ERROR: Could not load cascade classifier \"" << face_cascade_name << "\"" << endl;
@@ -770,7 +770,6 @@ void CvUtils::compare_gt_results ( vector< vector< Point > > gt, vector< vector<
         {
           gt_per_person[j].push_back ( gt[i].at ( j ) );
           results_per_person[j].push_back ( matching[j] );
-	  cout << matching.size() << " " << outliers.size() << endl;
         }
       outliers_per_frame[i] = outliers;
       outliers_ratio += outliers.size();
