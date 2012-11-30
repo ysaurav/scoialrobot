@@ -5,9 +5,12 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
 The methods we have used to evaluate are based on Euclidean distance. We have used two approaches: 
 
 1. The mean of the distances between the ground-truth and our results.
+
 2. Confusion matrix.
 
 
 = Results =
 
 2. Confusion matrix results
+
+https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/tracking_sub.png
