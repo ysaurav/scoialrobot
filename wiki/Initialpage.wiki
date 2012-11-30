@@ -27,6 +27,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
   * [http://scoialrobot.googlecode.com/svn/trunk/social_robot/documentation/html/index.html Documentation]
  # [#Demo Demo]
  # [#Conclusions Conclusions]
+ # [#Future Work Future Work]
  # [References References]
  # [#Links_of_Interest Links of Interest]
 
@@ -79,10 +80,26 @@ A demo of this project can be played by using this [http://www.youtube.com/watch
  * [http://scoialrobot.googlecode.com/svn/trunk/social_robot/documentation/html/index.html Documentation]
 == Conclusions ==
 
+*Real time vs amount of information*
+
+Kinect performs 30 frames per second, while 1 out of 7 frames can
+be processed. It generates that some frames can not be evaluated, which has important implications on evaluation: The amount of frames in ground-truth is different from the number of processed frames.
+
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/realtime.png
 
+*Lighting conditions*
+
+Kinect offers a wide spectrum of scenarios with different lighting
+conditions. In absentia of light, RGB color space does not provide enough information to differentiate our targets. In this case, depth information plays an important role that provides robustness to the tracking and detection algorithm.
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/light.png
+
+== Future Work ==
+
+ # Hola
+
+ # HOla
+
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/limits.png
 
