@@ -14,3 +14,6 @@
   * [Installation Installation]
   * [SoftwareArchitecture Software Architecture]
   * [http://scoialrobot.googlecode.com/svn/trunk/social_robot/documentation/html/index.html Documentation]
+
+ * [Evaluation Evaluation and Results]
+ * [References References]
