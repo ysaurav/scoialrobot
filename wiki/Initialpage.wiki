@@ -90,7 +90,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/scheme.png
 
 == Demo ==
 
-A demo of this project can be played by clicking on this [http://www.youtube.com/watch?v=qnr3Msk-Vwk&feature=youtu.be link]
+<wiki:video url="http://www.youtube.com/watch?v=qnr3Msk-Vwk&feature=youtu.be">
 
 == Implementation ==
  * [Kinect Getting Started with Kinect]
