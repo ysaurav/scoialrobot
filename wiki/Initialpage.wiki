@@ -119,7 +119,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/light.png
  # *Torso Orientation* is sensitive to different poses. The use of first order moment in horizontal and vertical directions, can improve the estimation of the centroid by implementing a robust segmentation algorithm. Experimentally, the use of watershed segmentation could not provide satisfactory results for detected persons located far from the kinect (more than 2 meters). Additionally, it could be very interesting to extend the estimations to roll and pitch angles.
  # *Depth Sensor*, like Kinect, does not provide information that allows to characterize features with high definition.
  # *Evaluation:* The incorporation of the depth data in the accuracy estimation can provide a better estimation of the algorithm performance.
- # The tracking algorithm can also serve as a initial step of the research on face recognition by adding depth information.
+ # The tracking algorithm can also serve as an initial step of the research on face recognition by adding depth information.
 
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/limits.png
 
