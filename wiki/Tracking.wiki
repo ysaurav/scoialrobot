@@ -75,4 +75,4 @@ For the initialization of the particle filter we use the information of the dete
 
 === Results ===
 
- <wiki:video url="http://www.youtube.com/watch?v=2vcpExT5k6M&feature=youtu.be">
+<wiki:video url="http://www.youtube.com/watch?v=2vcpExT5k6M&feature=youtu.be">
