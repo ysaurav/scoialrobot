@@ -68,6 +68,17 @@ The objective is to estimate the social scene in a bar/pub/cafe style interactio
  * To perform face tracking and gaze estimation
 
 == Algorithm ==
+
+This algorithm performs face detection, tracking and gaze orientation; by combining depth information and RGB color space (see flowchart in the figure below). This strategy represents a significant contribution to the field of Social Robotics; created, developed and evaluated by students of the [http://www.vibot.org/ Erasmus Mundus Master Courses in Vision and Robotics], through the [http://www.hw.ac.uk/ Heriot-Wat University].
+
+The advantages of this algorithm are: 
+
+ * First, the face detection and tracking stages, can be executed even under the lack of illumination, due to the depth information is *light invariant*; which provides robustness to the algorithm.
+
+ * Although, the algorithm was designed to work in specific social scenes, it has shown satisfactory results under any kind of environment. It means that *the social scene does not need to be controlled externally* (i.e. it is not necessary to initialize a specific background for detection)
+
+ * Finally, the accuracy to estimate the head position during the face detection and tracking performances, reveals a *good estimation of torso orientation*.
+
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/scheme.png
  * [Preprocessing]
  * [Matchingdistance 2D Chamfer Distance Matching]
