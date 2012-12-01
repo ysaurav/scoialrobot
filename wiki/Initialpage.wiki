@@ -69,7 +69,7 @@ The objective is to estimate the social scene in a bar/pub/cafe style interactio
 
 == Algorithm ==
 
-This algorithm performs face detection, tracking and torso orientation; by combining depth information and RGB color space (see flowchart in the figure below). This strategy represents a significant contribution to the field of Social Robotics; created, developed and evaluated by students of the [http://www.vibot.org/ Erasmus Mundus Master Courses in Vision and Robotics], through the [http://www.hw.ac.uk/ Heriot-Wat University].
+This algorithm performs face detection, tracking and torso orientation; by combining depth information and RGB color space (see flowchart in the figure below). This strategy represents a significant and original contribution to the field of Social Robotics; created, developed and evaluated by students of the [http://www.vibot.org/ Erasmus Mundus Master Courses in Vision and Robotics], through the [http://www.hw.ac.uk/ Heriot-Wat University].
 
 The advantages of this algorithm are: 
 
