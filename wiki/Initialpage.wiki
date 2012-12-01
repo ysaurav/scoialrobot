@@ -12,6 +12,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo2.png
 
  # [#Introduction Introduction]
  # [#Problem_Statement Problem Statement]
+ # [#Objectives Objectives]
  # [#Method Method]
   * [Preprocessing]
   * [Matchingdistance 2D Chamfer Distance Matching]
@@ -59,6 +60,12 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/bar_scene.png
 Humans can easily estimate the head pose of an interaction partner, but for a computer vision system this ability is rather difficult to achieve. The pose is described by the approximate position of the head in space, and an angle that describes torso orientation.
 
 Many methods have been used to generate a head pose estimation. Appearance-based methods consider the image region of the face as a whole, while Feature-based methods extract from the actual region and recover low-dimensional features (position of facial features). Both techniques can be combined in order to track facial features.
+
+== Objectives ==
+
+The objective is to estimate the social scene in a bar/pub/cafe style interaction with multiple users by using Kinect controller.
+ * To detect multiple humans when they ask for attention.
+ * To perform face tracking and gaze estimation
 
 == Method ==
 https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/scheme.png
