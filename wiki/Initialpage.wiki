@@ -88,15 +88,16 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/scheme.png
  * [Tracking]
  * [TorsoOrientation Torso Orientation]
 
-== Demo ==
-
-<wiki:video url="http://www.youtube.com/watch?v=qnr3Msk-Vwk&feature=youtu.be">
-
 == Implementation ==
  * [Kinect Getting Started with Kinect]
  * [Installation Installation]
  * [SoftwareArchitecture Software Architecture]
  * [http://scoialrobot.googlecode.com/svn/trunk/social_robot/documentation/html/index.html Documentation]
+
+== Demo ==
+
+<wiki:video url="http://www.youtube.com/watch?v=qnr3Msk-Vwk&feature=youtu.be">
+
 == Conclusions ==
 
 *Real time vs amount of information*
