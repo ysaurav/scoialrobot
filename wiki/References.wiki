@@ -10,6 +10,6 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/logo3.png
  # L. Spinello & Kai O. Arras, People Detection in RGB-D Data, University of Freiburg, Germany.
  # Y. Freund & R. Schapire, *A decision-theoretic generalization of on-line learning and an application to boosting, in Computational Learning Theory*, 1995.
  # N. C. Oza & S. Russell, *Online bagging and boosting, in Artiﬁcial Intelligence and Statistics*, 2001, pp. 105, 112.
- # H. Grabner & H. Bischof, O*n-line boosting and vision*, in Proc. of the IEEE Computer Society Conf. on Computer Vision and Pattern Recognition, New York, USA, 2006.
+ # H. Grabner & H. Bischof, *On-line boosting and vision*, in Proc. of the IEEE Computer Society Conf. on Computer Vision and Pattern Recognition, New York, USA, 2006.
  # Keni Bernardin and Rainer Stiefelhagen, *Evaluating multiple object tracking performance: the CLEAR MOT metrics*. J. Image Video Process. Article 1 (January 2008), 10 pages.
  # John J. Leonard, Bradley A. Moran, Ingemar J. Cox & Matthew L. Miller, *Underwater Sonar Data Fusion Using an Eﬃcient Multiple Hypothesis*. IEEE Robotics and Automation, 1995.
