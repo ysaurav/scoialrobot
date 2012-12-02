@@ -128,7 +128,7 @@ https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/limits.png
 *Presentations*
  # [http://prezi.com/e-5801a4gmsm/rp-presentation-1/ Presentation 1 -  October 17th, 2012]
  # [http://prezi.com/qvdukdcb9ikg/rp-presentation-2/ Presentation 2 -  October 30th, 2012]
-  [https://scoialrobot.googlecode.com/svn/trunk/social_robot/pictures/FinalPresentation.pdf Final Presentation]
+
 
 *Dataset and Demo for Human Detections*
  # [http://www.informatik.uni-freiburg.de/~spinello/RGBD-dataset.html RGB-D People Dataset]
