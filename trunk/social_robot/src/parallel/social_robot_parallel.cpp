@@ -4,14 +4,14 @@
 #include <social_robot/RegionOfInterests.h>
 #include <omp.h>
 
-#include "kinect_proxy.h"
-#include "CvUtils.h"
-#include "RosUtils.h"
-#include "social_robot_constants.h"
+#include "../kinect_proxy.h"
+#include "../CvUtils.h"
+#include "../RosUtils.h"
+#include "../social_robot_constants.h"
 
-#include "particle_filter/StateData.h"
-#include "particle_filter/hist.h"
-#include "particle_filter/filter.h"
+#include "../particle_filter/StateData.h"
+#include "../particle_filter/hist.h"
+#include "../particle_filter/filter.h"
 
 using namespace std;
 using namespace cv;
@@ -110,12 +110,16 @@ void publish_data ( void )
 
 void do_tracking ( void )
 {
+#pragma omp parallel for
+  for ( unsigned int j = 0; j < state_datas.size(); j++ )
+    {
+      state_datas[j].set_image_depth ( image_disparity );
+      state_datas[j].image = image_rgb;
+      state_datas[j].tracking ( 0.02 );
+    }
+
   for ( vector<StateData>::iterator it = state_datas.begin(); it != state_datas.end(); )
     {
-      it->set_image_depth ( image_disparity );
-      it->image = image_rgb;
-      it->tracking ( 0.02 );
-
       if ( it->filter->confidence() == 0.0 )
         {
           it = state_datas.erase ( it );
@@ -392,8 +396,8 @@ int main ( int argc, char **argv )
 
   // subscribtions
   ros::ServiceServer update_srv = nh.advertiseService ( "/social_robot/track/update", update_param_cb );
-  ros::Subscriber disparity_sub = nh.subscribe ( "/camera/depth_registered/disparity", 1, disparity_cb );
-  ros::Subscriber depth_sub = nh.subscribe ( "/camera/depth_registered/image_raw", 1, depth_cb );
+  ros::Subscriber disparity_sub = nh.subscribe ( "/camera/depth/disparity", 1, disparity_cb );
+  ros::Subscriber depth_sub = nh.subscribe ( "/camera/depth/image_raw", 1, depth_cb );
   ros::Subscriber rgb_sub = nh.subscribe ( "/camera/rgb/image_color", 1, rgb_cb );
 
   // if we're not running as stand alone

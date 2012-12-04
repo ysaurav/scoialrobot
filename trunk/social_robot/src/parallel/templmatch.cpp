@@ -79,7 +79,6 @@ void crossCorrParallel ( const Mat& img, const Mat& _templ, Mat& corr,
   buf.resize ( bufSize );
 
   // compute DFT of each template plane
-  #pragma omp parallel for shared(img, templ) private(k)
   for ( k = 0; k < tcn; k++ )
     {
       int yofs = k*dftsize.height;
