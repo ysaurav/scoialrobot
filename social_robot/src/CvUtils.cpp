@@ -831,9 +831,6 @@ void CvUtils::compare_gt_results ( vector<Point> gt, vector<Point>results, strin
 
   double MSE = s_mse / size_d;
   
-  Scalar color = Scalar ( 0,0,255 );
-  Scalar color2 = Scalar ( 0,255,0 );
-
   write_to_file ( filename, distance, MSE, mean_d );
 }
 /**<

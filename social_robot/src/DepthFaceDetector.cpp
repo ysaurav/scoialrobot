@@ -1,7 +1,7 @@
 #include "DepthFaceDetector.h"
 #include "CvUtils.h"
 #include <ros/package.h>
-#include "templmatch.h"
+#include "parallel/templmatch.h"
 
 #define MORPH_SIZE Size ( 11, 11 )
 
@@ -127,11 +127,11 @@ vector<Point3f> DepthFaceDetector::chamfer_matching ( Mat image, Mat template_im
 
   for ( int j = 0; j < scales; j++ )
     {
-      double t = (double)getTickCount();
-//       matchTemplate ( chamfer[j], template_im, matching[j], CV_TM_CCOEFF );     
-      matchTemplateParallel ( chamfer[j], template_im, matching[j], CV_TM_CCOEFF );
-      t = (double)getTickCount() - t;
-      cout << t*1000./cv::getTickFrequency() << endl;
+//       double t = (double)getTickCount();
+      matchTemplate ( chamfer[j], template_im, matching[j], CV_TM_CCOEFF );     
+//       matchTemplateParallel ( chamfer[j], template_im, matching[j], CV_TM_CCOEFF );
+//       t = (double)getTickCount() - t;
+//       cout << t*1000./cv::getTickFrequency() << endl;
       
       normalize ( matching[j], matching[j], 0.0, 1.0, NORM_MINMAX );
       minMaxLoc ( matching[j], &minVal, &maxVal, &minLoc, &maxLoc );
