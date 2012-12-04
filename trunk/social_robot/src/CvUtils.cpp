@@ -99,7 +99,7 @@ void CvUtils::get_non_zeros ( Mat img, Mat prob, vector<Point3f> *points, Point 
               Point3f point;
               point.x = ( Point ( j, i ).x  + pdiff.x ) * scale;
               point.y = ( Point ( j, i ).y  + pdiff.y ) * scale;
-              point.z = prob.at<float> ( i,j );
+              point.z = prob.at<float> ( i, j );
               points->push_back ( point );
             }
         }

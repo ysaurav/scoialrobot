@@ -2,7 +2,6 @@
 #include <std_srvs/Empty.h>
 #include <stereo_msgs/DisparityImage.h>
 #include <social_robot/RegionOfInterests.h>
-#include <omp.h>
 
 #include "kinect_proxy.h"
 #include "CvUtils.h"
