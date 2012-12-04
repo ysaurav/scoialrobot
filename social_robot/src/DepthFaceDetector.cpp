@@ -1,6 +1,7 @@
 #include "DepthFaceDetector.h"
 #include "CvUtils.h"
 #include <ros/package.h>
+#include <omp.h>
 #include "parallel/templmatch.h"
 
 #define MORPH_SIZE Size ( 11, 11 )
@@ -10,14 +11,18 @@ using namespace cv;
 
 CvUtils cv_utils;
 
+Mat *pyramid;
+Mat *chamfer;
+Mat *matching;
+
 DepthFaceDetector::DepthFaceDetector ( void )
 {
   load_templates();
   canny_thr1 = 5;
   canny_thr2 = 7;
-  chamfer_thr = 30;
-  arc_thr_low = 9;
-  arc_thr_high = 16;
+  chamfer_thr = 10;
+  arc_thr_low = 7;
+  arc_thr_high = 20;
   scale_factor = 0.75;
   match3D_thr = 0.4;
   scales = 6;
@@ -34,7 +39,7 @@ vector<Rect> DepthFaceDetector::detect_face_depth ( Mat depth_image, Mat dispari
   depth_image.setTo ( 0, ( disparity_image == 0 ) );
   dilate ( depth_image, depth_image, element );
 
-  vector<PixelSimilarity> new_head_features;
+  
   vector<PixelSimilarity> final_head_features;
   vector<PixelSimilarity> all_head_features;
 
@@ -53,11 +58,14 @@ vector<Rect> DepthFaceDetector::detect_face_depth ( Mat depth_image, Mat dispari
 
   for ( unsigned int k = 0; k < templates.size() ; k++ )
     {
-      head_matched_points = chamfer_matching ( disparity_image, templates[k].template2d );
-      head_features = compute_headparameters ( depth_image, head_matched_points );
-      new_head_features = false_positives ( head_features, arc_thr_low, arc_thr_high );
+      double t = (double)getTickCount();
+      vector<Point3f> head_matched_points = chamfer_matching ( disparity_image, templates[k].template2d );
+      t = (double)getTickCount() - t;
+//       cout << t*1000./cv::getTickFrequency() << endl;
+      vector<PixelSimilarity> head_features = compute_headparameters ( depth_image, head_matched_points );
+      vector<PixelSimilarity> new_head_features = false_positives ( head_features, arc_thr_low, arc_thr_high );
       match_template3D ( disparity_image, new_head_features, &all_head_features, k );
-    }
+    }  
 
   final_head_features = merge_rectangles ( all_head_features );
 
@@ -108,40 +116,46 @@ bool DepthFaceDetector::checkDimensions ( Mat image_depth )
 
 vector<Point3f> DepthFaceDetector::chamfer_matching ( Mat image, Mat template_im )
 {
-  double minVal, maxVal;
-  Point minLoc, maxLoc;
   double xdiff = template_im.cols / 2;
   double ydiff = template_im.rows / 2;
   Point pdiff = Point ( xdiff, ydiff );
-  vector<Point3f> head_matched_points_tmp;
+  vector<Point3f> chamfer_heads;
   Mat matching_thr;
 
   canny_im.create ( image.rows, image.cols, image.depth() );
   Canny ( image, canny_im, canny_thr1, canny_thr2, 3, true );
 
+// #pragma omp parallel for default(none) shared(chamfer, pyramid)
   for ( int i = 0; i < scales; i++ )
     {
       resize ( canny_im, pyramid[i], Size(), pow ( scale_factor, i ), pow ( scale_factor, i ), INTER_NEAREST );
       distanceTransform ( ( 255 - pyramid[i] ), chamfer[i], CV_DIST_C, 3 );
     }
 
+// #pragma omp parallel for default(none) shared(chamfer, matching, chamfer_heads, matching_thr, template_im, pdiff, cv_utils)
   for ( int j = 0; j < scales; j++ )
     {
-//       double t = (double)getTickCount();
-      matchTemplate ( chamfer[j], template_im, matching[j], CV_TM_CCOEFF );     
-//       matchTemplateParallel ( chamfer[j], template_im, matching[j], CV_TM_CCOEFF );
-//       t = (double)getTickCount() - t;
-//       cout << t*1000./cv::getTickFrequency() << endl;
-      
+      double t = (double)getTickCount();
+//       matchTemplate ( chamfer[j], template_im, matching[j], CV_TM_CCOEFF );
+      matchTemplateParallel ( chamfer[j], template_im, matching[j], CV_TM_CCOEFF );
+      t = (double)getTickCount() - t;
+      cout << t*1000./cv::getTickFrequency() << endl;
+
+      double minVal, maxVal;
+      Point minLoc, maxLoc;
       normalize ( matching[j], matching[j], 0.0, 1.0, NORM_MINMAX );
       minMaxLoc ( matching[j], &minVal, &maxVal, &minLoc, &maxLoc );
 
       threshold ( matching[j], matching_thr, 1.0 / chamfer_thr, 1.0, CV_THRESH_BINARY_INV );
       double scale = pow ( 1.0 / scale_factor, j );
-      cv_utils.get_non_zeros ( matching_thr, matching[j], &head_matched_points_tmp, pdiff, scale );
+
+// #pragma omp critical
+      {
+        cv_utils.get_non_zeros ( matching_thr, matching[j], &chamfer_heads, pdiff, scale );
+      }
     }
 
-  return head_matched_points_tmp;
+  return chamfer_heads;
 }
 
 vector<PixelSimilarity> DepthFaceDetector::compute_headparameters ( Mat image, vector<Point3f> chamfer )
@@ -180,49 +194,54 @@ vector<PixelSimilarity> DepthFaceDetector::compute_headparameters ( Mat image, v
       parameters_head[i].radius = Rp;
       parameters_head[i].similarity = chamfer[i].z;
     }
+    
+//   Mat im = Mat::zeros ( image.rows, image.cols, CV_8UC3 );
+//   for ( uint i = 0; i < parameters_head.size(); i++ )
+//     {
+//       cout << parameters_head[i].point.x << " " << parameters_head[i].point.y << " " << parameters_head[i].radius << endl;
+//       circle ( im, Point ( parameters_head[i].point.x, parameters_head[i].point.y ), parameters_head[i].radius, Scalar ( 255, 255, 255 ) );
+//     }
+//   imwrite ( "something.png", im );
+//   imshow ( "something", im );
+//   waitKey ( 0 );
 
   return parameters_head;
 }
 
-vector<PixelSimilarity> DepthFaceDetector::false_positives ( vector<PixelSimilarity> tmpparams, int thr, int thr2 )
+vector<PixelSimilarity> DepthFaceDetector::false_positives ( vector<PixelSimilarity> potential_heads, int thr, int thr2 )
 {
-  vector<PixelSimilarity> tmpcont;
-  vector<vector<Point> > contour;
-  Mat tmp_mat;
+  vector<PixelSimilarity> updated_heads;
 
-  //#pragma omp parallel for shared(tmpcont,tmpparams, thr, thr2) private(contour, tmp_mat)
-  for ( unsigned int i = 0; i < tmpparams.size(); i++ )
-    {
-      //cout << omp_get_thread_num() << endl;
-      Rect roi ( tmpparams[i].point.x - tmpparams[i].radius, tmpparams[i].point.y - tmpparams[i].radius, tmpparams[i].radius * 2, tmpparams[i].radius * 2 );
+  for ( unsigned int i = 0; i < potential_heads.size(); i++ )
+    {      
+      Rect roi ( potential_heads[i].point.x - potential_heads[i].radius, potential_heads[i].point.y - potential_heads[i].radius, potential_heads[i].radius * 2, potential_heads[i].radius * 2 );      
       if ( ! ( 0 <= roi.x && 0 <= roi.width && roi.x + roi.width < canny_im.cols && 0 <= roi.y && 0 <= roi.height && roi.y + roi.height < canny_im.rows ) )
         {
           continue;
         }
 
-      tmp_mat = canny_im ( roi );
+      Mat cannyroi ( canny_im, roi );
 
-      if ( ! tmp_mat.empty() )
+      if ( ! cannyroi.empty() )
         {
-          findContours ( tmp_mat, contour, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE );
-
+          vector<vector<Point> > contour;
+          findContours ( cannyroi, contour, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE );
           for ( unsigned int j = 0; j < contour.size(); j++ )
             {
               vector<Point> approx;
               approxPolyDP ( contour[j], approx, 5, false );
               if ( approx.size() > (unsigned int) thr && approx.size() < (unsigned int) thr2 )
                 {
-                  tmpcont.push_back ( tmpparams[i] );
+                  updated_heads.push_back ( potential_heads[i] );
                   break;
                 }
             }
         }
     }
+  vector<PixelSimilarity> false_positive_removed_heads;
+  false_positive_removed_heads =  merge_rectangles ( updated_heads );
 
-  vector<PixelSimilarity> output_v;
-  output_v =  merge_rectangles ( tmpcont );
-
-  return output_v;
+  return false_positive_removed_heads;
 }
 
 void DepthFaceDetector::match_template3D ( Mat image_disparity, vector<PixelSimilarity> potentials, vector<PixelSimilarity> *heads, int n )

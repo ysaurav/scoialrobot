@@ -13,8 +13,8 @@ using namespace std;
 using namespace cv;
 
 void crossCorrParallel ( const Mat& img, const Mat& _templ, Mat& corr,
-                 Size corrsize, int ctype,
-                 Point anchor, double delta, int borderType )
+                         Size corrsize, int ctype,
+                         Point anchor, double delta, int borderType )
 {
   const double blockScale = 4.5;
   const int minBlockSize = 256;
@@ -121,7 +121,7 @@ void crossCorrParallel ( const Mat& img, const Mat& _templ, Mat& corr,
   borderType |= BORDER_ISOLATED;
 
   // calculate correlation by blocks
-  #pragma omp parallel for shared(img, corr) private(i)
+// #pragma omp parallel for default(none) shared(tileCount, tileCountX, blocksize, corr, templ, anchor, roiofs, img0, cn, depth, maxDepth, buf, borderType, dftsize, tcn, dftTempl, ccn, cdepth, delta, dftImg) private(i, k)
   for ( i = 0; i < tileCount; i++ )
     {
       int x = ( i%tileCountX ) *blocksize.width;
@@ -279,10 +279,9 @@ void matchTemplateParallel ( InputArray _img, InputArray _templ, OutputArray _re
 
   int i, j, k;
 
-  #pragma omp parallel for shared(result) private(i, j, k)
+#pragma omp parallel for default(none) shared(result, sumstep, sqstep, numType, cn, p0, p1, p2, p3, templMean, isNormed, invArea, q0, q1, q2, q3, templSum2, templNorm, method) private(i, j, k)
   for ( i = 0; i < result.rows; i++ )
-    {
-//       cout << "Thread: " << omp_get_thread_num() << endl;
+    {  
       float* rrow = ( float* ) ( result.data + i*result.step );
       int idx = i * sumstep;
       int idx2 = i * sqstep;
